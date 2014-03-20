@@ -1,0 +1,9 @@
+/.idea
+/.project
+/bin
+/components
+/project
+/vendor
+composer.lock
+composer.phar
+**~
