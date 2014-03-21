@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/*
+ *  Mobile Devices
+ */
+@media all and (max-width: 20em) {
+
+}
+
+@media all and (min-width: 20em) {
+
+}
+
+@media all and (min-width: 37.5em) {
+
+}
+@media all and (min-width: 48em) {
+
+}
+
+@media all and (min-width: 48em) and (max-width: 62em) {
+
+}
+
+@media all and (min-width: 62em) {
+
+}
+@media all and (min-width: 75em) {
+    section {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 1em;
+        -moz-column-gap: 1em;
+        column-gap: 1em;
+        -webkit-column-rule: 1px solid grey;
+        -moz-column-rule: 1px solid grey;
+        column-rule: 1px solid grey;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (max-width: 400px) {
+
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+
+}
+
+@media braille {
+
+}
+
+@media embossed {
+
+}
+
+@media handheld {
+
+}
+
+@media print {
+
+}
+
+@media projection {
+
+}
+
+@media screen {
+
+}
+
+@media speech {
+
+}
+
+@media tty {
+
+}
+
+@media tv {
+
+}

@@ -2,7 +2,9 @@
 /.project
 /bin
 /components
-/project
+/documentation/internal
+/nbproject
+/project/
 /vendor
 composer.lock
 composer.phar

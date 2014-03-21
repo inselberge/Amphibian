@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true"
+        processIsolation="true"
+        stopOnError="false"
+        stopOnFailure="false"
+        stopOnIncomplete="false"
+        stopOnSkipped="false"
+        verbose="true"
+        >
+    <testsuites>
+        <testsuite name="Core Test Suite">
+            <directory>./generators/tests/core</directory>
+
+        </testsuite>
+        <testsuite name="Generator Test Suite">
+            <directory>./generators/tests/php</directory>
+        </testsuite>
+    </testsuites>
+    <logging>
+        <log type="coverage-html" target="./documentation/html/report" charset="UTF-8"
+             highlight="false" lowUpperBound="25" highLowerBound="75"/>
+        <log type="coverage-clover" target="./documentation/clover/coverage.xml"/>
+        <log type="testdox-html" target="./documentation/testdox/testdox.html"/>
+    </logging>
+</phpunit>

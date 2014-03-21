@@ -1,0 +1,79 @@
+
+
+body {
+    background:           url("../image/background_800.jpg") center center fixed no-repeat;
+    -moz-background-size: cover;
+    background-size:      cover;
+    display:              block;
+    width:                100%;
+}
+
+a:hover {
+    color: greenyellow;
+    text-decoration: overline;
+}
+
+/* NAV BAR*/
+.navbar {
+    position:   fixed;
+    bottom:     0;
+    left:       0;
+    width:      100%;
+    background: rgba(0, 0, 0, 0.5);
+    color:      #fff;
+    z-index:    1000;
+}
+
+.logo {
+    background:      url("../image/amphibian-57.png") center left no-repeat;
+    background-size: 32px;
+    position:        absolute;
+    top:             0;
+    right:           0;
+    padding:         0.5em 2em;
+    font-size:       1.7em;
+    color:           #efefef;
+    text-decoration: none;
+    width:           4em;
+}
+
+.navbar span {
+    color: greenyellow;
+}
+
+.navbar ul {
+    display: inline-block;
+    margin:  0;
+    padding: 0;
+}
+
+.navbar li {
+    margin:          0;
+    padding:         0;
+    list-style-type: 0;
+    display:         inline-block;
+}
+
+.navbar li a {
+    display:         inline-block;
+    color:           #efefef;
+    padding:         1em 1.3em;
+    text-decoration: none;
+    text-transform:  capitalize;
+    line-height:     100%;
+    font-size:       1.2em;
+}
+
+.menu li a:hover {
+    background: greenyellow;
+    color: #000000;
+}
+
+.menu li a:focus{
+    background: greenyellow;
+    color: #000000;
+}
+
+.menu {
+    background: inherit !important;
+}

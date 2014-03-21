@@ -1,0 +1,97 @@
+<section>
+    <form id="actionForm" method="post" action="" class="form" enctype="multipart/form-data" accept-charset="utf-8">
+        <fieldset>
+            <legend><h2>Actions To Perform</h2></legend>
+            <article>
+                <input type="checkbox" id="fullRun" name="fullRun">
+                <label for="fullRun">Full Run</label>
+            </article>
+            <article>
+                <h3>Infrastructure Generation</h3>
+                <input type="checkbox" name="architecture" id="architecture">
+                <label>Architecture</label>
+                <input type="checkbox">
+                <label>Configuration</label>
+            </article>
+            <article>
+                <h3>Database</h3>
+                <input type="checkbox" id="databaseUserGeneration" name="databaseUserGeneration">
+                <label for="databaseUserGeneration">Database User Generation</label>
+                <input type="checkbox" id="storedProcedureGeneration" name="storedProcedureGeneration">
+                <label for="storedProcedureGeneration">Stored Procedure Generation</label>
+                <input type="checkbox" id="databaseViewGeneration" name="databaseViewGeneration">
+                <label for="databaseViewGeneration">Database View Generation</label>
+            </article>
+            <article>
+                <h3>Application Generation</h3>
+                <input type="checkbox">
+                <label>Agency</label>
+                <input type="checkbox">
+                <label>Bookend</label>
+                <input type="checkbox">
+                <label>Browse</label>
+                <input type="checkbox">
+                <label>Controller</label>
+                <input type="checkbox">
+                <label>Decorator</label>
+                <input type="checkbox">
+                <label>Forms</label>
+                <input type="checkbox">
+                <label>Layout</label>
+                <input type="checkbox">
+                <label>Model</label>
+                <input type="checkbox">
+                <label>View</label>
+            </article>
+            <article>
+                <h3>Maintenance</h3>
+                <input type="checkbox" id="databaseBackup" name="databaseBackup">
+                <label for="databaseBackup">Database Backup</label>
+                <input type="checkbox">
+                <label>Core Update</label>
+                <input type="checkbox">
+                <label>PHP UML Documentation</label>
+            </article>
+            <article>
+                <h3>API</h3>
+                <input type="checkbox">
+                <label>JSON Object</label>
+                <input type="checkbox">
+                <label>XML Object</label>
+            </article>
+            <article>
+                <h3>Testing</h3>
+                <h4>Unit Testing</h4>
+                    <input type="checkbox">
+                    <label>Agency</label>
+                    <input type="checkbox">
+                    <label>Controller</label>
+                    <input type="checkbox">
+                    <label>Decorator</label>
+                    <input type="checkbox">
+                    <label>Helpers</label>
+                    <input type="checkbox">
+                    <label>Model</label>
+                <h4>Integration Testing</h4>
+                    <input type="checkbox">
+                    <label>Agency</label>
+                    <input type="checkbox">
+                    <label>Controller</label>
+                    <input type="checkbox">
+                    <label>Decorator</label>
+                    <input type="checkbox">
+                    <label>Helpers</label>
+                    <input type="checkbox">
+                    <label>Model</label>
+                <h4>Behavioral Testing</h4>
+                <input type="checkbox">
+                    <label>Browse</label>
+                    <input type="checkbox">
+                    <label>Forms</label>
+                    <input type="checkbox">
+                    <label>Views</label>
+            </article>
+            <button type="submit" id="submitAction" name="submitAction" value="">Run It!</button>
+        </fieldset>
+    </form>
+</section>
