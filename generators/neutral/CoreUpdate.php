@@ -8,7 +8,7 @@
  * Time: 4:20 PM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
-require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config/config.inc.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
 require_once AMPHIBIAN_CORE . "FileList.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."CoreUpdateInterface.php";
 /**
