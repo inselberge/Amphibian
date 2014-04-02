@@ -11,8 +11,8 @@ require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config" . D
 //require_once AMPHIBIAN_CONFIG . "Coworks.In.config.inc.php";
 //require_once AMPHIBIAN_CONFIG . "InnerAlly.config.inc.php";
 require_once MYSQL;
-require_once AMPHIBIAN_CORE . "TableDescription.php";
-require_once AMPHIBIAN_CORE . "FileHandle.php";
+require_once AMPHIBIAN_CORE_ABSTRACT . "TableDescription.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "FileHandle.php";
 require_once AMPHIBIAN_GENERATORS_ABSTRACT."sprocGenerator.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."sprocGeneratorMySQLiInterface.php";
 

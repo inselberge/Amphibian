@@ -9,7 +9,7 @@
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
 require_once "BasicGenerator.php";
-require_once AMPHIBIAN_CORE . "JSON.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "JSON.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."JSONObjectGeneratorInterface.php";
 /**
  * Class JSONObjectGenerator

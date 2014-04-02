@@ -10,10 +10,10 @@
  */
 require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
 require_once AMPHIBIAN_CONFIG . "Amphibian.config.inc.php";
-require_once AMPHIBIAN_CORE . "FileHandle.php";
-require_once AMPHIBIAN_CORE . "CheckInput.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "FileHandle.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "CheckInput.php";
 require_once AMPHIBIAN_CORE_ABSTRACT . "TableDescription.php";
-require_once AMPHIBIAN_CORE . "Git.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "Git.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."BasicGeneratorInterface.php";
 /**
  * Class BasicGenerator

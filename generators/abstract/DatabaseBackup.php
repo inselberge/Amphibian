@@ -7,8 +7,8 @@
  * Time: 4:57 PM
  */
 require_once "interfaces".DIRECTORY_SEPARATOR."DatabaseBackupInterface.php";
-require_once AMPHIBIAN_CORE . "CheckInput.php";
-require_once AMPHIBIAN_CORE."Git.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "CheckInput.php";
+require_once AMPHIBIAN_CORE_NEUTRAL."Git.php";
 /**
  * Class DatabaseBackup
  *

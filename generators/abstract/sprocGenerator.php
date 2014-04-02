@@ -6,7 +6,7 @@
  * Time: 11:09 PM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
-require_once AMPHIBIAN_CORE . "BasicInteraction.php";
+require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."sprocGeneratorInterface.php";
 
 /**

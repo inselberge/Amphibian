@@ -5,7 +5,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTO
 //require_once AMPHIBIAN_CONFIG."Coworks.In.config.inc.php";
 //require_once AMPHIBIAN_CONFIG."InnerAlly.config.inc.php";
 require_once MYSQL;
-require_once AMPHIBIAN_CORE . "BasicInteraction.php";
+require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."userInteractionGeneratorInterface.php";
 /**
  * Class UserInteractionGenerator

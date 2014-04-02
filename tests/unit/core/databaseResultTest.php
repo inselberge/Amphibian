@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
-require_once AMPHIBIAN_CORE . "databaseResult.php";
+require_once AMPHIBIAN_CORE_ABSTRACT . "databaseResult.php";
 require_once AMPHIBIAN_TESTS."baseTest.php";
 /**
  * Class databaseResultTest

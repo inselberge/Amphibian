@@ -7,8 +7,8 @@
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
 require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config" . DIRECTORY_SEPARATOR . "config.inc.php";
-require_once AMPHIBIAN_CORE . "CheckInput.php";
-require_once AMPHIBIAN_CORE . "FileHandle.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "CheckInput.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "FileHandle.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."bookendGeneratorInterface.php";
 /**
  * Class bookendGenerator

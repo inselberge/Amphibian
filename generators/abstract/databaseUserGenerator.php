@@ -6,7 +6,7 @@
  * Time: 10:27 AM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
-require_once AMPHIBIAN_CORE . "CheckInput.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "CheckInput.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."databaseUserGeneratorInterface.php";
 /**
  * Class DatabaseUserGenerator

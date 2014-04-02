@@ -8,10 +8,10 @@
  */
 require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
 require_once "databaseUserGenerator.php";
-require_once AMPHIBIAN_CORE . "databaseConnectionMySQLi.php";
-require_once AMPHIBIAN_CORE . "RandomPassword.php";
-require_once AMPHIBIAN_CORE . "FileHandle.php";
-require_once AMPHIBIAN_CORE . "databaseQueryMySQLi.php";
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "RandomPassword.php";
+require_once AMPHIBIAN_CORE_NEUTRAL . "FileHandle.php";
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseQueryMySQLi.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."databaseUserGeneratorMySQLiInterface.php";
 /**
  * Class DatabaseUserGeneratorMySQLi
