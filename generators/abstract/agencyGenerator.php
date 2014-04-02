@@ -152,7 +152,7 @@ abstract class AgencyGenerator
  *
 //require_once AMPHIBIAN_CONFIG."Coworks.In.config.inc.php";
 //require_once AMPHIBIAN_CONFIG."InnerAlly.config.inc.php";
-require_once MYSQL;
+//require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls
 $ag = AgencyGenerator::instance($databaseConnection);
 //$ag->setTableName("viewNet_Promoter_Score");
 $ag->execute();

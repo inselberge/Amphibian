@@ -159,7 +159,7 @@ class TableBuilderMySQLi
 //Set the database access information as constants:
 /*
 require "..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
-require_once MYSQL;
+//require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls
 
 $r=mysqli_query($databaseConnection,"SELECT * from Category");
 $id="blargh";

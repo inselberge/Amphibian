@@ -224,7 +224,7 @@ abstract class DecoratorGenerator
 }
 //require_once AMPHIBIAN_CONFIG . "Coworks.In.config.inc.php";
 //require_once AMPHIBIAN_CONFIG . "InnerAlly.config.inc.php";
-//require_once MYSQL;
+////require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls
 /*
  * Agency Decorators
  *
@@ -237,7 +237,7 @@ $ad->execute();
 /*
  * Model Decorators
 require_once AMPHIBIAN_CONFIG . "InnerAlly.config.inc.php";
-require_once MYSQL;
+//require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls
 $md = DecoratorGenerator::instance($databaseConnection);
 $md->setAgencyOrModelFlag("model");
 $md->setFileDestination(MODELS_DECORATORS);

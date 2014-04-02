@@ -571,7 +571,7 @@ abstract class JSONObjectGenerator
  *
 //require_once AMPHIBIAN_CONFIG . "Coworks.In.config.inc.php";
 require_once AMPHIBIAN_CONFIG . "InnerAlly.config.inc.php";
-require_once MYSQL;
+//require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls
 $aj = JSONObjectGenerator::instance($databaseConnection);
 $aj->setAgencyOrModel("agency");
 $aj->setFileDestination(AGENCIES_JSON);
@@ -581,7 +581,7 @@ $aj->execute();
  * Model JSON Objects
  *
 require_once AMPHIBIAN_CONFIG . "InnerAlly.config.inc.php";
-require_once MYSQL;
+//require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls
 $mj = JSONObjectGenerator::instance($databaseConnection);
 $mj->setAgencyOrModel("model");
 $mj->setRequestOrResponse("request");

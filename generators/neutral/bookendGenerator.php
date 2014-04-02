@@ -146,7 +146,7 @@ class bookendGenerator
     protected function startHead()
     {
         $this->fileBuffer .= '<?php' . "\n";
-        $this->fileBuffer .= '//require_once MYSQL;' . "\n";
+        $this->fileBuffer .= '////require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls' . "\n";
         $this->fileBuffer .= '?>' . "\n";
         $this->fileBuffer .= '<!doctype html>' . "\n";
         $this->fileBuffer .= '<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->' . "\n";
