@@ -96,8 +96,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -128,8 +126,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -160,8 +156,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -192,8 +186,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -224,8 +216,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -256,8 +246,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -288,8 +276,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -320,8 +306,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -352,8 +336,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -384,8 +366,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -416,8 +396,6 @@ abstract class DatabaseQueryPrepared
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }

@@ -84,8 +84,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -107,8 +105,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -134,8 +130,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -155,8 +149,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
 
@@ -185,8 +177,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -208,8 +198,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -229,8 +217,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -250,8 +236,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -271,8 +255,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -294,8 +276,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -323,8 +303,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -346,8 +324,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -370,8 +346,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -391,8 +365,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -412,8 +384,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -433,8 +403,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -454,8 +422,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -475,8 +441,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -499,8 +463,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -520,8 +482,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -541,8 +501,6 @@ class DatabaseQueryPreparedMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }

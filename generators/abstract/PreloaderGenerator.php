@@ -80,8 +80,6 @@ abstract class PreloaderGenerator
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }

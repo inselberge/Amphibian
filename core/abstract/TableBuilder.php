@@ -109,8 +109,6 @@ abstract class TableBuilder
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
     }
 

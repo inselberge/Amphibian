@@ -141,8 +141,6 @@ class DatabaseConnectionMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -172,8 +170,6 @@ class DatabaseConnectionMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }

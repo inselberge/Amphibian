@@ -38,8 +38,6 @@ class ClassGeneratorMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
     }
 
@@ -120,8 +118,6 @@ class ClassGeneratorMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -632,15 +628,12 @@ class ClassGeneratorMySQLi
         }
     }
 }
-/*
- */
-//require_once AMPHIBIAN_CONFIG . "InnerAlly.config.inc.php";
-require_once AMPHIBIAN_CONFIG . "Coworks.In.config.inc.php";
-require_once MYSQL;
 
+/*
 $cg = ClassGeneratorMySQLi::instance($databaseConnection);
 $cg->setAuthor('Carl "Tex" Morgan <texmorgan@'.APP_WEBSITE.'>');
 $cg->setLicense("All rights reserved by ".APP_NAME." unless otherwise stated.");
 $cg->setLink("http://".APP_WEBSITE."/documentation/uml/models/generated");
 $cg->setTableName("User");
 $cg->execute();
+*/

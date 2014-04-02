@@ -67,7 +67,7 @@ class FileTest
     public function locationDataProvider()
     {
         return array(
-            array(__DIR__, __DIR__."/../")
+            array(__DIR__, __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."")
         );
     }
 

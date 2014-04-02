@@ -44,8 +44,6 @@ class AgencyGeneratorMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }

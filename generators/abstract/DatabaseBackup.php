@@ -56,8 +56,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -88,8 +86,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -110,8 +106,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -142,8 +136,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -174,8 +166,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -206,8 +196,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -238,8 +226,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -270,8 +256,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -302,8 +286,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -334,8 +316,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -366,8 +346,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -398,8 +376,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -433,8 +409,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -464,8 +438,6 @@ abstract class DatabaseBackup
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }

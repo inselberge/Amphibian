@@ -343,7 +343,7 @@ class FileList
  * Example Use for Files
  *
 $fl = FileList::instance("config.inc.php");
-$fl->setLocation("../../config/");
+$fl->setLocation("..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config/");
 $fl->execute();
 $fl->printSelectList('configurationList','configurationList',null,array("config.inc.php"));
 echo $fl->html;

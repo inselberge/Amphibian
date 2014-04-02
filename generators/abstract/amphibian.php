@@ -69,7 +69,7 @@ abstract class Amphibian
     protected function scanConfigurationFiles()
     {
         $this->configurationList = FileList::instance("config.inc.php");
-        $this->configurationList->setLocation("../../config/");
+        $this->configurationList->setLocation("..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config/");
         $this->configurationList->execute();
         $this->configurationList->printSelectList(
             "configurationList", 
@@ -103,7 +103,7 @@ abstract class Amphibian
             if ( $this->currentConfiguration == false ) {
                 throw new Exception(": Tne current configuration is not set.");
             } else {
-                include_once "../../config/" . $this->currentConfiguration;
+                include_once "..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config/" . $this->currentConfiguration;
             }
         } catch ( Exception $e ) {
             echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . $e);

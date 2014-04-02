@@ -75,8 +75,6 @@ class StandardViewBuilderMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -102,8 +100,6 @@ class StandardViewBuilderMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }

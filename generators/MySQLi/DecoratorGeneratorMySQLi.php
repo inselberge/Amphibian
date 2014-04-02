@@ -75,8 +75,6 @@ class DecoratorGeneratorMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
@@ -96,8 +94,6 @@ class DecoratorGeneratorMySQLi
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
-        } finally {
-
         }
         return true;
     }
