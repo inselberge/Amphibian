@@ -21,10 +21,6 @@ require_once "BasicInteractionInterface.php";
 interface BasicControllerInterface
     extends BasicInteractionInterface
 {
-    /**
-     * @param $databaseConnection
-     */
-    public function __construct( $databaseConnection );
     public function onLoad();
 
     /** setEditMode
