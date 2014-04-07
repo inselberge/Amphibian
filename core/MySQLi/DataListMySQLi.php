@@ -6,6 +6,7 @@
  * Date: 1/22/14
  * Time: 11:45 PM
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once AMPHIBIAN_CORE_ABSTRACT."DataList.php";
 require_once "databaseQueryMySQLi.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."DataListMySQLiInterface.php";

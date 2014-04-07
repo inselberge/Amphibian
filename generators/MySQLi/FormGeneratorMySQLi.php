@@ -6,6 +6,7 @@
  * Date: 1/19/14
  * Time: 11:59 PM
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."FormGeneratorMySQLiInterface.php";
 require_once AMPHIBIAN_GENERATORS_ABSTRACT."FormGenerator.php";
 /**

@@ -22,6 +22,10 @@ abstract class BaseTest
     extends PHPUnit_Framework_TestCase
 {
     /**
+     * @var object connection a valid database connection
+     */
+    protected $connection;
+    /**
      * @var object object the object we are testing
      */
     protected $object;

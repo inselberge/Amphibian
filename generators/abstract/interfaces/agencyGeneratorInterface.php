@@ -7,7 +7,7 @@
  * Time: 8:39 PM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
-require_once "basicGeneratorInterface.php";
+require_once "BasicGeneratorInterface.php";
 
 /**
  * Interface agencyGeneratorInterface

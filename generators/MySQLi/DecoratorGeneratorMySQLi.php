@@ -6,8 +6,9 @@
  * Date: 1/19/14
  * Time: 10:00 PM
  */
-require_once "interfaces".DIRECTORY_SEPARATOR."DecoratorGeneratorMySQLiInterface.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once AMPHIBIAN_GENERATORS_ABSTRACT."DecoratorGenerator.php";
+require_once "interfaces" . DIRECTORY_SEPARATOR . "DecoratorGeneratorMySQLiInterface.php";
 /**
  * Class DecoratorGeneratorMySQLi
  *

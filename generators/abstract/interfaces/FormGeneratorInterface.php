@@ -7,6 +7,8 @@
  * Time: 1:15 PM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
+require_once AMPHIBIAN_GENERATORS_ABSTRACT_INTERFACES."BasicGeneratorInterface.php";
+
 interface FormGeneratorInterface
     extends BasicGeneratorInterface
 {

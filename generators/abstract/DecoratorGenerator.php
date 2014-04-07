@@ -138,7 +138,7 @@ abstract class DecoratorGenerator
     protected function addAgencyRequired()
     {
         $this->buffer.='require_once AGENCIES_GENERATED."' . strtolower($this->tableName).'.php";'."\n";
-        $this->"interfaces".DIRECTORY_SEPARATOR."uire_once "interfaces".DIRECTORY_SEPARATOR."' . $this->tableName.'AgencyDecoratorInterface.php";'."\n";
+        $this->buffer.='require_once "interfaces".DIRECTORY_SEPARATOR."' . $this->tableName.'AgencyDecoratorInterface.php";'."\n";
     }
 
     /** addModelRequired

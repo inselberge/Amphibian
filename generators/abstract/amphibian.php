@@ -60,7 +60,7 @@ abstract class Amphibian
     /**
      * @var  amphibian holds values for $Amphibian->amphibian
      */
-    protected $amphibian;
+    static protected $amphibian;
 
     /** scanConfigurationFiles
      * 
@@ -239,6 +239,6 @@ abstract class Amphibian
      */
     public function show()
     {
-        print_r($this->amphibian);
+        print_r(self::$amphibian);
     }
 }

@@ -18,23 +18,6 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicAgency.php";
 class BasicAgencyTest
 	extends BaseTest
 {
-    /**
-     * @var object BasicAgency an instance of BasicAgency
-     */
-    protected $object;
-    /**
-     * @var mixed expected holds the expected value
-     */
-    protected $expected;
-    /**
-     * @var mixed actual holds the actual value
-     */
-    protected $actual;
-    /**
-     * @var mixed arguments holds the arguments for the function call
-     */
-    protected $arguments;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -44,8 +27,7 @@ class BasicAgencyTest
      */
     protected function setUp()
     {
-        require AMPHIBIAN_CONFIG."mysql.cfg.php";
-        $this->object = $this->getMockForAbstractClass('BasicAgency', array($databaseConnection));
+        $this->object = $this->getMockForAbstractClass('BasicAgency', array($this->connection));
     }
 
     /** tearDown

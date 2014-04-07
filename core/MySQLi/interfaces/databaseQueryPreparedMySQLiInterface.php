@@ -6,6 +6,7 @@
  * Date: 12/19/13
  * Time: 2:35 PM
  */
+require_once AMPHIBIAN_CORE_ABSTRACT_INTERFACES."databaseQueryPreparedInterface.php";
 /**
  * Class DatabaseQueryPreparedMySQLiInterface
  *

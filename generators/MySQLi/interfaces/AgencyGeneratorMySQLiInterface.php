@@ -10,7 +10,7 @@
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
 require_once AMPHIBIAN_GENERATORS_ABSTRACT_INTERFACES."agencyGeneratorInterface.php";
-//namespace generators\interfaces;
+//
 /**
  * Interface AgencyGeneratorMySQLiInterface
  *

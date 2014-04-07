@@ -6,6 +6,7 @@
  * Date: 1/16/14
  * Time: 4:57 PM
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."DatabaseBackupInterface.php";
 require_once AMPHIBIAN_CORE_NEUTRAL . "CheckInput.php";
 require_once AMPHIBIAN_CORE_NEUTRAL."Git.php";
