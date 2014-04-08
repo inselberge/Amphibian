@@ -8,6 +8,7 @@
  * Date: 9/15/13
  * Time: 8:07 PM
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."TranslatorInterface.php";
 /**
  * Class Translator

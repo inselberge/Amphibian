@@ -4,6 +4,7 @@
  * TODO: Add more specific error messages
  * TODO: Remove some of the duplicate checks, i.e. email
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "CheckInput.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."CheckValueInterface.php";
 /**

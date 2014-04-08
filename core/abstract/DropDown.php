@@ -6,6 +6,7 @@
  * Date: 1/27/14
  * Time: 11:21 AM
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "BasicInteraction.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."DropDownInterface.php";
 /**

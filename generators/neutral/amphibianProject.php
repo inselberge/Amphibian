@@ -6,6 +6,8 @@
  * Date: 3/31/14
  * Time: 10:22 PM
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
+require_once AMPHIBIAN_CORE_NEUTRAL."CheckInput.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."amphibianProjectInterface.php";
 /**
  * Class amphibianProject
@@ -200,3 +202,8 @@ class AmphibianProject
         return true;
     }
 }
+/*
+$project = AmphibianProject::instance();
+$project->setName("YourProject");
+$project->create();
+*/

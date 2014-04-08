@@ -8,6 +8,7 @@
  * Time: 9:54 PM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once AMPHIBIAN_CORE_ABSTRACT."BasicInteraction.php";
 require_once AMPHIBIAN_CORE_MYSQLI."TableBuilderMySQLi.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."BasicBrowseInterface.php";

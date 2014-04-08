@@ -7,6 +7,7 @@
  * Time: 1:02 AM
  * To change this template use File | Settings | File Templates.
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."SanitizerInterface.php";
 require_once "CheckInput.php";
 /**

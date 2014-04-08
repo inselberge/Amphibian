@@ -7,6 +7,7 @@
  * Time: 8:22 PM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."CheckInputInterface.php";
 require_once "ExceptionHandler.php";
 /**
