@@ -5,7 +5,7 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR.".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 include_once AMPHIBIAN_CONFIG."mysql.cfg.php";
 require_once AMPHIBIAN_CORE_ABSTRACT . "TableDescription.php";
-require_once AMPHIBIAN_TESTS . "baseTest.php";
+require_once AMPHIBIAN_TESTS_UNIT . "baseTest.php";
 /**
  * Class TableDescriptionTest
  *

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../../../config/config.inc.php";
-require_once AMPHIBIAN_CORE."BasicArray.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
+require_once AMPHIBIAN_CORE_NEUTRAL."BasicArray.php";
 /**
  * Class BasicArrayTest
  *
