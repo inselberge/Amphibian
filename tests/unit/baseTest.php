@@ -55,6 +55,10 @@ abstract class BaseTest
         unset($this->arguments);
         unset($this->expected);
         unset($this->actual);
+        if ( isset($this->connection)) {
+            $this->connection->closeConnection();
+        }
+        unset($this->connection);
     }
 
     /** positiveIntegerDataProvider
@@ -396,8 +400,30 @@ abstract class BaseTest
     {
         return array(
             array(true),
-            array(false),
-            array(null)
+            array(false)
+        );
+    }
+
+    /** databaseUserDataProvider
+     *
+     * @return array
+     */
+    public function databaseUserDataProvider()
+    {
+        return array(
+            array("browse"),
+            array("user"),
+            array("pwrUser"),
+            array("Adm1n")
+        );
+    }
+
+    public function projectNameDataProvider()
+    {
+        return array(
+            array("ProjectA"),
+            array("ProjectB"),
+            array("ProjectX")
         );
     }
 } 

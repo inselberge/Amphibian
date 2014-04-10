@@ -496,7 +496,7 @@ class DatabaseConnectionMySQLi
     }
 
 }
-/* */
+/*
 $SSL = databaseConnectionMySQLi::instance();
 $SSL->setOptions(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
 $SSL->setOptions(MYSQLI_SERVER_PUBLIC_KEY, "/etc/mysql/my.cnf");
@@ -515,3 +515,4 @@ $SSL->setUserPassword('4u$t1nTX');
 $SSL->openConnection();
 $SSL->printHostInfo();
 print_r(mysqli_fetch_row(mysqli_query($SSL->getConnection(),"SHOW STATUS LIKE 'ssl_cipher';")));
+*/

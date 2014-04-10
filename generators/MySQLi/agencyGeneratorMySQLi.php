@@ -11,6 +11,7 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."AgencyGeneratorMySQLiInterface.php";
 require_once AMPHIBIAN_GENERATORS_ABSTRACT."agencyGenerator.php";
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 /**
  * Class AgencyGeneratorMySQLi
  *
@@ -38,7 +39,11 @@ class AgencyGeneratorMySQLi
         try {
             if (CheckInput::checkSet($databaseConnection)) {
                 parent::__construct($databaseConnection);
-                $this->setFileDestination(AGENCIES_GENERATED);
+                if ( defined('AGENCIES_GENERATED') ) {
+                    $this->setFileDestination(AGENCIES_GENERATED);
+                } else {
+                    throw new ExceptionHandler(__METHOD__ . ": undefined location.");
+                }
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": database connection invalid.");
             }
@@ -98,7 +103,7 @@ class AgencyGeneratorMySQLi
     {
         try {
             if (CheckInput::checkNewInput($this->connection)) {
-                $this->tableArray = getViews($this->connection);
+                $this->tableArray = $this->connection->getViews();
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": Connection is dead.");
             }
@@ -132,7 +137,7 @@ class AgencyGeneratorMySQLi
     protected function setTableColumns()
     {
         try {
-            $this->tableColumns = getColumnList( $this->connection, $this->tableName );
+            $this->tableColumns = $this->connection->getColumnList($this->tableName);
             if ( !CheckInput::checkSetArray($this->tableColumns) ) {
                 throw new ExceptionHandler(__METHOD__ . ": unable to set columns on $this->tableName.");
             }
@@ -142,4 +147,4 @@ class AgencyGeneratorMySQLi
         }
         return true;
     }
-} 
+}

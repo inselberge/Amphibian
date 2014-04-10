@@ -610,10 +610,11 @@ $cfGen->setBaseURI("/var/www/Coworks.In/");
 $cfGen->setBaseURL("http://coworks.in");
 $cfGen->execute();
 */
-/* InnerAlly */
+/* InnerAlly
 $cfGen = ConfigurationGenerator::instance();
 $cfGen->setAppName("InnerAlly");
 $cfGen->setAppWebsite("InnerAlly.com");
-$cfGen->setBaseURI("/var/www/InnerAlly/");
+$cfGen->setBaseURI("/var/www/InnerAlly_SC/");
 $cfGen->setBaseURL("http://innerally.com");
 $cfGen->execute();
+*/
