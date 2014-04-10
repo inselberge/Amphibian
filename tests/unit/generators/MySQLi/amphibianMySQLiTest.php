@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__ . "/../../../config/config.inc.php";
-require_once AMPHIBIAN_CORE."amphibianMySQLi.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
+
+require_once AMPHIBIAN_GENERATORS_MYSQLI."amphibianMySQLi.php";
 /**
  * Class amphibianMySQLiTest
  *

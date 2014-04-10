@@ -7,7 +7,7 @@
  * Time: 8:59 PM
  */
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
-require_once AMPHIBIAN_TESTS_UNIT . "baseTest.php";
+
 require_once AMPHIBIAN_GENERATORS_NEUTRAL . "ConfigurationLoader.php";
 
 /**

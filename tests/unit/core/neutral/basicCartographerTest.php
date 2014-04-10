@@ -1,8 +1,7 @@
 <?php
 
-require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 require_once AMPHIBIAN_CORE_NEUTRAL."BasicCartographer.php";
-require_once AMPHIBIAN_TESTS_UNIT."baseTest.php";
 /**
  * Class BasicCartographerTest
  *

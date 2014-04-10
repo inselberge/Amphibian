@@ -1,6 +1,8 @@
 <?php
-require_once __DIR__ . "/../../../config/config.inc.php";
-require_once AMPHIBIAN_CORE."DecoratorGeneratorMySQLi.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
+
+
+require_once AMPHIBIAN_GENERATORS_MYSQLI."DecoratorGeneratorMySQLi.php";
 /**
  * Class DecoratorGeneratorMySQLiTest
  *
@@ -14,7 +16,7 @@ require_once AMPHIBIAN_CORE."DecoratorGeneratorMySQLi.php";
  *
  */
 class DecoratorGeneratorMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+	extends BaseTest
 {
     /**
      * @var object DecoratorGeneratorMySQLi an instance of DecoratorGeneratorMySQLi
