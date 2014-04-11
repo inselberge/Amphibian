@@ -132,9 +132,10 @@ class DatabaseConnectionMySQLi
                     $this->getServerName(),
                     $this->getUserName(),
                     $this->getUserPassword(),
-                    $this->getDatabaseName(),
-                    null,
-                    MYSQLI_CLIENT_SSL
+                    $this->getDatabaseName()
+                    /*
+                     * TODO: add SSL parameters when OpenSSL is fixed.
+                     */
                 );
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": Requirements not met.");
