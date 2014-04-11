@@ -417,7 +417,7 @@ class Git
      */
     protected function getDate()
     {
-        $this->date = date("Y-m-d_H.i.s");
+        $this->date = date("Y_m_d__H.i.s");
         return $this->date;
     }
 

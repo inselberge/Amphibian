@@ -3,6 +3,9 @@ $currentProject="";
 /*
  * Local installation variables 
  */
+if (!ini_get('date.timezone') && function_exists('date_default_timezone_set')) {
+    date_default_timezone_set('UTC');
+}
 DEFINE('AMPHIBIAN', __DIR__ . DIRECTORY_SEPARATOR . '..'.DIRECTORY_SEPARATOR);
 DEFINE('AMPHIBIAN_CONFIG', AMPHIBIAN . 'config'.DIRECTORY_SEPARATOR);
 
