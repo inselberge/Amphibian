@@ -71,6 +71,15 @@ class ConfigurationGenerator
         return self::$ConfigurationGenerator;
     }
 
+    /** factory
+     *
+     * @return ConfigurationGenerator
+     */
+    public static function factory()
+    {
+        return new ConfigurationGenerator();
+    }
+
     /** setAppName
      *
      * @param string $appName the name of the application
@@ -83,10 +92,10 @@ class ConfigurationGenerator
             if ( CheckInput::checkNewInput($appName) ) {
                 $this->appName = $appName;
             } else {
-                throw new Exception("appName is not valid");
+                throw new ExceptionHandler("appName is not valid");
             }
-        } catch ( Exception $e ) {
-            echo $e;
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -113,10 +122,10 @@ class ConfigurationGenerator
             if ( CheckInput::checkNewInput($appWebsite) ) {
                 $this->appWebsite = $appWebsite;
             } else {
-                throw new Exception("appWebsite is not valid");
+                throw new ExceptionHandler("appWebsite is not valid");
             }
-        } catch ( Exception $e ) {
-            echo $e;
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -143,10 +152,10 @@ class ConfigurationGenerator
             if ( CheckInput::checkNewInput($baseURI) ) {
                 $this->baseURI = $baseURI;
             } else {
-                throw new Exception("baseURI is not valid");
+                throw new ExceptionHandler("baseURI is not valid");
             }
-        } catch ( Exception $e ) {
-            echo $e;
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -173,10 +182,10 @@ class ConfigurationGenerator
             if ( CheckInput::checkNewInput($baseURL) ) {
                 $this->baseURL = $baseURL;
             } else {
-                throw new Exception("baseURL is not valid");
+                throw new ExceptionHandler("baseURL is not valid");
             }
-        } catch ( Exception $e ) {
-            echo $e;
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -224,10 +233,10 @@ class ConfigurationGenerator
                 $this->addVendor();
                 $this->writeFromBuffer();
             } else {
-                throw new Exception("Check the name, website, URI, and URL.");
+                throw new ExceptionHandler(__METHOD__."Check the name, website, URI, and URL.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -593,10 +602,10 @@ class ConfigurationGenerator
                 $this->_FileHandle = new FileHandle($this->baseURI . "config/" . $this->appName . ".config.inc.php");
                 $this->_FileHandle->writeFull($this->_buffer);
             } else {
-                throw new Exception ("The buffer is empty.");
+                throw new ExceptionHandler(__METHOD__."The buffer is empty.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;

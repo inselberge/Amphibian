@@ -48,10 +48,10 @@ class DatabaseUserGeneratorMySQLi
                 }
                 return self::$databaseUser;
             } else {
-                throw new Exception(" database connection is dead.");
+                throw new ExceptionHandler(" database connection is dead.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -68,13 +68,13 @@ class DatabaseUserGeneratorMySQLi
                 if ( $this->checkNewInput($value) ) {
                     $this->$$element = $value;
                 } else {
-                    throw new Exception("the value is not specified");
+                    throw new ExceptionHandler("the value is not specified");
                 }
             } else {
-                throw new Exception("the attribute is not specified");
+                throw new ExceptionHandler("the attribute is not specified");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -113,8 +113,8 @@ class DatabaseUserGeneratorMySQLi
             $this->create();
             $this->setPassword();
             $this->grant();
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -192,10 +192,10 @@ class DatabaseUserGeneratorMySQLi
             if ( $this->databaseQuery->execute('SELECT 1 FROM mysql.user WHERE `User` LIKE "' . $this->userName . '%" AND `Host`="' . $this->databaseHost . '"') ) {
                 return true;
             } else {
-                throw new Exception("Check user exists command failed");
+                throw new ExceptionHandler("Check user exists command failed");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -209,10 +209,10 @@ class DatabaseUserGeneratorMySQLi
             if ( $this->databaseQuery->execute("REVOKE ALL PRIVILEGES, GRANT OPTION FROM " . $this->userName . "@" . $this->databaseHost) ) {
                 return true;
             } else {
-                throw new Exception("REVOKE command failed");
+                throw new ExceptionHandler("REVOKE command failed");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -226,10 +226,10 @@ class DatabaseUserGeneratorMySQLi
             if ( $this->databaseQuery->execute("DROP USER " . $this->userName . "@" . $this->databaseHost) ) {
                 return true;
             } else {
-                throw new Exception("DROP USER command failed");
+                throw new ExceptionHandler("DROP USER command failed");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -243,10 +243,10 @@ class DatabaseUserGeneratorMySQLi
             if ( $this->databaseQuery->execute("CREATE USER " . $this->userName . "@" . $this->databaseHost) ) {
                 return true;
             } else {
-                throw new Exception("CREATE USER command failed");
+                throw new ExceptionHandler("CREATE USER command failed");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -268,10 +268,10 @@ class DatabaseUserGeneratorMySQLi
             if ( $this->databaseQuery->execute("SET PASSWORD FOR " . $this->userName . "@" . $this->databaseHost . " = PASSWORD(" . $this->password . ")") ) {
                 return true;
             } else {
-                throw new Exception("SET PASSWORD command failed");
+                throw new ExceptionHandler("SET PASSWORD command failed");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -285,10 +285,10 @@ class DatabaseUserGeneratorMySQLi
             if ( $this->databaseQuery->execute("GRANT " . $this->userRights . " ON " . $this->databaseName . ".* TO " . $this->userName . "@" . $this->databaseHost) ) {
                 return true;
             } else {
-                throw new Exception("GRANT command failed");
+                throw new ExceptionHandler("GRANT command failed");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }

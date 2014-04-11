@@ -84,10 +84,10 @@ class SprocGeneratorMySQLi
                 }
                 return self::$_sprocGeneratorMySQLi;
             } else {
-                throw new Exception("Tne database connection must be set.");
+                throw new ExceptionHandler("Tne database connection must be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -106,13 +106,13 @@ class SprocGeneratorMySQLi
                 if ( is_array($array) ) {
                     $this->_tableNames = $array;
                 } else {
-                    throw new Exception("The input is not an array.");
+                    throw new ExceptionHandler("The input is not an array.");
                 }
             } else {
-                throw new Exception("Tne table names array could not be set.");
+                throw new ExceptionHandler("Tne table names array could not be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -127,7 +127,7 @@ class SprocGeneratorMySQLi
         if ( !isset($this->_tableNames) ) {
             $this->_tableNames = $this->connection->getTables();
         }
-        foreach ( $this->_tableNames as $key => $this->currentTableName ) {
+        foreach ( $this->_tableNames as  $this->currentTableName ) {
             $this->initialize();
             $this->prepareTableDescription();
             $this->iterate();
@@ -207,8 +207,8 @@ class SprocGeneratorMySQLi
         try {
             $this->_FileHandle = new FileHandle("/" . DATABASE_STORED_PROCEDURES . ucwords($this->currentTableName) . ".sql");
             $this->writeAllSprocs();
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -231,8 +231,8 @@ class SprocGeneratorMySQLi
             $this->makeInputForInsert();
             $this->buildSprocQuery('insert', $this->sprocInsert() . $this->sprocInsertID());
             $this->writeSproc();
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;

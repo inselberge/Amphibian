@@ -122,80 +122,82 @@ abstract class TableBuilder
      */
     public function setOption($key, $value)
     {
-        if (isset($key, $value) AND !is_null($key)) {
-            switch ($key) {
-                case 'limitResult':
-                    if (is_int($value) === true) {
-                        $this->limitResult = $value;
-                    } else {
-                        $this->limitResult = 25;
-                    };
-                    return true;
-                    break;
-                case 'bgColor':
-                    if (is_string($value) === true) {
-                        $this->bgColor = $value;
-                    } else {
-                        $this->bgColor = "white";
-                    };
-                    return true;
-                    break;
-                case 'textColor':
-                    if (is_string($value) === true) {
-                        $this->textColor = $value;
-                    } else {
-                        $this->textColor = "black";
-                    };
-                    return true;
-                    break;
-                case 'bgColorAlt':
-                    if (is_string($value) === true) {
-                        $this->bgColorAlt = $value;
-                    } else {
-                        $this->bgColorAlt = "gray";
-                    };
-                    return true;
-                    break;
-                case 'textColorAlt':
-                    if (is_string($value) === true) {
-                        $this->textColorAlt = $value;
-                    } else {
-                        $this->textColorAlt = "white";
-                    };
-                    return true;
-                    break;
-                case 'width':
-                    if (is_int($value) AND ($value > 0)) {
-                        $this->width = $value . "%";
-                    } else {
-                        $this->width = "100%";
-                    };
-                    return true;
-                    break;
-                case 'height':
-                    if (is_int($value) AND ($value > 0)) {
-                        $this->height = $value . "%";
-                    } else {
-                        $this->height = "100%";
-                    };
-                    return true;
-                    break;
-                case 'checkBoxes':
-                    if ($value === true) {
-                        $this->checkBoxes = $value;
-                    } else {
-                        $this->checkBoxes = false;
-                    };
-                    return true;
-                    break;
-                default:
-                    return false;
-                    break;
+        try {
+            if (checkInput::checkSet($key)) {
+                switch ($key) {
+                    case 'limitResult':
+                        if (is_int($value) === true) {
+                            $this->limitResult = $value;
+                        } else {
+                            $this->limitResult = 25;
+                        };
+                        return true;
+                        break;
+                    case 'bgColor':
+                        if (is_string($value) === true) {
+                            $this->bgColor = $value;
+                        } else {
+                            $this->bgColor = "white";
+                        };
+                        return true;
+                        break;
+                    case 'textColor':
+                        if (is_string($value) === true) {
+                            $this->textColor = $value;
+                        } else {
+                            $this->textColor = "black";
+                        };
+                        return true;
+                        break;
+                    case 'bgColorAlt':
+                        if (is_string($value) === true) {
+                            $this->bgColorAlt = $value;
+                        } else {
+                            $this->bgColorAlt = "gray";
+                        };
+                        return true;
+                        break;
+                    case 'textColorAlt':
+                        if (is_string($value) === true) {
+                            $this->textColorAlt = $value;
+                        } else {
+                            $this->textColorAlt = "white";
+                        };
+                        return true;
+                        break;
+                    case 'width':
+                        if (is_int($value) AND ($value > 0)) {
+                            $this->width = $value . "%";
+                        } else {
+                            $this->width = "100%";
+                        };
+                        return true;
+                        break;
+                    case 'height':
+                        if (is_int($value) AND ($value > 0)) {
+                            $this->height = $value . "%";
+                        } else {
+                            $this->height = "100%";
+                        };
+                        return true;
+                        break;
+                    case 'checkBoxes':
+                        if ($value === true) {
+                            $this->checkBoxes = $value;
+                        } else {
+                            $this->checkBoxes = false;
+                        };
+                        return true;
+                        break;
+                    default:
+                        return false;
+                        break;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ':Insufficent input.');
             }
-        } else {
-            //didn't pass in the required parameter
-            //throw new Exception(utf8_encode(__CLASS__.'::'.__FUNCTION__.':Insufficent input.'));
-            echo utf8_encode(__METHOD__ . ": FAILED due to insufficient input \n");
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }

@@ -73,10 +73,10 @@ class DatabaseViewGeneratorMySQLi
                 }
                 return self::$databaseViewGeneratorMySQLi;
             } else {
-                throw new Exception("Tne database connection must be set.");
+                throw new ExceptionHandler("Tne database connection must be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -93,10 +93,10 @@ class DatabaseViewGeneratorMySQLi
             if ( CheckInput::checkNewInputArray($array) ) {
                 $this->tableNames = $array;
             } else {
-                throw new Exception("Tne table list array must be set.");
+                throw new ExceptionHandler("Tne table list array must be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -116,8 +116,8 @@ class DatabaseViewGeneratorMySQLi
             foreach ( $this->tableNames as $this->currentTable ) {
                 $this->iterate();
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -173,10 +173,10 @@ class DatabaseViewGeneratorMySQLi
                 $this->delimiter = $delim;
                 $this->query .= 'DELIMITER ' . $this->delimiter . "\n";
             } else {
-                throw new Exception("Tne delimiter must be set.");
+                throw new ExceptionHandler("Tne delimiter must be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -192,10 +192,10 @@ class DatabaseViewGeneratorMySQLi
             if ( CheckInput::checkNewInput($this->currentTable) ) {
                 $this->query .= 'DROP VIEW IF EXISTS `' . DB_NAME . '`.`view' . ucwords($this->currentTable) . '`' . $this->delimiter . "\n";
             } else {
-                throw new Exception("Tne current table must be set.");
+                throw new ExceptionHandler("Tne current table must be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -228,10 +228,10 @@ class DatabaseViewGeneratorMySQLi
                     }
                 }
             } else {
-                throw new Exception("Tne not null array from table description must be set.");
+                throw new ExceptionHandler("Tne not null array from table description must be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -250,10 +250,10 @@ class DatabaseViewGeneratorMySQLi
                 $this->query .= ' FROM `' . $this->currentTable . '`';
                 $this->query .= $this->delimiter . "\n";
             } else {
-                throw new Exception("Tne required columns must be set.");
+                throw new ExceptionHandler("Tne required columns must be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":" . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;

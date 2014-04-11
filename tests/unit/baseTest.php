@@ -426,4 +426,13 @@ abstract class BaseTest
             array("ProjectX")
         );
     }
+
+    public function websiteDataProvider()
+    {
+        return array(
+            array("https://duckduckgo.com"),
+            array("http://inselberge.com"),
+            array("http://innerally.com")
+        );
+    }
 } 

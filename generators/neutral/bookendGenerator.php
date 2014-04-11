@@ -68,14 +68,14 @@ class bookendGenerator
         try {
             if ( $this->createHeader() ) {
             } else {
-                throw new Exception("There were problems within the header creation process.");
+                throw new ExceptionHandler("There were problems within the header creation process.");
             }
             if ( $this->createFooter() ) {
             } else {
-                throw new Exception("There were problems within the footer creation process.");
+                throw new ExceptionHandler("There were problems within the footer creation process.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -96,13 +96,13 @@ class bookendGenerator
                 if ( CheckInput::checkNewInput($this->fileBuffer) ) {
                     $this->writeHeader();
                 } else {
-                    throw new Exception("the file buffer is empty.");
+                    throw new ExceptionHandler("the file buffer is empty.");
                 }
             } else {
-                throw new Exception("header.html could not be created.");
+                throw new ExceptionHandler("header.html could not be created.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -470,13 +470,13 @@ class bookendGenerator
                 if ( CheckInput::checkNewInput($this->fileBuffer) ) {
                     $this->writeFooter();
                 } else {
-                    throw new Exception("the file buffer is empty.");
+                    throw new ExceptionHandler("the file buffer is empty.");
                 }
             } else {
-                throw new Exception("footer.html could not be created.");
+                throw new ExceptionHandler("footer.html could not be created.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;

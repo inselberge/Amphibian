@@ -101,12 +101,12 @@ abstract class Amphibian
     {
         try {
             if ( $this->currentConfiguration == false ) {
-                throw new Exception(": Tne current configuration is not set.");
+                throw new ExceptionHandler(": Tne current configuration is not set.");
             } else {
                 include_once "..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config/" . $this->currentConfiguration;
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;

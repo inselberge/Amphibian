@@ -230,7 +230,7 @@ class ClassGeneratorMySQLi
                 throw new ExceptionHandler("Field type array is not set.");
             }
         } catch (ExceptionHandler $e) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+            $e->execute();
             return false;
         }
         return true;
@@ -499,7 +499,7 @@ class ClassGeneratorMySQLi
                 throw new ExceptionHandler(__METHOD__ . "The field type array is not set.");
             }
         } catch (ExceptionHandler $e) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+            $e->execute();
             return false;
         }
         return true;

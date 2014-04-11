@@ -33,10 +33,10 @@ class UserInteractionGenerator
                 $this->_lowerCurrentTableName = strtolower($name);
                 return true;
             } else {
-                throw new Exception(__CLASS__ . "::" . __FUNCTION__ . ": Tne current table name could not be set.");
+                throw new ExceptionHandler(__CLASS__ . "::" . __FUNCTION__ . ": Tne current table name could not be set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -50,15 +50,15 @@ class UserInteractionGenerator
             if ( isset($this->_currentTableName) ) {
                 $this->iterate();
             } elseif ( $this->getAllTables() ) {
-                foreach ( $this->_allTables as $key => $this->_currentTableName ) {
+                foreach ( $this->_allTables as  $this->_currentTableName ) {
                     $this->_lowerCurrentTableName = strtolower($this->_currentTableName);
                     $this->iterate();
                 }
             } else {
-                throw new Exception(__CLASS__ . "::" . __FUNCTION__ . ": Generation of the user interaction pages failed.");
+                throw new ExceptionHandler(__CLASS__ . "::" . __FUNCTION__ . ": Generation of the user interaction pages failed.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -73,10 +73,10 @@ class UserInteractionGenerator
             $this->_allTables = getTables($this->connection);
             if ( is_array($this->_allTables) ) {
             } else {
-                throw new Exception(__CLASS__ . "::" . __FUNCTION__ . ": Failed to get the table names.");
+                throw new ExceptionHandler(__CLASS__ . "::" . __FUNCTION__ . ": Failed to get the table names.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -93,10 +93,10 @@ class UserInteractionGenerator
                 $this->writeUserInteraction();
                 $this->closeFilePointer();
             } else {
-                throw new Exception(__CLASS__ . "::" . __FUNCTION__ . ": Failed to verify the table.");
+                throw new ExceptionHandler(__CLASS__ . "::" . __FUNCTION__ . ": Failed to verify the table.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -113,10 +113,10 @@ class UserInteractionGenerator
             if ( mysqli_num_rows($this->_queryResult) >= 0 ) {
                 return true;
             } else {
-                throw new Exception(__CLASS__ . "::" . __FUNCTION__ . ": Failed to select from $this->_currentTableName.");
+                throw new ExceptionHandler(__CLASS__ . "::" . __FUNCTION__ . ": Failed to select from $this->_currentTableName.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
     }
@@ -130,8 +130,8 @@ class UserInteractionGenerator
         try {
             checkDirectory(PUBLIC_BASE_URI);
             $this->_FileHandle = fopen(PUBLIC_BASE_URI . $this->_lowerCurrentTableName . ".php", "w");
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -205,8 +205,8 @@ $errors = array();' . "\n");
     {
         try {
             fclose($this->_FileHandle);
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": " . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;

@@ -100,17 +100,17 @@ class RandomPassword
                 if ( in_array($this->algo, $this->supported_algos) ) {
                     return true;
                 } else {
-                    //throw new Exception(utf8_encode(__CLASS__."::".__FUNCTION__.": the algo specified is not currently supported."));
+                    //throw new ExceptionHandler(__METHOD__.": the algo specified is not currently supported.");
                     trigger_error(utf8_encode(__CLASS__ . "::" . __FUNCTION__ . ": the algo specified is not currently supported."));
                     return false;
                 }
             } else {
-                //throw new Exception(utf8_encode(__CLASS__."::".__FUNCTION__.": the supported algos array is not set properly or the hash library is not loaded."));
+                //throw new ExceptionHandler(__METHOD__.": the supported algos array is not set properly or the hash library is not loaded.");
                 trigger_error(utf8_encode(__CLASS__ . "::" . __FUNCTION__ . ": the supported algos array is not set properly or the hash library is not loaded."));
                 return false;
             }
         } else {
-            //throw new Exception(utf8_encode(__CLASS__."::".__FUNCTION__.": the required variables are not set properly."));
+            //throw new ExceptionHandler(__METHOD__.": the required variables are not set properly.");
             trigger_error(utf8_encode(__CLASS__ . "::" . __FUNCTION__ . ": the required variables are not set properly."));
             return false;
         }
@@ -126,7 +126,7 @@ class RandomPassword
             $this->hash = hash($this->algo, $this->seed);
             return true;
         } else {
-            //throw new Exception(utf8_encode(__CLASS__."::".__FUNCTION__.": the required variables are not set properly."));
+            //throw new ExceptionHandler(__METHOD__.": the required variables are not set properly.");
             trigger_error(utf8_encode(__CLASS__ . "::" . __FUNCTION__ . ": the required variables are not set properly."));
             return false;
         }
@@ -142,7 +142,7 @@ class RandomPassword
             if ( is_numeric($this->length) ) {
                 return true;
             } else {
-                //throw new Exception(utf8_encode(__CLASS__."::".__FUNCTION__.": the length is not numeric."));
+                //throw new ExceptionHandler(__METHOD__.": the length is not numeric.");
                 trigger_error(utf8_encode(__CLASS__ . "::" . __FUNCTION__ . ": the length is not numeric."));
                 return false;
             }
@@ -164,12 +164,12 @@ class RandomPassword
                 $this->password = substr($this->hash, $start, $this->length);
                 return true;
             } else {
-                //throw new Exception(utf8_encode(__CLASS__."::".__FUNCTION__.": the length is not numeric."));
+                //throw new ExceptionHandler(__METHOD__.": the length is not numeric.");
                 trigger_error(utf8_encode(__CLASS__ . "::" . __FUNCTION__ . ": the substring start, end, or both is not numeric."));
                 return false;
             }
         } else {
-            //throw new Exception(utf8_encode(__CLASS__."::".__FUNCTION__.": the required variables are not set properly."));
+            //throw new ExceptionHandler(__METHOD__.": the required variables are not set properly.");
             trigger_error(utf8_encode(__CLASS__ . "::" . __FUNCTION__ . ": the required variables are not set properly."));
             return false;
         }

@@ -358,10 +358,10 @@ class ArchitectureGenerator
                 }
                 $this->_directoryPermission = 0755;
             } else {
-                throw new Exception(": The new value is null.");
+                throw new ExceptionHandler(": The new value is null.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":".  $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -394,8 +394,8 @@ class ArchitectureGenerator
             if ( $this->checkNewInput($name) ) {
                 $this->directoryName = $name;
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":".  $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -414,11 +414,11 @@ class ArchitectureGenerator
                 if ( is_array($list) ) {
                     $this->directoryList = $list;
                 } else {
-                    throw new Exception(":list is not an array.");
+                    throw new ExceptionHandler(":list is not an array.");
                 }
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ":".  $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -498,7 +498,7 @@ class ArchitectureGenerator
             foreach ( $this->directoryList as $key =>$value ) {
                     $this->directoryList[$key] = $this->_baseURI . $value;
             }
-        } catch ( Exception $e ) {
+        } catch ( ExceptionHandler $e ) {
             echo utf8_encode(date('Y-m-d H:i:s') . " " . __METHOD__ . ": " . $e);
             return false;
         }

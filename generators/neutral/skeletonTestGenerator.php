@@ -82,10 +82,10 @@ class SkeletonTestGenerator
                 }
                 self::$skeletonTestGenerator->sourceDirectory = $source;
             } else {
-                throw new Exception(" : The source directory is not set.");
+                throw new ExceptionHandler(" : The source directory is not set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return self::$skeletonTestGenerator;
@@ -103,10 +103,10 @@ class SkeletonTestGenerator
             if ( CheckInput::checkNewInput($destination) ) {
                 $this->destinationDirectory = $destination;
             } else {
-                throw new Exception(" : The destination directory is not set.");
+                throw new ExceptionHandler(" : The destination directory is not set.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -154,15 +154,15 @@ class SkeletonTestGenerator
             $this->fileList->setLocation($this->sourceDirectory);
             $this->fileList->execute();
             if ( !CheckInput::checkNewInput($this->fileList) ) {
-                throw new Exception(" : The file list could not be created.");
+                throw new ExceptionHandler(" : The file list could not be created.");
             } else {
-                foreach ( $this->fileList->matches as $key => $this->currentFile ) {
+                foreach ( $this->fileList->matches as  $this->currentFile ) {
                     $this->iterate();
                     $this->setupForNext();
                 }
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -198,10 +198,10 @@ class SkeletonTestGenerator
                     $this->generateTestFile();
                 }
             } else {
-                throw new Exception(" : $this->currentFile is not a file, skipping.");
+                throw new ExceptionHandler(" : $this->currentFile is not a file, skipping.");
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
@@ -246,10 +246,10 @@ class SkeletonTestGenerator
             //destination file
             $this->_cmd .= " " . $this->destinationDirectory . $this->currentClass['0'] . "Test.php";
             if ( !exec($this->_cmd) ) {
-                throw new Exception(" : Failed to generate file with the following command: \n" . $this->_cmd);
+                throw new ExceptionHandler(" : Failed to generate file with the following command: \n" . $this->_cmd);
             }
-        } catch ( Exception $e ) {
-            echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . $e);
+        } catch ( ExceptionHandler $e ) {
+            $e->execute();
             return false;
         }
         return true;
