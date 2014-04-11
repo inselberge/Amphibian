@@ -6,7 +6,8 @@
  * Date: 12/20/13
  * Time: 9:19 PM
  */
-require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."classGenerator.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."abstract".DIRECTORY_SEPARATOR."classGenerator.php";
+require_once AMPHIBIAN_CORE_MYSQLI."TableDescriptionMySQLi.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."classGeneratorMySQLiInterface.php";
 /**
  * Class ClassGeneratorMySQLi
@@ -64,6 +65,40 @@ class ClassGeneratorMySQLi
     static public function factory($databaseConnection)
     {
         return new ClassGeneratorMySQLi($databaseConnection);
+    }
+
+    /** getTableDescription
+     *
+     * @return bool
+     */
+    protected function getTableDescription()
+    {
+        try
+        {
+            $this->tableDescription = TableDescriptionMySQLi::instance($this->connection);
+            if (CheckInput::checkNewInput($this->tableDescription))
+            {
+                if ($this->tableDescription->setTableName($this->tableName))
+                {
+                    if ($this->tableDescription->execute())
+                    {
+                    }
+
+                    else {
+                        throw new ExceptionHandler(__METHOD__ . "There was a problem during execution of the table description.");
+                    }
+                } else {
+                    throw new ExceptionHandler(__METHOD__ . "Failed to set the table name.");
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . "A table description object could not be created.");
+            }
+        } catch
+        (ExceptionHandler $e ) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** addAttributes
@@ -637,3 +672,14 @@ $cg->setLink("http://".APP_WEBSITE."/documentation/uml/models/generated");
 $cg->setTableName("User");
 $cg->execute();
 */
+require_once "/home/texmorgan/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
+$databaseConnection = databaseConnectionMySQLi::instance();
+$databaseConnection->setServerName("localhost");
+$databaseConnection->setDatabaseName("InnerAlly");
+$databaseConnection->setUserName("root");
+$databaseConnection->setUserPassword('4u$t1nTX');
+$databaseConnection->openConnection();
+$controlGen = ClassGeneratorMySQLi::instance($databaseConnection);
+//$controlGen->setFileDestination("/home/texmorgan/Public/InnerAlly_SC/controllers/generated/");
+$controlGen->execute();

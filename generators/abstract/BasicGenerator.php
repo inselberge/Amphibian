@@ -28,7 +28,7 @@ abstract class BasicGenerator
     implements BasicGeneratorInterface
 {
     /**
-     * @var resource connection holds the database connection
+     * @var object connection holds the database connection
      */
     protected $connection;
     /**
@@ -167,7 +167,7 @@ abstract class BasicGenerator
     {
         try {
             if ( $this->checkFileDestination() ) {
-                $this->git->setupGit();
+                //$this->git->setupGit();
                 if ( isset($this->tableName) ) {
                     $this->iterate();
                     $this->writeFromBuffer();

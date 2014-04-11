@@ -33,7 +33,7 @@ class ControllerGeneratorMySQLi
 
     /** instance
      *
-     * @param resource $databaseConnection a database connection
+     * @param object $databaseConnection a database connection
      *
      * @return object
      */
@@ -103,7 +103,7 @@ $controlGen->execute();
 
 /* InnerAlly
 require_once AMPHIBIAN_CONFIG ."InnerAlly.config.inc.php";
-require_once AMPHIBIAN_CONFIG . "mysql.cfg.php";*/
+require_once AMPHIBIAN_CONFIG . "mysql.cfg.php";
 require_once "/home/texmorgan/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
 require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 $databaseConnection = databaseConnectionMySQLi::instance();
@@ -112,6 +112,7 @@ $databaseConnection->setDatabaseName("InnerAlly");
 $databaseConnection->setUserName("root");
 $databaseConnection->setUserPassword('4u$t1nTX');
 $databaseConnection->openConnection();
-$controlGen = ControllerGeneratorMySQLi::instance($databaseConnection->getConnection());
+$controlGen = ControllerGeneratorMySQLi::instance($databaseConnection);
 $controlGen->setFileDestination("/home/texmorgan/Public/InnerAlly_SC/controllers/generated/");
 $controlGen->execute();
+*/

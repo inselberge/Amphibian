@@ -161,28 +161,7 @@ abstract class ClassGenerator
      *
      * @return bool
      */
-    protected function getTableDescription()
-    {
-        try {
-            $this->tableDescription = TableDescription::instance($this->connection);
-            if ( CheckInput::checkNewInput($this->tableDescription) ) {
-                if ( $this->tableDescription->setTableName($this->tableName) ) {
-                    if ( $this->tableDescription->execute() ) {
-                    } else {
-                        throw new ExceptionHandler(__METHOD__."There was a problem during execution of the table description.");
-                    }
-                } else {
-                    throw new ExceptionHandler(__METHOD__."Failed to set the table name.");
-                }
-            } else {
-                throw new ExceptionHandler(__METHOD__."A table description object could not be created.");
-            }
-        } catch ( ExceptionHandler $e ) {
-            $e->execute();
-            return false;
-        }
-        return true;
-    }
+    abstract protected function getTableDescription();
 
     /** writeTemplates
      *

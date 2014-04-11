@@ -147,6 +147,33 @@ class DatabaseConnectionMySQLi
         return true;
     }
 
+    /** openConnectionSSL
+     *
+     * @return bool
+     */
+    public function openConnectionSSL()
+    {
+        try {
+            if ($this->checkRequiredConnection()) {
+                $this->connection->real_connect(
+                    $this->getServerName(),
+                    $this->getUserName(),
+                    $this->getUserPassword(),
+                    $this->getDatabaseName(),
+                    3306,
+                    null,
+                    MYSQL_CLIENT_SSL
+                );
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": Requirements not met.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
+    }
+
     /** checkRequiredConnection
      * @return bool
      */
@@ -258,7 +285,7 @@ class DatabaseConnectionMySQLi
      */
     public function getTables()
     {
-        $q = 'SELECT distinct table_name FROM information_schema.key_column_usage WHERE table_schema="' . DB_NAME . '" AND table_name NOT LIKE "view%"';
+        $q = 'SELECT distinct table_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name NOT LIKE "view%"';
         $r = mysqli_query($this->connection, $q);
         if ($r->num_rows > 0) {
             $row = null;
@@ -278,7 +305,7 @@ class DatabaseConnectionMySQLi
      */
     public function getPrimaryKeys()
     {
-        $q = 'SELECT table_name, column_name FROM information_schema.key_column_usage WHERE table_schema="' . DB_NAME . '" AND table_name NOT LIKE "view%" AND constraint_name="PRIMARY"';
+        $q = 'SELECT table_name, column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name NOT LIKE "view%" AND constraint_name="PRIMARY"';
         $r = mysqli_query($this->connection, $q);
         if ($r->num_rows > 0) {
             $row = null;
@@ -298,7 +325,7 @@ class DatabaseConnectionMySQLi
      */
     public function getViews()
     {
-        $q = 'SELECT distinct table_name FROM information_schema.views WHERE table_schema="' . DB_NAME . '"';
+        $q = 'SELECT distinct table_name FROM information_schema.views WHERE table_schema="' . $this->getDatabaseName() . '"';
         $r = mysqli_query($this->connection, $q);
         $count = mysqli_num_rows($r);
         if ($count > 0) {
@@ -369,7 +396,7 @@ class DatabaseConnectionMySQLi
      */
     public function getPrimaryKeysTable($table)
     {
-        $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . DB_NAME . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME="PRIMARY"';
+        $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME="PRIMARY"';
         $r = mysqli_query($this->connection, $q);
         if ($r->num_rows > 0) {
             $row = null;
@@ -395,7 +422,7 @@ class DatabaseConnectionMySQLi
      */
     public function getForeignKeysTable($table)
     {
-        $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . DB_NAME . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME LIKE "fk%"';
+        $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME LIKE "fk%"';
         $r = mysqli_query($this->connection, $q);
         if ($r->num_rows > 0) {
             $row = null;
@@ -454,7 +481,7 @@ class DatabaseConnectionMySQLi
      */
     public function getColumnList($table)
     {
-        $q = 'SELECT column_name FROM information_schema.columns WHERE table_schema="' . DB_NAME . '" AND table_name="' . $table . '";';
+        $q = 'SELECT column_name FROM information_schema.columns WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '";';
         $r = mysqli_query($this->connection, $q);
         if ($r->num_rows > 0) {
             $row = null;
@@ -478,7 +505,7 @@ class DatabaseConnectionMySQLi
      */
     public function getAllColumnTypes()
     {
-        $q = 'SELECT distinct(column_type) FROM information_schema.columns WHERE table_schema="' . DB_NAME . '"';
+        $q = 'SELECT distinct(column_type) FROM information_schema.columns WHERE table_schema="' . $this->getDatabaseName() . '"';
         $r = mysqli_query($this->connection, $q);
         if ($r->num_rows > 0) {
             $row = null;

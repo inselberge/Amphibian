@@ -84,7 +84,7 @@ class databaseQueryMySQLi
         try {
             $this->initErrors();
             $this->logQuery($this->query);
-            $this->resultSet = mysqli_query($this->databaseConnection, $this->query);
+            $this->resultSet = mysqli_query($this->databaseConnection->getConnection(), $this->query);
             $this->handleWarnings();
             $this->handleErrors();
         } catch ( ExceptionHandler $e ) {
