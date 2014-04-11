@@ -418,6 +418,10 @@ abstract class BaseTest
         );
     }
 
+    /** projectNameDataProvider
+     *
+     * @return array
+     */
     public function projectNameDataProvider()
     {
         return array(
@@ -427,6 +431,10 @@ abstract class BaseTest
         );
     }
 
+    /** websiteDataProvider
+     *
+     * @return array
+     */
     public function websiteDataProvider()
     {
         return array(
@@ -435,7 +443,11 @@ abstract class BaseTest
             array("http://innerally.com")
         );
     }
-    
+
+    /** validDatabaseConnectionMySQLiDataProvider
+     *
+     * @return array
+     */
     public function validDatabaseConnectionMySQLiDataProvider()
     {
         $this->connection = DatabaseConnectionMySQLi::instance();
@@ -457,6 +469,35 @@ abstract class BaseTest
 
         return array(
             array($this->connection->getConnection())
+        );
+    }
+
+    /** validFileExtensionDataProvider
+     *
+     * @return array
+     */
+    public function validFileExtensionDataProvider()
+    {
+        return array(
+            array(".json"),
+            array(".csv"),
+            array(".xml"),
+            array(".html"),
+            array(".js"),
+            array(".css"),
+            array(".php")
+        );
+    }
+
+    /** tableNameDataProvider
+     *
+     * @return array
+     */
+    public function tableNameDataProvider()
+    {
+        return array(
+            array("Users"),
+            array("Login")
         );
     }
 } 
