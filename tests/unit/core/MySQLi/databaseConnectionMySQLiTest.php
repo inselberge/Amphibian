@@ -332,6 +332,8 @@ class DatabaseConnectionMySQLiTest
      * @param $expectedResult
      *
      * @covers DatabaseConnectionMySQLi::getAllColumnTypes
+     *
+     * @dataProvider columnsTypeDataProvider
      */
     public function testGetAllColumnTypes($expectedResult)
     {
@@ -339,4 +341,38 @@ class DatabaseConnectionMySQLiTest
         $this->actual = $this->object->getAllColumnTypes();
         $this->assertEquals($this->expected, $this->actual);
     }
+
+    public function columnsTypeDataProvider() {
+        return array(
+            array(
+                "int(10) unsigned",
+                "varchar(128)",
+                "char(32)",
+                "enum('pending', 'enabled', 'disabled', 'retired')",
+                "timestamp",
+                "tinytext",
+                "bigint(20) unsigned",
+                "text",
+                "bit(1)",
+                "set('mindfulness', 'self-talk')",
+                "enum('a', 'b')",
+                "tinyint(3) unsigned",
+                "enum('1', '2', '3', '4', '5')",
+                "set('a', 'b')",
+                "set('seeker', 'provider')",
+                "tinyint(1) unsigned",
+                "varchar(64)",
+                "char(2)",
+                "varchar(5)",
+                "float(16, 12)",
+                "int(11)",
+                "varchar(255)",
+                "varchar(32)",
+                "enum('treatment', 'data', 'admin', 'user')",
+                "int(20) unsigned"
+            )
+        );
+    }
+
+
 }
