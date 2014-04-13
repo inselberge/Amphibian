@@ -85,7 +85,7 @@ class databaseQueryMySQLi
         try {
             $this->initErrors();
             $this->logQuery($this->query);
-            $this->resultSet = $this->databaseConnection->query($this->query);
+            $this->resultSet = mysqli_query($this->databaseConnection->getConnection(),$this->query);
             $this->handleWarnings();
             $this->handleErrors();
         } catch ( ExceptionHandler $e ) {
@@ -149,7 +149,7 @@ class databaseQueryMySQLi
         if ( get_magic_quotes_gpc() ) {
             $string = stripslashes($string);
         }
-        return mysqli_real_escape_string($this->databaseConnection, $string);
+        return $this->databaseConnection->real_escape_string($string);
     }
 
     /** checkErrors
@@ -240,11 +240,21 @@ class databaseQueryMySQLi
 
     /** getArray
      *
-     * @return void
+     * @return bool
      */
     public function getArray()
     {
-        $this->resultArray = $this->resultSet->fetch_all(MYSQLI_ASSOC);
+        try {
+            if (CheckInput::checkSet($this->resultSet)) {
+                $this->resultArray = $this->resultSet->fetch_all(MYSQLI_ASSOC);
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": no result set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** getRow
@@ -253,10 +263,19 @@ class databaseQueryMySQLi
      */
     public function getRow()
     {
-        $this->row = $this->resultSet->fetch_assoc();
-        if ( isset($this->row) ) {
-            return true;
-        } else {
+        try {
+            if (CheckInput::checkSet($this->resultSet)) {
+                $this->row = $this->resultSet->fetch_assoc();
+                if (isset($this->row)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": no result set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }

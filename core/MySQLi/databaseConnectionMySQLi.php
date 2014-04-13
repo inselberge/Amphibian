@@ -276,6 +276,25 @@ class DatabaseConnectionMySQLi
         return $this->connection->more_results();
     }
 
+    /** real_escape_string
+     *
+     * @param $string
+     *
+     * @return mixed
+     */
+    public function real_escape_string($string)
+    {
+        return $this->connection->real_escape_string($string);
+    }
+
+    /** commit
+     *
+     * @return mixed
+     */
+    public function commit()
+    {
+        return $this->connection->commit();
+    }
 
     /** setCharacterSet
      * 

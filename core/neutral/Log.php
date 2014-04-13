@@ -198,23 +198,59 @@ class Log
     protected function getLogDirectory()
     {
         if ( $this->LogType == "Email" ) {
-            return LOG_EMAIL;
+            if ( defined('LOG_EMAIL') ) {
+                return LOG_EMAIL;
+            } else {
+                return AMPHIBIAN_EMAIL_LOG;
+            }
         } elseif ($this->LogType == "Error") {
-            return LOG_ERROR;
+            if ( defined('LOG_ERROR') ) {
+                return LOG_ERROR;
+            } else {
+                return AMPHIBIAN_ERROR_LOG;
+            }
         } elseif ($this->LogType == "Malicious") {
-            return LOG_MALICIOUS;
+            if ( defined('LOG_MALICIOUS') ) {
+                return LOG_MALICIOUS;
+            } else {
+                return AMPHIBIAN_MALICIOUS_LOG;
+            }
         } elseif ($this->LogType == "Virus") {
-            return LOG_VIRUS;
+            if ( defined('LOG_VIRUS') ) {
+                return LOG_VIRUS;
+            } else {
+                return AMPHIBIAN_VIRUS_LOG;
+            }
         } elseif ($this->LogType == "Warning") {
-            return LOG_WARNING;
+            if ( defined('LOG_WARNING') ) {
+                return LOG_WARNING;
+            } else {
+                return AMPHIBIAN_WARNING_LOG;
+            }
         } elseif ($this->LogType == "Database_Backup") {
-            return LOG_DATABASE_BACKUP;
+            if ( defined('LOG_DATABASE_BACKUP') ) {
+                return LOG_DATABASE_BACKUP;
+            } else {
+                return AMPHIBIAN_DATABASE_BACKUP_LOG;
+            }
         } elseif ($this->LogType == "Database_Error") {
-            return LOG_DATABASE_ERROR;
+            if ( defined('LOG_DATABASE_ERROR') ) {
+                return LOG_DATABASE_ERROR;
+            } else {
+                return AMPHIBIAN_DATABASE_ERROR_LOG;
+            }
         } elseif ($this->LogType == "Database_Query") {
-            return LOG_DATABASE_QUERY;
+            if ( defined('LOG_DATABASE_QUERY')) {
+                return LOG_DATABASE_QUERY;
+            } else {
+                return AMPHIBIAN_DATABASE_QUERY_LOG;
+            }
         } elseif ($this->LogType == "Database_Warning") {
-            return LOG_DATABASE_WARNING;
+            if ( defined('LOG_DATABASE_WARNING') ) {
+                return LOG_DATABASE_WARNING;
+            } else {
+                return AMPHIBIAN_DATABASE_WARNING_LOG;
+            }
         } else {
             return false;
         }
