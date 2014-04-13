@@ -146,7 +146,7 @@ class Log
         try {
             if (CheckInput::checkNewInput($this->LogType)) {
                 if ( !isset($this->LogName) ) {
-                    $this->LogName = date('Y-m-d_H:i:s').".".uniqid().".Log";
+                    $this->LogName = date('Y_m_d__H.i.s').".".uniqid().".Log";
                 }
                 $this->iterate();
 

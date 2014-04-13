@@ -201,12 +201,9 @@ class DatabaseConnectionMySQLiTest
      */
     public function testOpenConnectionSSL()
     {
-        $this->markTestIncomplete("This needs to be uncommented once the handshaking is resolved");
-        /*
         $this->expected = true;
         $this->actual = $this->object->openConnectionSSL();
         $this->assertEquals($this->expected, $this->actual);
-        */
     }
 
     /** testPing
@@ -666,6 +663,7 @@ class DatabaseConnectionMySQLiTest
      */
     public function columnsTypeDataProvider()
     {
+        //todo: use a standardized database to compare with in the future
         return array(
             array(
                 array(
@@ -677,29 +675,6 @@ class DatabaseConnectionMySQLiTest
                     array("column_type" => "enum('N','Y')"),
                     array("column_type" => "longblob"),
                     array("column_type" => "char(77)"),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
-                    array("column_type" => ""),
                     array("column_type" => "blob"),
                     array("column_type" => "set('Execute','Alter Routine','Grant')"),
                     array("column_type" => "int(4)"),

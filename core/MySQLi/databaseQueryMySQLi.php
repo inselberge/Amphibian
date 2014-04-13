@@ -8,6 +8,7 @@
  */
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once AMPHIBIAN_CORE_ABSTRACT."databaseQuery.php";
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 require_once AMPHIBIAN_CORE_NEUTRAL ."CheckInput.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."databaseQueryMySQLiInterface.php";
 /**
@@ -84,7 +85,7 @@ class databaseQueryMySQLi
         try {
             $this->initErrors();
             $this->logQuery($this->query);
-            $this->resultSet = mysqli_query($this->databaseConnection->getConnection(), $this->query);
+            $this->resultSet = $this->databaseConnection->query($this->query);
             $this->handleWarnings();
             $this->handleErrors();
         } catch ( ExceptionHandler $e ) {
@@ -234,7 +235,7 @@ class databaseQueryMySQLi
      */
     public function commit()
     {
-        return mysqli_commit($this->databaseConnection);
+        return $this->databaseConnection->commit();
     }
 
     /** getArray
@@ -262,12 +263,20 @@ class databaseQueryMySQLi
 
     /** free
      *
-     * @return void
+     * @return bool
      */
     public function free()
     {
-        $this->resultSet->free();
-        $this->resultSet=null;
+        try {
+            if (CheckInput::checkSet($this->resultSet)) {
+                $this->resultSet->free();
+                $this->resultSet = null;
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** checkMoreResults

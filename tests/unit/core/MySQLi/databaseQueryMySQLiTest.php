@@ -22,50 +22,33 @@ class databaseQueryMySQLiTest
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @param resource $databaseConnection a valid database connection
-     *
      * @return void
      */
-    protected function setUp($databaseConnection)
+    protected function setUp()
     {
-        $this->object = databaseQueryMySQLi::instance($databaseConnection);
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
-
+        $this->connection = DatabaseConnectionMySQLi::instance();
+        $this->connection->init();
+        $this->connection->setServerName("127.0.0.1");
+        $this->connection->setUserName("root");
+        $this->connection->setUserPassword('4u$t1nTX');
+        $this->connection->setDatabaseName('mysql');
+        $this->connection->openConnection();
+        $this->object = databaseQueryMySQLi::instance($this->connection);
     }
 
     /** testInstance
-     *
-     * @param resource $databaseConnection a valid database connection
      *
      * @covers databaseQueryMySQLi::instance
      *
      * @return void
      */
-    public function testInstance($databaseConnection)
+    public function testInstance()
     {
         $this->expected = $this->object;
-        $this->actual = databaseQueryMySQLi::instance($databaseConnection);
+        $this->actual = databaseQueryMySQLi::instance($this->connection);
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /** MySQLQueryDataProvider
-     *
-     * @return void
-     */
-    public function MySQLQueryDataProvider()
-    {
-        return array();
-    }
 
     /** testExecute
      *
@@ -82,6 +65,14 @@ class databaseQueryMySQLiTest
         $this->expected = true;
         $this->actual = $this->object->execute($queryString);
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function MySQLQueryDataProvider()
+    {
+        return array(
+            array("SELECT CURRENT_TIMESTAMP;"),
+            array("SELECT NOW();")
+        );
     }
 
     /** testClean
@@ -148,8 +139,21 @@ class databaseQueryMySQLiTest
      */
     public function testFree()
     {
-        $this->expected = null;
+        $this->expected = true;
         $this->actual = $this->object->free();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testClearResults
+     *
+     * @covers databaseQueryMySQLi::clearResults
+     *
+     * @return void
+     */
+    public function testClearResults()
+    {
+        $this->expected = null;
+        $this->actual = $this->object->clearResults();
         $this->assertEquals($this->expected, $this->actual);
     }
 }

@@ -157,9 +157,6 @@ class DatabaseConnectionMySQLi
     {
         try {
             if ( $this->checkRequiredConnection() ) {
-                /*
-                 * TODO: add SSL parameters when OpenSSL is fixed.
-                 */
                 $this->connection->real_connect(
                     $this->getServerName(),
                     $this->getUserName(),
@@ -204,6 +201,7 @@ class DatabaseConnectionMySQLi
     }
 
     /** checkRequiredConnection
+     *
      * @return bool
      */
     protected function checkRequiredConnection()
@@ -233,6 +231,7 @@ class DatabaseConnectionMySQLi
     }
 
     /** checkPort
+     *
      * @return bool
      */
     protected function checkPort()
@@ -241,6 +240,7 @@ class DatabaseConnectionMySQLi
     }
 
     /** checkSocket
+     *
      * @return bool
      */
     protected function checkSocket()
@@ -265,6 +265,15 @@ class DatabaseConnectionMySQLi
     public function printError()
     {
         echo $this->error;
+    }
+
+    /** more_results
+     *
+     * @return bool
+     */
+    public function more_results()
+    {
+        return $this->connection->more_results();
     }
 
 
