@@ -450,10 +450,11 @@ abstract class BaseTest
      */
     public function validDatabaseConnectionMySQLiDataProvider()
     {
+        require_once AMPHIBIAN_CORE_MYSQLI."DatabaseConnectionMySQLi.php";
         $this->connection = DatabaseConnectionMySQLi::instance();
+        /*
         $this->connection->setOptions(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
         $this->connection->setOptions(MYSQLI_SERVER_PUBLIC_KEY, "/etc/mysql/my.cnf");
-        $this->connection->setOptions(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
         $this->connection->setSSL(
             "/etc/mysql/client-key.pem",
             "/etc/mysql/client-cert.pem",
@@ -461,6 +462,7 @@ abstract class BaseTest
             "/etc/mysql/",
             'DHE-RSA-AES256-SHA'
         );
+        */
         $this->connection->setServerName("127.0.0.1");
         $this->connection->setDatabaseName("InnerAlly");
         $this->connection->setUserName("root");

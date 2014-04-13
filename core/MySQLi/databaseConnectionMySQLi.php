@@ -58,17 +58,36 @@ class DatabaseConnectionMySQLi
         return self::$DatabaseConnectionMySQLi;
     }
 
+    /** factory
+     *
+     * @return DatabaseConnectionMySQLi
+     */
+    public static function factory()
+    {
+        return new DatabaseConnectionMySQLi();
+    }
+
 
     /** set
      * 
      * @param string $key
      * @param mixed $value
      * 
-     * @return void
+     * @return bool
      */
     public function set( $key, $value )
     {
-        $this->$$key = $value;
+
+        try {
+            $this->$key = $value;
+            if (!CheckInput::checkSet($this->$key)) {
+                throw new exceptionHandler(__METHOD__ . ": set failed.");
+            }
+        } catch (exceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
 
@@ -80,20 +99,30 @@ class DatabaseConnectionMySQLi
      * @param $pemPath
      * @param $cipher
      * 
-     * @return void
+     * @return bool
      */
     public function setSSL( $keyPath, $certificatePath, $authorityPath, $pemPath, $cipher )
     {
-        $this->connection->ssl_set($keyPath, $certificatePath, $authorityPath, $pemPath, $cipher);
+        return $this->connection->ssl_set($keyPath, $certificatePath, $authorityPath, $pemPath, $cipher);
     }
 
     /** init
      * 
-     * @return void
+     * @return bool
      */
     public function init()
     {
-        $this->connection = mysqli_init();
+        try {
+            $this->connection = mysqli_init();
+            if (!CheckInput::checkSet($this->connection)) {
+                throw new exceptionHandler(__METHOD__ . ": init failed.");
+            }
+        } catch (exceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
+
     }
 
     /** setOptions
@@ -128,14 +157,14 @@ class DatabaseConnectionMySQLi
     {
         try {
             if ( $this->checkRequiredConnection() ) {
+                /*
+                 * TODO: add SSL parameters when OpenSSL is fixed.
+                 */
                 $this->connection->real_connect(
                     $this->getServerName(),
                     $this->getUserName(),
                     $this->getUserPassword(),
                     $this->getDatabaseName()
-                    /*
-                     * TODO: add SSL parameters when OpenSSL is fixed.
-                     */
                 );
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": Requirements not met.");
@@ -161,7 +190,7 @@ class DatabaseConnectionMySQLi
                     $this->getUserPassword(),
                     $this->getDatabaseName(),
                     3306,
-                    null,
+                    "/var/run/mysqld/mysqld.sock",
                     MYSQL_CLIENT_SSL
                 );
             } else {
@@ -243,40 +272,60 @@ class DatabaseConnectionMySQLi
      * 
      * @param string $newCharacterSet the new character set to use
      * 
-     * @return void
+     * @return bool
      */
     public function setCharacterSet( $newCharacterSet )
     {
-        $this->connection->set_charset($newCharacterSet);
+        return $this->connection->set_charset($newCharacterSet);
     }
 
 
     /** printCharacterSet
      * 
-     * @return void
+     * @return bool
      */
     public function printCharacterSet()
     {
-        echo $this->connection->character_set_name();
+        try {
+            if (CheckInput::checkSet($this->connection->character_set_name())) {
+                echo $this->connection->character_set_name();
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": character set unknown.");
+            }
+        } catch (exceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
 
     /** printHostInfo
      * 
-     * @return void
+     * @return bool
      */
     public function printHostInfo()
     {
-        echo $this->connection->host_info;
+        try {
+            if (CheckInput::checkSet($this->connection->host_info)) {
+                echo $this->connection->host_info;
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": host info unknown.");
+            }
+        } catch (exceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** closeConnection
      * 
-     * @return void
+     * @return bool
      */
     public function closeConnection()
     {
-        $this->connection->close();
+        return $this->connection->close();
     }
 
     /** getTables
@@ -285,16 +334,25 @@ class DatabaseConnectionMySQLi
      */
     public function getTables()
     {
-        $q = 'SELECT distinct table_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name NOT LIKE "view%"';
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = [];
-            while ($row = mysqli_fetch_array($r, MYSQL_NUM)) {
-                $ret[] = $row['0'];
+        try {
+            if (CheckInput::checkSet($this->databaseName)) {
+                $q = 'SELECT distinct table_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name NOT LIKE "view%"';
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = array();
+                    while ($row = $r->fetch_row()) {
+                        $ret[] = $row['0'];
+                    }
+                    return $ret;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": no database name.");
             }
-            return $ret;
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -305,16 +363,25 @@ class DatabaseConnectionMySQLi
      */
     public function getPrimaryKeys()
     {
-        $q = 'SELECT table_name, column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name NOT LIKE "view%" AND constraint_name="PRIMARY"';
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = [];
-            while ($row = mysqli_fetch_array($r, MYSQL_NUM)) {
-                $ret[] = $row['0'];
+        try {
+            if (CheckInput::checkSet($this->databaseName)) {
+                $q = 'SELECT table_name, column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name NOT LIKE "view%" AND constraint_name="PRIMARY"';
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = array();
+                    while ($row = $r->fetch_row()) {
+                        $ret[$row['0']][] = $row['1'];
+                    }
+                    return $ret;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": no database name.");
             }
-            return $ret;
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -325,17 +392,26 @@ class DatabaseConnectionMySQLi
      */
     public function getViews()
     {
-        $q = 'SELECT distinct table_name FROM information_schema.views WHERE table_schema="' . $this->getDatabaseName() . '"';
-        $r = mysqli_query($this->connection, $q);
-        $count = mysqli_num_rows($r);
-        if ($count > 0) {
-            $row = null;
-            $ret = [];
-            while ($row = mysqli_fetch_array($r, MYSQL_NUM)) {
-                $ret[] = $row['0'];
+        try {
+            if (CheckInput::checkSet($this->databaseName)) {
+                $q = 'SELECT distinct table_name FROM information_schema.views WHERE table_schema="' . $this->getDatabaseName() . '"';
+                $r = $this->connection->query($q);
+                $count = mysqli_num_rows($r);
+                if ($count > 0) {
+                    $row = null;
+                    $ret = [];
+                    while ($row = $r->fetch_row()) {
+                        $ret[] = $row['0'];
+                    }
+                    return $ret;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": no database name.");
             }
-            return $ret;
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -348,16 +424,25 @@ class DatabaseConnectionMySQLi
      */
     public function describeTable($table)
     {
-        $q = "DESCRIBE `" . $table . "`";
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = [];
-            while ($row = mysqli_fetch_assoc($r)) {
-                $ret[] = $row;
+        try {
+            if (CheckInput::checkSet($this->databaseName) AND CheckInput::checkNewInput($table)) {
+                $q = "DESCRIBE `" . $table . "`";
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = [];
+                    while ($row = mysqli_fetch_assoc($r)) {
+                        $ret[] = $row;
+                    }
+                    return $ret;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": table and database required.");
             }
-            return $ret;
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -370,20 +455,29 @@ class DatabaseConnectionMySQLi
      */
     public function showKeysTable($table)
     {
-        $q = "SHOW KEYS IN " . $table;
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = [];
-            while ($row = mysqli_fetch_array($r, MYSQL_ASSOC)) {
-                $ret[] = $row;
-            }
-            if (sizeof($ret) > 0) {
-                return $ret;
+        try {
+            if (CheckInput::checkSet($this->databaseName) AND CheckInput::checkNewInput($table)) {
+                $q = "SHOW KEYS IN " . $table;
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = [];
+                    while ($row = $r->fetch_assoc()) {
+                        $ret[] = $row;
+                    }
+                    if (sizeof($ret) > 0) {
+                        return $ret;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                throw new exceptionHandler(__METHOD__ . ": table and database required.");
             }
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -396,20 +490,29 @@ class DatabaseConnectionMySQLi
      */
     public function getPrimaryKeysTable($table)
     {
-        $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME="PRIMARY"';
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = array();
-            while ($row = mysqli_fetch_array($r, MYSQL_ASSOC)) {
-                $ret[] = $row;
-            }
-            if (sizeof($ret) > 0) {
-                return $ret;
+        try {
+            if (CheckInput::checkSet($this->databaseName) AND CheckInput::checkNewInput($table)) {
+                $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME="PRIMARY"';
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = array();
+                    while ($row = $r->fetch_assoc()) {
+                        $ret[] = $row;
+                    }
+                    if (sizeof($ret) > 0) {
+                        return $ret;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                throw new exceptionHandler(__METHOD__ . ": table and database required.");
             }
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -422,20 +525,29 @@ class DatabaseConnectionMySQLi
      */
     public function getForeignKeysTable($table)
     {
-        $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME LIKE "fk%"';
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = array();
-            while ($row = mysqli_fetch_array($r, MYSQL_ASSOC)) {
-                $ret[] = $row;
-            }
-            if (sizeof($ret) > 0) {
-                return $ret;
+        try {
+            if (CheckInput::checkSet($this->databaseName) AND CheckInput::checkNewInput($table) ) {
+                $q = 'SELECT column_name FROM information_schema.key_column_usage WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '" AND CONSTRAINT_NAME LIKE "fk%"';
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = array();
+                    while ($row = $r->fetch_assoc()) {
+                        $ret[] = $row;
+                    }
+                    if (sizeof($ret) > 0) {
+                        return $ret;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                throw new exceptionHandler(__METHOD__ . ": table and database required.");
             }
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -481,22 +593,31 @@ class DatabaseConnectionMySQLi
      */
     public function getColumnList($table)
     {
-        $q = 'SELECT column_name FROM information_schema.columns WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '";';
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = [];
-            while ($row = mysqli_fetch_array($r, MYSQL_ASSOC)) {
-                $ret[] = $row['column_name'];
-            }
-            if (sizeof($ret) > 0) {
-                return $ret;
+        try {
+            if (CheckInput::checkSet($this->databaseName) AND CheckInput::checkNewInput($table)) {
+                $q = 'SELECT column_name FROM information_schema.columns WHERE table_schema="' . $this->getDatabaseName() . '" AND table_name="' . $table . '";';
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = [];
+                    while ($row = $r->fetch_assoc()) {
+                        $ret[] = $row['column_name'];
+                    }
+                    if (sizeof($ret) > 0) {
+                        return $ret;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                throw new exceptionHandler(__METHOD__ . ": table and database required.");
             }
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
-        }
+        }        
     }
 
     /** getAllColumnTypes
@@ -505,20 +626,29 @@ class DatabaseConnectionMySQLi
      */
     public function getAllColumnTypes()
     {
-        $q = 'SELECT distinct(column_type) FROM information_schema.columns WHERE table_schema="' . $this->getDatabaseName() . '"';
-        $r = mysqli_query($this->connection, $q);
-        if ($r->num_rows > 0) {
-            $row = null;
-            $ret = array();
-            while ($row = mysqli_fetch_array($r, MYSQL_ASSOC)) {
-                $ret[] = $row;
-            }
-            if (sizeof($ret) > 0) {
-                return $ret;
+        try {
+            if (CheckInput::checkSet($this->databaseName)) {
+                $q = 'SELECT distinct(column_type) FROM information_schema.columns WHERE table_schema="' . $this->getDatabaseName() . '"';
+                $r = $this->connection->query($q);
+                if ($r->num_rows > 0) {
+                    $row = null;
+                    $ret = array();
+                    while ($row = $r->fetch_assoc()) {
+                        $ret[] = $row;
+                    }
+                    if (sizeof($ret) > 0) {
+                        return $ret;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                throw new exceptionHandler(__METHOD__ . ": no database name.");
             }
-        } else {
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
     }
@@ -537,7 +667,7 @@ $SSL->setSSL(
     'DHE-RSA-AES256-SHA'
 );
 $SSL->setServerName("127.0.0.1");
-$SSL->setDatabaseName("Aff_Cell");
+$SSL->setDatabaseName("mysql");
 $SSL->setUserName("root");
 $SSL->setUserPassword('4u$t1nTX');
 $SSL->openConnection();
