@@ -105,19 +105,6 @@ class databaseQueryMySQLiTest
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /** testGetArray
-     *
-     * @covers databaseQueryMySQLi::getArray
-     *
-     * @return void
-     */
-    public function testGetArray()
-    {
-        $this->expected = array();
-        $this->actual = $this->object->getArray();
-        $this->assertEquals($this->expected, $this->actual);
-    }
-
     /** testGetRow
      *
      * @covers databaseQueryMySQLi::getRow
@@ -126,8 +113,21 @@ class databaseQueryMySQLiTest
      */
     public function testGetRow()
     {
-        $this->expected = array();
+        $this->expected = true;
         $this->actual = $this->object->getRow();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGetArray
+     *
+     * @covers databaseQueryMySQLi::getArray
+     *
+     * @return void
+     */
+    public function testGetArray()
+    {
+        $this->expected = true;
+        $this->actual = $this->object->getArray();
         $this->assertEquals($this->expected, $this->actual);
     }
 

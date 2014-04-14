@@ -40,7 +40,7 @@ abstract class databaseQuery
      */
     protected $fieldCount;
     /**
-     * @var resource resultSet the result set returned by the query
+     * @var object resultSet the result set returned by the query
      */
     protected $resultSet;
     /**

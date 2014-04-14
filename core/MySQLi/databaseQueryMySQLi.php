@@ -158,8 +158,8 @@ class databaseQueryMySQLi
      */
     protected function checkErrors()
     {
-        if ( count($this->databaseConnection->error_list) > 0 ) {
-            $this->errors          = $this->databaseConnection->error_list;
+        $this->errors = mysqli_error_list($this->databaseConnection->getConnection());
+        if ( count($this->errors) > 0 ) {
             $this->errors["query"] = $this->query;
             return false;
         }
@@ -172,11 +172,11 @@ class databaseQueryMySQLi
      */
     protected function checkWarnings()
     {
-        $this->warningCount = $this->databaseConnection->warning_count;
+        $this->warningCount = mysqli_warning_count($this->databaseConnection->getConnection());
         if ( $this->warningCount > 0 ) {
             $this->warnings = array();
             for ( $i = 0; $i < $this->warningCount; $i++ ) {
-                $this->warnings[] = mysqli_get_warnings($this->databaseConnection);
+                $this->warnings[] = mysqli_get_warnings($this->databaseConnection->getConnection());
             }
             return false;
         }
@@ -208,7 +208,7 @@ class databaseQueryMySQLi
     protected function setAffectedRows()
     {
         if ( isset($this->resultSet) ) {
-            $this->affectedRows = $this->databaseConnection->affected_rows;
+            $this->affectedRows = mysqli_affected_rows($this->databaseConnection->getConnection());
         } else {
             return false;
         }
@@ -222,7 +222,7 @@ class databaseQueryMySQLi
     protected function setFieldCount()
     {
         if ( isset($this->resultSet) ) {
-            $this->fieldCount = $this->databaseConnection->field_count;
+            $this->fieldCount = mysqli_field_count($this->databaseConnection->getConnection());
         } else {
             return false;
         }
