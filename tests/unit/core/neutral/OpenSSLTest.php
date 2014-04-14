@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."OpenSSL.php";
  *
  */
 class OpenSSLTest 
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

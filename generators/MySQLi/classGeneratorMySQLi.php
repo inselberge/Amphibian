@@ -35,7 +35,11 @@ class ClassGeneratorMySQLi
     {
         try {
             parent::__construct($databaseConnection);
-            $this->setFileDestination(MODELS_GENERATED);
+            if ( defined('MODELS_GENERATED') ) {
+                $this->setFileDestination(MODELS_GENERATED);
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": unknown destination.");
+            }
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
@@ -672,7 +676,8 @@ $cg->setLink("http://".APP_WEBSITE."/documentation/uml/models/generated");
 $cg->setTableName("User");
 $cg->execute();
 */
-require_once "/home/texmorgan/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
+/*
+require_once "/home/carl/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
 require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 $databaseConnection = databaseConnectionMySQLi::instance();
 $databaseConnection->setServerName("localhost");
@@ -683,3 +688,4 @@ $databaseConnection->openConnection();
 $controlGen = ClassGeneratorMySQLi::instance($databaseConnection);
 //$controlGen->setFileDestination("/home/texmorgan/Public/InnerAlly_SC/controllers/generated/");
 $controlGen->execute();
+*/

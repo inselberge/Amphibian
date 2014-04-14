@@ -14,7 +14,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."StandardViewBuilderMySQLi.php";
  *
  */
 class StandardViewBuilderMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object StandardViewBuilderMySQLi an instance of StandardViewBuilderMySQLi

@@ -1,53 +1,41 @@
 <?php
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 /**
  * Class basicInteractionTest
- * @category
- * @package
+ *
+ * @category UnitTests
+ * @package  BasicInteraction
  * @author   Carl 'Tex' Morgan <texmorgan@amphibian.co>
  * @license  All rights reserved by Inselberge Inc. unless otherwise stated.
  * @link     http://amphibian.co/documentation/basicInteractionTest
- */class basicInteractionTest extends BaseTest
+ */
+class basicInteractionTest extends BaseTest
 {
-    /**
-     * @var basicInteraction
-     */
-    protected $object;
-    /**
-     * @var mixed expected holds values for $basicInteractionTest->expected
-     */
-    protected $expected;
-    /**
-     * @var mixed actual holds values for $basicInteractionTest->actual
-     */
-    protected $actual;
-    /**
-     * @var mixed arguments holds values for $basicInteractionTest->arguments
-     */
-    protected $arguments;
-
-    /**
+    /** setUp
+     *
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp()
     {
-        require AMPHIBIAN_CONFIG."mysql.cfg.php";
-        $this->object = new BasicInteraction($databaseConnection);
+        $this->connection = DatabaseConnectionMySQLi::factory();
+        $this->connection->setServerName("localhost");
+        $this->connection->setDatabaseName("mysql");
+        $this->connection->setUserName("root");
+        $this->connection->setUserPassword('4u$t1nTX');
+        $this->connection->openConnection();
+        $this->object = $this->getMockForAbstractClass('BasicInteraction', array($this->connection));
     }
 
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
-        unset($this->object);
-    }
-
-    /**
-     * @covers basicInteraction::printByKey
+    /** testPrintByKey
+     *
+     * @covers BasicInteraction::printByKey
+     *
+     * @return void
      */
     public function testPrintByKey()
     {
@@ -57,8 +45,11 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
         $this->assertTrue($this->object->printByKey("log"));
     }
 
-    /**
-     * @covers basicInteraction::getByKey
+    /** testGetByKey
+     *
+     * @covers BasicInteraction::getByKey
+     *
+     * @return void
      */
     public function testGetByKey()
     {
@@ -71,16 +62,22 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
-     * @covers basicInteraction::showSelf
+    /** testShowSelf
+     *
+     * @covers BasicInteraction::showSelf
+     *
+     * @return void
      */
     public function testShowSelf()
     {
         $this->assertTrue($this->object->showSelf());
     }
 
-    /**
-     * @covers basicInteraction::getErrors
+    /** testGetErrors
+     *
+     * @covers BasicInteraction::getErrors
+     *
+     * @return void
      */
     public function testGetErrors()
     {
@@ -89,8 +86,11 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
-     * @covers basicInteraction::setDataPackage
+    /** testSetDataPackage
+     *
+     * @covers BasicInteraction::setDataPackage
+     *
+     * @return void
      */
     public function testSetDataPackage()
     {
@@ -100,9 +100,11 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
-     * @covers basicInteraction::getDataPackage
-
+    /** testGetDataPackage
+     *
+     * @covers BasicInteraction::getDataPackage
+     *
+     * @return void
      */
     public function testGetDataPackage()
     {
@@ -111,8 +113,11 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicInteraction.php";
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
-     * @covers basicInteraction::checkDataPackageSet
+    /** testCheckDataPackageSet
+     *
+     * @covers BasicInteraction::checkDataPackageSet
+     *
+     * @return void
      */
     public function testCheckDataPackageSet()
     {

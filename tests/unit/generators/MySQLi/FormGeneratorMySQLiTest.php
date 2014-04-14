@@ -15,7 +15,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."FormGeneratorMySQLi.php";
  *
  */
 class FormGeneratorMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object FormGeneratorMySQLi an instance of FormGeneratorMySQLi

@@ -14,7 +14,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."JSONObjectGenerator.php";
  *
  */
 class JSONObjectGeneratorTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object JSONObjectGenerator an instance of JSONObjectGenerator

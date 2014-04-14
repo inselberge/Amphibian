@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."APIResponse.php";
  *
  */
 class APIResponseTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object APIResponse an instance of APIResponse

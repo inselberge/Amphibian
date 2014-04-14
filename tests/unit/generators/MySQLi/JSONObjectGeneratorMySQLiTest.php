@@ -16,7 +16,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."JSONObjectGeneratorMySQLi.php";
  *
  */
 class JSONObjectGeneratorMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object JSONObjectGeneratorMySQLi an instance of JSONObjectGeneratorMySQLi

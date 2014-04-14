@@ -15,7 +15,7 @@ require_once AMPHIBIAN_GENERATORS_NEUTRAL."PHPUMLGenerator.php";
  *
  */
 class PHPUMLGeneratorTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object PHPUMLGenerator an instance of PHPUMLGenerator

@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."SessionHandlerCookie.php";
  *
  */
 class SessionHandlerCookieTest 
-	extends BaseTest
+    extends BaseTest
 {
 
     /** setUp

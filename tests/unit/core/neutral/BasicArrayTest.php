@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."BasicArray.php";
  *
  */
 class BasicArrayTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object BasicArray an instance of BasicArray

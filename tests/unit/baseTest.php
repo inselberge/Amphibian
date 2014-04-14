@@ -166,7 +166,11 @@ abstract class BaseTest
      */
     public function goodNameDataProvider()
     {
-        return array();
+        return array(
+            array("Tom Jones"),
+            array("Tex Morgan"),
+            array("Jane Jones")
+        );
     }
 
     /** badNameDataProvider
@@ -202,7 +206,11 @@ abstract class BaseTest
      */
     public function goodEmailDataProvider()
     {
-        return array();
+        return array(
+            array("texmorgan@amphibian.co"),
+            array("support@amphibian.co"),
+            array("blah@mail.com")
+        );
     }
 
     /** badEmailDataProvider

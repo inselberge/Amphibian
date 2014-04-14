@@ -16,7 +16,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."DecoratorGeneratorMySQLi.php";
  *
  */
 class DecoratorGeneratorMySQLiTest 
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object DecoratorGeneratorMySQLi an instance of DecoratorGeneratorMySQLi

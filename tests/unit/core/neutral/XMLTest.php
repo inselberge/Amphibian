@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."XML.php";
  *
  */
 class XMLTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object XML an instance of XML

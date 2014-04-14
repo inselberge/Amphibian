@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."BasicModelMySQLi.php";
  *
  */
 class BasicModelMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object BasicModelMySQLi an instance of BasicModelMySQLi

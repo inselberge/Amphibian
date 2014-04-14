@@ -46,7 +46,7 @@ abstract class BasicInteraction
      *
      * @param resource $databaseConnection a database connection
      */
-    protected function __construct( $databaseConnection )
+    public function __construct( $databaseConnection )
     {
         try {
             if ( CheckInput::checkNewInput($databaseConnection) ) {

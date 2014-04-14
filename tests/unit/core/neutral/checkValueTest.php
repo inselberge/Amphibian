@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "CheckValue.php";
  *
  */
 class CheckValueTest
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object CheckValue an instance of CheckValue

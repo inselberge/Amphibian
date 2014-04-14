@@ -26,19 +26,19 @@ class ConfigurationGenerator
     /**
      * @var string appName the name of the application
      */
-    protected $appName = "";
+    protected $appName;
     /**
      * @var string appWebsite the URL of the application website
      */
-    protected $appWebsite = "";
+    protected $appWebsite;
     /**
      * @var string baseURI the location of the base install
      */
-    protected $baseURI = "";
+    protected $baseURI;
     /**
      * @var string baseURL the URL of the base website
      */
-    protected $baseURL = "";
+    protected $baseURL;
     /**
      * @var resource _FileHandle a valid file handle for writing
      */
@@ -46,7 +46,7 @@ class ConfigurationGenerator
     /**
      * @var string _buffer an area to store what needs to be written
      */
-    private $_buffer = "";
+    private $_buffer;
     /**
      * @var object ConfigurationGenerator an instance of this class
      */
@@ -208,12 +208,12 @@ class ConfigurationGenerator
     {
         try {
             if ( CheckInput::checkNewInputArray(
-                [
+                array(
                     $this->appName,
                     $this->appWebsite,
                     $this->baseURI,
                     $this->baseURL
-                ]
+                )
             ) ) {
                 $this->addBaseBlock();
                 $this->addConfiguration();
@@ -599,12 +599,37 @@ class ConfigurationGenerator
     {
         try {
             if ( CheckInput::checkNewInput($this->_buffer) ) {
-                $this->_FileHandle = new FileHandle($this->baseURI . "config/" . $this->appName . ".config.inc.php");
-                $this->_FileHandle->writeFull($this->_buffer);
+                if ( $this->checkRequired() ) {
+                    $this->_FileHandle = new FileHandle($this->baseURI . "config/" . $this->appName . ".config.inc.php");
+                    $this->_FileHandle->writeFull($this->_buffer);
+                } else {
+                    throw new ExceptionHandler(__METHOD__ . ": requirements not met.");
+                }
             } else {
                 throw new ExceptionHandler(__METHOD__."The buffer is empty.");
             }
         } catch ( ExceptionHandler $e ) {
+            $e->execute();
+            return false;
+        }
+        return true;
+    }
+
+    /** checkRequired
+     *
+     * @return bool
+     */
+    protected function checkRequired()
+    {
+        try {
+            if (CheckInput::checkSet($this->appName)) {
+                if ( !CheckInput::checkSet($this->baseURI) ) {
+                    throw new ExceptionHandler(__METHOD__ . ": baseURI required.");
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": appName required.");
+            }
+        } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
         }

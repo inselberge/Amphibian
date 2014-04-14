@@ -15,7 +15,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."PreloaderGeneratorMySQLi.php";
  *
  */
 class PreloaderGeneratorMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object PreloaderGeneratorMySQLi an instance of PreloaderGeneratorMySQLi

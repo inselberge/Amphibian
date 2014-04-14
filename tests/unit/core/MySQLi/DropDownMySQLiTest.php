@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."DropDownMySQLi.php";
  *
  */
 class DropDownMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object DropDownMySQLi an instance of DropDownMySQLi

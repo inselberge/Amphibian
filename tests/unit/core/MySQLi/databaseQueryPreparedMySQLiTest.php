@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."databaseQueryPreparedMySQLi.php";
  *
  */
 class databaseQueryPreparedMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object databaseQueryPreparedMySQLi an instance of databaseQueryPreparedMySQLi

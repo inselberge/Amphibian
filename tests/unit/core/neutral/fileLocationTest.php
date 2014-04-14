@@ -16,7 +16,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "FileLocation.php";
  *
  */
 class fileLocationTest 
-	extends BaseTest
+    extends BaseTest
 {
 
     /** setUp

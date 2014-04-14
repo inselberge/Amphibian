@@ -14,7 +14,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."PreloaderGenerator.php";
  *
  */
 class PreloaderGeneratorTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object PreloaderGenerator an instance of PreloaderGenerator

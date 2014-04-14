@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."BasicFrontControllerMySQLi.php";
  *
  */
 class BasicFrontControllerMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object BasicFrontControllerMySQLi an instance of BasicFrontControllerMySQLi

@@ -357,18 +357,18 @@ abstract class TableBuilder
     public function printPager()
     {
         echo '<div id="pager" class="pager">
-	<form>
-		<a class="first shadow"><<</a>
-		<a class="prev shadow"><</a>
-		<input type="text" class="pagedisplay shadow"/>
-		<a class="next shadow">></a>
-		<a class="last shadow">>></a>
-		<select class="pagesize">
-			<option selected="selected"  value="25">25</option>
-			<option  value="50">50</option>
-			<option  value="100">100</option>
-		</select>
-	</form>
+    <form>
+        <a class="first shadow"><<</a>
+        <a class="prev shadow"><</a>
+        <input type="text" class="pagedisplay shadow"/>
+        <a class="next shadow">></a>
+        <a class="last shadow">>></a>
+        <select class="pagesize">
+            <option selected="selected"  value="25">25</option>
+            <option  value="50">50</option>
+            <option  value="100">100</option>
+        </select>
+    </form>
 </div>';
     }
 

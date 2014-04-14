@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."File.php";
  *
  */
 class FileTest 
-	extends BaseTest
+    extends BaseTest
 {
 
     /** setUp

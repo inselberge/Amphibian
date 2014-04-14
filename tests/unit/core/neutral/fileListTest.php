@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."FileList.php";
  *
  */
 class FileListTest
-	extends BaseTest
+    extends BaseTest
 {
 
     /** setUp

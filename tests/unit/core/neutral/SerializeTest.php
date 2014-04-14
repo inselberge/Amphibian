@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."Serialize.php";
  *
  */
 class SerializeTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object Serialize an instance of Serialize

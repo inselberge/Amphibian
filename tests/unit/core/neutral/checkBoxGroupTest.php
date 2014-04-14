@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "checkBoxGroup.php";
  *
  */
 class checkBoxGroupTest 
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

@@ -16,7 +16,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "DataMap.php";
  *
  */
 class dataMapTest 
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object dataMap an instance of dataMap

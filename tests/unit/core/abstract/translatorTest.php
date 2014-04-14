@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "Translator.php";
  *
  */
 class translatorTest 
-	extends BaseTest
+    extends BaseTest
 {
 
     /** setUp

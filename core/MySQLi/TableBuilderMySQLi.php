@@ -8,27 +8,27 @@ Required:
     a valid initial result set, database connection, id for the table
 css:
     //Original
-	<style type="text/css">@import "../docs/css/jq.css";</style>
-	<style type="text/css">@import "../themes/blue/style.css";</style>
+    <style type="text/css">@import "../docs/css/jq.css";</style>
+    <style type="text/css">@import "../themes/blue/style.css";</style>
     //Moved to:
-	<style type="text/css">@import "../css/jq.css";</style>
-	<style type="text/css">@import "../css/tableSorter.css";</style>
+    <style type="text/css">@import "../css/jq.css";</style>
+    <style type="text/css">@import "../css/tableSorter.css";</style>
 
 js:
     //Original
-	<script type="text/javascript" src="../jquery-latest.js"></script>
-	<script type="text/javascript" src="../jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="../jquery-latest.js"></script>
+    <script type="text/javascript" src="../jquery.tablesorter.js"></script>
     <script type="text/javascript" src=".js/appendTableSorter.js"></script>
-	<script type="text/javascript" src="../addons/pager/jquery.tablesorter.pager.js"></script>
-	<script type="text/javascript" src="js/chili/chili-1.8b.js"></script>
-	<script type="text/javascript" src="js/docs.js"></script>
+    <script type="text/javascript" src="../addons/pager/jquery.tablesorter.pager.js"></script>
+    <script type="text/javascript" src="js/chili/chili-1.8b.js"></script>
+    <script type="text/javascript" src="js/docs.js"></script>
     //Moved to:
-	<script type="text/javascript" src="../js/jquery-latest.js"></script>
-	<script type="text/javascript" src="../js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="../js/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jquery.tablesorter.js"></script>
     <script type="text/javascript" src="../js/appendTableSorter.js"></script>
-	<script type="text/javascript" src="../js/jquery.tablesorter.pager.js"></script>
-	//Doesn't seem to exist: <script type="text/javascript" src="js/chili/chili-1.8b.js"></script>
-	<script type="text/javascript" src="../js/docs.js"></script>
+    <script type="text/javascript" src="../js/jquery.tablesorter.pager.js"></script>
+    //Doesn't seem to exist: <script type="text/javascript" src="js/chili/chili-1.8b.js"></script>
+    <script type="text/javascript" src="../js/docs.js"></script>
     <script type="text/javascript" src="../js/repeatHeaders.js"></script>
 */
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
@@ -171,6 +171,6 @@ $tb->printScripts();
 $tb->execute();
 }
 catch (Exception $e){
-		echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": ". $e);
+        echo utf8_encode(date('Y-m-d H:i:s') . " " . __CLASS__ . "::" . __FUNCTION__ . ": ". $e);
 }
 */

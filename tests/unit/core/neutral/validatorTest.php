@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "Validator.php";
  *
  */
 class ValidatorTest
-	extends BaseTest
+    extends BaseTest
 {
 
     /** setUp

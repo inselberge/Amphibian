@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."MySQLLoader.php";
  *
  */
 class MySQLLoaderTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object MySQLLoader an instance of MySQLLoader

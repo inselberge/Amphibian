@@ -25,7 +25,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."cURL.php";
  *
  */
 class cURLTest 
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."TableBuilderMySQLi.php";
  *
  */
 class TableBuilderMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object TableBuilderMySQLi an instance of TableBuilderMySQLi

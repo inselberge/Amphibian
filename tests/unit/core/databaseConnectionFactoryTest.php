@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE."databaseConnectionFactory.php";
  *
  */
 class DatabaseConnectionFactoryTest
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object DatabaseConnectionFactory an instance of DatabaseConnectionFactory

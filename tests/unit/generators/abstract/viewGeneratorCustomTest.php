@@ -14,7 +14,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."viewGeneratorCustom.php";
  *
  */
 class viewGeneratorCustomTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object viewGeneratorCustom an instance of viewGeneratorCustom

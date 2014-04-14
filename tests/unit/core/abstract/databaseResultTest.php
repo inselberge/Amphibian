@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "databaseResult.php";
  *
  */
 class databaseResultTest 
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

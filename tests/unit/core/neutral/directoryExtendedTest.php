@@ -16,7 +16,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."DirectoryExtended.php";
  *
  */
 class DirectoryExtendedTest 
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

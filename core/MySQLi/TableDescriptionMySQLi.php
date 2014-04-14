@@ -37,7 +37,7 @@ class TableDescriptionMySQLi
      *
      * @param object $databaseConnection a valid database connection
      */
-    protected function __construct($databaseConnection)
+    public function __construct($databaseConnection)
     {
         parent::__construct($databaseConnection);
         $this->query = databaseQueryMySQLi::instance($databaseConnection);

@@ -14,7 +14,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."standardViewBuilder.php";
  *
  */
 class standardViewBuilderTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object standardViewBuilder an instance of standardViewBuilder

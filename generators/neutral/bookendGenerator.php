@@ -300,7 +300,7 @@ class bookendGenerator
         $this->fileBuffer .= '    <!-- PNG FIX for IE6 -->' . "\n";
         $this->fileBuffer .= '    <!-- http://24ways.org/2007/supersleight-transparent-png-in-ie6 -->' . "\n";
         $this->fileBuffer .= '    <!--[if lte IE 6]>' . "\n";
-        $this->fileBuffer .= '		<script type="text/javascript" src="js/pngfix/supersleight-min.js"></script>' . "\n";
+        $this->fileBuffer .= '        <script type="text/javascript" src="js/pngfix/supersleight-min.js"></script>' . "\n";
         $this->fileBuffer .= '    <![endif]-->' . "\n";
     }
 

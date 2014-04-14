@@ -15,7 +15,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT . "agencyGenerator.php";
  *
  */
 class agencyGeneratorTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object agencyGenerator an instance of agencyGenerator

@@ -15,7 +15,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."amphibianMySQLi.php";
  *
  */
 class amphibianMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object amphibianMySQLi an instance of amphibianMySQLi

@@ -163,7 +163,7 @@ class ExceptionHandler
     public function __toString()
     {
         return utf8_encode(
-            date('Y-m-d H:i:s')
+            date('Y_m_d__H.i.s')
             . " " . $this->class
             . "::"
             . $this->method

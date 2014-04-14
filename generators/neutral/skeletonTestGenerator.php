@@ -72,7 +72,7 @@ class SkeletonTestGenerator
      *
      * @return bool|skeletonTestGenerator
      */
-    public static function instance($source)
+    static public function instance($source)
     {
         try {
             if ( CheckInput::checkNewInput($source) ) {
@@ -93,7 +93,7 @@ class SkeletonTestGenerator
 
     /** setDestination
      *
-     * @param $destination
+     * @param string $destination the destination directory
      *
      * @return bool
      */

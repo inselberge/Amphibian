@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicAgency.php";
  *
  */
 class BasicAgencyTest
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

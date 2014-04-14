@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_ABSTRACT."BasicModel.php";
  *
  */
 class basicModelTest 
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object basicModel an instance of basicModel

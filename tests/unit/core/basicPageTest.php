@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE."basicPage.php";
  *
  */
 class basicPageTest 
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object basicPage an instance of basicPage

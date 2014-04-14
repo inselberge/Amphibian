@@ -14,7 +14,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."sprocGeneratorCustom.php";
  *
  */
 class sprocGeneratorCustomTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object sprocGeneratorCustom an instance of sprocGeneratorCustom

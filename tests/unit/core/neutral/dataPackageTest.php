@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."DataPackage.php";
  *
  */
 class DataPackageTest 
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object DataPackage an instance of DataPackage

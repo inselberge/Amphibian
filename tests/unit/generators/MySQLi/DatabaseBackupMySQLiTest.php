@@ -15,7 +15,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."DatabaseBackupMySQLi.php";
  *
  */
 class DatabaseBackupMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object DatabaseBackupMySQLi an instance of DatabaseBackupMySQLi

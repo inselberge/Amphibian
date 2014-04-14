@@ -12,7 +12,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."BasicGenerator.php";
  *
  */
 class BasicGeneratorTest 
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

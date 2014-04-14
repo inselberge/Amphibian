@@ -14,7 +14,7 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."DecoratorGenerator.php";
  *
  */
 class DecoratorGeneratorTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object DecoratorGenerator an instance of DecoratorGenerator

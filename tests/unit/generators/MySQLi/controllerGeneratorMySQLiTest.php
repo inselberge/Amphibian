@@ -13,7 +13,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."controllerGeneratorMySQLi.php";
  *
  */
 class ControllerGeneratorMySQLiTest
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

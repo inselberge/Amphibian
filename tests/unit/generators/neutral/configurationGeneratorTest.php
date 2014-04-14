@@ -3,19 +3,23 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 require_once AMPHIBIAN_GENERATORS_NEUTRAL."configurationGenerator.php";
 /**
- * Class configurationGeneratorTest
+ * Class ConfigurationGeneratorTest
  *
  * @category UnitTests
- * @package  configurationGeneratorTest
+ * @package  ConfigurationGeneratorTest
  * @author   Carl 'Tex' Morgan <texmorgan@inselberge.com>
  * @license  GPL v3
  * @link     documentation/configurationGeneratorTest
  */
-class configurationGeneratorTest extends BaseTest
+class ConfigurationGeneratorTest
+    extends BaseTest
 {
-    /**
+    /** setUp
+     *
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp()
     {
@@ -26,7 +30,7 @@ class configurationGeneratorTest extends BaseTest
      *
      * @covers ConfigurationGenerator::instance
      * 
-     * @returns void
+     * @return void
      */
     public function testInstance()
     {
@@ -39,7 +43,7 @@ class configurationGeneratorTest extends BaseTest
      *
      * @covers ConfigurationGenerator::factory
      * 
-     * @returns void
+     * @return void
      */
     public function testFactory()
     {
@@ -50,13 +54,13 @@ class configurationGeneratorTest extends BaseTest
 
     /** testSetAppName
      * 
-     * @param $appName
+     * @param string $appName the name of the application
      * 
      * @covers ConfigurationGenerator::setAppName
      *
      * @dataProvider projectNameDataProvider
      *
-     * @returns void
+     * @return void
      */
     public function testSetAppName($appName)
     {
@@ -69,7 +73,7 @@ class configurationGeneratorTest extends BaseTest
      * 
      * @covers ConfigurationGenerator::getAppName
      * 
-     * @returns void
+     * @return void
      */
     public function testGetAppName()
     {
@@ -80,13 +84,13 @@ class configurationGeneratorTest extends BaseTest
 
     /** testSetAppWebsite
      * 
-     * @param $appWebsite
+     * @param string $appWebsite the URL of the application website
      * 
      * @covers ConfigurationGenerator::setAppWebsite
      *
      * @dataProvider websiteDataProvider
      *
-     * @returns void
+     * @return void
      */
     public function testSetAppWebsite($appWebsite)
     {
@@ -99,7 +103,7 @@ class configurationGeneratorTest extends BaseTest
      * 
      * @covers ConfigurationGenerator::getAppWebsite
      * 
-     * @returns void
+     * @return void
      */
     public function testGetAppWebsite()
     {
@@ -110,13 +114,13 @@ class configurationGeneratorTest extends BaseTest
 
     /** testSetBaseURI
      * 
-     * @param $baseURI
+     * @param string $baseURI the location of the base install
      * 
      * @covers ConfigurationGenerator::setBaseURI
      *
      * @dataProvider goodFileLocationsDataProvider
      *
-     * @returns void
+     * @return void
      */
     public function testSetBaseURI($baseURI)
     {
@@ -129,7 +133,7 @@ class configurationGeneratorTest extends BaseTest
      * 
      * @covers ConfigurationGenerator::getBaseURI
      * 
-     * @returns void
+     * @return void
      */
     public function testGetBaseURI()
     {
@@ -140,13 +144,13 @@ class configurationGeneratorTest extends BaseTest
 
     /** testSetBaseURL
      * 
-     * @param $baseURL
+     * @param string $baseURL the URL of the base website
      * 
      * @covers ConfigurationGenerator::setBaseURL
      *
      * @dataProvider websiteDataProvider
      *
-     * @returns void
+     * @return void
      */
     public function testSetBaseURL($baseURL)
     {
@@ -159,7 +163,7 @@ class configurationGeneratorTest extends BaseTest
      * 
      * @covers ConfigurationGenerator::getBaseURL
      * 
-     * @returns void
+     * @return void
      */
     public function testGetBaseURL()
     {
@@ -172,7 +176,7 @@ class configurationGeneratorTest extends BaseTest
      * 
      * @covers ConfigurationGenerator::execute
      * 
-     * @returns void
+     * @return void
      */
     public function testExecute()
     {
@@ -180,5 +184,4 @@ class configurationGeneratorTest extends BaseTest
         $this->actual = $this->object->execute();
         $this->assertEquals($this->expected, $this->actual);
     }
-
 }

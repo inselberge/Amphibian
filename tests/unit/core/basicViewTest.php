@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."basicView.php";
  *
  */
 class basicViewTest 
-	extends BaseTest
+    extends BaseTest
 {
     /**
      * @var object basicView an instance of basicView

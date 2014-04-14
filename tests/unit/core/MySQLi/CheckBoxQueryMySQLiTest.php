@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."CheckBoxQueryMySQLi.php";
  *
  */
 class CheckBoxQueryMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object CheckBoxQueryMySQLi an instance of CheckBoxQueryMySQLi

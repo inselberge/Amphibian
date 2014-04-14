@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE_MYSQLI . "TranslatorMySQLi.php";
  *
  */
 class translatorMySQLiTest 
-	extends BaseTest
+    extends BaseTest
 {
 
     /** setUp

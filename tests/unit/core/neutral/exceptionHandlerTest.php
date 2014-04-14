@@ -30,17 +30,6 @@ class ExceptionHandlerTest
         $this->object = ExceptionHandler::instance("This is an exception message");
     }
 
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
-    }
-
     /** testInstance
      *
      * @covers ExceptionHandler::instance
@@ -49,7 +38,9 @@ class ExceptionHandlerTest
      */
     public function testInstance()
     {
-        $this->assertEquals($this->object,ExceptionHandler::instance("This is an exception message"));
+        $this->expected = $this->object;
+        $this->actual = ExceptionHandler::instance("This is an exception message");
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testExecute
@@ -67,11 +58,9 @@ class ExceptionHandlerTest
      *
      * @covers ExceptionHandler::__toString
      *
-     * @todo   Implement test__toString().
-     *
      * @return void
      */
-    public function test__toString()
+    public function testToString()
     {
         $this->object = new ExceptionHandler(__METHOD__.": This is an exception message");
         $this->object->execute();

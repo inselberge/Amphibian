@@ -15,7 +15,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL."FileHandle.php";
  *
  */
 class FileHandleTest
-	extends BaseTest
+    extends BaseTest
 {
     /** setUp
      *

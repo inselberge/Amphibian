@@ -14,7 +14,7 @@ require_once AMPHIBIAN_CORE."DataListMySQLi.php";
  *
  */
 class DataListMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object DataListMySQLi an instance of DataListMySQLi

@@ -15,7 +15,7 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."viewGeneratorCustomMySQLi.php";
  *
  */
 class viewGeneratorCustomMySQLiTest 
-	extends PHPUnit_Framework_TestCase
+    extends PHPUnit_Framework_TestCase
 {
     /**
      * @var object viewGeneratorCustomMySQLi an instance of viewGeneratorCustomMySQLi
