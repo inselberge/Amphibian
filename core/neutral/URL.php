@@ -152,7 +152,7 @@ class URL
     {
         try {
             if ( CheckInput::checkSet($this->urlString) ) {
-                if ( substr($this->urlString, -1) == "/" ) {
+                if ( substr($this->urlString, -1) === "/" ) {
                     $this->urlString = substr($this->urlString, 0, -1);
                 }
             } else {
@@ -236,7 +236,7 @@ class URL
     {
         try {
             $this->status = parse_url($this->urlString, PHP_URL_FRAGMENT);
-            if ( $this->status != false ) {
+            if ( $this->status !== false ) {
                 $this->fragment = trim($this->status, "/");
                 unset($this->status);
             } else {
@@ -266,7 +266,7 @@ class URL
     {
         try {
             $this->status = parse_url($this->urlString, PHP_URL_HOST);
-            if ( $this->status != false ) {
+            if ( $this->status !== false ) {
                 $this->host = trim($this->status, "/");
                 unset($this->status);
             } else {
@@ -296,7 +296,7 @@ class URL
     {
         try {
             $this->status = parse_url($this->urlString, PHP_URL_PASS);
-            if ( $this->status != false ) {
+            if ( $this->status !== false ) {
                 $this->pass = trim($this->status, "/");
                 unset($this->status);
             } else {
@@ -356,7 +356,7 @@ class URL
     {
         try {
             $this->status =  parse_url($this->urlString, PHP_URL_PORT);
-            if ( $this->status != false ) {
+            if ( $this->status !== false ) {
                 $this->port = trim($this->status, "/");
                 unset($this->status);
             } else {
@@ -386,7 +386,7 @@ class URL
     {
         try {
             $this->status = parse_url($this->urlString, PHP_URL_QUERY);
-            if ( $this->status != false ) {
+            if ( $this->status !== false ) {
                 $this->query = trim($this->status, "/");
                 unset($this->status);
             } else {
@@ -448,7 +448,7 @@ class URL
     {
         try {
             $this->status = parse_url($this->urlString, PHP_URL_SCHEME);
-            if ( $this->status != false ) {
+            if ( $this->status !== false ) {
                 $this->scheme = trim($this->status, "/");
                 unset($this->status);
             } else {
@@ -478,7 +478,7 @@ class URL
     {
         try {
             $this->status = parse_url($this->urlString, PHP_URL_USER);
-            if ( $this->status != false ) {
+            if ( $this->status !== false ) {
                 $this->user = trim($this->status, "/");
                 unset($this->status);
             } else {

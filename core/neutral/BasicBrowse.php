@@ -178,13 +178,13 @@ class BasicBrowse
     protected function forkRender()
     {
         try {
-            if ( $this->renderMethod == "HTML" ) {
+            if ( $this->renderMethod === "HTML" ) {
                 $this->renderHTML();
-            } elseif ($this->renderMethod == "JSON") {
+            } elseif ($this->renderMethod === "JSON") {
                 $this->renderJSON();
-            } elseif ($this->renderMethod == "JQuery") {
+            } elseif ($this->renderMethod === "JQuery") {
                 $this->renderJQuery();
-            } elseif ($this->renderMethod == "XML") {
+            } elseif ($this->renderMethod === "XML") {
                 $this->renderXML();
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": Unknown render method.");

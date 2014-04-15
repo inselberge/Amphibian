@@ -370,28 +370,28 @@ abstract class ControllerGenerator
     {
         try {
             if (CheckInput::checkNewInput($type)) {
-                if ($type == "get" OR $type == "validate") {
+                if ($type === "get" OR $type === "validate") {
                     $this->buffer .= '    ' . '        $prepArray["id"] = $_GET["id"];' . "\n";
-                } elseif ($type == "insert") {
+                } elseif ($type === "insert") {
                     $columnArray = $this->tableDescription->getColumns();
                     foreach ($columnArray as $columnName) {
                         $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $this->cascadeGetPost("' . $columnName . '");' . "\n";
                     }
-                } elseif ($type == "update") {
+                } elseif ($type === "update") {
                     $columnArray = $this->tableDescription->getColumns();
                     foreach ($columnArray as $columnName) {
                         $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $this->cascadeGetPost("' . $columnName . '");' . "\n";
                     }
-                } elseif ($type == "patch") {
+                } elseif ($type === "patch") {
                     $columnArray = $this->tableDescription->getColumns();
                     foreach ($columnArray as $columnName) {
                         $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $_POST["' . $columnName . '"];' . "\n";
                     }
-                } elseif ($type == "delete") {
+                } elseif ($type === "delete") {
                     $this->buffer .= '    ' . '        $prepArray["id"] = $_POST["id"];' . "\n";
-                } elseif ($type == "search") {
+                } elseif ($type === "search") {
 
-                } elseif ($type == "browse") {
+                } elseif ($type === "browse") {
 
                 } else {
 

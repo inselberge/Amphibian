@@ -362,7 +362,7 @@ class UserLevelCheck
     {
         try {
             if ( CheckInput::checkNewInput($key) ) {
-                if ( $this->response[$key] == true ) {
+                if ( $this->response[$key] === true ) {
                     return true;
                 } else {
                     return false;

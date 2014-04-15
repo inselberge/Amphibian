@@ -61,9 +61,9 @@ abstract class JSONObjectGenerator
     {
         try {
             if ( CheckInput::checkNewInput($this->agencyOrModel) ) {
-                if ( $this->agencyOrModel == "agency" ) {
+                if ( $this->agencyOrModel === "agency" ) {
                     $this->fetchAllViews();
-                } elseif ( $this->agencyOrModel == "model") {
+                } elseif ( $this->agencyOrModel === "model") {
                     $this->fetchAllTables();
                 } else {
                     throw new ExceptionHandler(__METHOD__ . ": unknown flag.");
@@ -130,7 +130,7 @@ abstract class JSONObjectGenerator
     {
         try {
             if ( CheckInput::checkNewInput($agencyOrModel) ) {
-                if ( $agencyOrModel == "agency" OR $agencyOrModel == "model") {
+                if ( $agencyOrModel === "agency" OR $agencyOrModel === "model") {
                     $this->agencyOrModel = $agencyOrModel;
                 } else {
                     throw new ExceptionHandler(__METHOD__ . ": agencyOrModel illegal");
@@ -194,15 +194,15 @@ abstract class JSONObjectGenerator
             if ( CheckInput::checkSet($this->tableName) ) {
                 $this->setupTableDescription();
                 $this->initObject();
-                if ( $this->agencyOrModel == "agency" ) {
+                if ( $this->agencyOrModel === "agency" ) {
                     $this->initAgencyObject();
-                    if ( $this->requestOrResponse == "request" ) {
+                    if ( $this->requestOrResponse === "request" ) {
                         $this->makeAgencyRequestObject();
                     } else {
                         $this->makeAgencyResponseObject();
                     }
-                } elseif ( $this->agencyOrModel == "model" ) {
-                    if ( $this->requestOrResponse == "request" ) {
+                } elseif ( $this->agencyOrModel === "model" ) {
+                    if ( $this->requestOrResponse === "request" ) {
                         $this->makeModelRequestObject();
                         $this->makeGetRequestObject();
                         $this->makePatchRequestObject();
@@ -289,7 +289,7 @@ abstract class JSONObjectGenerator
                 "type" => $this->tableName,
                 "action" => ""
             );
-            if( $this->showTableDescription == true ) {
+            if( $this->showTableDescription === true ) {
                 $this->object["tableDesciption"] = $this->tableDescription->getFieldTypeArray();
             }
             if ( ! CheckInput::checkNewInputArray($this->object) ) {

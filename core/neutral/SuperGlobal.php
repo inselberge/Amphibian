@@ -57,7 +57,7 @@ class SuperGlobal
     {
         try {
             if ( CheckInput::checkNewInput($super) ) {
-                if ( $this->localArray == $super->getLocalArray() ) {
+                if ( $this->localArray === $super->getLocalArray() ) {
                     return true;
                 } else {
                     return false;

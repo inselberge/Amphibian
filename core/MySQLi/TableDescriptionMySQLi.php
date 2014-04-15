@@ -218,11 +218,11 @@ class TableDescriptionMySQLi
     {
         try {
             if ($this->row['Key']) {
-                if ($this->row['Key'] == "PRI") {
+                if ($this->row['Key'] === "PRI") {
                     $this->storePrimaryKey();
-                } elseif ($this->row['Key'] == "UNI") {
+                } elseif ($this->row['Key'] === "UNI") {
                     $this->storeUniqueKey();
-                } elseif ($this->row['Key'] == "MUL") {
+                } elseif ($this->row['Key'] === "MUL") {
                     $this->storeForeignKey();
                 } else {
                     throw new ExceptionHandler(__METHOD__ . ": Unsupported type ");
@@ -312,7 +312,7 @@ class TableDescriptionMySQLi
                     $this->indexRow = null;
                     $this->indexRow = mysqli_fetch_assoc($this->indexResult);
                 }
-            } elseif ($this->indexResult->num_rows == 0) {
+            } elseif ($this->indexResult->num_rows === 0) {
                 return false;
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": setIndexColumns failed");

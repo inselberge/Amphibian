@@ -217,7 +217,7 @@ class checkBoxGroup
         if ( isset($this->checkboxValueArray) AND is_array($this->checkboxValueArray) ) {
             $index = 0;
             foreach ( $this->checkboxValueArray as $valueArray ) {
-                if ( $index == 0 ) {
+                if ( $index === 0 ) {
                     $this->buildCheckAllCheckbox();
                     $this->startCheckboxGroup();
                 }

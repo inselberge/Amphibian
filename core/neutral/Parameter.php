@@ -239,11 +239,11 @@ class Parameter
     protected function iterate()
     {
         try {
-            if ( $this->position == 0 ) {
+            if ( $this->position === 0 ) {
                 $this->extractBranch();
-            } elseif ( $this->position == 1 ) {
+            } elseif ( $this->position === 1 ) {
                 $this->extractController();
-            } elseif ( $this->position == 2 ) {
+            } elseif ( $this->position === 2 ) {
                 $this->extractAction();
             } else {
                 $this->forkExtractOnAction();
@@ -415,7 +415,7 @@ class Parameter
     protected function extractWhere()
     {
         try {
-            if ( $this->currentElement == "where" ) {
+            if ( $this->currentElement === "where" ) {
                 $this->initVariable("where");
                 $this->addClause("where");
                 while ( $this->checkConjunction($this->pathArray[$this->position]) ) {
@@ -475,7 +475,7 @@ class Parameter
     protected function extractGroupBy()
     {
         try {
-            if ( $this->currentElement == "groupBy" ) {
+            if ( $this->currentElement === "groupBy" ) {
                 $this->initVariable("groupBy");
                 $this->addOrderClause("groupBy");
                 while ( !$this->checkReservedWord($this->pathArray[$this->position]) ) {
@@ -496,7 +496,7 @@ class Parameter
     protected function extractHaving()
     {
         try {
-            if ( $this->currentElement == "having" ) {
+            if ( $this->currentElement === "having" ) {
                 $this->initVariable("having");
                 $this->addClause("having");
                 while ( $this->checkConjunction($this->pathArray[$this->position]) ) {
@@ -518,7 +518,7 @@ class Parameter
     protected function extractOrderBy()
     {
         try {
-            if ( $this->currentElement == "orderBy" ) {
+            if ( $this->currentElement === "orderBy" ) {
                 $this->initVariable("orderBy");
                 $this->addOrderClause("orderBy");
                 while ( !$this->checkReservedWord($this->pathArray[$this->position]) ) {
@@ -541,7 +541,7 @@ class Parameter
     protected function addOrderClause($key)
     {
         try {
-            if ( $this->pathArray[$this->position] == $key ) {
+            if ( $this->pathArray[$this->position] === $key ) {
                 $columnValue = $this->pathArray[$this->position+1];
                 $direction = $this->pathArray[$this->position+2];
                 $this->advancePosition(3);
@@ -582,7 +582,7 @@ class Parameter
     protected function extractLimit()
     {
         try {
-            if ( $this->currentElement == "limit" ) {
+            if ( $this->currentElement === "limit" ) {
                 $this->initVariable("limit");
                 if ( $this->checkNextExists() ) {
                     $this->setSpecificVariable(
@@ -608,7 +608,7 @@ class Parameter
     protected function addOffset()
     {
         try {
-            if ( $this->currentElement == "offset" ) {
+            if ( $this->currentElement === "offset" ) {
                 if ( $this->checkNextExists() ) {
                     $this->setSpecificVariable(
                         "limit",
@@ -634,7 +634,7 @@ class Parameter
     protected function extractRender()
     {
         try {
-            if ( $this->currentElement == "render" ) {
+            if ( $this->currentElement === "render" ) {
                 $this->initVariable("render");
                 $this->setSpecificVariable(
                     "render",

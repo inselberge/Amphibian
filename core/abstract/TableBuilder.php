@@ -337,7 +337,7 @@ abstract class TableBuilder
     protected function printRow($row)
     {
         if (is_array($row)) {
-            if (fmod($this->rowNumber, 2) == 0) {
+            if (fmod($this->rowNumber, 2) === 0) {
                 echo "\t\t" . '<tr class="even" bgcolor="' . $this->bgColor . '">' . "\n";
             } else {
                 echo "\t\t" . '<tr class="odd" bgcolor="' . $this->bgColorAlt . '">' . "\n";

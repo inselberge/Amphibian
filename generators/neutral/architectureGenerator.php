@@ -375,7 +375,7 @@ class ArchitectureGenerator
      */
     private function _checkSlash( $URI )
     {
-        if ( substr($URI, -1) == '/' ) {
+        if ( substr($URI, -1) === '/' ) {
             return true;
         } else {
             return false;

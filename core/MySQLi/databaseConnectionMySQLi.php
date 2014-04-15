@@ -592,8 +592,8 @@ class DatabaseConnectionMySQLi
         if (isset($tableDescription) AND sizeof($tableDescription) > 0) {
             $requiredList = null;
             foreach ($tableDescription as $value) {
-                if ($value['Null'] == 'NO') {
-                    if ($requiredList == null) {
+                if ($value['Null'] === 'NO') {
+                    if ($requiredList === null) {
                         $requiredList = "`" . $value['Field'] . "`";
                     } else {
                         $requiredList .= ", `" . $value['Field'] . "`";
@@ -602,7 +602,7 @@ class DatabaseConnectionMySQLi
                     //do nothing
                 }
             }
-            if ($requiredList == null) {
+            if ($requiredList === null) {
                 return false;
             } else {
                 //echo $requiredList;

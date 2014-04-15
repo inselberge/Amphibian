@@ -239,11 +239,11 @@ class API
     protected function extractPutDelete()
     {
         try {
-            if ( $this->method == "POST" ) {
+            if ( $this->method === "POST" ) {
                 if ( $this->checkXHTTP() ) {
-                    if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'DELETE') {
+                    if ($_SERVER['HTTP_X_HTTP_METHOD'] === 'DELETE') {
                         $this->method = 'DELETE';
-                    } else if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'PUT') {
+                    } else if ($_SERVER['HTTP_X_HTTP_METHOD'] === 'PUT') {
                         $this->method = 'PUT';
                     } else {
                         throw new ExceptionHandler(__METHOD__.": unexpected header");
@@ -278,23 +278,23 @@ class API
     {
         try {
             if ( CheckInput::checkSet($this->method) ) {
-                if ($this->method == "DELETE") {
+                if ($this->method === "DELETE") {
                     $this->prepareDelete();
-                } elseif ($this->method == "POST") {
+                } elseif ($this->method === "POST") {
                     $this->preparePost();
-                } elseif ($this->method == "GET") {
+                } elseif ($this->method === "GET") {
                     $this->prepareGet();
-                } elseif ($this->method == "PUT") {
+                } elseif ($this->method === "PUT") {
                     $this->preparePut();
-                } elseif ($this->method == "PATCH") {
+                } elseif ($this->method === "PATCH") {
                     $this->preparePatch();
-                } elseif ($this->method == "HEAD") {
+                } elseif ($this->method === "HEAD") {
                     $this->prepareHead();
-                } elseif ($this->method == "OPTIONS") {
+                } elseif ($this->method === "OPTIONS") {
                     $this->prepareOptions();
-                } elseif ($this->method == "TRACE") {
+                } elseif ($this->method === "TRACE") {
                     $this->prepareTrace();
-                } elseif ($this->method == "CONNECT") {
+                } elseif ($this->method === "CONNECT") {
                     $this->prepareConnect();
                 } else {
                     throw new ExceptionHandler(__METHOD__.": invalid method");

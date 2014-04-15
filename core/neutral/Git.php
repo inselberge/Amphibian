@@ -354,7 +354,7 @@ class Git
                 $this->status
             );
 
-            if ( count($this->output) == 0 ) {
+            if ( count($this->output) === 0 ) {
                 $this->health = true;
             } else {
                 $this->health = false;
@@ -830,7 +830,7 @@ class Git
      */
     protected function checkStatus()
     {
-        if ( $this->status == 0 ) {
+        if ( $this->status === 0 ) {
             return true;
         } else {
             return false;

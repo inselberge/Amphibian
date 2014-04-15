@@ -130,17 +130,17 @@ class TranslatorMySQLi
     protected function translateComparisonOperator($operator)
     {
         try {
-            if ( $operator == 'gt' ) {
+            if ( $operator === 'gt' ) {
                 return ' > ';
-            } elseif ($operator == 'lt') {
+            } elseif ($operator === 'lt') {
                 return ' < ';
-            } elseif ($operator == 'gte') {
+            } elseif ($operator === 'gte') {
                 return ' >= ';
-            } elseif ($operator == 'lte') {
+            } elseif ($operator === 'lte') {
                 return ' <= ';
-            } elseif ($operator == 'eg') {
+            } elseif ($operator === 'eg') {
                 return ' = ';
-            } elseif ($operator == 'neg') {
+            } elseif ($operator === 'neg') {
                 return ' != ';
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": unknown operator");
@@ -160,9 +160,9 @@ class TranslatorMySQLi
     protected function translateExistenceOperator($operator)
     {
         try {
-            if ($operator == 'is') {
+            if ($operator === 'is') {
                 return ' IS ';
-            } elseif ($operator == 'isn') {
+            } elseif ($operator === 'isn') {
                 return ' IS NOT ';
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": unknown operator");
@@ -182,9 +182,9 @@ class TranslatorMySQLi
     protected function translateSimilarityOperator($operator)
     {
         try {
-            if ($operator == 'lk') {
+            if ($operator === 'lk') {
                 return ' LIKE ';
-            } elseif ($operator == 'nlk') {
+            } elseif ($operator === 'nlk') {
                 return ' NOT LIKE ';
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": unknown operator");
@@ -206,9 +206,9 @@ class TranslatorMySQLi
     protected function translateDirection( $direction )
     {
         try {
-            if ( $direction == "as" ) {
+            if ( $direction === "as" ) {
                 return ' ASC ';
-            } elseif ( $direction == "de" ) {
+            } elseif ( $direction === "de" ) {
                 return ' DESC ';
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": invalid direction");
@@ -231,11 +231,11 @@ class TranslatorMySQLi
     {
         try {
             if ( CheckInput::checkNewInput($conjunction) ) {
-                if ( $conjunction == "and" ) {
+                if ( $conjunction === "and" ) {
                     return ' AND ';
-                } elseif ( $conjunction == "or") {
+                } elseif ( $conjunction === "or") {
                     return ' OR ';
-                } elseif ( $conjunction == "xor") {
+                } elseif ( $conjunction === "xor") {
                     return ' XOR ';
                 } else {
                     throw new ExceptionHandler(__METHOD__.": unknown conjunction");

@@ -158,7 +158,7 @@ abstract class FormGenerator
      */
     protected function writeFormStart()
     {
-        if ( $this->formType == "modal" ) {
+        if ( $this->formType === "modal" ) {
             $this->writeModalButton();
             $this->buffer .= '<div id="' . $this->lowerTableName . '-dialog" class="modal hide pop" title="' . $this->spacedTableName . '">' . "\n";
             $this->buffer .= "\t" . '<form enctype="multipart/form-data" accept-charset="utf-8" method="post" action="' . $this->lowerTableName . '.php">' . "\n";
@@ -214,7 +214,7 @@ abstract class FormGenerator
      */
     protected function addToForm($index, $platform, $row)
     {
-        if ( $platform == 'mobile' ) {
+        if ( $platform === 'mobile' ) {
             if ( !$row['key'] ) {
                 $this->bufferMobile .= "\t\t\t" . '<p><label for="' ;
                 $this->bufferMobile .= $index ;
@@ -230,10 +230,10 @@ abstract class FormGenerator
                 $this->bufferMobile .= "\n";
             }
         } else {
-            if ( $row['Key'] != 'PRI' /*AND $row['Key']!='MUL'*/ ) {
+            if ( $row['Key'] !== 'PRI' /*AND $row['Key']!='MUL'*/ ) {
                 $this->buffer .= "\t\t\t" . '<article class="form-group">' . "\n";
                 $this->buffer .= "\t\t\t\t" . '<label class="col-lg-2 control-label" for="' . $index . '"><strong>' . ucwords(_ToSpace($index)) . '</strong>';
-                if ( $row['nullAllowed'] == 'NO' ) {
+                if ( $row['nullAllowed'] === 'NO' ) {
                     $this->buffer .= ' <span class="red">*</span>';
                 }
                 $this->buffer .= '</strong></label>' . "\n";
@@ -271,7 +271,7 @@ abstract class FormGenerator
      */
     protected function writeFormEnd()
     {
-        if ( $this->formType == "modal" ) {
+        if ( $this->formType === "modal" ) {
             $this->buffer .= "\t\t" . '</div>' . "\n";
             $this->buffer .= "\t\t" . '<div class="modal-footer">' . "\n";
             $this->buffer .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary" />' . "\n";

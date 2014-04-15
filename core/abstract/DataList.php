@@ -317,7 +317,7 @@ abstract class DataList
                     $this->iterate();
                 }
                 $this->endDatalist();
-            } elseif ($this->query->getNumberOfRows() == 0) {
+            } elseif ($this->query->getNumberOfRows() === 0) {
                 echo "No data found.";
             } else {
                 throw new ExceptionHandler(__METHOD__.":Type a message.");

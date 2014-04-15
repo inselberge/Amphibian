@@ -243,7 +243,7 @@ class CheckValue
      */    
     protected function forkResponse( $response )
     {
-        if ( $response == true ) {
+        if ( $response === true ) {
             $this->good();
         } else {
             $this->bad();
@@ -286,7 +286,7 @@ Please correct this value.
             } else {
                 $this->value = null;
             }
-            if ( isset($_GET['t']) AND $_GET['t'] != null ) {
+            if ( isset($_GET['t']) AND $_GET['t'] !== null ) {
                 $this->setType($_GET['t']);
             } else {
                 $this->type = null;

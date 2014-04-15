@@ -59,22 +59,22 @@ class AmphibianMySQLi
      */
     public function execute()
     {
-        if ( $this->actionsSelected["Stored Procedures"] == true ) {
+        if ( $this->actionsSelected["Stored Procedures"] === true ) {
             $this->runSprocGenerator();
         }
-        if ( $this->actionsSelected["Database Views"] == true ) {
+        if ( $this->actionsSelected["Database Views"] === true ) {
             $this->runViewGenerator();
         }
-        if ( $this->actionsSelected["Models"] == true ) {
+        if ( $this->actionsSelected["Models"] === true ) {
             $this->runClassGenerator();
         }
-        if ( $this->actionsSelected["Forms"] == true ) {
+        if ( $this->actionsSelected["Forms"] === true ) {
             $this->runFormGenerator();
         }
-        if ( $this->actionsSelected["User Interface"] == true ) {
+        if ( $this->actionsSelected["User Interface"] === true ) {
             $this->runUserInteractionGenerator();
         }
-        if ( $this->actionsSelected["Browse"] == true ) {
+        if ( $this->actionsSelected["Browse"] === true ) {
             $this->runBrowseGenerator();
         }
     }

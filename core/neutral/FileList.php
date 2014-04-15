@@ -161,7 +161,7 @@ class FileList
             if ( $this->checkPattern() ) {
                 if ( $this->checkDirectoryPresent() ) {
                     $this->_errorMessage = exec("cd " . $this->_location . "; ls -hrtX " . escapeshellarg($this->pattern) . "*", $this->matches, $this->_matchStatus);
-                } elseif ( $this->_quoted == true ) {
+                } elseif ( $this->_quoted === true ) {
                     $this->_errorMessage = exec("cd " . $this->_location . "; ls -hrtXQ *" . escapeshellarg($this->pattern) . "*", $this->matches, $this->_matchStatus);
                 } else {
                     $this->_errorMessage = exec("cd " . $this->_location . "; ls -hrtX *" . escapeshellarg($this->pattern) . "*", $this->matches, $this->_matchStatus);
@@ -208,7 +208,7 @@ class FileList
     private function checkStatus()
     {
         if ( $this->CheckInput($this->_matchStatus) ) {
-            if ( $this->_matchStatus != 0 ) {
+            if ( $this->_matchStatus !== 0 ) {
                 throw new ExceptionHandler(__METHOD__ . ": There was a problem executing the list command.\n Most likely, $this->pattern does not exist.");
                 return false;
             } else {

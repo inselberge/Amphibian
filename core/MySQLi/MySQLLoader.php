@@ -102,7 +102,7 @@ class MySQLLoader
      */
     private function checkDirectorySlash()
     {
-        if ( substr($this->directory, -1) == "/" ) {
+        if ( substr($this->directory, -1) === "/" ) {
             return true;
         } else {
             return false;

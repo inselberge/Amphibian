@@ -150,9 +150,9 @@ class Serialize
     {
         try {
             if ( $this->checkRequired() ) {
-                if ( $this->direction == false ) {
+                if ( $this->direction === false ) {
                     $this->unserialize();
-                } elseif ( $this->direction == true ) {
+                } elseif ( $this->direction === true ) {
                     $this->serialize();
                 } else {
                     throw new ExceptionHandler(__METHOD__ . ": unknown direction.");

@@ -116,19 +116,19 @@ class PreLoader
     {
         try {
             if ( isset($this->type) ) {
-                if ( $this->type == 'css' ) {
+                if ( $this->type === 'css' ) {
                     $this->printCSS();
                 }
-                if ( $this->type == 'dns' ) {
+                if ( $this->type === 'dns' ) {
                     $this->printDNSPrefetch();
                 }
-                if ( $this->type == 'js' ) {
+                if ( $this->type === 'js' ) {
                     $this->printJavaScript();
                 }
-                if ( $this->type == 'prefetch' ) {
+                if ( $this->type === 'prefetch' ) {
                     $this->printPrefetch();
                 }
-                if ( $this->type == 'prerend' ) {
+                if ( $this->type === 'prerend' ) {
                     $this->printPrerender();
                 }
             } else {

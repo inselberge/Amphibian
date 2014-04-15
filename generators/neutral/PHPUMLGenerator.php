@@ -235,7 +235,7 @@ class PHPUMLGenerator
                 $this->command = 'phpuml '. $this->source;
                 $this->command .= ' -o '. $this->destination;
                 $this->command .= ' -f '. $this->outputFormat;
-                if ( $this->outputFormat == "xmi" ) {
+                if ( $this->outputFormat === "xmi" ) {
                     $this->command .= ' -x '.$this->xmiVersion;
                 }
                 $this->command .= ' --pure-object';

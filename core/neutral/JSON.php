@@ -115,7 +115,7 @@ class JSON
                 $this->encodeResult();
                 $this->cURLPost();
                 $this->checkJSONErrors();
-                if ($this->errorJSON != 'No errors') {
+                if ($this->errorJSON !== 'No errors') {
                     throw new ExceptionHandler(__METHOD__ . ": $this->errorJSON");
                 }
             } else {
@@ -139,7 +139,7 @@ class JSON
                 $this->cURLGet();
                 $this->decodeResult();
                 $this->checkJSONErrors();
-                if ($this->errorJSON != 'No errors') {
+                if ($this->errorJSON !== 'No errors') {
                     throw new ExceptionHandler(__METHOD__ . ": $this->errorJSON");
                 }
             } else {

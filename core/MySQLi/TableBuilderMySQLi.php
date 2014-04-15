@@ -112,7 +112,7 @@ class TableBuilderMySQLi
         $this->rowNumber = 0;
         $row      = mysqli_fetch_assoc($this->result);
         while ( $row ) {
-            if ( $this->rowNumber == 0 ) {
+            if ( $this->rowNumber === 0 ) {
                 $this->setColumnNames($row);
                 $this->setHead();
                 $this->setFoot();

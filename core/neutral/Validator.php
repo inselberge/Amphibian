@@ -447,15 +447,15 @@ class Validator
     protected function cascadeFilterType($filter, $flags)
     {
         try {
-            if ( $filter == FILTER_VALIDATE_BOOLEAN ) {
+            if ( $filter === FILTER_VALIDATE_BOOLEAN ) {
                 return $this->checkBoolFlag($flags);
-            } elseif ( $filter == FILTER_VALIDATE_INT ) {
+            } elseif ( $filter === FILTER_VALIDATE_INT ) {
                 return $this->checkIntFlag($flags);
-            } elseif ( $filter == FILTER_VALIDATE_FLOAT ) {
+            } elseif ( $filter === FILTER_VALIDATE_FLOAT ) {
                 return $this->checkFloatFlag($flags);
-            } elseif ( $filter == FILTER_VALIDATE_IP ) {
+            } elseif ( $filter === FILTER_VALIDATE_IP ) {
                 return $this->checkIPFlag($flags);
-            } elseif ( $filter == FILTER_VALIDATE_URL ) {
+            } elseif ( $filter === FILTER_VALIDATE_URL ) {
                 return $this->checkURLFlag($flags);
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": cascadeFilterType failed.");
@@ -521,11 +521,11 @@ class Validator
     protected function cascadeOption($filter, $option)
     {
         try {
-            if ( $filter == FILTER_VALIDATE_FLOAT ) {
+            if ( $filter === FILTER_VALIDATE_FLOAT ) {
                 return $this->checkFloatOption($option);
-            } elseif ($filter == FILTER_VALIDATE_INT) {
+            } elseif ($filter === FILTER_VALIDATE_INT) {
                 return $this->checkIntOption($option);
-            } elseif ($filter == FILTER_VALIDATE_REGEXP) {
+            } elseif ($filter === FILTER_VALIDATE_REGEXP) {
                 return $this->checkRegExOption($option);
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": options are not valid for this filter.");
@@ -656,7 +656,7 @@ class Validator
                     $this->dataArray,
                     $this->argumentArray
                 );
-                if ( $this->resultArray == false ) {
+                if ( $this->resultArray === false ) {
                     throw new ExceptionHandler(__METHOD__ . ": execute failed.");
                 }
             } else {

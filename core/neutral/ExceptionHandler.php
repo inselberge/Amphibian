@@ -138,7 +138,7 @@ class ExceptionHandler
      */
     protected function checkStatus()
     {
-        if ( isset($live) AND $live == true ) {
+        if ( isset($live) AND $live === true ) {
             return true;
         } else {
             return false;

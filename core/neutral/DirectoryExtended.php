@@ -343,7 +343,7 @@ class DirectoryExtended
      */
     protected function checkSlash()
     {
-        if ( substr($this->currentDirectory, -1) == '/' ) {
+        if ( substr($this->currentDirectory, -1) === '/' ) {
             return true;
         } else {
             return false;

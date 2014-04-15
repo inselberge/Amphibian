@@ -220,7 +220,7 @@ class DatabaseViewGeneratorMySQLi
         try {
             if ( CheckInput::checkNewInput($this->tableDescription->notNullArray) ) {
                 foreach ( $this->tableDescription->notNullArray as $key => $value ) {
-                    if ( $this->requiredColumns == null ) {
+                    if ( $this->requiredColumns === null ) {
                         $this->requiredColumns = "`" . $key . "`";
                     } else {
                         $this->requiredColumns .= ", `" . $key . "`";

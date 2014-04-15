@@ -86,18 +86,18 @@ class FormGeneratorMySQLi
         if (isset($type) AND !is_null($type)) {
             $currentType = explodeType($type);
             $required = null;
-            if ($isNULL == 'NO') {
+            if ($isNULL === 'NO') {
                 $required = 'required';
             } else {
                 $required = null;
             }
-            if ($key == 'PRI' /*|| $key == 'MUL'*/) {
+            if ($key === 'PRI' /*|| $key === 'MUL'*/) {
                 return '<input type="hidden" class="hide" id="' . $name . '" name="' . $name . '" value="' . "<?php reqpostcheck('" . $name . "'" . '); ?>" ' . $required . '/>';
             }
-            if ($currentType['type'] == 'date') {
-                if ($name == 'start_date') {
+            if ($currentType['type'] === 'date') {
+                if ($name === 'start_date') {
                     return '<input type="date" data-input-type="date" class="date ajax col-lg-4" id="' . $name . '" name="' . $name . '" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" step="1" min="' . "<?php date('Y-m-d');?>" . '" ' . $required . ' title="Please enter a valid start date"/><div id="live_' . $name . '"></div>';
-                } elseif ($name == 'end_date') {
+                } elseif ($name === 'end_date') {
                     return '<input type="date" data-input-type="date" class="date ajax col-lg-4" id="' . $name . '" name="' . $name . '" value="' . "<?php reqpostcheck('" . $name . "'" . '); ?>' . '" step="1" min="' . "<?php date('Y-m-d');?>" . '" ' . $required . ' title="Please enter a valid end date" /><div id="live_' . $name . '"></div>' . '
               <meta charset="utf-8">
                   <script>
@@ -107,7 +107,7 @@ class FormGeneratorMySQLi
                     changeMonth: true,
                     numberOfMonths: 3,
                     onSelect: function( selectedDate ) {
-                      var option = this.id == "start_date" ? "minDate" : "maxDate",
+                      var option = this.id === "start_date" ? "minDate" : "maxDate",
                         instance = $( this ).data( "datepicker" ),
                         date = $.datepicker.parseDate(
                           instance.settings.dateFormat ||
@@ -122,59 +122,59 @@ class FormGeneratorMySQLi
                     return '<input type="date" data-input-type="date" id="' . $name . '" placeholder="Please enter a valid date in MM/DD/YYYY form" class="date ajax col-lg-4" name="' . $name . '" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" step="1" min="' . "<?php date('Y-m-d');?>" . '" ' . $required . ' readonly="true" title="Please enter a valid date"/><div id="live_' . $name . '"></div>';
                 }
             }
-            if ($name == 'email') {
+            if ($name === 'email') {
                 return '<input type="email" class="email ajax col-lg-4" data-input-type="email" id="' . $name . '" placeholder="Please enter a valid email address" name="' . $name . '" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid email address"/><div id="live_' . $name . '"></div>';
             }
-            if ($name == 'url') {
+            if ($name === 'url') {
                 return '<input type="url" class="url ajax col-lg-4" data-input-type="web" id="' . $name . '" name="' . $name . '" placeholder="' . APP_WEBSITE . '" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . 'title="Please enter a valid URL"/><div id="live_' . $name . '"></div>';
             }
-            if ($name == 'password') {
+            if ($name === 'password') {
                 return '<input type="password" class="password ajax col-lg-4" data-input-type="password" id="' . $name . '" placeholder="Passwords are 6-20 and contain: capital letter, number, special character" name="' . $name . '" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '"  data-regexp="^(\w*(?=\w*[0-9])(?=\w*[a-z])(?=\w*[A-Z])\w*){6,20}$" ' . $required . ' title="Please enter a 6-20 character password containing 1 uppercase letter, 1 number"/><div id="live_' . $name . '"></div>';
             }
-            if ($name == 'phone') {
+            if ($name === 'phone') {
                 return '<input type="tel" class="phone ajax col-lg-4" data-input-type="phone" id="' . $name . '" name="' . $name . '" placeholder="Please enter a valid telephone number" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid telephone number"/><div id="live_' . $name . '"></div>';
             }
-            if ($name == 'zip') {
+            if ($name === 'zip') {
                 return '<input type="text" class="zip ajax col-lg-4" data-input-type="zip" id="' . $name . '" name="' . $name . '" placeholder="Please enter a valid zip code" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" pattern="([0-9]{5}([\-][0-9]{4})?)" ' . $required . ' title="Please enter a valid zip code"/><div id="live_' . $name . '"></div>';
             }
-            if (strstr($currentType['type'], "int") != false) {
-                if ($currentType['unsigned'] == "unsigned") {
+            if (strstr($currentType['type'], "int") !== false) {
+                if ($currentType['unsigned'] === "unsigned") {
                     return '<input type="number" class="number ajax col-lg-4" data-input-type="positive-integer" placeholder="Please enter a valid positive integer" pattern="[0-9]{1,' . $currentType['size'] . '}" name="' . $name . '" id="' . $name . '"  value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid integer"/><div id="live_' . $name . '"></div>';
                 } else {
                     return '<input type="number" class="number ajax col-lg-4" data-input-type="integer" placeholder="Please enter a valid integer" pattern="[0-9]{1,' . $currentType['size'] . '}" name="' . $name . '" id="' . $name . '"  value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid integer"/><div id="live_' . $name . '"></div>';
                 }
             }
-            if ($currentType['type'] == 'time') {
+            if ($currentType['type'] === 'time') {
                 return '<input type="time" data-input-type="time" class="time ajax col-lg-4" placeholder="Please enter a valid time" name="' . $name . '" id="' . $name . '"  value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid time"/><div id="live_' . $name . '"></div>';
             }
-            if ($currentType['type'] == 'datetime') {
+            if ($currentType['type'] === 'datetime') {
                 return '<input type="datetime" data-input-type="datetime" class="datetime ajax col-lg-4" placeholder="Please enter a datetime in the form 2013-10-20 01:20:34" name="' . $name . '" id="' . $name . '"  value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid date time"/><div id="live_' . $name . '"></div>';
             }
-            if ($currentType['type'] == 'timestamp') {
+            if ($currentType['type'] === 'timestamp') {
                 return '<input type="datetime" data-input-type="timestamp" class="timestamp ajax col-lg-4" placeholder="Please enter a valid timestamp in the form 2013-10-20 01:20:34" name="' . $name . '" id="' . $name . '"  value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' readonly="true" />';
             }
-            if ($currentType['type'] == 'decimal') {
-                if ($currentType['unsigned'] == "unsigned") {
+            if ($currentType['type'] === 'decimal') {
+                if ($currentType['unsigned'] === "unsigned") {
                     return '<input type="number" data-input-type="positive-decimal" class="decimal ajax col-lg-4" placeholder="Please enter a valid positive decimal number" name="' . $name . '" id="' . $name . '" pattern="[0-9]+(\.[0-9]{2,})?" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid decimal number" />';
                 } else {
                     return '<input type="number" data-input-type="decimal" class="decimal ajax col-lg-4" placeholder="Please enter a valid decimal number" name="' . $name . '" id="' . $name . '" pattern="[0-9]+(\.[0-9]{2,})?" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid decimal number" />';
                 }
             }
-            if ($currentType['type'] == 'float') {
-                if ($currentType['unsigned'] == "unsigned") {
+            if ($currentType['type'] === 'float') {
+                if ($currentType['unsigned'] === "unsigned") {
                     return '<input type="number" data-input-type="positive-float" placeholder="Please enter a valid positive float" class="float ajax col-lg-4" name="' . $name . '" id="' . $name . '"  pattern="[0-9]+(\.[0-9]{2,})?" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid floating point number" />';
                 } else {
                     return '<input type="number" data-input-type="float" placeholder="Please enter a valid float" class="float ajax col-lg-4" name="' . $name . '" id="' . $name . '"  pattern="[0-9]+(\.[0-9]{2,})?" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid floating point number" />';
                 }
             }
-            if ($currentType['type'] == 'double') {
-                if ($currentType['unsigned'] == "unsigned") {
+            if ($currentType['type'] === 'double') {
+                if ($currentType['unsigned'] === "unsigned") {
                     return '<input type="number" data-input-type="positive-double" placeholder="Please enter a valid positive double" class="double ajax col-lg-4" name="' . $name . '" id="' . $name . '"  pattern="[0-9]+(\.[0-9]{2,})?" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid double" />';
                 } else {
                     return '<input type="number" data-input-type="double" placeholder="Please enter a valid double" class="double ajax col-lg-4" name="' . $name . '" id="' . $name . '"  pattern="[0-9]+(\.[0-9]{2,})?" value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid double" />';
                 }
             }
-            if ($currentType['type'] == 'enum') {
+            if ($currentType['type'] === 'enum') {
                 $str = '<select name="' . $name . '" id="' . $name . '" ' . $required . ' title="Please select a valid option"><option value="0" disabled selected>Pick a value</option>';
                 foreach ($currentType['options'] as $key => $value) {
                     $str .= '<option value="' . $value . '"' . ' <?php if(reqpostcheck(' . "'" . $name . "'" . ') === "' . $value . '"){echo "selected";} ?>' . '>' . ucwords(
@@ -184,13 +184,13 @@ class FormGeneratorMySQLi
                 $str .= '</select>';
                 return $str;
             }
-            if ($currentType['type'] == 'varchar') {
+            if ($currentType['type'] === 'varchar') {
                 return '<input type="text" class="text varchar ajax col-lg-4" data-input-type="name" spellcheck="true" name="' . $name . '"  pattern="[a-zA-Z0-9]+{0,' . $currentType['size'] . '}" maxlength="' . $currentType['size'] . '" id="' . $name . '"  value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid string of letters and numbers" placeholder="Please type the ' . $name . ' here"/>';
             }
-            if ($currentType['type'] == 'char') {
+            if ($currentType['type'] === 'char') {
                 return '<input type="text" class="text char ajax col-lg-4" name="' . $name . '"  pattern="[a-zA-Z]+{0,' . $currentType['size'] . '}" maxlength="' . $currentType['size'] . '" id="' . $name . '"  value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter a valid string of characters" placeholder="Please type the ' . $name . ' here"/>';
             }
-            if ($currentType['type'] == 'text') {
+            if ($currentType['type'] === 'text') {
                 return '<input type="textbox" class="textbox text ajax col-lg-4" data-input-type="comment" spellcheck="true" name="' . $name . '" id="' . $name . '"   value="' . "<?php reqpostcheck('" . $name . "'); ?>" . '" ' . $required . ' title="Please enter only valid text" placeholder="Please type the ' . $name . ' here"/>';
             }
         } else {

@@ -246,7 +246,7 @@ abstract class basicView
                 $this->waterfallBrowse();
             } elseif ( $this->checkForm() ) {
                 $this->waterfallForm();
-            } elseif ( $this->viewType == "Partial" ) {
+            } elseif ( $this->viewType === "Partial" ) {
                 $this->waterfallPartials();
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": Unknown waterfall path.");
@@ -264,7 +264,7 @@ abstract class basicView
      */
     protected function checkBrowse()
     {
-        if ( $this->viewType == "Browse" ) {
+        if ( $this->viewType === "Browse" ) {
             return true;
         }
         return false;
@@ -321,7 +321,7 @@ abstract class basicView
      */
     protected function checkForm()
     {
-        if ( $this->viewType == "Form" ) {
+        if ( $this->viewType === "Form" ) {
             return true;
         }
         return false;
@@ -378,7 +378,7 @@ abstract class basicView
      */
     protected function checkPartial()
     {
-        if ( $this->viewType == "Partial" ) {
+        if ( $this->viewType === "Partial" ) {
             return true;
         }
         return false;

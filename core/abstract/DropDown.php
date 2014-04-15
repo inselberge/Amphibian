@@ -339,7 +339,7 @@ abstract class DropDown
             } else {
                 $this->html .= $this->id;
             }
-            if (isset($this->required) AND $this->required == true) {
+            if (isset($this->required) AND $this->required === true) {
                 $this->html .= "</strong> <span class='red'>*</span></label>\n";
             } else {
                 $this->html .= "</strong></label>\n";
@@ -417,7 +417,7 @@ abstract class DropDown
     protected function addLabel()
     {
         for ($i = 0; $i < $this->labelFieldsCount; $i++) {
-            if ($i == 0) {
+            if ($i === 0) {
                 $this->html .= $this->query->row[$this->labelFields[$i]];
             } else {
                 if (isset($this->separatorFields[$this->labelFields[$i]])) {

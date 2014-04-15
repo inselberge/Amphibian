@@ -471,9 +471,9 @@ abstract class ClassGenerator
     {
         $str = "";
         foreach ( array_keys($arr) as $key ) {
-            if ( $key == 'id' ) {
+            if ( $key === 'id' ) {
             } else {
-                if ( $str == "" ) {
+                if ( $str === "" ) {
                     $str .= " '" . '$this->' . $key . "'";
                 } else {
                     $str .= ", '" . '$this->' . $key . "'";

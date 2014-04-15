@@ -162,11 +162,11 @@ class DataPackage
     {
         try {
             if ( CheckInput::checkNewInput($key) ) {
-                if ( $arrayName == "payload" ) {
+                if ( $arrayName === "payload" ) {
                     return array_key_exists($key, $this->payload);
-                } elseif ( $arrayName == "errors" ) {
+                } elseif ( $arrayName === "errors" ) {
                     return array_key_exists($key, $this->errors);
-                } elseif ( $arrayName == "queryArguments" ) {
+                } elseif ( $arrayName === "queryArguments" ) {
                     return array_key_exists($key, $this->queryArguments);
                 } else {
                     throw new ExceptionHandler(__METHOD__ . ": invalid array.");

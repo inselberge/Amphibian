@@ -538,7 +538,7 @@ abstract class BasicController
     {
         try {
             if ( isset($_SERVER["REQUEST_METHOD"]) ) {
-                if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
+                if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                     $this->editMode = true;
                 } else {
                     $this->editMode = false;

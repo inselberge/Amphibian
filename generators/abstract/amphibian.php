@@ -100,7 +100,7 @@ abstract class Amphibian
     protected function loadConfiguration()
     {
         try {
-            if ( $this->currentConfiguration == false ) {
+            if ( $this->currentConfiguration === false ) {
                 throw new ExceptionHandler(": Tne current configuration is not set.");
             } else {
                 include_once "..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config/" . $this->currentConfiguration;
@@ -154,7 +154,7 @@ abstract class Amphibian
     protected function setSourceChanges()
     {
         foreach ( $this->tableArray as $value ) {
-            if ( isset($_POST["checkTables"]) and $_POST["checkTables"] == $value ) {
+            if ( isset($_POST["checkTables"]) and $_POST["checkTables"] === $value ) {
                 $this->tablesToSourceChanges[$value] = true;
             } else {
                 $this->tablesToSourceChanges[$value] = false;
@@ -173,7 +173,7 @@ abstract class Amphibian
     protected function setActionsSelected()
     {
         foreach ( $this->actionsList as $value ) {
-            if ( isset($_POST["checkActions"]) and $_POST["checkActions"] == $value ) {
+            if ( isset($_POST["checkActions"]) and $_POST["checkActions"] === $value ) {
                 $this->actionsSelected[$value] = true;
             } else {
                 $this->actionsSelected[$value] = false;

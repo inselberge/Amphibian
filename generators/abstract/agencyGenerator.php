@@ -91,7 +91,7 @@ abstract class AgencyGenerator
         $this->buffer.='    protected $acceptableVars = array ('."\n";
         if ( $this->setTableColumns() ) {
             foreach ($this->tableColumns as $key => $column) {
-                if ( $key == 0 ) {
+                if ( $key === 0 ) {
                     $this->buffer.='        "'.$column.'"'."\n";
                 } else {
                     $this->buffer.='        , "'.$column.'"'."\n";

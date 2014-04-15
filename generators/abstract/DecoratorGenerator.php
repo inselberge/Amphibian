@@ -38,7 +38,7 @@ abstract class DecoratorGenerator
     {
         try {
             if ( CheckInput::checkNewInput($agencyOrModelFlag) ) {
-                if ( $agencyOrModelFlag == "agency" OR $agencyOrModelFlag == "model") {
+                if ( $agencyOrModelFlag === "agency" OR $agencyOrModelFlag === "model") {
                     $this->agencyOrModelFlag = $agencyOrModelFlag;
                 } else {
                     throw new ExceptionHandler(__METHOD__ . ": agencyOrModelFlag illegal");
@@ -101,12 +101,12 @@ abstract class DecoratorGenerator
     protected function iterate()
     {
         $this->startFile();
-        if ($this->agencyOrModelFlag == "agency") {
+        if ($this->agencyOrModelFlag === "agency") {
             $this->addAgencyRequired();
             $this->addClassComment();
             $this->startAgencyClass();
         }
-        if ($this->agencyOrModelFlag == "model") {
+        if ($this->agencyOrModelFlag === "model") {
             $this->addModelRequired();
             $this->addClassComment();
             $this->startModelClass();
@@ -158,7 +158,7 @@ abstract class DecoratorGenerator
     protected function addClassComment()
     {
         $this->buffer .= '/**' . "\n";
-        if ($this->agencyOrModelFlag == "agency") {
+        if ($this->agencyOrModelFlag === "agency") {
             $this->buffer .= ' * Class ' . $this->tableName.'AgencyDecorator'. "\n";
         } else {
             $this->buffer .= ' * Class ' . $this->tableName.'ModelDecorator'. "\n";

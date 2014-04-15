@@ -65,7 +65,7 @@ class FileHandle
                 $this->file = $fileName;
                 if ( $this->checkExists() ) {
                     $this->_fileExists = true;
-                    if ( $this->checkIsFile() == false ) {
+                    if ( $this->checkIsFile() === false ) {
                         if ( $this->checkIsDirectory() ) {
                             throw new ExceptionHandler(__METHOD__ . ": directory given.");
                         } else {
@@ -318,7 +318,7 @@ class FileHandle
                     $this->_operationSuccessful
                         = file_put_contents($this->file, $this->string, FILE_APPEND);
                 }
-                if ( $this->_operationSuccessful == false ) {
+                if ( $this->_operationSuccessful === false ) {
                     throw new ExceptionHandler(__METHOD__ . ": writeFull failed.");
                 } else {
                     $this->string               = $this->_operationSuccessful;
@@ -405,7 +405,7 @@ class FileHandle
                     throw new ExceptionHandler(__METHOD__ . ": $this->file does not exist.");
                 } elseif ( $this->checkRead() ) {
                     $this->_operationSuccessful = file_get_contents($this->file);
-                    if ( $this->_operationSuccessful == false ) {
+                    if ( $this->_operationSuccessful === false ) {
                         throw new ExceptionHandler(__METHOD__ . ": there was a problem reading $this->file into a string.");
                     } else {
                         $this->string               = $this->_operationSuccessful;

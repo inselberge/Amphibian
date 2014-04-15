@@ -186,11 +186,11 @@ abstract class BasicFrontController
     {
         try {
             if (CheckInput::checkSet($this->requestMethod)) {
-                if ($this->requestMethod == "POST") {
+                if ($this->requestMethod === "POST") {
                     if (array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER)) {
-                        if ($_SERVER["HTTP_X_HTTP_METHOD"] == "DELETE") {
+                        if ($_SERVER["HTTP_X_HTTP_METHOD"] === "DELETE") {
                             $this->setRequestMethod("DELETE");
-                        } elseif ($_SERVER["HTTP_X_HTTP_METHOD"] == "PUT") {
+                        } elseif ($_SERVER["HTTP_X_HTTP_METHOD"] === "PUT") {
                             $this->setRequestMethod("PUT");
                         }
                     }
@@ -499,7 +499,7 @@ abstract class BasicFrontController
      */
     protected function checkDeviceMobile()
     {
-        if ($this->deviceType == "Mobile") {
+        if ($this->deviceType === "Mobile") {
             return true;
         }
         return false;
@@ -511,7 +511,7 @@ abstract class BasicFrontController
      */
     protected function checkDeviceDesktop()
     {
-        if ($this->deviceType == "Desktop") {
+        if ($this->deviceType === "Desktop") {
             return true;
         }
         return false;
@@ -770,11 +770,11 @@ abstract class BasicFrontController
      */
     public function handleAction()
     {
-        if ($this->requestMethod == "GET") {
+        if ($this->requestMethod === "GET") {
             $this->onGet();
-        } elseif ($this->requestMethod == "POST") {
+        } elseif ($this->requestMethod === "POST") {
             $this->onPost();
-        } elseif ($this->requestMethod == "PUT") {
+        } elseif ($this->requestMethod === "PUT") {
             $this->onPut();
         } else {
             $this->checkMalicious();

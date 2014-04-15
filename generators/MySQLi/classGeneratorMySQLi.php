@@ -113,7 +113,7 @@ class ClassGeneratorMySQLi
     {
         $this->buffer .= '    ' . '/*** Attributes: ***/' . "\n";
         foreach ($this->tableDescription->tableArray as $field => $rowArray) {
-            if ($rowArray['key'] == 'PRI') {
+            if ($rowArray['key'] === 'PRI') {
                 $this->buffer .= '    ' . 'private $' . $field . ';' . "\n";
             } else {
                 $this->buffer .= '    ' . 'protected $' . $field . ';' . "\n";
@@ -132,7 +132,7 @@ class ClassGeneratorMySQLi
     protected function addAcceptableKeys()
     {
         foreach ($this->tableDescription->tableArray as $field => $rowArray) {
-            if ($rowArray['key'] == 'PRI') {
+            if ($rowArray['key'] === 'PRI') {
                 $this->buffer .= '    ' . 'protected $acceptableKeys = array('."\n";
                 $this->buffer .= '        ' .'"' . $field . '"'."\n";
             } else {
@@ -259,7 +259,7 @@ class ClassGeneratorMySQLi
         try {
             if (CheckInput::checkNewInputArray($this->tableDescription->fieldTypeArray)) {
                 foreach ($this->tableDescription->fieldTypeArray as $key => $type) {
-                    if ($key == 'id') {
+                    if ($key === 'id') {
                         $this->buffer .= '    ' . '                    \'$this->' . $key . '\'' . "\n";
                     } else {
                         $this->buffer .= '    ' . '                    ,\'$this->' . $key . '\'' . "\n";
@@ -320,11 +320,11 @@ class ClassGeneratorMySQLi
         try {
             if (CheckInput::checkNewInputArray($this->tableDescription->notNullArray)) {
                 foreach ($this->tableDescription->notNullArray as $key => $type) {
-                    if ($key == 'id') {
+                    if ($key === 'id') {
                         $first_pass = true;
-                        //} elseif ( $key == 'create_date' ) {
+                        //} elseif ( $key === 'create_date' ) {
                     } else {
-                        if ($first_pass == true) {
+                        if ($first_pass === true) {
                             $this->buffer .= '    ' . '                    \'$this->' . $key . '\'' . "\n";
                             $first_pass = false;
                         } else {
@@ -516,7 +516,7 @@ class ClassGeneratorMySQLi
                 $tmpType = null;
                 foreach ($this->tableDescription->fieldTypeArray as $field => $type) {
                     $tmpType = $this->explodeType($type);
-                    if ($tmpType["size"] == null) {
+                    if ($tmpType["size"] === null) {
                         $tmpType["size"] = 'null';
                     }
                     $this->buffer .= '    ' . '        case \'';
@@ -564,19 +564,19 @@ class ClassGeneratorMySQLi
             if (in_array($this->currentType["type"], array("bool", "boolean", "bit"))) {
                 $this->buffer .= ' ' . 'is_bool(boolval($value)) AND $max >= strlen($value) ';
             }
-            if ($this->currentType["type"] == "float") {
+            if ($this->currentType["type"] === "float") {
                 $this->buffer .= ' ' . 'is_float(floatval($value)) AND $max >= strlen($value) ';
             }
-            if ($this->currentType["type"] == "double" || $this->currentType["type"] == "decimal") {
+            if ($this->currentType["type"] === "double" || $this->currentType["type"] === "decimal") {
                 $this->buffer .= ' ' . 'is_double(doubleval($value))';
             }
-            if ($this->currentType["type"] == "varchar" || $this->currentType["type"] == "char") {
+            if ($this->currentType["type"] === "varchar" || $this->currentType["type"] === "char") {
                 $this->buffer .= ' ' . 'is_string($value) AND $max >= strlen($value) ';
             }
-            if ($this->currentType["type"] == "enum") {
+            if ($this->currentType["type"] === "enum") {
                 $this->buffer .= ' ' . 'in_array($value, array(';
                 foreach ($this->currentType["options"] as $opt => $p) {
-                    if ($opt == 0) {
+                    if ($opt === 0) {
                         $this->buffer .= ' ' . '' . $p;
                     } else {
                         $this->buffer .= ' ' . ', ' . $p;
@@ -608,7 +608,7 @@ class ClassGeneratorMySQLi
             ) {
                 $this->buffer .= ' ' . 'true ';
             }
-            if ($this->currentType["unsigned"] != null) {
+            if ($this->currentType["unsigned"] !== null) {
                 $this->buffer .= ' ' . 'AND $value >=0 ';
             }
             $this->buffer .= ' ) {' . "\n";
