@@ -36,7 +36,7 @@ abstract class DatabaseViewGenerator
      */
     protected $requiredColumns;
     /**
-     * @var
+     * @var object $connection a valid database object
      */
     protected $connection;
     /**

@@ -29,23 +29,22 @@ class AgencyGeneratorMySQLiTest
      */
     protected function setUp()
     {
-        $SSL = databaseConnectionMySQLi::instance();
-        $SSL->setOptions(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
-        $SSL->setOptions(MYSQLI_SERVER_PUBLIC_KEY, "/etc/mysql/my.cnf");
-        $SSL->setOptions(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
-        $SSL->setSSL(
+        $this->connection = databaseConnectionMySQLi::instance();
+        $this->connection->setOptions(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
+        $this->connection->setOptions(MYSQLI_SERVER_PUBLIC_KEY, "/etc/mysql/my.cnf");
+        $this->connection->setOptions(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
+        $this->connection->setSSL(
             "/etc/mysql/client-key.pem",
             "/etc/mysql/client-cert.pem",
             "/etc/mysql/ca-cert.pem",
             "/etc/mysql/",
             'DHE-RSA-AES256-SHA'
         );
-        $SSL->setServerName("127.0.0.1");
-        $SSL->setDatabaseName("InnerAlly");
-        $SSL->setUserName("root");
-        $SSL->setUserPassword('4u$t1nTX');
-        $SSL->openConnection();
-        $this->connection = $SSL;
+        $this->connection->setServerName("127.0.0.1");
+        $this->connection->setDatabaseName("InnerAlly");
+        $this->connection->setUserName("root");
+        $this->connection->setUserPassword('4u$t1nTX');
+        $this->connection->openConnection();
         $this->object = AgencyGeneratorMySQLi::instance($this->connection);
     }
 

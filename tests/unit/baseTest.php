@@ -510,4 +510,33 @@ abstract class BaseTest
             array("Login")
         );
     }
+
+    /** DatabaseServerDataProvider
+     *
+     * @return array
+     */
+    public function databaseServerDataProvider()
+    {
+        return array(
+            array(
+                array(
+                    "MARIADB",
+                    "MONGODB",
+                    "MSSQL",
+                    "MYSQLI",
+                    "PDO",
+                    "POSTGRE",
+                    "SQLITE",
+                    "SQLITE3",
+                    "SQLSRV"
+                )
+            ),
+            array(
+                array(
+                    "MYSQL",
+                    "SQLITE3"
+                )
+            )
+        );
+    }
 } 

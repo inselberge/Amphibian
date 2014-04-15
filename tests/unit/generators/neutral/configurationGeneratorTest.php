@@ -172,6 +172,24 @@ class ConfigurationGeneratorTest
         $this->assertEquals($this->expected, $this->actual);
     }
 
+
+    /** testSetDatabasesSupported
+     *
+     * @param array $databases an array of database server types
+     *
+     * @covers ConfigurationGenerator::setDatabasesSupported
+     *
+     * @dataProvider databaseServerDataProvider
+     *
+     * @return void
+     */
+    public function testSetDatabasesSupported($databases)
+    {
+        $this->expected = true;
+        $this->actual = $this->object->setDatabasesSupported($databases);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
     /** testExecute
      * 
      * @covers ConfigurationGenerator::execute

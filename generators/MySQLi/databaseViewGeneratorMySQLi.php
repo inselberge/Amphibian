@@ -83,7 +83,7 @@ class DatabaseViewGeneratorMySQLi
 
     /** setTableNames
      *
-     * @param $array
+     * @param array $array an array of valid table names
      *
      * @return bool
      */
@@ -109,8 +109,7 @@ class DatabaseViewGeneratorMySQLi
     public function execute()
     {
         try {
-            if ( isset($this->tableList) ) {
-            } else {
+            if ( !isset($this->tableList) ) {
                 $this->tableNames = $this->connection->getTables();
             }
             foreach ( $this->tableNames as $this->currentTable ) {

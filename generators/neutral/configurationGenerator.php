@@ -40,6 +40,14 @@ class ConfigurationGenerator
      */
     protected $baseURL;
     /**
+     * @var array databasesSupported an array of the databases supported
+     */
+    protected $databasesSupported;
+    /**
+     * @var bool production
+     */
+    protected $production = false;
+    /**
      * @var resource _FileHandle a valid file handle for writing
      */
     private $_FileHandle = null;
@@ -51,7 +59,20 @@ class ConfigurationGenerator
      * @var object ConfigurationGenerator an instance of this class
      */
     public static $ConfigurationGenerator;
-
+    /**
+     * @var array acceptableDatabases the acceptable database types
+     */
+    protected static  $acceptableDatabases = array(
+        "MARIADB",
+        "MONGODB",
+        "MSSQL",
+        "MYSQLI",
+        "PDO",
+        "POSTGRE",
+        "SQLITE",
+        "SQLITE3",
+        "SQLSRV"
+    );
     /** __construct
      */
     protected function __construct()
@@ -200,6 +221,71 @@ class ConfigurationGenerator
         return $this->baseURL;
     }
 
+    /** getDatabasesSupported
+     *
+     * @return array
+     */
+    public function getDatabasesSupported()
+    {
+        return $this->databasesSupported;
+    }
+
+    /** setDatabasesSupported
+     *
+     * @param array $databasesSupported an array of the databases supported
+     *
+     * @return bool
+     */
+    public function setDatabasesSupported($databasesSupported)
+    {
+        try {
+            if (CheckInput::checkNewInputArray($databasesSupported)) {
+                foreach ($databasesSupported as $database) {
+                    if ( in_array($database, self::$acceptableDatabases) ) {
+                        $this->databasesSupported[] = $database;
+                    }
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": databasesSupported invalid.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
+    }
+
+    /**   getProduction
+     *
+     * @return boolean
+     */
+    public function getProduction()
+    {
+        return $this->production;
+    }
+
+    /**   setProduction
+     *
+     * @param boolean $production true = production; false = staging
+     *
+     * @return bool
+     */
+    public function setProduction($production)
+    {
+        try {
+            if (CheckInput::checkNewInput($production)) {
+                $this->production = $production;
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": production invalid.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
+    }
+
+
     /** execute
      *
      * @return bool
@@ -269,14 +355,12 @@ class ConfigurationGenerator
      */
     protected function addBaseURL()
     {
-        $this->_buffer .= 'if ( isset($live) AND $live==false ) {' . PHP_EOL;
+        $this->_buffer .= 'if ( isset($live) AND $live===false ) {' . PHP_EOL;
         $this->_buffer .= "    define('BASE_URL', 'localhost/";
         $this->_buffer .= $this->getAppName() . "');" . PHP_EOL;
-        $this->addTestingDatabaseConnectionsBlock();
         $this->_buffer .= "} else {" . PHP_EOL;
         $this->_buffer .= "    define('BASE_URL', '";
         $this->_buffer .= $this->getBaseURL() . "'.DIRECTORY_SEPARATOR);" . PHP_EOL;
-        $this->addProductionDatabaseConnectionsBlock();
         $this->_buffer .= "}" . PHP_EOL.PHP_EOL;
     }
 
@@ -293,7 +377,79 @@ class ConfigurationGenerator
         $this->_buffer .= "define('BASE_CONFIG_PRODUCTION', BASE_CONFIG.'production'.DIRECTORY_SEPARATOR);" . PHP_EOL;
         $this->_buffer .= "define('BASE_CONFIG_STAGING', BASE_CONFIG.'staging'.DIRECTORY_SEPARATOR);" . PHP_EOL.PHP_EOL;
         $this->_buffer .= "define('CORE', BASE_URI . 'core'.DIRECTORY_SEPARATOR);" . PHP_EOL;
-        $this->_buffer .= "define('CORE_INTERFACES', CORE . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL.PHP_EOL;
+        $this->_buffer .= "define('CORE_ABSTRACT', CORE . 'abstract'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+        $this->_buffer .= "define('CORE_ABSTRACT_INTERFACES', CORE_ABSTRACT . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+        $this->_buffer .= "define('CORE_HELPERS', CORE . 'helpers'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+        $this->_buffer .= "define('CORE_INTERFACES', CORE . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+        $this->addCoreDatabase();
+        $this->_buffer .= "define('CORE_NEUTRAL', CORE . 'neutral'.DIRECTORY_SEPARATOR);" . PHP_EOL.PHP_EOL;
+    }
+
+    /** addCoreDatabase
+     *
+     * @return bool
+     */
+    protected function addCoreDatabase()
+    {
+        try {
+            if (CheckInput::checkSetArray($this->databasesSupported)) {
+                foreach ($this->databasesSupported as $database) {
+                    $this->forkCoreDatabase($database);
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": no databases listed.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
+    }
+
+    /** forkCoreDataBase
+     *
+     * @param string $database a string representing the database
+     *
+     * @return bool
+     */
+    protected function forkCoreDataBase($database)
+    {
+        try {
+            if ($database === "MARIADB") {
+                $this->_buffer .= "define('CORE_MARIADB', CORE . 'MariaDB'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_MARIADB_INTERFACES', CORE_MARIADB . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "MONGODB") {
+                $this->_buffer .= "define('CORE_MONGODB', CORE . 'MongoDB'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_MONGODB_INTERFACES', CORE_MONGODB . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "MSSQL") {
+                $this->_buffer .= "define('CORE_MSSQL', CORE . 'MSSQL'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_MSSQL_INTERFACES', CORE_MSSQL . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "MYSQLI") {
+                $this->_buffer .= "define('CORE_MYSQLI', CORE . 'MySQLi'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_MYSQLI_INTERFACES', CORE_MYSQLI . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "PDO") {
+                $this->_buffer .= "define('CORE_PDO', CORE . 'PDO'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_PDO_INTERFACES', CORE_PDO . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "POSTGRE") {
+                $this->_buffer .= "define('CORE_POSTGRE', CORE . 'Postgre'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_POSTGRE_INTERFACES', CORE_POSTGRE . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "SQLITE") {
+                $this->_buffer .= "define('CORE_SQLITE', CORE . 'SQLite'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_SQLITE_INTERFACES', CORE_SQLITE . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "SQLITE3") {
+                $this->_buffer .= "define('CORE_SQLITE3', CORE . 'SQLite3'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_SQLITE3_INTERFACES', CORE_SQLITE3 . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } elseif ($database === "SQLSRV") {
+                $this->_buffer .= "define('CORE_SQLSRV', CORE . 'SQLSRV'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+                $this->_buffer .= "define('CORE_SQLSRV_INTERFACES', CORE_SQLSRV . 'interfaces'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": unsupported database.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** addAgency
@@ -397,30 +553,80 @@ class ConfigurationGenerator
         $this->_buffer .= "define('DATABASE_CONNECTIONS', DATABASE.'connections'.DIRECTORY_SEPARATOR);" . PHP_EOL;
         $this->_buffer .= "define('DATABASE_CONNECTIONS_PRODUCTION', DATABASE_CONNECTIONS.'production'.DIRECTORY_SEPARATOR);" . PHP_EOL;
         $this->_buffer .= "define('DATABASE_CONNECTIONS_STAGING', DATABASE_CONNECTIONS.'staging'.DIRECTORY_SEPARATOR);" . PHP_EOL.PHP_EOL;
+        $this->addDatabaseConnections();
+    }
+
+    /** addDatabaseConnections
+     *
+     * @return bool
+     */
+    protected function addDatabaseConnections()
+    {
+        try {
+            if (CheckInput::checkSet($this->databasesSupported)) {
+                foreach ($this->databasesSupported as $database) {
+                    $this->_buffer .= 'if ( isset($live) AND $live===false ) {' . PHP_EOL;
+                    $this->addStagingDatabaseConnectionsBlock($database);
+                    $this->_buffer .= "} else {" . PHP_EOL;
+                    $this->addProductionDatabaseConnectionsBlock($database);
+                    $this->_buffer .= "}" . PHP_EOL . PHP_EOL;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": databasesSupported required.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** addDatabaseConnectionsBlock
      *
-     * @return void
+     * @param string $database a valid database type
+     *
+     * @return bool
      */
-    protected function addTestingDatabaseConnectionsBlock()
+    protected function addStagingDatabaseConnectionsBlock($database)
     {
-        $this->_buffer .= "    define('MYSQL_BROWSE', DATABASE_CONNECTIONS_STAGING.'mysql_browse.inc.php');" . PHP_EOL;
-        $this->_buffer .= "    define('MYSQL', DATABASE_CONNECTIONS_STAGING.'mysql_user.inc.php');" . PHP_EOL;
-        $this->_buffer .= "    define('MYSQL_ADMIN', DATABASE_CONNECTIONS_STAGING.'mysql_Adm1n.inc.php');" . PHP_EOL;
-        $this->_buffer .= "    define('MYSQL_POWER_USER', DATABASE_CONNECTIONS_STAGING.'mysql_pwrUser.inc.php');" . PHP_EOL;
+        try {
+            if (CheckInput::checkSet($database)) {
+                $this->_buffer .= "    define('" . $database . "_BROWSE', DATABASE_CONNECTIONS_STAGING.'" . strtolower($database) . "_browse.inc.php');" . PHP_EOL;
+                $this->_buffer .= "    define('" . $database . "', DATABASE_CONNECTIONS_STAGING.'" . strtolower($database) . "_user.inc.php');" . PHP_EOL;
+                $this->_buffer .= "    define('" . $database . "_ADMIN', DATABASE_CONNECTIONS_STAGING.'" . strtolower($database) . "_Adm1n.inc.php');" . PHP_EOL;
+                $this->_buffer .= "    define('" . $database . "_POWER_USER', DATABASE_CONNECTIONS_STAGING.'" . strtolower($database) . "_pwrUser.inc.php');" . PHP_EOL;
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ":some message.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** addProductionDatabaseConnectionsBlock
      *
-     * @return void
+     * @param string $database a valid database type
+     *
+     * @return bool
      */
-    protected function addProductionDatabaseConnectionsBlock()
+    protected function addProductionDatabaseConnectionsBlock($database)
     {
-        $this->_buffer .= "    define('MYSQL_BROWSE', DATABASE_CONNECTIONS_PRODUCTION.'mysql_browse.inc.php');" . PHP_EOL;
-        $this->_buffer .= "    define('MYSQL', DATABASE_CONNECTIONS_PRODUCTION.'mysql_user.inc.php');" . PHP_EOL;
-        $this->_buffer .= "    define('MYSQL_ADMIN', DATABASE_CONNECTIONS_PRODUCTION.'mysql_Adm1n.inc.php');" . PHP_EOL;
-        $this->_buffer .= "    define('MYSQL_POWER_USER', DATABASE_CONNECTIONS_PRODUCTION.'mysql_pwrUser.inc.php');" . PHP_EOL;
+        try {
+            if (CheckInput::checkSet($database)) {
+                $this->_buffer .= "    define('" . $database . "_BROWSE', DATABASE_CONNECTIONS_PRODUCTION.'" . strtolower($database) . "_browse.inc.php');" . PHP_EOL;
+                $this->_buffer .= "    define('" . $database . "', DATABASE_CONNECTIONS_PRODUCTION.'" . strtolower($database) . "_user.inc.php');" . PHP_EOL;
+                $this->_buffer .= "    define('" . $database . "_ADMIN', DATABASE_CONNECTIONS_PRODUCTION.'" . strtolower($database) . "_Adm1n.inc.php');" . PHP_EOL;
+                $this->_buffer .= "    define('" . $database . "_POWER_USER', DATABASE_CONNECTIONS_PRODUCTION.'".strtolower($database)."_pwrUser.inc.php');" . PHP_EOL;
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": database required.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+        return true;
     }
 
     /** addIncludesBlock
@@ -553,8 +759,8 @@ class ConfigurationGenerator
         $this->_buffer .= "define('TESTS_UNIT_CONTROLLERS_GENERATED', TESTS_UNIT_CONTROLLERS . 'generated'.DIRECTORY_SEPARATOR);" . PHP_EOL;
         $this->_buffer .= "define('TESTS_UNIT_DATABASE', TESTS_UNIT . 'database'.DIRECTORY_SEPARATOR);" . PHP_EOL.PHP_EOL;
         $this->_buffer .= "define('TESTS_UNIT_DATABASE_CONNECTIONS', TESTS_UNIT_DATABASE . 'connections'.DIRECTORY_SEPARATOR);" . PHP_EOL;
-        $this->_buffer .= "define('TESTS_UNIT_DATABASE_CONNECTIONS', TESTS_UNIT_DATABASE_CONNECTIONS . 'production'.DIRECTORY_SEPARATOR);" . PHP_EOL;
-        $this->_buffer .= "define('TESTS_UNIT_DATABASE_CONNECTIONS', TESTS_UNIT_DATABASE_CONNECTIONS . 'staging'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+        $this->_buffer .= "define('TESTS_UNIT_DATABASE_CONNECTIONS_PRODUCTION', TESTS_UNIT_DATABASE_CONNECTIONS . 'production'.DIRECTORY_SEPARATOR);" . PHP_EOL;
+        $this->_buffer .= "define('TESTS_UNIT_DATABASE_CONNECTIONS_STAGING', TESTS_UNIT_DATABASE_CONNECTIONS . 'staging'.DIRECTORY_SEPARATOR);" . PHP_EOL;
         $this->_buffer .= "define('TESTS_UNIT_DATABASE_CUSTOM_SPROCS', TESTS_UNIT_DATABASE . 'custom_sprocs'.DIRECTORY_SEPARATOR);" . PHP_EOL;
         $this->_buffer .= "define('TESTS_UNIT_DATABASE_VIEWS_CUSTOM', TESTS_UNIT_DATABASE . 'custom_views'.DIRECTORY_SEPARATOR);" . PHP_EOL;
         $this->_buffer .= "define('TESTS_UNIT_DATABASE_GENERATED_SPROCS', TESTS_UNIT_DATABASE . 'generated_sprocs'.DIRECTORY_SEPARATOR);" . PHP_EOL;
@@ -600,7 +806,11 @@ class ConfigurationGenerator
         try {
             if ( CheckInput::checkNewInput($this->_buffer) ) {
                 if ( $this->checkRequired() ) {
-                    $this->_FileHandle = new FileHandle($this->baseURI . "config/" . $this->appName . ".config.inc.php");
+                    if ( $this->production === true) {
+                        $this->_FileHandle = new FileHandle($this->baseURI . "config" . DIRECTORY_SEPARATOR ."production".DIRECTORY_SEPARATOR. $this->appName . ".config.inc.php");
+                    } else {
+                        $this->_FileHandle = new FileHandle($this->baseURI . "config" . DIRECTORY_SEPARATOR . "staging" . DIRECTORY_SEPARATOR . $this->appName . ".config.inc.php");
+                    }
                     $this->_FileHandle->writeFull($this->_buffer);
                 } else {
                     throw new ExceptionHandler(__METHOD__ . ": requirements not met.");
@@ -644,11 +854,11 @@ $cfGen->setBaseURI("/var/www/Coworks.In/");
 $cfGen->setBaseURL("http://coworks.in");
 $cfGen->execute();
 */
-/* InnerAlly
+/* InnerAlly */
 $cfGen = ConfigurationGenerator::instance();
 $cfGen->setAppName("InnerAlly");
 $cfGen->setAppWebsite("InnerAlly.com");
 $cfGen->setBaseURI("/var/www/InnerAlly_SC/");
 $cfGen->setBaseURL("http://innerally.com");
+$cfGen->setDatabasesSupported(array("MYSQLI","SQLITE3"));
 $cfGen->execute();
-*/
