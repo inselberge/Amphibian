@@ -46,7 +46,7 @@ class JSONTest
      */
     public function testSetURL()
     {
-        $this->arguments = "http://zipasaur.us/zip/78205";
+        $this->arguments = "http://maps.googleapis.com/maps/api/geocode/json?latlng=-24.448674,135.684569&sensor=false";
         $this->expected = true;
         $this->actual = $this->object->setURL($this->arguments);
         $this->assertEquals($this->expected, $this->actual);
@@ -60,10 +60,7 @@ class JSONTest
      */
     public function testPost()
     {
-        /*
-         * TODO: figure out why this isn't working
-         */
-        $this->object->setURL("http://zipasaur.us/zip/78205");
+        $this->object->setURL("http://maps.googleapis.com/maps/api/geocode/json?latlng=-24.448674,135.684569&sensor=false");
         $this->expected = true;
         $this->actual = $this->object->post();
         $this->assertEquals($this->expected, $this->actual);
@@ -77,7 +74,7 @@ class JSONTest
      */
     public function testGet()
     {
-        $this->object->setURL("http://zipasaur.us/zip/78205");
+        $this->object->setURL("http://maps.googleapis.com/maps/api/geocode/json?latlng=-24.448674,135.684569&sensor=false");
         $this->expected = true;
         $this->actual = $this->object->get();
         $this->assertEquals($this->expected, $this->actual);
@@ -94,6 +91,19 @@ class JSONTest
         $this->expected = true;
         $this->arguments = array(CURLOPT_AUTOREFERER => true);
         $this->actual = $this->object->setOptions($this->arguments);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testResponse
+     *
+     * @covers JSON::response
+     *
+     * @return void
+     */
+    public function testResponse()
+    {
+        $this->expected = true;
+        $this->actual = $this->object->response();
         $this->assertEquals($this->expected, $this->actual);
     }
 }

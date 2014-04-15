@@ -151,6 +151,17 @@ class Parameter
         return self::$Parameter;
     }
 
+    /** factory
+     *
+     * @param string $path the path part of the URL string
+     *
+     * @return object
+     */
+    static public function factory($path)
+    {
+        return new Parameter($path);
+    }
+
     /** execute
      *
      * @return bool
@@ -613,7 +624,7 @@ class Parameter
                     $this->setSpecificVariable(
                         "limit",
                         $this->variables["limit"] .
-                        ' offest ' . $this->pathArray[$this->position+1]
+                        ' offset ' . $this->pathArray[$this->position+1]
                     );
                     $this->advancePosition(2);
                 } else {
@@ -802,14 +813,15 @@ class Parameter
     public function getSpecificVariable($key)
     {
         try {
-            if ( !array_key_exists($key, $this->variables) ) {
+            if ( array_key_exists($key, $this->variables) ) {
+                return $this->variables[$key];
+            } else {
                 throw new ExceptionHandler(__METHOD__ . ": invalid key.");
             }
         } catch ( ExceptionHandler $e ) {
             $e->execute();
             return false;
         }
-        return $this->variables[$key];
     }
 
     /**   setSpecificVariable
@@ -844,7 +856,7 @@ class Parameter
     {
         try {
             $original = $this->getSpecificVariable($key);
-            if ( $original!=false ) {
+            if ( $original!==false ) {
                 $this->setSpecificVariable($key, $original.$value);
             } else {
                 $this->setSpecificVariable($key, $value);

@@ -16,22 +16,6 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "Parameter.php";
 class parameterTest 
     extends BaseTest
 {
-    /**
-     * @var object parameter an instance of parameter
-     */
-    protected $object;
-    /**
-     * @var mixed expected The expected result
-     */
-    protected $expected;
-    /**
-     * @var mixed actual The actual result
-     */
-    protected $actual;
-    /**
-     * @var mixed arguments arguments to provide to a test
-     */
-    protected $arguments;
 
     /** setUp
      *
@@ -42,19 +26,8 @@ class parameterTest
      */
     protected function setUp()
     {
-        $this->object = Parameter::instance("http://somewebsite.com/Geekdom/user/browse/groupBy/create_date/de/modify_date/as/limit/25/offset/25");
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
-        unset($this->object);
+        $this->arguments = "1/user/browse/groupBy/create_date/de/modify_date/as/limit/25/offset/25";
+        $this->object = Parameter::factory($this->arguments);
     }
 
     /** testInstance
@@ -65,9 +38,21 @@ class parameterTest
      */
     public function testInstance()
     {
-        $this->arguments = "Geekdom/user/browse/groupBy/create_date/de/modify_date/as/limit/25/offset/25";
         $this->expected = $this->object;
         $this->actual = Parameter::instance($this->arguments);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testFactory
+     *
+     * @covers Parameter::factory
+     *
+     * @return void
+     */
+    public function testFactory()
+    {
+        $this->expected = $this->object;
+        $this->actual = Parameter::factory($this->arguments);
         $this->assertEquals($this->expected, $this->actual);
     }
 
@@ -91,12 +76,16 @@ class parameterTest
     public function setVariablesDataProvider()
     {
         return array(
-            "id"=>"587",
-            "first_name"=>"Tex",
-            "last_name"=>"Morgan",
-            "action"=>"get",
-            "branch"=>"Geekdom",
-            "controller"=>"user"
+            array(
+                array(
+                    "id"=>"587",
+                    "first_name"=>"Tex",
+                    "last_name"=>"Morgan",
+                    "action"=>"get",
+                    "branch"=>"Geekdom",
+                    "controller"=>"user"
+                )
+            )
         );
     }
 
@@ -139,22 +128,33 @@ class parameterTest
      *
      * @covers Parameter::getSpecificVariable
      *
+     * @dataProvider specificDataProvider
+     *
      * @return void
      */
     public function testGetSpecificVariable($key, $value)
     {
         $this->expected = $value;
-        $this->arguments = $key;
-        $this->actual = $this->object->getSpecificVariable($this->arguments);
+        $this->object->execute();
+        $this->actual = $this->object->getSpecificVariable($key);
         $this->assertEquals($this->expected, $this->actual);
     }
 
+    /** specificDataProvider
+     *
+     * @return array
+     */
     public function specificDataProvider()
     {
         return array(
-          array("where", "first_name lk 'Te'"),
-          array("having", "status eq 'enabled'"),
-          array("orderBy", "id as")
+          array(
+              "groupBy",
+              " create_date de modify_date as"
+          ),
+          array(
+              "limit",
+              "25 offset 25"
+          )
         );
     }
 
@@ -181,14 +181,15 @@ class parameterTest
      * @param string $key   the index of the variable
      * @param mixed  $value the value to append to the key
      *
-     * @dataProvider specificDataProvider
-     *
      * @covers Parameter::appendSpecificVariable
+     *
+     * @dataProvider specificDataProvider
      *
      * @return void
      */
     public function testAppendSpecificVariable($key, $value)
     {
+        $this->object->execute();
         $this->expected = true;
         $this->actual = $this->object->appendSpecificVariable($key, $value);
         $this->assertEquals($this->expected, $this->actual);
@@ -196,15 +197,36 @@ class parameterTest
 
     /** testGetDataVariables
      *
+     * @param array $testArray an array to test
+     *
      * @covers Parameter::getDataVariables
+     *
+     * @dataProvider dataVariablesDataProvider
      *
      * @return void
      */
-    public function testGetDataVariables()
+    public function testGetDataVariables($testArray)
     {
-        $this->expected = $this->setVariablesDataProvider();
-        $this->object->setVariables($this->setVariablesDataProvider());
+        $this->expected = $testArray;
+        $this->object->setVariables($testArray);
         $this->actual = $this->object->getDataVariables();
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** dataVariablesDataProvider
+     *
+     * @return array
+     */
+    public function dataVariablesDataProvider()
+    {
+        return array(
+            array(
+                array(
+                    "id" => "587",
+                    "first_name" => "Tex",
+                    "last_name" => "Morgan"
+                )
+            )
+        );
     }
 }

@@ -203,12 +203,15 @@ class JSON
     public function response()
     {
         try {
-            if ( CheckInput::checkSet($this->objectJSON) ) {
-                header("content-type: text/json charset=utf-8");
-                echo $this->objectJSON;
-            } else {
-                throw new ExceptionHandler(__METHOD__ . ": objectJSON invalid");
+            if ( ! CheckInput::checkSet($this->objectJSON) ) {
+                if ( CheckInput::checkSet($this->arrayJSON) ) {
+                    $this->encodeResult();
+                } else {
+                    throw new ExceptionHandler(__METHOD__ . ": response not ready.");
+                }
             }
+            header("content-type: text/json charset=utf-8");
+            echo $this->objectJSON;
         } catch ( ExceptionHandler $e ) {
             $e->execute();
             return false;
@@ -223,7 +226,7 @@ class JSON
     protected function cURLPost( )
     {
         $this->postDefaults[CURLOPT_POSTFIELDS] 
-            = http_build_query($this->objectJSON);
+            = http_build_query($this->arrayJSON);
         $this->cURLHandle = curl_init();
         curl_setopt_array(
             $this->cURLHandle, 
@@ -269,6 +272,7 @@ class JSON
         try {
             if ( CheckInput::checkNewInput($this->cURLResult) ) {
                 $this->arrayJSON = json_decode(utf8_encode($this->cURLResult), true);
+                $this->objectJSON = $this->cURLResult;
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": cURLResult invalid");
             }
