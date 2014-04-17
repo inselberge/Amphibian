@@ -6,6 +6,9 @@
 /nbproject
 /project/
 /vendor
+**.log
+**.Log
+/tests/config/documentation
 composer.lock
 composer.phar
 **~
