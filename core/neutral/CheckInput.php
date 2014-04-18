@@ -114,6 +114,58 @@ class CheckInput
         }
     }
 
+    /** checkNewObject
+     *
+     * @param object &$value a valid object
+     *
+     * @return bool
+     */
+    static public function checkNewObject(&$value)
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    if ( is_object($value) ) {
+                        return true;
+                    } else {
+                        throw new ExceptionHandler(__METHOD__ . ": value is not an object.");
+                    }
+                } else {
+                    throw new ExceptionHandler(__METHOD__ . ": value is null.");
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** checkSetObject
+     *
+     * @param object &$value a valid object
+     *
+     * @return bool
+     */
+    static public function checkSetObject(&$value)
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    return is_object($value);
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
     /** makeSafe
      *
      * @param string $str the string to alter

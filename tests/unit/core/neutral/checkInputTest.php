@@ -5,6 +5,15 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 require_once AMPHIBIAN_CORE_NEUTRAL."CheckInput.php";
 
+/**
+ * Class CheckInputTest
+ *
+ * @category ${NAMESPACE}
+ * @package  CheckInputTest
+ * @author   Carl 'Tex' Morgan <texmorgan@inselberge.com>
+ * @license  All rights reserved by Inselberge Inc. unless otherwise stated
+ * @link     documentation/CheckInputTest
+ */
 class CheckInputTest extends BaseTest
 {
     /**
@@ -67,5 +76,61 @@ class CheckInputTest extends BaseTest
         $this->assertTrue($this->object->checkSetArray(array("hello")));
         $this->assertFalse($this->object->checkSetArray(array()));
         $this->assertTrue($this->object->checkSetArray(array("hello" => 1)));
+    }
+
+    /** testCheckNewObject
+     *
+     * @param object $variable a valid object
+     *
+     * @param bool $expectedReturn the expected return
+     *
+     * @covers CheckInput::CheckNewObject
+     *
+     * @dataProvider objectDataProvider
+     *
+     * @return void
+     */
+    public function testCheckNewObject($variable, $expectedReturn)
+    {
+        $this->expected = $expectedReturn;
+        $this->actual = $this->object->checkNewObject($variable);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** objectDataProvider
+     *
+     * @return array
+     */
+    public function objectDataProvider()
+    {
+        return array(
+            array(
+                new mysqli(),
+                true
+            ),
+            array(
+                new stdClass(),
+                true
+            )
+        );
+    }
+
+    /** testCheckSetObject
+     *
+     * @param object $variable a valid object
+     *
+     * @param bool $expectedReturn the expected return
+     *
+     * @covers       CheckInput::CheckSetObject
+     *
+     * @dataProvider objectDataProvider
+     *
+     * @return void
+     */
+    public function testCheckSetObject($variable, $expectedReturn)
+    {
+        $this->expected = $expectedReturn;
+        $this->actual = $this->object->checkSetObject($variable);
+        $this->assertEquals($this->expected, $this->actual);
     }
 }
