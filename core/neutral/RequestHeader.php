@@ -6,7 +6,8 @@
  * Date: 4/17/14
  * Time: 4:48 PM
  */
-require_once "interfaces/RequestHeaderInterface.php";
+require_once AMPHIBIAN_CORE_ABSTRACT."Header.php";
+require_once "interfaces".DIRECTORY_SEPARATOR."RequestHeaderInterface.php";
 /**
  * Class RequestHeader
  *

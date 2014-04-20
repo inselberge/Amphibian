@@ -6,7 +6,7 @@
  * Date: 4/17/14
  * Time: 5:24 PM
  */
-require_once "interfaces/RequestInterface.php";
+require_once "interfaces".DIRECTORY_SEPARATOR."RequestInterface.php";
 /**
  * Class Request
  *

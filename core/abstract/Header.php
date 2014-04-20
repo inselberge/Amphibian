@@ -6,7 +6,7 @@
  * Date: 4/17/14
  * Time: 3:27 PM
  */
-require_once "interfaces/HeaderInterface.php";
+require_once "interfaces".DIRECTORY_SEPARATOR."HeaderInterface.php";
 /**
  * Class Header
  *

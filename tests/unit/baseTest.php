@@ -67,7 +67,11 @@ abstract class BaseTest
      */
     public function positiveIntegerDataProvider()
     {
-        return array();
+        return array(
+            array(3245),
+            array(4008),
+            array(212)
+        );
     }
 
     /** negativeIntegerDataProvider
@@ -537,6 +541,64 @@ abstract class BaseTest
                     "SQLITE3"
                 )
             )
+        );
+    }
+
+    public function httpAllowMethodDataProvider()
+    {
+        return array(
+            array("GET, PUT, OPTIONS, HEAD, POST, DELETE, PATCH"),
+            array("GET, PUT, POST"),
+        );
+    }
+
+    public function httpContentEncodingDataProvider()
+    {
+        return array(
+            array("gzip,deflate,sdch"),
+            array("gzip")
+        );
+    }
+
+    public function httpContentLanguageDataProvider()
+    {
+        return array(
+            array("fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4 "),
+            array("en, da, de, mi")
+        );
+    }
+
+    public function httpContentLocationDataProvider()
+    {
+        return array(
+            array("/var/log"),
+            array("/var/www"),
+            array("/tmp")
+        );
+    }
+    public function httpContentRangeDataProvider()
+    {
+        return array(
+            array("bytes 0-499/1234"),
+            array("bytes 500-999/1234"),
+            array("bytes 500-1233/1234")
+        );
+    }
+
+    public function httpContentTypeDataProvider()
+    {
+        return array(
+            array("text/html; charset=ISO-8859-4"),
+            array("text/html; charset=UTF-8"),
+            array("text/plain;")
+        );
+    }
+
+    public function httpDateDataProvider()
+    {
+        return array(
+            array("Thu, 01 Dec 1994 16:00:00 GMT"),
+            array("Sat, 19 Apr 2014 09:00:00 GMT")
         );
     }
 } 

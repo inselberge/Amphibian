@@ -6,6 +6,7 @@
  * Date: 4/17/14
  * Time: 4:48 PM
  */
+require_once AMPHIBIAN_CORE_ABSTRACT_INTERFACES."HeaderInterface.php";
 /**
  * Class RequestHeaderInterface
  *
@@ -15,7 +16,9 @@
  * @license  All rights reserved by Inselberge Inc. unless otherwise stated
  * @link     documentation/RequestHeaderInterface
  */
- interface RequestHeaderInterface {
+interface RequestHeaderInterface
+    extends HeaderInterface
+{
     static public function instance();
     static public function factory();
 

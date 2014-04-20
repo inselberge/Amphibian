@@ -6,7 +6,7 @@
  * Date: 4/8/14
  * Time: 11:35 PM
  */
-require_once "interfaces/ConfigurationLoaderInterface.php";
+require_once "interfaces".DIRECTORY_SEPARATOR."ConfigurationLoaderInterface.php";
 
 /**
  * Class ConfigurationLoader

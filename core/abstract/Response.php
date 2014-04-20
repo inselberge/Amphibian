@@ -6,7 +6,7 @@
  * Date: 4/17/14
  * Time: 12:20 PM
  */
-require_once "interfaces/ResponseInterface.php";
+require_once "interfaces".DIRECTORY_SEPARATOR."ResponseInterface.php";
 /**
  * Class Response
  *

@@ -6,7 +6,8 @@
  * Date: 4/17/14
  * Time: 4:25 PM
  */
-require_once "interfaces/EntityHeaderInterface.php";
+require_once AMPHIBIAN_CORE_ABSTRACT."Header.php";
+require_once "interfaces".DIRECTORY_SEPARATOR."EntityHeaderInterface.php";
 /**
  * Class EntityHeader
  *
