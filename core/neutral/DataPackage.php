@@ -26,24 +26,21 @@ class DataPackage
     /**
      * @var array payload holds data values
      */
-    protected $payload;
+    protected $payload = array();
     /**
      * @var array errors holds error values
      */
-    protected $errors;
+    protected $errors = array();
     /**
      * @var array queryArguments holds query argument values
      */
-    protected $queryArguments;
+    protected $queryArguments = array();
 
     /** __construct
      *
      */
     public function __construct()
     {
-        $this->payload=array();
-        $this->errors=array();
-        $this->queryArguments=array();
     }
 
     /** setErrors
@@ -498,6 +495,42 @@ class DataPackage
                 throw new ExceptionHandler(__METHOD__ . ": Query args ID invalid.");
             }
         } catch ( ExceptionHandler $e ) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** getPayloadCount
+     *
+     * @return int
+     */
+    public function getPayloadCount()
+    {
+        try {
+            if (isset($this->payload)) {
+                return count($this->payload);
+            } else {
+                return 0;
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** getErrorCount
+     *
+     * @return int
+     */
+    public function getErrorCount()
+    {
+        try {
+            if (isset($this->errors)) {
+                return count($this->errors);
+            } else {
+                return 0;
+            }
+        } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
         }
