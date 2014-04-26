@@ -676,8 +676,8 @@ $cg->setLink("http://".APP_WEBSITE."/documentation/uml/models/generated");
 $cg->setTableName("User");
 $cg->execute();
 */
-/*
-require_once "/home/carl/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
+
+require_once "/home/texmorgan/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
 require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 $databaseConnection = databaseConnectionMySQLi::instance();
 $databaseConnection->setServerName("localhost");
@@ -685,7 +685,6 @@ $databaseConnection->setDatabaseName("InnerAlly");
 $databaseConnection->setUserName("root");
 $databaseConnection->setUserPassword('4u$t1nTX');
 $databaseConnection->openConnection();
-$controlGen = ClassGeneratorMySQLi::instance($databaseConnection);
-//$controlGen->setFileDestination("/home/texmorgan/Public/InnerAlly_SC/controllers/generated/");
-$controlGen->execute();
-*/
+$classGen = ClassGeneratorMySQLi::instance($databaseConnection);
+$classGen->setFileDestination("/home/texmorgan/Public/InnerAlly_SC/models/generated/");
+$classGen->execute();

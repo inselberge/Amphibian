@@ -76,7 +76,7 @@ class TableDescriptionMySQLi
     {
         try {
             $this->query->execute("DESCRIBE `" . $this->currentTableName . "`");
-            if ($this->query->checkAffected()) {
+            if ($this->query->checkAffected() === false) {
                 throw new ExceptionHandler(__METHOD__ . ": setTableDescription failed");
             }
         } catch (ExceptionHandler $e) {
@@ -92,12 +92,17 @@ class TableDescriptionMySQLi
      */
     protected function setRow()
     {
-        $this->row = mysqli_fetch_assoc($this->result);
-        if (CheckInput::checkSet($this->row)) {
-            return true;
-        } else {
+        try {
+            if ($this->query->getRow()) {
+                $this->row = $this->query->row;
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": failed to get row.");
+            }
+        } catch (exceptionHandler $e) {
+            $e->execute();
             return false;
         }
+        return true;
     }
 
     /** storeRowInTableArray
@@ -272,10 +277,10 @@ class TableDescriptionMySQLi
             $q = "select referenced_table_name, referenced_column_name"
                 . "from information_schema.key_column_usage "
                 . "where referenced_table_name is not null AND table_schema='"
-                . DB_NAME . "' AND table_name='"
+                . $this->connection->getDatabaseName() . "' AND table_name='"
                 . $this->currentTableName
                 . "' AND column_name='" . $this->fieldName . "'";
-            $this->foreignResult = mysqli_query($this->connection, $q);
+            $this->foreignResult = mysqli_query($this->connection->getConnection(), $q);
             if ($this->foreignResult->num_rows > 0) {
                 $this->foreignRow = mysqli_fetch_assoc($this->foreignResult);
                 $this->setFieldReferenceTable();
@@ -299,7 +304,7 @@ class TableDescriptionMySQLi
         try {
             $q = "select seq_in_index, column_name"
                 . "from information_schema.statistics where table_schema='"
-                . DB_NAME . "' AND table_name='"
+                . $this->connection->getDatabaseName() . "' AND table_name='"
                 . $this->currentTableName . "' AND index_name='"
                 . $this->fieldName . "'";
             $this->indexResult = mysqli_query($this->connection, $q);
@@ -345,11 +350,16 @@ class TableDescriptionMySQLi
 }
 /*
  * One table example
- *
-require_once "../project/AffCell/database/staging/AffCell.mysql.config.inc.php";
-require_once "../config/mysql.cfg.php";
-$TD = TableDescriptionMySQLi::instance($databaseConnection);
-$TD->setTableName("Users");
+ */
+//require_once "../project/AffCell/database/staging/AffCell.mysql.config.inc.php";
+//require_once "../config/mysql.cfg.php";
+$SSL = databaseConnectionMySQLi::instance();
+$SSL->setServerName("127.0.0.1");
+$SSL->setDatabaseName("InnerAlly");
+$SSL->setUserName("root");
+$SSL->setUserPassword('4u$t1nTX');
+$SSL->openConnection();
+$TD = TableDescriptionMySQLi::instance($SSL);
+$TD->setTableName("User");
 $TD->execute();
-print_r($TD);
-*/
+//print_r($TD);

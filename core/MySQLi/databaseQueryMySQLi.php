@@ -336,3 +336,14 @@ $dq = databaseQueryMySQLi::instance($databaseConnection);
 $dq->execute("SELECT 1 FROM `Users`");
 $dq->show();
 */
+/*
+$SSL = databaseConnectionMySQLi::instance();
+$SSL->setServerName("127.0.0.1");
+$SSL->setDatabaseName("InnerAlly");
+$SSL->setUserName("root");
+$SSL->setUserPassword('4u$t1nTX');
+$SSL->openConnection();
+$dq = databaseQueryMySQLi::instance($SSL);
+$dq->execute("DESCRIBE `User`;");
+echo "Affected:".$dq->checkAffected();
+$dq->show();*/
