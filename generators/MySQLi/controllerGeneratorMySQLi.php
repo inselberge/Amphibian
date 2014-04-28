@@ -113,6 +113,6 @@ $databaseConnection->setUserName("root");
 $databaseConnection->setUserPassword('4u$t1nTX');
 $databaseConnection->openConnection();
 $controlGen = ControllerGeneratorMySQLi::instance($databaseConnection);
-$controlGen->setFileDestination("/home/texmorgan/Public/InnerAlly_SC/controllers/generated/");
+$controlGen->setFileDestination("/home/carl/Public/InnerAlly_SC/controllers/generated/");
 $controlGen->execute();
 */

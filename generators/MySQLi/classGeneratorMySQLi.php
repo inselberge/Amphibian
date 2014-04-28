@@ -6,6 +6,7 @@
  * Date: 12/20/13
  * Time: 9:19 PM
  */
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." .DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."abstract".DIRECTORY_SEPARATOR."classGenerator.php";
 require_once AMPHIBIAN_CORE_MYSQLI."TableDescriptionMySQLi.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."classGeneratorMySQLiInterface.php";
@@ -80,15 +81,10 @@ class ClassGeneratorMySQLi
         try
         {
             $this->tableDescription = TableDescriptionMySQLi::instance($this->connection);
-            if (CheckInput::checkNewInput($this->tableDescription))
-            {
-                if ($this->tableDescription->setTableName($this->tableName))
-                {
-                    if ($this->tableDescription->execute())
-                    {
-                    }
+            if (CheckInput::checkNewInput($this->tableDescription)) {
+                if ($this->tableDescription->setTableName($this->tableName)) {
+                    if (!$this->tableDescription->execute()) {
 
-                    else {
                         throw new ExceptionHandler(__METHOD__ . "There was a problem during execution of the table description.");
                     }
                 } else {
@@ -675,9 +671,9 @@ $cg->setLicense("All rights reserved by ".APP_NAME." unless otherwise stated.");
 $cg->setLink("http://".APP_WEBSITE."/documentation/uml/models/generated");
 $cg->setTableName("User");
 $cg->execute();
-*/
 
-require_once "/home/texmorgan/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
+
+//require_once "/home/carl/Public/InnerAlly_SC/config/staging/InnerAlly.config.inc.php";
 require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 $databaseConnection = databaseConnectionMySQLi::instance();
 $databaseConnection->setServerName("localhost");
@@ -686,5 +682,6 @@ $databaseConnection->setUserName("root");
 $databaseConnection->setUserPassword('4u$t1nTX');
 $databaseConnection->openConnection();
 $classGen = ClassGeneratorMySQLi::instance($databaseConnection);
-$classGen->setFileDestination("/home/texmorgan/Public/InnerAlly_SC/models/generated/");
+$classGen->setFileDestination("/home/carl/Public/InnerAlly_SC/models/generated/");
 $classGen->execute();
+*/

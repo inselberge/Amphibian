@@ -148,3 +148,15 @@ class AgencyGeneratorMySQLi
         return true;
     }
 }
+/*
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
+$databaseConnection = databaseConnectionMySQLi::instance();
+$databaseConnection->setServerName("localhost");
+$databaseConnection->setDatabaseName("InnerAlly");
+$databaseConnection->setUserName("root");
+$databaseConnection->setUserPassword('4u$t1nTX');
+$databaseConnection->openConnection();
+$agencyGen = AgencyGeneratorMySQLi::instance($databaseConnection);
+$agencyGen->setFileDestination("/home/carl/Public/InnerAlly_SC/agencies/generated/");
+$agencyGen->execute();
+*/

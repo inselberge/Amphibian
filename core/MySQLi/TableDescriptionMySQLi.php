@@ -93,10 +93,14 @@ class TableDescriptionMySQLi
     protected function setRow()
     {
         try {
-            if ($this->query->getRow()) {
-                $this->row = $this->query->row;
+            if ( count($this->tableArray) < $this->query->getNumberOfRows()) {
+                if ($this->query->getRow()) {
+                    $this->row = $this->query->row;
+                } else {
+                    throw new exceptionHandler(__METHOD__ . ": failed to get row.");
+                }
             } else {
-                throw new exceptionHandler(__METHOD__ . ": failed to get row.");
+                return false;
             }
         } catch (exceptionHandler $e) {
             $e->execute();
@@ -274,7 +278,7 @@ class TableDescriptionMySQLi
     protected function extractFieldReferences()
     {
         try {
-            $q = "select referenced_table_name, referenced_column_name"
+            $q = "select referenced_table_name, referenced_column_name "
                 . "from information_schema.key_column_usage "
                 . "where referenced_table_name is not null AND table_schema='"
                 . $this->connection->getDatabaseName() . "' AND table_name='"
@@ -302,7 +306,7 @@ class TableDescriptionMySQLi
     protected function setIndexColumns()
     {
         try {
-            $q = "select seq_in_index, column_name"
+            $q = "select seq_in_index, column_name "
                 . "from information_schema.statistics where table_schema='"
                 . $this->connection->getDatabaseName() . "' AND table_name='"
                 . $this->currentTableName . "' AND index_name='"
@@ -350,7 +354,7 @@ class TableDescriptionMySQLi
 }
 /*
  * One table example
- */
+
 //require_once "../project/AffCell/database/staging/AffCell.mysql.config.inc.php";
 //require_once "../config/mysql.cfg.php";
 $SSL = databaseConnectionMySQLi::instance();
@@ -362,4 +366,5 @@ $SSL->openConnection();
 $TD = TableDescriptionMySQLi::instance($SSL);
 $TD->setTableName("User");
 $TD->execute();
-//print_r($TD);
+print_r($TD);
+ */

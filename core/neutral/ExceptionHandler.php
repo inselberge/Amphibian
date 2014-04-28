@@ -81,7 +81,7 @@ class ExceptionHandler
             if ( $this->checkStatus() ) {
                 $this->redirect500();
             } else {
-                $this->show();
+                //$this->show();
             }
         } catch ( ExceptionHandler $e ) {
             $e->execute();

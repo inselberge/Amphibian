@@ -149,11 +149,12 @@ abstract class ClassGenerator
      */
     protected function iterate()
     {
-        $this->getTableDescription();
-        $this->writeTemplates();
-        $this->writeFromBuffer();
-        //TODO: find a new use for current Helper, possibly as starter for custom
-        //$this->writeHelperTemplate();
+        if ($this->getTableDescription() ) {
+            $this->writeTemplates();
+            $this->writeFromBuffer();
+            //TODO: find a new use for current Helper, possibly as starter for custom
+            //$this->writeHelperTemplate();
+        }
         $this->setupForNext();
     }
 
