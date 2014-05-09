@@ -7,7 +7,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-abstract class sprocGeneratorCustom {
+abstract class SprocGeneratorCustom
+{
 
     protected $configuration;
     protected $tableArray;

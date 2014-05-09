@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
-
 require_once AMPHIBIAN_GENERATORS_MYSQLI."JSONObjectGeneratorMySQLi.php";
 /**
  * Class JSONObjectGeneratorMySQLiTest
@@ -16,13 +15,8 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."JSONObjectGeneratorMySQLi.php";
  *
  */
 class JSONObjectGeneratorMySQLiTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object JSONObjectGeneratorMySQLi an instance of JSONObjectGeneratorMySQLi
-     */
-    protected $object;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -32,49 +26,32 @@ class JSONObjectGeneratorMySQLiTest
      */
     protected function setUp()
     {
-        $this->object = new JSONObjectGeneratorMySQLi();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = JSONObjectGeneratorMySQLi::factory($this->connection);
     }
 
     /** testInstance
      *
      * @covers JSONObjectGeneratorMySQLi::instance
      *
-     * @todo   Implement testInstance().
-     *
      * @return void
      */
     public function testInstance()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = JSONObjectGeneratorMySQLi::instance($this->connection);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testFactory
      *
      * @covers JSONObjectGeneratorMySQLi::factory
      *
-     * @todo   Implement testFactory().
-     *
      * @return void
      */
     public function testFactory()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = JSONObjectGeneratorMySQLi::factory($this->connection);
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

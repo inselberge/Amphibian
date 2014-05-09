@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
-
 require_once AMPHIBIAN_GENERATORS_MYSQLI."FormGeneratorMySQLi.php";
 /**
  * Class FormGeneratorMySQLiTest
@@ -15,13 +14,8 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."FormGeneratorMySQLi.php";
  *
  */
 class FormGeneratorMySQLiTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object FormGeneratorMySQLi an instance of FormGeneratorMySQLi
-     */
-    protected $object;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -31,49 +25,32 @@ class FormGeneratorMySQLiTest
      */
     protected function setUp()
     {
-        $this->object = new FormGeneratorMySQLi();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = FormGeneratorMySQLi::factory($this->connection);
     }
 
     /** testInstance
      *
      * @covers FormGeneratorMySQLi::instance
      *
-     * @todo   Implement testInstance().
-     *
      * @return void
      */
     public function testInstance()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = FormGeneratorMySQLi::instance($this->connection);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testFactory
      *
      * @covers FormGeneratorMySQLi::factory
      *
-     * @todo   Implement testFactory().
-     *
      * @return void
      */
     public function testFactory()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = FormGeneratorMySQLi::factory($this->connection);
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

@@ -7,7 +7,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-abstract class viewGeneratorCustom {
+abstract class ViewGeneratorCustom
+{
 
     protected $configuration;
     protected $tableArray;

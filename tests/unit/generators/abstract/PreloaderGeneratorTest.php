@@ -14,13 +14,8 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."PreloaderGenerator.php";
  *
  */
 class PreloaderGeneratorTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object PreloaderGenerator an instance of PreloaderGenerator
-     */
-    protected $object;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -30,17 +25,6 @@ class PreloaderGeneratorTest
      */
     protected function setUp()
     {
-        $this->object = new PreloaderGenerator();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = $this->getMockForAbstractClass('PreloaderGenerator', array($this->connection));
     }
 }

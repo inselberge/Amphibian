@@ -7,7 +7,7 @@
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
 require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
-require_once "databaseUserGenerator.php";
+require_once AMPHIBIAN_CORE_ABSTRACT. "databaseUserGenerator.php";
 require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 require_once AMPHIBIAN_CORE_NEUTRAL . "RandomPassword.php";
 require_once AMPHIBIAN_CORE_NEUTRAL . "FileHandle.php";
@@ -15,13 +15,20 @@ require_once AMPHIBIAN_CORE_MYSQLI . "databaseQueryMySQLi.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."databaseUserGeneratorMySQLiInterface.php";
 /**
  * Class DatabaseUserGeneratorMySQLi
+ *
+ * @category ${NAMESPACE}
+ * @package  DatabaseUserGeneratorMySQLi
+ * @author   Carl 'Tex' Morgan <texmorgan@inselberge.com>
+ * @license
+ * @link
  */
 class DatabaseUserGeneratorMySQLi
     extends DatabaseUserGenerator
     implements DatabaseUserGeneratorMySQLiInterface
 {
-    /**
-     * @param $databaseConnection
+    /** __construct
+     *
+     * @param object $databaseConnection a valid DatabaseConnection object
      */
     protected function __construct( $databaseConnection )
     {
@@ -31,13 +38,19 @@ class DatabaseUserGeneratorMySQLi
         $this->databaseQuery      = databaseQueryMySQLi::instance($this->databaseConnection);
     }
 
+    /** __clone
+     *
+     * @return void
+     */
     protected function __clone()
     {
     }
 
-    /**
-     * @param $databaseConnection
-     * @return bool|DatabaseUserGeneratorMySQLi
+    /** instance
+     *
+     * @param object $databaseConnection a valid DatabaseConnection object
+     *
+     * @return object
      */
     static public function instance( $databaseConnection )
     {
@@ -56,9 +69,11 @@ class DatabaseUserGeneratorMySQLi
         }
     }
 
-    /**
-     * @param $element
-     * @param $value
+    /** set
+     *
+     * @param string $element the specific element to set
+     * @param mixed  $value   the value to give the element
+     *
      * @return bool
      */
     public function set( $element, $value )
@@ -66,7 +81,7 @@ class DatabaseUserGeneratorMySQLi
         try {
             if ( $this->checkNewInput($element) ) {
                 if ( $this->checkNewInput($value) ) {
-                    $this->$$element = $value;
+                    $this->$element = $value;
                 } else {
                     throw new ExceptionHandler("the value is not specified");
                 }
@@ -80,27 +95,44 @@ class DatabaseUserGeneratorMySQLi
         return true;
     }
 
+    /** defaultBrowseUserRights
+     *
+     * @return void
+     */
     protected function defaultBrowseUserRights()
     {
         $this->userRights = "EXECUTE, SELECT, SHOW VIEW";
     }
 
+    /** defaultRegularUserRights
+     *
+     * @return void
+     */
     protected function defaultRegularUserRights()
     {
         $this->userRights = "EXECUTE, INSERT, SELECT, UPDATE";
     }
 
+    /** defaultPowerUserRights
+     *
+     * @return void
+     */
     protected function defaultPowerUserRights()
     {
         $this->userRights = "DELETE, EXECUTE, INSERT, SELECT, SHOW VIEW, UPDATE";
     }
 
+    /** defaultAdminUserRights
+     *
+     * @return void
+     */
     protected function defaultAdminUserRights()
     {
         $this->userRights = "ALL";
     }
 
-    /**
+    /** execute
+     *
      * @return bool
      */
     public function execute()
@@ -120,6 +152,10 @@ class DatabaseUserGeneratorMySQLi
         return true;
     }
 
+    /** createDefaultUsers
+     *
+     * @return void
+     */
     public function createDefaultUsers()
     {
         $this->makeUserName("browse");
@@ -136,6 +172,10 @@ class DatabaseUserGeneratorMySQLi
         $this->iterate();
     }
 
+    /** iterate
+     *
+     * @return void
+     */
     protected function iterate()
     {
         $this->uppercaseName      = strtoupper($this->baseUserName);
@@ -146,6 +186,10 @@ class DatabaseUserGeneratorMySQLi
         $this->execute();
     }
 
+    /** generateConnectionTemplate
+     *
+     * @return void
+     */
     protected function generateConnectionTemplate()
     {
         $this->content = '<?php' . "\n";
@@ -177,13 +221,18 @@ class DatabaseUserGeneratorMySQLi
         $this->content .= "}";
     }
 
+    /** writeConnectionTemplate
+     *
+     * @return void
+     */
     protected function writeConnectionTemplate()
     {
         $this->FileHandle = new FileHandle(DATABASE_CONNECTIONS . "mysql_" . $this->baseUserName . ".inc.php");
         $this->FileHandle->writeFull($this->content);
     }
 
-    /**
+    /** checkUserExists
+     *
      * @return bool
      */
     protected function checkUserExists()
@@ -200,7 +249,8 @@ class DatabaseUserGeneratorMySQLi
         }
     }
 
-    /**
+    /** revoke
+     *
      * @return bool
      */
     protected function revoke()
@@ -217,7 +267,8 @@ class DatabaseUserGeneratorMySQLi
         }
     }
 
-    /**
+    /** drop
+     *
      * @return bool
      */
     protected function drop()
@@ -234,7 +285,8 @@ class DatabaseUserGeneratorMySQLi
         }
     }
 
-    /**
+    /** create
+     *
      * @return bool
      */
     protected function create()
@@ -251,6 +303,10 @@ class DatabaseUserGeneratorMySQLi
         }
     }
 
+    /** makePassword
+     *
+     * @return void
+     */
     protected function makePassword()
     {
         $pw = new randomPassword("whirlpool", 16);
@@ -259,7 +315,8 @@ class DatabaseUserGeneratorMySQLi
         unset($pw);
     }
 
-    /**
+    /** setPassword
+     *
      * @return bool
      */
     protected function setPassword()
@@ -276,7 +333,8 @@ class DatabaseUserGeneratorMySQLi
         }
     }
 
-    /**
+    /** grant
+     *
      * @return bool
      */
     protected function grant()

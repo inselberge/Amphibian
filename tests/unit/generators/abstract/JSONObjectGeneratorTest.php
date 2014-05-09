@@ -14,13 +14,8 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."JSONObjectGenerator.php";
  *
  */
 class JSONObjectGeneratorTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object JSONObjectGenerator an instance of JSONObjectGenerator
-     */
-    protected $object;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -30,113 +25,99 @@ class JSONObjectGeneratorTest
      */
     protected function setUp()
     {
-        $this->object = new JSONObjectGenerator();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = $this->getMockForAbstractClass('JSONObjectGenerator');
     }
 
     /** testSetRequestOrResponse
      *
-     * @covers JSONObjectGenerator::setRequestOrResponse
+     * @param string $value          either "request" or "response"
+     * @param bool   $expectedResult true = success, false = failure
      *
-     * @todo   Implement testSetRequestOrResponse().
+     * @covers JSONObjectGenerator::setRequestOrResponse
      *
      * @return void
      */
-    public function testSetRequestOrResponse()
+    public function testSetRequestOrResponse($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setRequestOrResponse($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testGetRequestOrResponse
      *
-     * @covers JSONObjectGenerator::getRequestOrResponse
+     * @param string $expectedResult either "request" or "response"
      *
-     * @todo   Implement testGetRequestOrResponse().
+     * @covers JSONObjectGenerator::getRequestOrResponse
      *
      * @return void
      */
-    public function testGetRequestOrResponse()
+    public function testGetRequestOrResponse($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getRequestOrResponse();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testSetAgencyOrModel
      *
-     * @covers JSONObjectGenerator::setAgencyOrModel
+     * @param string $value          "agency" or "model"
+     * @param bool   $expectedResult true = success, false = failure
      *
-     * @todo   Implement testSetAgencyOrModel().
+     * @covers JSONObjectGenerator::setAgencyOrModel
      *
      * @return void
      */
-    public function testSetAgencyOrModel()
+    public function testSetAgencyOrModel($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setAgencyOrModel($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testGetAgencyOrModel
      *
-     * @covers JSONObjectGenerator::getAgencyOrModel
+     * @param string $expectedResult either "agency" or "model"
      *
-     * @todo   Implement testGetAgencyOrModel().
+     * @covers JSONObjectGenerator::getAgencyOrModel
      *
      * @return void
      */
-    public function testGetAgencyOrModel()
+    public function testGetAgencyOrModel($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getAgencyOrModel();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testSetTypes
      *
-     * @covers JSONObjectGenerator::setTypes
+     * @param array $value          the types to use
+     * @param bool  $expectedResult true = success, false = failure
      *
-     * @todo   Implement testSetTypes().
+     * @covers JSONObjectGenerator::setTypes
      *
      * @return void
      */
-    public function testSetTypes()
+    public function testSetTypes($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setTypes($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testGetTypes
      *
-     * @covers JSONObjectGenerator::getTypes
+     * @param array $expectedResult the expected types
      *
-     * @todo   Implement testGetTypes().
+     * @covers JSONObjectGenerator::getTypes
      *
      * @return void
      */
-    public function testGetTypes()
+    public function testGetTypes($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getTypes();
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

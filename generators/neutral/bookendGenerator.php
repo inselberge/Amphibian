@@ -11,7 +11,7 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "CheckInput.php";
 require_once AMPHIBIAN_CORE_NEUTRAL . "FileHandle.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."bookendGeneratorInterface.php";
 /**
- * Class bookendGenerator
+ * Class BookendGenerator
  *
  * @category Generator
  * @package  Bookend
@@ -19,7 +19,7 @@ require_once "interfaces".DIRECTORY_SEPARATOR."bookendGeneratorInterface.php";
  * @license  All rights reserved by Inselberge Inc. unless otherwise stated.
  * @link     http://amphibian.co/documentation/bookendGenerator
  */
-class bookendGenerator
+class BookendGenerator
     implements bookendGeneratorInterface
 {
     /**

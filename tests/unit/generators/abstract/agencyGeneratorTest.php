@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
-
 require_once AMPHIBIAN_GENERATORS_ABSTRACT . "agencyGenerator.php";
 /**
  * Class agencyGeneratorTest
@@ -15,13 +14,8 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT . "agencyGenerator.php";
  *
  */
 class agencyGeneratorTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object agencyGenerator an instance of agencyGenerator
-     */
-    protected $object;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -31,17 +25,6 @@ class agencyGeneratorTest
      */
     protected function setUp()
     {
-        $this->object = new agencyGenerator();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = $this->getMockForAbstractClass('AgencyGenerator');
     }
 }

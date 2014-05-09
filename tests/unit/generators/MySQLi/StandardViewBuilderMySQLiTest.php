@@ -14,12 +14,8 @@ require_once AMPHIBIAN_GENERATORS_MYSQLI."StandardViewBuilderMySQLi.php";
  *
  */
 class StandardViewBuilderMySQLiTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object StandardViewBuilderMySQLi an instance of StandardViewBuilderMySQLi
-     */
-    protected $object;
 
     /** setUp
      *
@@ -30,49 +26,32 @@ class StandardViewBuilderMySQLiTest
      */
     protected function setUp()
     {
-        $this->object = new StandardViewBuilderMySQLi();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = StandardViewBuilderMySQLi::factory($this->connection);
     }
 
     /** testInstance
      *
      * @covers StandardViewBuilderMySQLi::instance
      *
-     * @todo   Implement testInstance().
-     *
      * @return void
      */
     public function testInstance()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = StandardViewBuilderMySQLi::instance($this->connection);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testFactory
      *
      * @covers StandardViewBuilderMySQLi::factory
      *
-     * @todo   Implement testFactory().
-     *
      * @return void
      */
     public function testFactory()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = StandardViewBuilderMySQLi::factory($this->connection);
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

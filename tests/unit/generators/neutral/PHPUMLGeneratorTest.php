@@ -15,13 +15,8 @@ require_once AMPHIBIAN_GENERATORS_NEUTRAL."PHPUMLGenerator.php";
  *
  */
 class PHPUMLGeneratorTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object PHPUMLGenerator an instance of PHPUMLGenerator
-     */
-    protected $object;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -31,65 +26,60 @@ class PHPUMLGeneratorTest
      */
     protected function setUp()
     {
-        $this->object = new PHPUMLGenerator();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = PHPUMLGenerator::factory();
     }
 
     /** testInstance
      *
      * @covers PHPUMLGenerator::instance
      *
-     * @todo   Implement testInstance().
-     *
      * @return void
      */
     public function testInstance()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = PHPUMLGenerator::instance();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testFactory
      *
      * @covers PHPUMLGenerator::factory
      *
-     * @todo   Implement testFactory().
-     *
      * @return void
      */
     public function testFactory()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = PHPUMLGenerator::factory();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testSetDestination
      *
      * @covers PHPUMLGenerator::setDestination
      *
-     * @todo   Implement testSetDestination().
+     * @dataProvider destinationDataProvider
      *
      * @return void
      */
-    public function testSetDestination()
+    public function testSetDestination($destination, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setDestination($destination);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** destinationDataProvider
+     *
+     * @return array
+     */
+    public function destinationDataProvider()
+    {
+        return array(
+            array("", true),
+            array("", true),
+            array("", true)
         );
     }
 
@@ -97,15 +87,27 @@ class PHPUMLGeneratorTest
      *
      * @covers PHPUMLGenerator::setSource
      *
-     * @todo   Implement testSetSource().
+     * @dataProvider sourceDataProvider
      *
      * @return void
      */
-    public function testSetSource()
+    public function testSetSource($source, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setSource($source);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** sourceDataProvider
+     *
+     * @return array
+     */
+    public function sourceDataProvider()
+    {
+        return array(
+            array("",true),
+            array("", true),
+            array("", true)
         );
     }
 
@@ -113,31 +115,44 @@ class PHPUMLGeneratorTest
      *
      * @covers PHPUMLGenerator::setEncoding
      *
-     * @todo   Implement testSetEncoding().
+     * @dataProvider encodingDataProvider
      *
      * @return void
      */
-    public function testSetEncoding()
+    public function testSetEncoding($encoding, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setEncoding($encoding);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testSetOutputFormat
      *
      * @covers PHPUMLGenerator::setOutputFormat
      *
-     * @todo   Implement testSetOutputFormat().
+     * @dataProvider outputFormatDataProvider
      *
      * @return void
      */
-    public function testSetOutputFormat()
+    public function testSetOutputFormat($format, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setOutputFormat($format);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** outputFormatDataProvider
+     *
+     * @return array
+     */
+    public function outputFormatDataProvider()
+    {
+        return array(
+            array("html", true),
+            array("htmlnew", true),
+            array("xmi", true),
+            array("php", true),
+            array("json", false)
         );
     }
 
@@ -145,31 +160,27 @@ class PHPUMLGeneratorTest
      *
      * @covers PHPUMLGenerator::setXmiVersion
      *
-     * @todo   Implement testSetXmiVersion().
+     * @dataProvider XMLVersionProvider
      *
      * @return void
      */
-    public function testSetXmiVersion()
+    public function testSetXmiVersion($version, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setXmlVersion($version);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testExecute
      *
      * @covers PHPUMLGenerator::execute
      *
-     * @todo   Implement testExecute().
-     *
      * @return void
      */
     public function testExecute()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = true;
+        $this->actual = $this->object->execute();
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

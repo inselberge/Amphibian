@@ -544,6 +544,9 @@ abstract class BaseTest
         );
     }
 
+    /** httpAllowMethodDataProvider
+     * @return array
+     */
     public function httpAllowMethodDataProvider()
     {
         return array(
@@ -552,6 +555,9 @@ abstract class BaseTest
         );
     }
 
+    /** httpContentEncodingDataProvider
+     * @return array
+     */
     public function httpContentEncodingDataProvider()
     {
         return array(
@@ -560,6 +566,9 @@ abstract class BaseTest
         );
     }
 
+    /** httpContentLanguageDataProvider
+     * @return array
+     */
     public function httpContentLanguageDataProvider()
     {
         return array(
@@ -568,6 +577,9 @@ abstract class BaseTest
         );
     }
 
+    /** httpContentLocationDataProvider
+     * @return array
+     */
     public function httpContentLocationDataProvider()
     {
         return array(
@@ -576,6 +588,10 @@ abstract class BaseTest
             array("/tmp")
         );
     }
+
+    /** httpContentRangeDataProvider
+     * @return array
+     */
     public function httpContentRangeDataProvider()
     {
         return array(
@@ -585,6 +601,9 @@ abstract class BaseTest
         );
     }
 
+    /** httpContentTypeDataProvider
+     * @return array
+     */
     public function httpContentTypeDataProvider()
     {
         return array(
@@ -594,6 +613,9 @@ abstract class BaseTest
         );
     }
 
+    /** httpDateDataProvider
+     * @return array
+     */
     public function httpDateDataProvider()
     {
         return array(
@@ -601,4 +623,30 @@ abstract class BaseTest
             array("Sat, 19 Apr 2014 09:00:00 GMT")
         );
     }
-} 
+
+    /** XMLVersionProvider
+     *
+     * @return array
+     */
+    public function XMLVersionProvider()
+    {
+        return array(
+            array("1.0", true),
+            array("1.1", true),
+            array("Omaha", false)
+        );
+    }
+
+    /** encodingDataProvider
+     *
+     * @return array
+     */
+    public function encodingDataProvider()
+    {
+        return array(
+            array("UTF-8", true),
+            array("ISO-8859-1", true),
+            array("", false)
+        );
+    }
+}

@@ -10,6 +10,12 @@ require_once AMPHIBIAN_CORE_NEUTRAL . "CheckInput.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."databaseUserGeneratorInterface.php";
 /**
  * Class DatabaseUserGenerator
+ *
+ * @category ${NAMESPACE}
+ * @package  DatabaseUserGenerator
+ * @author   Carl 'Tex' Morgan <texmorgan@inselberge.com>
+ * @license
+ * @link
  */
 abstract class DatabaseUserGenerator
     extends CheckInput
@@ -86,8 +92,8 @@ abstract class DatabaseUserGenerator
 
     /** set
      *
-     * @param $element
-     * @param $value
+     * @param string $element
+     * @param mixed $value
      *
      * @return bool
      */
@@ -157,15 +163,25 @@ abstract class DatabaseUserGenerator
      *
      * @param string $name
      *
-     * @return void
+     * @return bool
      */
     public function makeUserName( $name )
     {
-        if ( !isset($this->compactedAppName) ) {
-            $this->compactAppName();
+        try {
+            if (CheckInput::checkSet($name)) {
+                if (!isset($this->compactedAppName)) {
+                    $this->compactAppName();
+                }
+                $this->baseUserName = $name;
+                $this->userName = $this->compactedAppName . "_" . $name;
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": name required.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
         }
-        $this->baseUserName = $name;
-        $this->userName     = $this->compactedAppName . "_" . $name;
+        return true;
     }
 
     /** checkAppNameLength

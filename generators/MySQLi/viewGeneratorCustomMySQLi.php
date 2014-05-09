@@ -9,7 +9,7 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
 require_once AMPHIBIAN_GENERATORS_ABSTRACT . "viewGeneratorCustom.php";
 require_once AMPHIBIAN_GENERATORS_MYSQLI_INTERFACES."ViewGeneratorCustomMySQLiInterface.php";
-class viewGeneratorCustomMySQLi
+class ViewGeneratorCustomMySQLi
     extends viewGeneratorCustom
     implements ViewGeneratorCustomMySQLiInterface
 {

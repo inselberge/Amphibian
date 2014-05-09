@@ -14,13 +14,8 @@ require_once AMPHIBIAN_GENERATORS_ABSTRACT."viewGeneratorCustom.php";
  *
  */
 class viewGeneratorCustomTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object viewGeneratorCustom an instance of viewGeneratorCustom
-     */
-    protected $object;
-
     /** setUp
      *
      * Sets up the fixture, for example, opens a network connection.
@@ -30,17 +25,6 @@ class viewGeneratorCustomTest
      */
     protected function setUp()
     {
-        $this->object = new viewGeneratorCustom();
-    }
-
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
+        $this->object = $this->getMockForAbstractClass('ViewGeneratorCustom');
     }
 }

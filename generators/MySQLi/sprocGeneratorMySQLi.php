@@ -70,9 +70,9 @@ class SprocGeneratorMySQLi
 
     /** instance
      *
-     * @param resource $databaseConnection a valid database connection
+     * @param object $databaseConnection a valid database connection
      *
-     * @return SprocGeneratorMySQLi
+     * @return object
      */
     static public function instance( $databaseConnection )
     {
@@ -92,10 +92,29 @@ class SprocGeneratorMySQLi
         }
     }
 
+    /** factory
+     *
+     * @param object $databaseConnection a valid database connection
+     *
+     * @return object
+     */
+    static public function factory($databaseConnection)
+    {
+        try {
+            if (isset($databaseConnection) & !is_null($databaseConnection)) {
+                return new SprocGeneratorMySQLi($databaseConnection);
+            } else {
+                throw new ExceptionHandler("Tne database connection must be set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
 
     /** setTableNames
      *
-     * @param array $array
+     * @param array $array the tables to generate sprocs for in the run
      *
      * @return bool
      */
@@ -120,18 +139,26 @@ class SprocGeneratorMySQLi
 
     /** execute
      *
-     * @return void
+     * @return bool
      */
     public function execute()
     {
-        if ( !isset($this->_tableNames) ) {
-            $this->_tableNames = $this->connection->getTables();
+        try {
+            if (!isset($this->_tableNames)) {
+                $this->_tableNames = $this->connection->getTables();
+            }
+            foreach ($this->_tableNames as $this->currentTableName) {
+                $this->initialize();
+                $this->prepareTableDescription();
+                if ( !$this->iterate() ) {
+                    throw new ExceptionHandler(__METHOD__ . ": $this->currentTableName failed.");
+                }
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
         }
-        foreach ( $this->_tableNames as  $this->currentTableName ) {
-            $this->initialize();
-            $this->prepareTableDescription();
-            $this->iterate();
-        }
+        return true;
     }
 
     /** prepareTableDescription
