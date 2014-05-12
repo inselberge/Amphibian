@@ -61,6 +61,15 @@ class Serialize
         return self::$Serialize;
     }
 
+    /** factory
+     *
+     * @return object
+     */
+    static public function factory()
+    {
+        return new Serialize();
+    }
+
     /**  setDirection
      *
      * @param boolean $direction true = serialize, false = unserialize
@@ -124,7 +133,7 @@ class Serialize
             if ( CheckInput::checkNewInput($data) ) {
                 $this->data[] = $data;
             } else {
-                throw new ExceptionHandler(__METHOD__ . ": data is not valid");
+                throw new ExceptionHandler(__METHOD__ . ": data invalid");
             }
         } catch ( ExceptionHandler $e ) {
             $e->execute();

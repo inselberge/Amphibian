@@ -30,21 +30,6 @@ class SuperGlobalTest
         $this->object = new SuperGlobal($_SERVER);
     }
 
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
-        unset($this->object);
-        unset($this->expected);
-        unset($this->actual);
-        unset($this->arguments);
-    }
-
     /** testCheckEqual
      *
      * @covers SuperGlobal::checkEqual
@@ -119,15 +104,12 @@ class SuperGlobalTest
      *
      * @covers SuperGlobal::printSize
      *
-     * @todo   Implement testPrintSize().
-     *
      * @return void
      */
     public function testPrintSize()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = null;
+        $this->actual = $this->object->printSize();
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

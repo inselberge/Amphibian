@@ -2,259 +2,336 @@
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 require_once AMPHIBIAN_CORE_NEUTRAL . "ResponseHeader.php";
-
+/**
+ * Class ResponseHeaderTest
+ *
+ * @category UnitTestCoreNeutral
+ * @package  ResponseHeaderTest
+ * @author   Carl 'Tex' Morgan <texmorgan@inselberge.com>
+ * @license  GPL v2
+ * @link     documentation/ResponseHeaderTest
+ */
 class ResponseHeaderTest
     extends BaseTest
 {
 
-
-    /**
+    /** setUp
+     *
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp()
     {
-        $this->object = new ResponseHeader;
+        $this->object = ResponseHeader::factory();
     }
 
-
-    /**
+    /** testInstance
+     *
      * @covers ResponseHeader::instance
-     * @todo   Implement testInstance().
+     *
+     * @return void
      */
     public function testInstance()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = ResponseHeader::instance();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testFactory
+     *
      * @covers ResponseHeader::factory
-     * @todo   Implement testFactory().
+     *
+     * @return void
      */
     public function testFactory()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = ResponseHeader::factory();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetAcceptRanges
+     *
+     * @param string $expectedResult the accepted ranges
+     *
      * @covers ResponseHeader::getAcceptRanges
-     * @todo   Implement testGetAcceptRanges().
+     *
+     * @return void
      */
-    public function testGetAcceptRanges()
+    public function testGetAcceptRanges($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getAcceptRanges();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetAcceptRanges
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setAcceptRanges
-     * @todo   Implement testSetAcceptRanges().
+     *
+     * @return void
      */
-    public function testSetAcceptRanges()
+    public function testSetAcceptRanges($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setAcceptRanges($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetAge
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getAge
-     * @todo   Implement testGetAge().
+     *
+     * @return void
      */
-    public function testGetAge()
+    public function testGetAge($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getAge();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetAge
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setAge
-     * @todo   Implement testSetAge().
+     *
+     * @return void
      */
-    public function testSetAge()
+    public function testSetAge($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setAge($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetETag
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getETag
-     * @todo   Implement testGetETag().
+     *
+     * @return void
      */
-    public function testGetETag()
+    public function testGetETag($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getETag();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetETag
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setETag
-     * @todo   Implement testSetETag().
+     *
+     * @return void
      */
-    public function testSetETag()
+    public function testSetETag($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setETag($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetLocation
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getLocation
-     * @todo   Implement testGetLocation().
+     *
+     * @return void
      */
-    public function testGetLocation()
+    public function testGetLocation($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getLocation();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetLocation
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setLocation
-     * @todo   Implement testSetLocation().
+     *
+     * @return void
      */
-    public function testSetLocation()
+    public function testSetLocation($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setLocation($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetProxyAuthenticate
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getProxyAuthenticate
-     * @todo   Implement testGetProxyAuthenticate().
+     *
+     * @return void
      */
-    public function testGetProxyAuthenticate()
+    public function testGetProxyAuthenticate($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getProxyAuthenticate();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetProxyAuthenticate
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setProxyAuthenticate
-     * @todo   Implement testSetProxyAuthenticate().
+     *
+     * @return void
      */
-    public function testSetProxyAuthenticate()
+    public function testSetProxyAuthenticate($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setProxyAuthenticate($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetRetryAfter
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getRetryAfter
-     * @todo   Implement testGetRetryAfter().
+     *
+     * @return void
      */
-    public function testGetRetryAfter()
+    public function testGetRetryAfter($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getRetryAfter();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetRetryAfter
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setRetryAfter
-     * @todo   Implement testSetRetryAfter().
+     *
+     * @return void
      */
-    public function testSetRetryAfter()
+    public function testSetRetryAfter($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setRetryAfter($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetServer
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getServer
-     * @todo   Implement testGetServer().
+     *
+     * @return void
      */
-    public function testGetServer()
+    public function testGetServer($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getServer();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetServer
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setServer
-     * @todo   Implement testSetServer().
+     *
+     * @return void
      */
-    public function testSetServer()
+    public function testSetServer($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setServer($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetVary
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getVary
-     * @todo   Implement testGetVary().
+     *
+     * @return void
      */
-    public function testGetVary()
+    public function testGetVary($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getVary();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetVary
+     *
+     * @param $value
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::setVary
-     * @todo   Implement testSetVary().
+     *
+     * @return void
      */
-    public function testSetVary()
+    public function testSetVary($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setVary($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testGetWwwAuthenticate
+     *
+     * @param $expectedResult
+     *
      * @covers ResponseHeader::getWwwAuthenticate
-     * @todo   Implement testGetWwwAuthenticate().
+     *
+     * @return void
      */
-    public function testGetWwwAuthenticate()
+    public function testGetWwwAuthenticate($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getWwwAuthenticate();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetWwwAuthenticate
+     *
+     * @param string $value          the WWW-Authenticate value
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers ResponseHeader::setWwwAuthenticate
-     * @todo   Implement testSetWwwAuthenticate().
+     *
+     * @return void
      */
-    public function testSetWwwAuthenticate()
+    public function testSetWwwAuthenticate($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setWwwAuthenticate($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

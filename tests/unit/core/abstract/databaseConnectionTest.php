@@ -24,19 +24,241 @@ class DatabaseConnectionTest
      *
      * @return void
      */
-    protected function setUp()
+    protected function testSetUp()
     {
         $this->object = $this->getMockForAbstractClass('DatabaseConnection');
     }
 
-    /** tearDown
+    /** testGetConnection
      *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getConnection
      *
      * @return void
      */
-    protected function tearDown()
+    public function testGetConnection($expectedResult)
     {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getConnection();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testSetDatabaseName
+     *
+     * @param $databaseName
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::setDatabaseName
+     *
+     * @return void
+     */
+    public function testSetDatabaseName($databaseName, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setDatabaseName($databaseName);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGetDatabaseName
+     *
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getDatabaseName
+     *
+     * @return void
+     */
+    public function testGetDatabaseName($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getDatabaseName();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testSetDatabasePort
+     *
+     * @param $databasePort
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::setDatabasePort
+     *
+     * @return void
+     */
+    public function testSetDatabasePort($databasePort, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setDatabasePort($databasePort);
+        $this->assertEquals($this->expected, $this->actual);
+
+    }
+
+    /** testGetDatabasePort
+     *
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getDatabasePort
+     *
+     * @return void
+     */
+    public function testGetDatabasePort($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getDatabasePort();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testSetDatabaseSocket
+     *
+     * @param $databaseSocket
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::setDatabaseSocket
+     *
+     * @return void
+     */
+    public function testSetDatabaseSocket($databaseSocket, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setDatabaseSocket($databaseSocket);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGetDatabaseSocket
+     *
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getDatabaseSocket
+     *
+     * @return void
+     */
+    public function testGetDatabaseSocket($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getDatabaseSocket();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testSetError
+     *
+     * @param $error
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::setError
+     *
+     * @return void
+     */
+    public function testSetError($error, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setError($error);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGetError
+     *
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getError
+     *
+     * @return void
+     */
+    public function testGetError($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getError();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testSetServerName
+     *
+     * @param $serverName
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::setServerName
+     *
+     * @return void
+     */
+    public function testSetServerName($serverName, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setServerName($serverName);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGetServerName
+     *
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getServerName
+     *
+     * @return void
+     */
+    public function testGetServerName($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getServerName();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testSetUserName
+     *
+     * @param $userName
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::setUserName
+     *
+     * @return void
+     */
+    public function testSetUserName($userName, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setUserName($userName);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGetUserName
+     *
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getUserName
+     *
+     * @return void
+     */
+    public function testGetUserName($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getUserName();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testSetUserPassword
+     *
+     * @param $userPassword
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::setUserPassword
+     *
+     * @return void
+     */
+    public function testSetUserPassword($userPassword, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setUserPassword($userPassword);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGetUserPassword
+     *
+     * @param $expectedResult
+     *
+     * @covers DatabaseConnection::getUserPassword
+     *
+     * @return void
+     */
+    public function testGetUserPassword($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getUserPassword();
+        $this->assertEquals($this->expected, $this->actual);
     }
 }

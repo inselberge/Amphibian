@@ -90,6 +90,15 @@ class XML
         return self::$XML;
     }
 
+    /** factory
+     *
+     * @return XML
+     */
+    static public function factory()
+    {
+        return new XML();
+    }
+
     /**  setReadOrWrite
      *
      * @param boolean $readOrWrite false = read, true = write
