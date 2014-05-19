@@ -1,257 +1,353 @@
 <?php
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
-require_once AMPHIBIAN_CORE_NEUTRAL . "EntityHeader.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR
+    . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 
+require_once AMPHIBIAN_CORE_NEUTRAL . "EntityHeader.php";
+/**
+ * Class GeneralHeaderTest
+ *
+ * @category UnitTestsCoreNeutral
+ * @package  GeneralHeaderTest
+ * @author   Carl 'Tex' Morgan <texmorgan@inselberge.com>
+ * @license  GPL v2
+ * @link     documenation/GeneralHeaderTest
+ */
 class GeneralHeaderTest
     extends BaseTest
 {
-    /**
+    /** setUp
+     *
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp()
     {
-        $this->object = new GeneralHeader;
+        $this->object = GeneralHeader::factory();
     }
 
-    /**
+
+    /** testInstance
+     *
      * @covers GeneralHeader::instance
-     * @todo   Implement testInstance().
+     *
+     * @return void
      */
     public function testInstance()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = GeneralHeader::instance();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testFactory
+     *
      * @covers GeneralHeader::factory
-     * @todo   Implement testFactory().
+     *
+     * @return void
      */
     public function testFactory()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $this->object;
+        $this->actual = GeneralHeader::factory();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetCacheControl
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getCacheControl
-     * @todo   Implement testGetCacheControl().
+     *
+     * @return void
      */
-    public function testGetCacheControl()
+    public function testGetCacheControl($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getCacheControl();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetCacheControl
+     *
+     * @param mixed $value          the value to use
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setCacheControl
-     * @todo   Implement testSetCacheControl().
+     *
+     * @return void
      */
-    public function testSetCacheControl()
+    public function testSetCacheControl($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setCacheControl($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetConnection
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getConnection
-     * @todo   Implement testGetConnection().
+     *
+     * @return void
      */
-    public function testGetConnection()
+    public function testGetConnection($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getConnection();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetConnection
+     *
+     * @param mixed $value          the value to use for the Connection
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setConnection
-     * @todo   Implement testSetConnection().
+     *
+     * @return void
      */
-    public function testSetConnection()
+    public function testSetConnection($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setConnection($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetDate
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getDate
-     * @todo   Implement testGetDate().
+     *
+     * @return void
      */
-    public function testGetDate()
+    public function testGetDate($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getDate();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetDate
+     *
+     * @param mixed $value          the value to use for the Date
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setDate
-     * @todo   Implement testSetDate().
+     *
+     * @return void
      */
-    public function testSetDate()
+    public function testSetDate($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setDate($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetPragma
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getPragma
-     * @todo   Implement testGetPragma().
+     *
+     * @return void
      */
-    public function testGetPragma()
+    public function testGetPragma($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getPragma();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetPragma
+     *
+     * @param mixed $value          the value to use for the Pragma
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setPragma
-     * @todo   Implement testSetPragma().
+     *
+     * @return void
      */
-    public function testSetPragma()
+    public function testSetPragma($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setPragma($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetTrailer
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getTrailer
-     * @todo   Implement testGetTrailer().
+     *
+     * @return void
      */
-    public function testGetTrailer()
+    public function testGetTrailer($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getTrailer();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetTrailer
+     *
+     * @param mixed $value          the value to use for the Trailer
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setTrailer
-     * @todo   Implement testSetTrailer().
+     *
+     * @return void
      */
-    public function testSetTrailer()
+    public function testSetTrailer($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setTrailer($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetTransferEncoding
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getTransferEncoding
-     * @todo   Implement testGetTransferEncoding().
+     *
+     * @return void
      */
-    public function testGetTransferEncoding()
+    public function testGetTransferEncoding($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getTransferEncoding();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetTransferEncoding
+     *
+     * @param mixed $value          the value to use for TransferEncoding
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setTransferEncoding
-     * @todo   Implement testSetTransferEncoding().
+     *
+     * @return void
      */
-    public function testSetTransferEncoding()
+    public function testSetTransferEncoding($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setTransferEncoding($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetUpgrade
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getUpgrade
-     * @todo   Implement testGetUpgrade().
+     *
+     * @return void
      */
-    public function testGetUpgrade()
+    public function testGetUpgrade($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getUpgrade();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testSetUpgrade
+     *
+     * @param mixed $value          the value to use for Upgrade
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setUpgrade
-     * @todo   Implement testSetUpgrade().
+     *
+     * @return void
      */
-    public function testSetUpgrade()
+    public function testSetUpgrade($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setUpgrade($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetVia
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getVia
-     * @todo   Implement testGetVia().
+     *
+     * @return void
      */
-    public function testGetVia()
+    public function testGetVia($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getVia();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetVia
+     *
+     * @param mixed $value          the value to use for via
+     * @param mixed $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setVia
-     * @todo   Implement testSetVia().
+     *
+     * @return void
      */
-    public function testSetVia()
+    public function testSetVia($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setVia($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetWarning
+     *
+     * @param mixed $expectedResult the expected result of the function call
+     *
      * @covers GeneralHeader::getWarning
-     * @todo   Implement testGetWarning().
+     *
+     * @return void
      */
-    public function testGetWarning()
+    public function testGetWarning($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getWarning();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetWarning
+     *
+     * @param string $value          the warning
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers GeneralHeader::setWarning
-     * @todo   Implement testSetWarning().
+     *
+     * @return void
      */
-    public function testSetWarning()
+    public function testSetWarning($value, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setWarning($value);
+        $this->assertEquals($this->expected, $this->actual);
     }
 }
