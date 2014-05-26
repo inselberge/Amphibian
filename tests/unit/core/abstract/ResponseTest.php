@@ -1,175 +1,244 @@
 <?php
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR
+    . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 require_once AMPHIBIAN_CORE_ABSTRACT . "Response.php";
 
+/**
+ * Class ResponseTest
+ *
+ * @category UnitTestsCoreAbstract
+ * @package  ResponseTest
+ * @author   Carl 'Tex' Morgan <texmorgan@inselberge.com>
+ * @license  GPL v3
+ * @link     documentation/ResponseTest
+ */
 class ResponseTest
     extends BaseTest
 {
 
-    /**
+    /** setUp
+     *
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp()
     {
-        $this->object = new Response;
+        $this->object = $this->getMockForAbstractClass('Response');
     }
 
 
-    /**
+    /** testGetHttpVersion
+     *
+     * @param string $expectedResult the expected HTTP version
+     *
      * @covers Response::getHttpVersion
-     * @todo   Implement testGetHttpVersion().
+     *
+     * @return void
      */
-    public function testGetHttpVersion()
+    public function testGetHttpVersion($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getHttpVersion();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetHttpVersion
+     *
+     * @param string $version        the HTTP version
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers Response::setHttpVersion
-     * @todo   Implement testSetHttpVersion().
+     *
+     * @return void
      */
-    public function testSetHttpVersion()
+    public function testSetHttpVersion($version, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setHttpVersion($version);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetStatus
+     *
+     * @param mixed $expectedResult the status
+     *
      * @covers Response::getStatus
-     * @todo   Implement testGetStatus().
+     *
+     * @return void
      */
-    public function testGetStatus()
+    public function testGetStatus($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getStatus();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetStatus
+     *
+     * @param string $status         the status
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers Response::setStatus
-     * @todo   Implement testSetStatus().
+     *
+     * @return void
      */
-    public function testSetStatus()
+    public function testSetStatus($status, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setStatus($status);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetEntityHeader
+     *
+     * @param object $expectedResult a valid EntityHeader
+     *
      * @covers Response::getEntityHeader
-     * @todo   Implement testGetEntityHeader().
+     *
+     * @return void
      */
-    public function testGetEntityHeader()
+    public function testGetEntityHeader($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getEntityHeader();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetEntityHeader
+     *
+     * @param object $header         a valid EntityHeader object
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers Response::setEntityHeader
-     * @todo   Implement testSetEntityHeader().
+     *
+     * @return void
      */
-    public function testSetEntityHeader()
+    public function testSetEntityHeader($header, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setEntityHeader($header);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetGeneralHeader
+     *
+     * @param object $expectedResult a GeneralHeader object
+     *
      * @covers Response::getGeneralHeader
-     * @todo   Implement testGetGeneralHeader().
+     *
+     * @return void
      */
-    public function testGetGeneralHeader()
+    public function testGetGeneralHeader($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getGeneralHeader();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetGeneralHeader
+     *
+     * @param object $header         a GeneralHeader object
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers Response::setGeneralHeader
-     * @todo   Implement testSetGeneralHeader().
+     *
+     * @return void
      */
-    public function testSetGeneralHeader()
+    public function testSetGeneralHeader($header, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setGeneralHeader($header);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetPayload
+     *
+     * @param array $expectedResult the expected data or errors
+     *
      * @covers Response::getPayload
-     * @todo   Implement testGetPayload().
+     *
+     * @return void
      */
-    public function testGetPayload()
+    public function testGetPayload($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getPayload();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetPayload
+     *
+     * @param array $payload        the data or errors
+     * @param bool  $expectedResult true = success; false = failure
+     *
      * @covers Response::setPayload
-     * @todo   Implement testSetPayload().
+     *
+     * @return void
      */
-    public function testSetPayload()
+    public function testSetPayload($payload, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setPayload($payload);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testGetResponseHeader
+     *
+     * @param object $expectedResult an ResponseHeader object
+     *
      * @covers Response::getResponseHeader
-     * @todo   Implement testGetResponseHeader().
+     *
+     * @return void
      */
-    public function testGetResponseHeader()
+    public function testGetResponseHeader($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->getResponseHeader();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+
+    /** testSetResponseHeader
+     *
+     * @param object $header         a response header
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers Response::setResponseHeader
-     * @todo   Implement testSetResponseHeader().
+     *
+     * @return void
      */
-    public function testSetResponseHeader()
+    public function testSetResponseHeader($header, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setResponseHeader($header);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
-    /**
+    /** testExecute
+     *
+     * @param bool $expectedResult true = success; false = failure
+     *
      * @covers Response::execute
-     * @todo   Implement testExecute().
+     *
+     * @return void
      */
-    public function testExecute()
+    public function testExecute($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->execute();
+        $this->assertEquals($this->expected, $this->actual);
     }
 }
