@@ -14,12 +14,8 @@ require_once AMPHIBIAN_CORE."MySQLLoader.php";
  *
  */
 class MySQLLoaderTest 
-    extends PHPUnit_Framework_TestCase
+    extends BaseTest
 {
-    /**
-     * @var object MySQLLoader an instance of MySQLLoader
-     */
-    protected $object;
 
     /** setUp
      *
@@ -33,62 +29,65 @@ class MySQLLoaderTest
         $this->object = new MySQLLoader();
     }
 
-    /** tearDown
-     *
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @return void
-     */
-    protected function tearDown()
-    {
-    }
-
     /** testSetFileName
+     *
+     * @param string $fileName       the file name to use
+     * @param bool   $expectedResult true = success; false = failure
      *
      * @covers MySQLLoader::setFileName
      *
-     * @todo   Implement testSetFileName().
+     * @dataProvider fileNameDataProvider
      *
      * @return void
      */
-    public function testSetFileName()
+    public function testSetFileName($fileName, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setFileName($fileName);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** fileNameDataProvider
+     *
+     * @return array
+     */
+    public function fileNameDataProvider()
+    {
+        return array(
+            array(),
+            array(),
+            array()
         );
     }
 
     /** testSetDirectory
      *
+     * @param string $directory      the directory to use
+     * @param bool   $expectedResult true = success; false = failure
+     *
      * @covers MySQLLoader::setDirectory
      *
-     * @todo   Implement testSetDirectory().
+     * @dataProvider directoryDataProvider
      *
      * @return void
      */
-    public function testSetDirectory()
+    public function testSetDirectory($directory, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setDirectory($directory);
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testExecute
      *
      * @covers MySQLLoader::execute
      *
-     * @todo   Implement testExecute().
-     *
      * @return void
      */
     public function testExecute()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = true;
+        $this->actual = $this->object->execute();
+        $this->assertEquals($this->expected, $this->actual);
     }
 }
