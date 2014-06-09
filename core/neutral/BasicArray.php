@@ -8,7 +8,11 @@
  * Time: 4:22 PM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
-require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.inc.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR 
+    . ".." . DIRECTORY_SEPARATOR 
+    . ".." . DIRECTORY_SEPARATOR 
+    . "config" . DIRECTORY_SEPARATOR 
+    . "config.inc.php";
 require_once "CheckInput.php";
 require_once "interfaces".DIRECTORY_SEPARATOR."BasicArrayInterface.php";
 /**
@@ -84,16 +88,20 @@ class BasicArray
     }
 
     /** append
-     * * @param $value
-     * @return void
+     * 
+     * @param $value
+     * 
+     * @return bool
      */
     public function append( $value )
     {
     }
 
     /** remove
-     * * @param $value
-     * @return void
+     *
+     * @param $value
+     *
+     * @return bool
      */
     public function remove( $value )
     {
@@ -161,14 +169,14 @@ class BasicArray
 
     /** merge
      * * @param $array
-     * @return void
+     * @return bool
      */
     public function merge( $array )
     {
     }
 
     /** keySort
-     * @return void
+     * @return bool
      */
     public function keySort()
     {
@@ -177,14 +185,14 @@ class BasicArray
 
     /** change_key_case
      * * @param $case
-     * @return void
+     * @return bool
      */
     public function change_key_case( $case )
     {
     }
 
     /** count_values
-     * @return void
+     * @return bool
      */
     public function count_values()
     {
@@ -192,7 +200,7 @@ class BasicArray
 
     /** diff_assoc
      * * @param $array
-     * @return void
+     * @return bool
      */
     public function diff_assoc( $array )
     {
@@ -200,7 +208,7 @@ class BasicArray
 
     /** diff_key
      * * @param $array
-     * @return void
+     * @return bool
      */
     public function diff_key( $array )
     {
@@ -209,7 +217,7 @@ class BasicArray
     /** diff_uassoc
      * * @param $array
      * @param $call
-     * @return void
+     * @return bool
      */
     public function diff_uassoc( $array, $call )
     {
@@ -218,133 +226,133 @@ class BasicArray
     /** diff_ukey
      * * @param $array
      * @param $call
-     * @return void
+     * @return bool
      */
     public function diff_ukey( $array, $call )
     {
     }
 
     /** diff
-     * @return void
+     * @return bool
      */
     public function diff()
     {
     }
 
     /** fill_keys
-     * @return void
+     * @return bool
      */
     public function fill_keys()
     {
     }
 
     /** fill
-     * @return void
+     * @return bool
      */
     public function fill()
     {
     }
 
     /** filter
-     * @return void
+     * @return bool
      */
     public function filter()
     {
     }
 
     /** flip
-     * @return void
+     * @return bool
      */
     public function flip()
     {
     }
 
     /** intersect_assoc
-     * @return void
+     * @return bool
      */
     public function intersect_assoc()
     {
     }
 
     /** intersect_key
-     * @return void
+     * @return bool
      */
     public function intersect_key()
     {
     }
 
     /** intersect_uassoc
-     * @return void
+     * @return bool
      */
     public function intersect_uassoc()
     {
     }
 
     /** intersect_ukey
-     * @return void
+     * @return bool
      */
     public function intersect_ukey()
     {
     }
 
     /** intersect
-     * @return void
+     * @return bool
      */
     public function intersect()
     {
     }
 
     /** key_exists
-     * @return void
+     * @return bool
      */
     public function key_exists()
     {
     }
 
     /** keys
-     * @return void
+     * @return bool
      */
     public function keys()
     {
     }
 
     /** map
-     * @return void
+     * @return bool
      */
     public function map()
     {
     }
 
     /** merge_recursive
-     * @return void
+     * @return bool
      */
     public function merge_recursive()
     {
     }
 
     /** multisort
-     * @return void
+     * @return bool
      */
     public function multisort()
     {
     }
 
     /** pad
-     * @return void
+     * @return bool
      */
     public function pad()
     {
     }
 
     /** pop
-     * @return void
+     * @return bool
      */
     public function pop()
     {
     }
 
     /** product
-     * @return void
+     * @return bool
      */
     public function product()
     {
@@ -352,7 +360,7 @@ class BasicArray
     }
 
     /** push
-     * @return void
+     * @return bool
      */
     public function push()
     {
@@ -360,7 +368,7 @@ class BasicArray
     }
 
     /** rand
-     * @return void
+     * @return bool
      */
     public function rand()
     {
@@ -368,7 +376,7 @@ class BasicArray
     }
 
     /** reduce
-     * @return void
+     * @return bool
      */
     public function reduce()
     {
@@ -376,325 +384,331 @@ class BasicArray
     }
 
     /** replace_recursive
-     * @return void
+     * @return bool
      */
     public function replace_recursive()
     {
     }
 
     /** replace
-     * @return void
+     * @return bool
      */
     public function replace()
     {
     }
 
     /** reverse
-     * @return void
+     * @return bool
      */
     public function reverse()
     {
     }
 
     /** search
-     * @return void
+     * @return bool
      */
     public function search()
     {
     }
 
     /** shift
-     * @return void
+     * @return bool
      */
     public function shift()
     {
     }
 
     /** slice
-     * @return void
+     * @return bool
      */
     public function slice()
     {
     }
 
     /** splice
-     * @return void
+     * @return bool
      */
     public function splice()
     {
     }
 
     /** sum
-     * @return void
+     * @return bool
      */
     public function sum()
     {
     }
 
     /** udiff_assoc
-     * @return void
+     * @return bool
      */
     public function udiff_assoc()
     {
     }
 
     /** udiff_uassoc
-     * @return void
+     * @return bool
      */
     public function udiff_uassoc()
     {
     }
 
     /** udiff
-     * @return void
+     * @return bool
      */
     public function udiff()
     {
     }
 
     /** uintersect_assoc
-     * @return void
+     * @return bool
      */
     public function uintersect_assoc()
     {
     }
 
     /** uintersect_uassoc
-     * @return void
+     * @return bool
      */
     public function uintersect_uassoc()
     {
     }
 
     /** uintersect
-     * @return void
+     * @return bool
      */
     public function uintersect()
     {
     }
 
     /** unique
-     * @return void
+     * @return bool
      */
     public function unique()
     {
     }
 
     /** unshift
-     * @return void
+     * @return bool
      */
     public function unshift()
     {
     }
 
     /** values
-     * @return void
+     * @return bool
      */
     public function values()
     {
     }
 
     /** walk_recursive
-     * @return void
+     * @return bool
      */
     public function walk_recursive()
     {
     }
 
     /** walk
-     * @return void
+     * @return bool
      */
     public function walk()
     {
     }
 
     /** arsort
-     * @return void
+     * @return bool
      */
     public function arsort()
     {
     }
 
     /** asort
-     * @return void
+     * @return bool
      */
     public function asort()
     {
     }
 
     /** compact
-     * @return void
+     * @return bool
      */
     public function compact()
     {
     }
 
     /** count
-     * @return void
+     * @return bool
      */
     public function count()
     {
     }
 
     /** current
-     * @return void
+     * @return bool
      */
     public function current()
     {
     }
 
     /** each
-     * @return void
+     * @return bool
      */
     public function each()
     {
     }
 
     /** end
-     * @return void
+     * @return bool
      */
     public function end()
     {
     }
 
     /** extract
-     * @return void
+     * @return bool
      */
     public function extract()
     {
     }
 
     /** in_array
-     * @return void
+     * @return bool
      */
     public function in_array()
     {
     }
 
     /** key
-     * @return void
+     * @return bool
      */
     public function key()
     {
     }
 
     /** krsort
-     * @return void
+     * @return bool
      */
     public function krsort()
     {
     }
 
     /** ksort
-     * @return void
+     * @return bool
      */
     public function ksort()
     {
     }
 
     /** natcasesort
-     * @return void
+     * @return bool
      */
     public function natcasesort()
     {
     }
 
     /** natsort
-     * @return void
+     * @return bool
      */
     public function natsort()
     {
     }
 
     /** next
-     * @return void
+     * @return bool
      */
     public function next()
     {
     }
 
     /** pos
-     * @return void
+     * @return bool
      */
     public function pos()
     {
     }
 
     /** prev
-     * @return void
+     * @return bool
      */
     public function prev()
     {
     }
 
     /** range
-     * @return void
+     * @return bool
      */
     public function range()
     {
     }
 
     /** reset
-     * @return void
+     * @return bool
      */
     public function reset()
     {
     }
 
     /** rsort
-     * @return void
+     * @return bool
      */
     public function rsort()
     {
     }
 
     /** shuffle
-     * @return void
+     * @return bool
      */
     public function shuffle()
     {
     }
 
     /** sizeof
-     * @return void
+     * @return bool
      */
     public function sizeof()
     {
     }
 
     /** sort
-     * @return void
+     * @return bool
      */
     public function sort()
     {
     }
 
     /** uasort
-     * * @param $call
-     * @return void
+     *
+     * @param $call
+     *
+     * @return bool
      */
     public function uasort( $call )
     {
     }
 
     /** uksort
-     * * @param $call
-     * @return void
+     *
+     * @param $call
+     *
+     * @return bool
      */
     public function uksort( $call )
     {
     }
 
     /** usort
-     * * @param $call
-     * @return void
+     *
+     * @param $call
+     *
+     * @return bool
      */
     public function usort( $call )
     {
     }
 
     /** updateKeys
-     * @return void
+     * @return bool
      */
     protected function updateKeys()
     {
@@ -703,7 +717,7 @@ class BasicArray
     }
 
     /** updateValues
-     * @return void
+     * @return bool
      */
     protected function updateValues()
     {

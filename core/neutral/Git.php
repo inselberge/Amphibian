@@ -799,6 +799,7 @@ class Git
     }
 
     /** remote
+     *
      * @return void
      */
     public function remote()

@@ -171,21 +171,6 @@ class GitTest
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /** testPush
-     *
-     * @covers Git::push
-     *
-     * @return void
-     */
-    public function testPush()
-    {
-        /*
-        $this->expected = true;
-        $this->actual = $this->object->push();
-        $this->assertEquals($this->expected, $this->actual);
-        */
-    }
-
     /** testPull
      *
      * @covers Git::pull
@@ -194,27 +179,37 @@ class GitTest
      */
     public function testPull()
     {
-        /*
         $this->expected = true;
         $this->actual = $this->object->pull();
         $this->assertEquals($this->expected, $this->actual);
-        */
+    }
+
+    /** testPush
+     *
+     * @covers Git::push
+     *
+     * @return void
+     */
+    public function testPush()
+    {
+        $this->expected = true;
+        $this->actual = $this->object->push();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testCloneRepository
      *
-     * @covers Git::cloneRepository
+     * @param string $expectedResult true = success; false = failure
      *
-     * @todo   Implement testCloneRepository().
+     * @covers Git::cloneRepository
      *
      * @return void
      */
-    public function testCloneRepository()
+    public function testCloneRepository($expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->cloneRepository();
+        $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testRemote
@@ -244,6 +239,5 @@ class GitTest
         $this->expected = null;
         $this->actual = $this->object->printOutput();
         $this->assertEquals($this->expected, $this->actual);
-
     }
 }

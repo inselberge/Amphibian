@@ -56,7 +56,7 @@ class APIResponse
      */
     protected $payload;
     /**
-     * @var  APIResponse holds values for $APIResponse->APIResponse
+     * @var object APIResponse
      */
     static public $APIResponse;
 

@@ -285,7 +285,7 @@ class APIRequest
         return true;
     }
 
-    /**   getTimestamp
+    /** getTimestamp
      *
      * @return float
      */
