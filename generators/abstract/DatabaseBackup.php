@@ -430,7 +430,7 @@ abstract class DatabaseBackup
             if (CheckInput::checkSet($this->command)) {
                 exec($this->command, $this->output, $this->returnStatus);
                 if ( $this->printOutputFlag ) {
-                    echo "Return status: $this->returnStatus \n";
+                    echo "Return status: $this->returnStatus " . PHP_EOL;
                     print_r($this->output);
                 }
             } else {

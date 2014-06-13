@@ -46,7 +46,7 @@ class emailTest
      */
     public function testSetAdditionalHeaders()
     {
-        $this->assertTrue(true, $this->object->setAdditionalHeaders( 'From: texmorgan@gmail.com' . "\r\n"));
+        $this->assertTrue(true, $this->object->setAdditionalHeaders( 'From: texmorgan@gmail.com' . "\r" . PHP_EOL));
         $this->assertFalse(false, $this->object->setAdditionalParameters(""));
     }
 

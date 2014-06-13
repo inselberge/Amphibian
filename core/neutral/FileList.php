@@ -290,7 +290,7 @@ class FileList
     {
         $i = 1;
         while ( $this->_countMatches > 0 ) {
-            echo "Match $i :\t" . $this->printFileName() . "\n";
+            echo "Match $i :\t" . $this->printFileName() . PHP_EOL;
             $i++;
         }
     }
@@ -322,7 +322,7 @@ class FileList
      */
     public function printSelectList($id = null, $name = null, $class = null, $excludeArray = null)
     {
-        $this->html       = '<select id="' . $id . '" name="' . $name . '" class="' . $class . '">' . "\n";
+        $this->html       = '<select id="' . $id . '" name="' . $name . '" class="' . $class . '">' . PHP_EOL;
         $option           = null;
         $excludeArrayUsed = is_array($excludeArray);
         while ( $this->_countMatches > 0 ) {
@@ -330,13 +330,13 @@ class FileList
             if ( $excludeArrayUsed ) {
                 if ( in_array($option, $excludeArray, true) ) {
                 } else {
-                    $this->html .= "\t" . '<option value="' . $option . '">' . $option . '</option>' . "\n";
+                    $this->html .= "\t" . '<option value="' . $option . '">' . $option . '</option>' . PHP_EOL;
                 }
             } else {
-                $this->html .= "\t" . '<option value="' . $option . '">' . $option . '</option>' . "\n";
+                $this->html .= "\t" . '<option value="' . $option . '">' . $option . '</option>' . PHP_EOL;
             }
         }
-        $this->html .= '</select>' . "\n";
+        $this->html .= '</select>' . PHP_EOL;
     }
 }
 

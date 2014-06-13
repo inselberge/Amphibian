@@ -289,7 +289,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocChangeDelimiter()
     {
-        return "DELIMITER $$\n";
+        return "DELIMITER $$" . PHP_EOL;
     }
 
     /** sprocDropPrevious
@@ -300,7 +300,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocDropPrevious( $sprocType )
     {
-        return "DROP PROCEDURE IF EXISTS `" . DB_NAME . "`.`" . $sprocType . ucwords($this->currentTableName) . "`$$\n";
+        return "DROP PROCEDURE IF EXISTS `" . DB_NAME . "`.`" . $sprocType . ucwords($this->currentTableName) . "`$$" . PHP_EOL;
     }
 
     /** sprocCreate
@@ -312,9 +312,9 @@ class SprocGeneratorMySQLi
     protected function sprocCreate( $sprocType )
     {
         if ( isset($this->sprocOutArguments) ) {
-            return "CREATE PROCEDURE `" . $sprocType . ucwords($this->currentTableName) . "`(" . $this->sprocInArguments . ", " . $this->sprocOutArguments . ")\n";
+            return "CREATE PROCEDURE `" . $sprocType . ucwords($this->currentTableName) . "`(" . $this->sprocInArguments . ", " . $this->sprocOutArguments . ")" . PHP_EOL;
         } else {
-            return "CREATE PROCEDURE `" . $sprocType . ucwords($this->currentTableName) . "`(" . $this->sprocInArguments . ")\n";
+            return "CREATE PROCEDURE `" . $sprocType . ucwords($this->currentTableName) . "`(" . $this->sprocInArguments . ")" . PHP_EOL;
         }
     }
 
@@ -325,7 +325,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocBeginQuery()
     {
-        return "BEGIN\n";
+        return "BEGIN" . PHP_EOL;
     }
 
 
@@ -335,7 +335,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocValidate()
     {
-        return "\t" . "SELECT 1 \n\tFROM `" . $this->currentTableName . "` \n\tWHERE " . $this->makeKeyValuePair($this->autoIncrementColumnName) . ";\n";
+        return "\t" . "SELECT 1 \n\tFROM `" . $this->currentTableName . "` \n\tWHERE " . $this->makeKeyValuePair($this->autoIncrementColumnName) . ";" . PHP_EOL;
     }
 
 
@@ -345,7 +345,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocUpdate()
     {
-        return "\t" . "UPDATE `" . $this->currentTableName . "` \n\tSET " . $this->_currentTableUpdatePairsList . " \n\tWHERE " . $this->primaryKeyPairList . $this->foreignKeyCheck() . ";\n";
+        return "\t" . "UPDATE `" . $this->currentTableName . "` \n\tSET " . $this->_currentTableUpdatePairsList . " \n\tWHERE " . $this->primaryKeyPairList . $this->foreignKeyCheck() . ";" . PHP_EOL;
     }
 
     /** sprocInsert
@@ -354,7 +354,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocInsert()
     {
-        return "\t" . "INSERT INTO `" . $this->currentTableName . "` (" . $this->_currentTableInsertFieldList . ") \n\tVALUES (" . strtoupper($this->_currentTableInputVariableList) . ");\n";
+        return "\t" . "INSERT INTO `" . $this->currentTableName . "` (" . $this->_currentTableInsertFieldList . ") \n\tVALUES (" . strtoupper($this->_currentTableInputVariableList) . ");" . PHP_EOL;
     }
 
 
@@ -364,7 +364,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocInsertID()
     {
-        return "\t" . "SELECT LAST_INSERT_ID() INTO " . strtoupper($this->autoIncrementColumnName) . "_VALUE; \n";
+        return "\t" . "SELECT LAST_INSERT_ID() INTO " . strtoupper($this->autoIncrementColumnName) . "_VALUE; " . PHP_EOL;
     }
 
     /** sprocGet
@@ -373,7 +373,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocGet()
     {
-        return "\t" . "SELECT " . $this->_currentTableColumnsCommaList . " \n\tFROM `" . $this->currentTableName . "` \n\tWHERE " . $this->makeKeyValuePair($this->autoIncrementColumnName) . ";\n";
+        return "\t" . "SELECT " . $this->_currentTableColumnsCommaList . " \n\tFROM `" . $this->currentTableName . "` \n\tWHERE " . $this->makeKeyValuePair($this->autoIncrementColumnName) . ";" . PHP_EOL;
     }
 
     /** sprocEndQuery
@@ -382,7 +382,7 @@ class SprocGeneratorMySQLi
      */
     protected function sprocEndQuery()
     {
-        return "END$$\n" . "DELIMITER ;\n\n";
+        return "END$$" . PHP_EOL . "DELIMITER ;\n" . PHP_EOL;
     }
 
     /** writeSproc

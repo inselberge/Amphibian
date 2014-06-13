@@ -295,7 +295,7 @@ class MySQLLoader
             " " . __CLASS__ .
             "::" . __FUNCTION__ .
             ": " . $this->_fileName .
-            " load finished successfully.\n"
+            " load finished successfully." . PHP_EOL
         );
         $this->_resetForNext();
     }

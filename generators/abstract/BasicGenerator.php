@@ -271,14 +271,14 @@ abstract class BasicGenerator
      */
     protected function addFileComment()
     {
-        $this->buffer .= '/**' . "\n";
-        $this->buffer .= ' * PHP version ' . PHP_VERSION . "\n";
-        $this->buffer .= ' * Created by Amphibian' . "\n";
-        $this->buffer .= ' * Project: ' . APP_NAME . "\n";
-        $this->buffer .= ' * User: ' . "\n";
-        $this->buffer .= ' * Date: ' . date('m/d/Y') . "\n";
-        $this->buffer .= ' * Time: ' . date('H:i:s') . "\n";
-        $this->buffer .= ' */' . "\n";
+        $this->buffer .= '/**' . PHP_EOL;
+        $this->buffer .= ' * PHP version ' . PHP_VERSION . PHP_EOL;
+        $this->buffer .= ' * Created by Amphibian' . PHP_EOL;
+        $this->buffer .= ' * Project: ' . APP_NAME . PHP_EOL;
+        $this->buffer .= ' * User: ' . PHP_EOL;
+        $this->buffer .= ' * Date: ' . date('m/d/Y') . PHP_EOL;
+        $this->buffer .= ' * Time: ' . date('H:i:s') . PHP_EOL;
+        $this->buffer .= ' */' . PHP_EOL;
     }
 
 } 

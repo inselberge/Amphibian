@@ -193,7 +193,7 @@ class SkeletonTestGenerator
             $this->currentClass = explode('.', $this->currentFile);
             if ( CheckInput::checkNewInputArray($this->currentClass) ) {
                 if ( $this->checkTestFileExists() ) {
-                    echo __METHOD__." : $this->currentFile already has a test file, skipping.\n";
+                    echo __METHOD__." : $this->currentFile already has a test file, skipping." . PHP_EOL;
                 } else {
                     $this->generateTestFile();
                 }
@@ -246,7 +246,7 @@ class SkeletonTestGenerator
             //destination file
             $this->_cmd .= " " . $this->destinationDirectory . $this->currentClass['0'] . "Test.php";
             if ( !exec($this->_cmd) ) {
-                throw new ExceptionHandler(" : Failed to generate file with the following command: \n" . $this->_cmd);
+                throw new ExceptionHandler(" : Failed to generate file with the following command: " . PHP_EOL . $this->_cmd);
             }
         } catch ( ExceptionHandler $e ) {
             $e->execute();

@@ -340,9 +340,9 @@ abstract class DropDown
                 $this->html .= $this->id;
             }
             if (isset($this->required) AND $this->required === true) {
-                $this->html .= "</strong> <span class='red'>*</span></label>\n";
+                $this->html .= "</strong> <span class='red'>*</span></label>" . PHP_EOL;
             } else {
-                $this->html .= "</strong></label>\n";
+                $this->html .= "</strong></label>" . PHP_EOL;
             }
         } catch (ExceptionHandler $e) {
             $e->execute();
@@ -372,7 +372,7 @@ abstract class DropDown
             if (isset($this->name)) {
                 $this->html .= 'name="' . $this->name . '" ';
             }
-            $this->html .= ">\n<option disabled selected>Pick One</option>\n";
+            $this->html .= ">\n<option disabled selected>Pick One</option>" . PHP_EOL;
         } catch (ExceptionHandler $e) {
             $e->execute();
             return false;
@@ -436,7 +436,7 @@ abstract class DropDown
      */
     protected function endOption()
     {
-        $this->html .= "</option>\n";
+        $this->html .= "</option>" . PHP_EOL;
     }
 
     /** endSelect

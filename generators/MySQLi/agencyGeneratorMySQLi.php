@@ -120,14 +120,14 @@ class AgencyGeneratorMySQLi
      */
     protected function addForkQuery()
     {
-        $this->buffer.='    protected function forkQuery()'."\n";
-        $this->buffer.='    {'."\n";
-        $this->buffer.='        if($this->checkQueryStringAddendum()){'."\n";
-        $this->buffer.='            return $this->query->execute("SELECT * FROM '.$this->tableName.' ".$this->queryStringAddendum);'."\n";
-        $this->buffer.='        } else {'."\n";
-        $this->buffer.='            return $this->query->execute("SELECT * FROM '.$this->tableName.'");'."\n";
-        $this->buffer.='        }'."\n";
-        $this->buffer.='    }'."\n\n";
+        $this->buffer.='    protected function forkQuery()'.PHP_EOL;
+        $this->buffer.='    {'.PHP_EOL;
+        $this->buffer.='        if($this->checkQueryStringAddendum()){'.PHP_EOL;
+        $this->buffer.='            return $this->query->execute("SELECT * FROM '.$this->tableName.' ".$this->queryStringAddendum);'.PHP_EOL;
+        $this->buffer.='        } else {'.PHP_EOL;
+        $this->buffer.='            return $this->query->execute("SELECT * FROM '.$this->tableName.'");'.PHP_EOL;
+        $this->buffer.='        }'.PHP_EOL;
+        $this->buffer.='    }'.PHP_EOL . PHP_EOL;
     }
 
     /** setTableColumns

@@ -176,7 +176,7 @@ class checkBoxGroup
      */
     protected function startFieldSet()
     {
-        $this->html .= '<fieldset>' . "\n";
+        $this->html .= '<fieldset>' . PHP_EOL;
     }
 
     /** buildCheckAllCheckbox
@@ -188,7 +188,7 @@ class checkBoxGroup
         $this->html .= "\t" . '<legend><input type="checkbox" name="';
         $this->html .= $this->checkboxName . '"';
         $this->html .= ' id="'. $this->checkboxName .'" value="everything" />';
-        $this->html .= $this->legendLabel . '</legend>' . "\n";
+        $this->html .= $this->legendLabel . '</legend>' . PHP_EOL;
     }
 
     /** startCheckboxGroup
@@ -200,11 +200,11 @@ class checkBoxGroup
         if ( $this->horizontalOrVertical === 1 ) {
             $this->html .= "\t";
             $this->html .= '<div data-role="controlgroup" data-type="horizontal">';
-            $this->html .=  "\n";
+            $this->html .=  PHP_EOL;
         } else {
             $this->html .= "\t";
             $this->html .= '<div data-role="controlgroup">';
-            $this->html .=  "\n";
+            $this->html .=  PHP_EOL;
         }
     }
 
@@ -232,16 +232,16 @@ class checkBoxGroup
                 $this->html .= "\t\t" . '<label for="' . $this->safeId . '">';
 
                 if ( isset($valueArray["label"]) ) {
-                    $this->html .= $valueArray["label"] . '</label>' . "\n";
+                    $this->html .= $valueArray["label"] . '</label>' . PHP_EOL;
                 } else {
-                    $this->html .= $this->uppercaseWordsValue . '</label>' . "\n";
+                    $this->html .= $this->uppercaseWordsValue . '</label>' . PHP_EOL;
                 }
 
                 $this->html .= "\t\t";
                 $this->html .= '<input type="checkbox" name="';
                 $this->html .= $this->checkboxName . '" ';
                 $this->html .= 'id="' . $this->safeId . '" ';
-                $this->html .= 'value="' . $valueArray["value"] . '"/>' . "\n";
+                $this->html .= 'value="' . $valueArray["value"] . '"/>' . PHP_EOL;
                 $index++;
             }
         } else {
@@ -267,7 +267,7 @@ class checkBoxGroup
      */
     protected function endCheckboxGroup()
     {
-        $this->html .= "\t" . '</div>' . "\n";
+        $this->html .= "\t" . '</div>' . PHP_EOL;
     }
 
     /** endFieldSet
@@ -276,7 +276,7 @@ class checkBoxGroup
      */
     protected function endFieldSet()
     {
-        $this->html .= '</fieldset>' . "\n";
+        $this->html .= '</fieldset>' . PHP_EOL;
     }
 
     /** printArray

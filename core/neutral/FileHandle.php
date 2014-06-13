@@ -463,5 +463,5 @@ $fh->readFull();
  * File Write Example
 
 $fh = FileHandle::instance("/home/carl/Public/html5/database/generated_sprocs/blargh.sql");
-$fh->writeFull("BKAFDHKLSGHKL"."\n");
+$fh->writeFull("BKAFDHKLSGHKL".PHP_EOL);
 */

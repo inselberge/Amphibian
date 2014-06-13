@@ -120,15 +120,15 @@ abstract class DecoratorGenerator
      */
     protected function startFile()
     {
-        $this->buffer='<?php '."\n";
-        $this->buffer .= '/**' . "\n";
-        $this->buffer .= ' * PHP version ' . PHP_VERSION."\n";
-        $this->buffer .= ' * Created by Amphibian' . "\n";
-        $this->buffer .= ' * Project: ' .APP_NAME. "\n";
-        $this->buffer .= ' * User: ' . "\n";
-        $this->buffer .= ' * Date: ' . date('m/d/Y')."\n";
-        $this->buffer .= ' * Time: ' . date('H:i:s')."\n";
-        $this->buffer .= ' */' . "\n";
+        $this->buffer='<?php '.PHP_EOL;
+        $this->buffer .= '/**' . PHP_EOL;
+        $this->buffer .= ' * PHP version ' . PHP_VERSION.PHP_EOL;
+        $this->buffer .= ' * Created by Amphibian' . PHP_EOL;
+        $this->buffer .= ' * Project: ' .APP_NAME. PHP_EOL;
+        $this->buffer .= ' * User: ' . PHP_EOL;
+        $this->buffer .= ' * Date: ' . date('m/d/Y').PHP_EOL;
+        $this->buffer .= ' * Time: ' . date('H:i:s').PHP_EOL;
+        $this->buffer .= ' */' . PHP_EOL;
     }
 
     /** addAgencyRequired
@@ -137,8 +137,8 @@ abstract class DecoratorGenerator
      */
     protected function addAgencyRequired()
     {
-        $this->buffer.='require_once AGENCIES_GENERATED."' . strtolower($this->tableName).'.php";'."\n";
-        $this->buffer.='require_once "interfaces".DIRECTORY_SEPARATOR."' . $this->tableName.'AgencyDecoratorInterface.php";'."\n";
+        $this->buffer.='require_once AGENCIES_GENERATED."' . strtolower($this->tableName).'.php";'.PHP_EOL;
+        $this->buffer.='require_once "interfaces".DIRECTORY_SEPARATOR."' . $this->tableName.'AgencyDecoratorInterface.php";'.PHP_EOL;
     }
 
     /** addModelRequired
@@ -147,8 +147,8 @@ abstract class DecoratorGenerator
      */
     protected function addModelRequired()
     {
-        $this->buffer.='require_once MODELS_GENERATED."' . strtolower($this->tableName).'.php";'."\n";
-        $this->buffer.='require_once "interfaces".DIRECTORY_SEPARATOR."' . $this->tableName.'ModelDecoratorInterface.php";'."\n";
+        $this->buffer.='require_once MODELS_GENERATED."' . strtolower($this->tableName).'.php";'.PHP_EOL;
+        $this->buffer.='require_once "interfaces".DIRECTORY_SEPARATOR."' . $this->tableName.'ModelDecoratorInterface.php";'.PHP_EOL;
     }
 
     /** addClassComment
@@ -157,19 +157,19 @@ abstract class DecoratorGenerator
      */
     protected function addClassComment()
     {
-        $this->buffer .= '/**' . "\n";
+        $this->buffer .= '/**' . PHP_EOL;
         if ($this->agencyOrModelFlag === "agency") {
-            $this->buffer .= ' * Class ' . $this->tableName.'AgencyDecorator'. "\n";
+            $this->buffer .= ' * Class ' . $this->tableName.'AgencyDecorator'. PHP_EOL;
         } else {
-            $this->buffer .= ' * Class ' . $this->tableName.'ModelDecorator'. "\n";
+            $this->buffer .= ' * Class ' . $this->tableName.'ModelDecorator'. PHP_EOL;
         }
-        $this->buffer .= ' *' . "\n";
-        $this->buffer .= ' * @category Decorator' . "\n";
-        $this->buffer .= ' * @package  ' . $this->tableName. "\n";
-        $this->buffer .= ' * @author   ' . "\n";
-        $this->buffer .= ' * @license  ' . "\n";
-        $this->buffer .= ' * @link     ' . "\n";
-        $this->buffer .= ' */' . "\n";
+        $this->buffer .= ' *' . PHP_EOL;
+        $this->buffer .= ' * @category Decorator' . PHP_EOL;
+        $this->buffer .= ' * @package  ' . $this->tableName. PHP_EOL;
+        $this->buffer .= ' * @author   ' . PHP_EOL;
+        $this->buffer .= ' * @license  ' . PHP_EOL;
+        $this->buffer .= ' * @link     ' . PHP_EOL;
+        $this->buffer .= ' */' . PHP_EOL;
     }
 
     /** startAgencyClass
@@ -178,9 +178,9 @@ abstract class DecoratorGenerator
      */
     protected function startAgencyClass()
     {
-        $this->buffer.='class '.$this->tableName.'AgencyDecorator'."\n";
-        $this->buffer.='    implements '.$this->tableName.'AgencyDecoratorInterface'."\n";
-        $this->buffer.='{'."\n\n";
+        $this->buffer.='class '.$this->tableName.'AgencyDecorator'.PHP_EOL;
+        $this->buffer.='    implements '.$this->tableName.'AgencyDecoratorInterface'.PHP_EOL;
+        $this->buffer.='{'.PHP_EOL . PHP_EOL;
     }
 
     /** startModelClass
@@ -189,9 +189,9 @@ abstract class DecoratorGenerator
      */
     protected function startModelClass()
     {
-        $this->buffer.='class '.$this->tableName.'ModelDecorator'."\n";
-        $this->buffer.='    implements '.$this->tableName.'ModelDecoratorInterface'."\n";
-        $this->buffer.='{'."\n\n";
+        $this->buffer.='class '.$this->tableName.'ModelDecorator'.PHP_EOL;
+        $this->buffer.='    implements '.$this->tableName.'ModelDecoratorInterface'.PHP_EOL;
+        $this->buffer.='{'.PHP_EOL . PHP_EOL;
     }
 
     /** addConstruct
@@ -200,26 +200,26 @@ abstract class DecoratorGenerator
      */
     protected function addBody()
     {
-        $this->buffer.='    private $_'.$this->tableName.'Decorator;'."\n\n";
-        $this->buffer.='    /** __construct'."\n";
-        $this->buffer.='     *'."\n";
-        $this->buffer.='     * @param object $'.$this->tableName.'Decorator a valid '.$this->tableName.' object'."\n";
-        $this->buffer.='     */'."\n";
-        $this->buffer.='    public function __construct($'.$this->tableName.'Decorator)'."\n";
-        $this->buffer.='    {'."\n";
-        $this->buffer.='        try {'."\n";
-        $this->buffer.='            if ( CheckInput::checkSet($'.$this->tableName.'Decorator) ) {'."\n";
-        $this->buffer.='                $this->_'.$this->tableName.'Decorator = $'.$this->tableName.'Decorator;'."\n";
-        $this->buffer.='            } else {'."\n";
-        $this->buffer.='                throw new ExceptionHandler(__METHOD__ . ":object not set.");'."\n";
-        $this->buffer.='            }'."\n";
-        $this->buffer.='        } catch ( ExceptionHandler $e ) {'."\n";
-        $this->buffer.='            $e->execute();'."\n";
-        $this->buffer.='            return false;'."\n";
-        $this->buffer.='        }'."\n";
-        $this->buffer.='        return true;'."\n";
-        $this->buffer.='    }'."\n";
-        $this->buffer.='}'."\n";
+        $this->buffer.='    private $_'.$this->tableName.'Decorator;'.PHP_EOL . PHP_EOL;
+        $this->buffer.='    /** __construct'.PHP_EOL;
+        $this->buffer.='     *'.PHP_EOL;
+        $this->buffer.='     * @param object $'.$this->tableName.'Decorator a valid '.$this->tableName.' object'.PHP_EOL;
+        $this->buffer.='     */'.PHP_EOL;
+        $this->buffer.='    public function __construct($'.$this->tableName.'Decorator)'.PHP_EOL;
+        $this->buffer.='    {'.PHP_EOL;
+        $this->buffer.='        try {'.PHP_EOL;
+        $this->buffer.='            if ( CheckInput::checkSet($'.$this->tableName.'Decorator) ) {'.PHP_EOL;
+        $this->buffer.='                $this->_'.$this->tableName.'Decorator = $'.$this->tableName.'Decorator;'.PHP_EOL;
+        $this->buffer.='            } else {'.PHP_EOL;
+        $this->buffer.='                throw new ExceptionHandler(__METHOD__ . ":object not set.");'.PHP_EOL;
+        $this->buffer.='            }'.PHP_EOL;
+        $this->buffer.='        } catch ( ExceptionHandler $e ) {'.PHP_EOL;
+        $this->buffer.='            $e->execute();'.PHP_EOL;
+        $this->buffer.='            return false;'.PHP_EOL;
+        $this->buffer.='        }'.PHP_EOL;
+        $this->buffer.='        return true;'.PHP_EOL;
+        $this->buffer.='    }'.PHP_EOL;
+        $this->buffer.='}'.PHP_EOL;
     }
 }
 //require_once AMPHIBIAN_CONFIG . "Coworks.In.config.inc.php";

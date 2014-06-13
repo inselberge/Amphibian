@@ -192,32 +192,32 @@ class DatabaseUserGeneratorMySQLi
      */
     protected function generateConnectionTemplate()
     {
-        $this->content = '<?php' . "\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_USER', '" . $this->userName . "');\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_PASSWORD', '" . $this->password . "');\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_HOST', '" . $this->databaseHost . "');\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_NAME', '" . $this->databaseName . "');\n";
-        $this->content .= "/*\n";
-        $this->content .= " * SSL configuration constants\n";
-        $this->content .= " * For help with SSL replication see this website:\n";
-        $this->content .= " * http://www.webdevelopersdiary.com/1/post/2012/07/mysql-database-replication-using-ssl-on-ubuntu-1204.html\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_KEY_PATH','/etc/mysql/server-key.pem');\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_CERT_PATH','/etc/mysql/server-cert.pem');\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_AUTH_PATH','/etc/mysql/ca-cert.pem');\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_CA_PATH',NULL);\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_CIPHER',NULL);\n";
-        $this->content .= "*/\n";
-        $this->content .= "/*\n";
-        $this->content .= " * RSA configuration constants\n";
-        $this->content .= "DEFINE ('" . $this->uppercaseName . "_RSA_PUBLIC_KEY',NULL);\n";
-        $this->content .= "*/\n";
-        $this->content .= "// Make the connection:\n";
-        $this->content .= '$databaseConnection' . $this->uppercaseFirstName . " = mysqli_connect (" . $this->uppercaseName . "_DB_HOST, " . $this->uppercaseName . "_DB_USER, " . $this->uppercaseName . "_DB_PASSWORD, " . $this->uppercaseName . "_DB_NAME);\n";
-        $this->content .= 'if( !$databaseConnection' . $this->uppercaseFirstName . " ) {\n";
-        $this->content .= '    die("Connection Error(".mysqli_connect_errno($databaseConnection' . $this->uppercaseFirstName . ").'): ' . mysqli_connect_error());\n";
-        $this->content .= "} else {\n";
-        $this->content .= "    // Set the character set:\n";
-        $this->content .= "    mysqli_set_charset(" . '$databaseConnection' . $this->uppercaseFirstName . ", 'utf8');\n";
+        $this->content = '<?php' . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_USER', '" . $this->userName . "');" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_PASSWORD', '" . $this->password . "');" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_HOST', '" . $this->databaseHost . "');" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_DB_NAME', '" . $this->databaseName . "');" . PHP_EOL;
+        $this->content .= "/*" . PHP_EOL;
+        $this->content .= " * SSL configuration constants" . PHP_EOL;
+        $this->content .= " * For help with SSL replication see this website:" . PHP_EOL;
+        $this->content .= " * http://www.webdevelopersdiary.com/1/post/2012/07/mysql-database-replication-using-ssl-on-ubuntu-1204.html" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_KEY_PATH','/etc/mysql/server-key.pem');" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_CERT_PATH','/etc/mysql/server-cert.pem');" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_AUTH_PATH','/etc/mysql/ca-cert.pem');" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_CA_PATH',NULL);" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_SSL_CIPHER',NULL);" . PHP_EOL;
+        $this->content .= "*/" . PHP_EOL;
+        $this->content .= "/*" . PHP_EOL;
+        $this->content .= " * RSA configuration constants" . PHP_EOL;
+        $this->content .= "DEFINE ('" . $this->uppercaseName . "_RSA_PUBLIC_KEY',NULL);" . PHP_EOL;
+        $this->content .= "*/" . PHP_EOL;
+        $this->content .= "// Make the connection:" . PHP_EOL;
+        $this->content .= '$databaseConnection' . $this->uppercaseFirstName . " = mysqli_connect (" . $this->uppercaseName . "_DB_HOST, " . $this->uppercaseName . "_DB_USER, " . $this->uppercaseName . "_DB_PASSWORD, " . $this->uppercaseName . "_DB_NAME);" . PHP_EOL;
+        $this->content .= 'if( !$databaseConnection' . $this->uppercaseFirstName . " ) {" . PHP_EOL;
+        $this->content .= '    die("Connection Error(".mysqli_connect_errno($databaseConnection' . $this->uppercaseFirstName . ").'): ' . mysqli_connect_error());" . PHP_EOL;
+        $this->content .= "} else {" . PHP_EOL;
+        $this->content .= "    // Set the character set:" . PHP_EOL;
+        $this->content .= "    mysqli_set_charset(" . '$databaseConnection' . $this->uppercaseFirstName . ", 'utf8');" . PHP_EOL;
         $this->content .= "}";
     }
 

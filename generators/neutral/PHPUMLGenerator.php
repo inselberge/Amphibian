@@ -212,7 +212,7 @@ class PHPUMLGenerator
         try {
             if ( $this->makeCommand() ) {
                 if ( !exec($this->command) ) {
-                    throw new ExceptionHandler(__METHOD__." : Failed to generate documenation with the following command: \n" . $this->command);
+                    throw new ExceptionHandler(__METHOD__." : Failed to generate documenation with the following command: " . PHP_EOL . $this->command);
                 }
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": could not make the command.");

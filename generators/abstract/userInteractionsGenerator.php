@@ -164,37 +164,37 @@ $prerender = array();
 // Include the header file:
 include BOOKENDS."header.html";
 // For storing errors:
-$errors = array();' . "\n");
-        fwrite($this->_FileHandle, 'require_once MODELS_GENERATED."' . $this->_lowerCurrentTableName . '.php";' . "\n");
-        fwrite($this->_FileHandle, '$'.$this->_lowerCurrentTableName.'Model = new ' . $this->_currentTableName . 'Model($databaseConnectionUser);' . "\n");
-        fwrite($this->_FileHandle, 'include_once AGENCIES_GENERATED."view' . $this->_lowerCurrentTableName . '.php";' . "\n");
-        fwrite($this->_FileHandle, '$'.$this->_lowerCurrentTableName.'Agency = view' . $this->_currentTableName . 'Agency::instance($databaseConnectionBrowse);' . "\n");
-        //fwrite($this->_FileHandle, "echo '" . '<div class="hero-unit shadow"><hgroup><h1>' . ucwords(_ToSpace($this->_currentTableName)) . '</h1><h3></h3></hgroup></div>' . "';" . "\n");
-        fwrite($this->_FileHandle, 'require_once CONTROLLERS_GENERATED . "' . $this->_lowerCurrentTableName . '.php";' . "\n");
+$errors = array();' . PHP_EOL);
+        fwrite($this->_FileHandle, 'require_once MODELS_GENERATED."' . $this->_lowerCurrentTableName . '.php";' . PHP_EOL);
+        fwrite($this->_FileHandle, '$'.$this->_lowerCurrentTableName.'Model = new ' . $this->_currentTableName . 'Model($databaseConnectionUser);' . PHP_EOL);
+        fwrite($this->_FileHandle, 'include_once AGENCIES_GENERATED."view' . $this->_lowerCurrentTableName . '.php";' . PHP_EOL);
+        fwrite($this->_FileHandle, '$'.$this->_lowerCurrentTableName.'Agency = view' . $this->_currentTableName . 'Agency::instance($databaseConnectionBrowse);' . PHP_EOL);
+        //fwrite($this->_FileHandle, "echo '" . '<div class="hero-unit shadow"><hgroup><h1>' . ucwords(_ToSpace($this->_currentTableName)) . '</h1><h3></h3></hgroup></div>' . "';" . PHP_EOL);
+        fwrite($this->_FileHandle, 'require_once CONTROLLERS_GENERATED . "' . $this->_lowerCurrentTableName . '.php";' . PHP_EOL);
 
-        fwrite($this->_FileHandle, 'switch($'.$this->_lowerCurrentTableName.'Controller->getAction()){'."\n");
-        fwrite($this->_FileHandle, '    case "browse":'."\n");
-        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div><hgroup><h1>'.ucwords(_ToSpace($this->_currentTableName)).'</h1><h3></h3></hgroup><div class="dot-border"></div>'."'".';'."\n");
-        fwrite($this->_FileHandle, '        include_once VIEWS_GENERATED_BROWSE."'.$this->_lowerCurrentTableName.'.html";'."\n");
-        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div>'."'".';'."\n");;
-        fwrite($this->_FileHandle, '        break;'."\n");
-        fwrite($this->_FileHandle, '    case "search":'."\n");
-        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div><hgroup><h1>'.ucwords(_ToSpace($this->_currentTableName)).'</h1><h3></h3></hgroup><div class="dot-border"></div>'."'".';'."\n");
-        fwrite($this->_FileHandle, '        include_once VIEWS_GENERATED_BROWSE."'.$this->_lowerCurrentTableName.'.html";'."\n");
-        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div>'."'".';'."\n");
-        fwrite($this->_FileHandle, '        break;'."\n");
-        fwrite($this->_FileHandle, '    case "insert": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'."\n");
-        fwrite($this->_FileHandle, '    case "get": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'."\n");
-        fwrite($this->_FileHandle, '    case "update": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'."\n");
-        fwrite($this->_FileHandle, '    case "index": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'."\n");
-        fwrite($this->_FileHandle, '}'."\n");
-        //fwrite($this->_FileHandle, 'include BROWSE_ELEMENTS."' . $this->_lowerCurrentTableName . '.html";' . "\n");
-        //fwrite($this->_FileHandle, '//Check for edit mode and the id being set' . "\n");
-        //fwrite($this->_FileHandle, 'if($edit_mode && $the_id){' . "\n\t" . '$' . $this->_lowerCurrentTableName . '->get($databaseConnection,$the_id);' . "\n" . '}' . "\n");
-        //fwrite($this->_FileHandle, '//Build the ' . $this->_lowerCurrentTableName . ' form' . "\n");
-        //fwrite($this->_FileHandle, '$' . $this->_lowerCurrentTableName . '->makeForm();' . "\n");
-        fwrite($this->_FileHandle, '// Include the HTML footer:' . "\n" . 'include BOOKENDS."footer.html";' . "\n");
-        fwrite($this->_FileHandle, '?>' . "\n");
+        fwrite($this->_FileHandle, 'switch($'.$this->_lowerCurrentTableName.'Controller->getAction()){'.PHP_EOL);
+        fwrite($this->_FileHandle, '    case "browse":'.PHP_EOL);
+        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div><hgroup><h1>'.ucwords(_ToSpace($this->_currentTableName)).'</h1><h3></h3></hgroup><div class="dot-border"></div>'."'".';'.PHP_EOL);
+        fwrite($this->_FileHandle, '        include_once VIEWS_GENERATED_BROWSE."'.$this->_lowerCurrentTableName.'.html";'.PHP_EOL);
+        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div>'."'".';'.PHP_EOL);;
+        fwrite($this->_FileHandle, '        break;'.PHP_EOL);
+        fwrite($this->_FileHandle, '    case "search":'.PHP_EOL);
+        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div><hgroup><h1>'.ucwords(_ToSpace($this->_currentTableName)).'</h1><h3></h3></hgroup><div class="dot-border"></div>'."'".';'.PHP_EOL);
+        fwrite($this->_FileHandle, '        include_once VIEWS_GENERATED_BROWSE."'.$this->_lowerCurrentTableName.'.html";'.PHP_EOL);
+        fwrite($this->_FileHandle, '        echo '."'".'<div class="dot-border"></div>'."'".';'.PHP_EOL);
+        fwrite($this->_FileHandle, '        break;'.PHP_EOL);
+        fwrite($this->_FileHandle, '    case "insert": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'.PHP_EOL);
+        fwrite($this->_FileHandle, '    case "get": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'.PHP_EOL);
+        fwrite($this->_FileHandle, '    case "update": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'.PHP_EOL);
+        fwrite($this->_FileHandle, '    case "index": include_once VIEWS_GENERATED_FORMS."'.$this->_lowerCurrentTableName.'.desktop.html";break;'.PHP_EOL);
+        fwrite($this->_FileHandle, '}'.PHP_EOL);
+        //fwrite($this->_FileHandle, 'include BROWSE_ELEMENTS."' . $this->_lowerCurrentTableName . '.html";' . PHP_EOL);
+        //fwrite($this->_FileHandle, '//Check for edit mode and the id being set' . PHP_EOL);
+        //fwrite($this->_FileHandle, 'if($edit_mode && $the_id){' . "\n\t" . '$' . $this->_lowerCurrentTableName . '->get($databaseConnection,$the_id);' . PHP_EOL . '}' . PHP_EOL);
+        //fwrite($this->_FileHandle, '//Build the ' . $this->_lowerCurrentTableName . ' form' . PHP_EOL);
+        //fwrite($this->_FileHandle, '$' . $this->_lowerCurrentTableName . '->makeForm();' . PHP_EOL);
+        fwrite($this->_FileHandle, '// Include the HTML footer:' . PHP_EOL . 'include BOOKENDS."footer.html";' . PHP_EOL);
+        fwrite($this->_FileHandle, '?>' . PHP_EOL);
     }
 
     /**

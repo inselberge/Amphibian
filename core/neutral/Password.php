@@ -293,7 +293,7 @@ $pw1 = Password::instance();
 $pw1->setAlgorithm('whirlpool');
 $pw1->setPassword('1n$3lbergE');
 $pw1->execute();
-echo $pw1->getHash()."\n";
+echo $pw1->getHash().PHP_EOL;
 echo strlen($pw1->getHash());
 */
 /*
@@ -301,6 +301,6 @@ $pw2 = Password::instance();
 $pw2->randomPassword();
 $pw2->setAlgorithm('whirlpool');
 $pw2->execute();
-echo "Password: ".$pw2->getPassword()."\n";
-echo "Hash: ". $pw2->getHash()."\n";
+echo "Password: ".$pw2->getPassword().PHP_EOL;
+echo "Hash: ". $pw2->getHash().PHP_EOL;
 */

@@ -90,7 +90,7 @@ class CheckValueTest
     {
         $this->object->setType($type);
         $this->object->setValue($value);
-        echo "\nType:".$type."\n";
+        echo "\nType:".$type.PHP_EOL;
         $this->assertNull($this->object->evaluateInput());
     }
 

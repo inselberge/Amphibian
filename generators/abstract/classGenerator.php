@@ -196,16 +196,16 @@ abstract class ClassGenerator
      */
     protected function startClass()
     {
-        $this->buffer = '<?php ' . "\n";
+        $this->buffer = '<?php ' . PHP_EOL;
         $this->addFileComment();
-        $this->buffer .= 'require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";' . "\n";
-        $this->buffer .= 'require_once CORE_ABSTRACT."BasicModel.php";' . "\n";
-        $this->buffer .= 'require_once CORE_INTERFACES."concreteModelInterface.php";' . "\n";
+        $this->buffer .= 'require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";' . PHP_EOL;
+        $this->buffer .= 'require_once CORE_ABSTRACT."BasicModel.php";' . PHP_EOL;
+        $this->buffer .= 'require_once CORE_INTERFACES."concreteModelInterface.php";' . PHP_EOL;
         $this->addClassComment();
-        $this->buffer .= 'class ' . $this->tableName . 'Model' . "\n";
-        $this->buffer .= '    extends basicModel'."\n";
-        $this->buffer .= '    implements concreteModelInterface'."\n";
-        $this->buffer .= '{'."\n";
+        $this->buffer .= 'class ' . $this->tableName . 'Model' . PHP_EOL;
+        $this->buffer .= '    extends basicModel'.PHP_EOL;
+        $this->buffer .= '    implements concreteModelInterface'.PHP_EOL;
+        $this->buffer .= '{'.PHP_EOL;
         return true;
     }
 
@@ -215,15 +215,15 @@ abstract class ClassGenerator
      */
     protected function addClassComment()
     {
-        $this->buffer .= '/**' . "\n";
-        $this->buffer .= ' * Class ' . $this->tableName.'Model'. "\n";
-        $this->buffer .= ' *' . "\n";
-        $this->buffer .= ' * @category Model' . "\n";
-        $this->buffer .= ' * @package  ' . $this->tableName. "\n";
+        $this->buffer .= '/**' . PHP_EOL;
+        $this->buffer .= ' * Class ' . $this->tableName.'Model'. PHP_EOL;
+        $this->buffer .= ' *' . PHP_EOL;
+        $this->buffer .= ' * @category Model' . PHP_EOL;
+        $this->buffer .= ' * @package  ' . $this->tableName. PHP_EOL;
         $this->addAuthor();
         $this->addLicense();
         $this->addLink();
-        $this->buffer .= ' */' . "\n";
+        $this->buffer .= ' */' . PHP_EOL;
     }
 
     /** addAuthor
@@ -233,9 +233,9 @@ abstract class ClassGenerator
     protected function addAuthor()
     {
         if ( isset($this->author) ) {
-            $this->buffer .= ' * @author   ' .$this->author. "\n";
+            $this->buffer .= ' * @author   ' .$this->author. PHP_EOL;
         } else {
-            $this->buffer .= ' * @author   ' . "\n";
+            $this->buffer .= ' * @author   ' . PHP_EOL;
         }
     }
 
@@ -246,9 +246,9 @@ abstract class ClassGenerator
     protected function addLicense()
     {
         if ( isset($this->license) ) {
-            $this->buffer .= ' * @license  ' .$this->license. "\n";
+            $this->buffer .= ' * @license  ' .$this->license. PHP_EOL;
         } else {
-            $this->buffer .= ' * @license  ' . "\n";
+            $this->buffer .= ' * @license  ' . PHP_EOL;
         }
 
     }
@@ -260,9 +260,9 @@ abstract class ClassGenerator
     protected function addLink()
     {
         if ( isset($this->link) ) {
-            $this->buffer .= ' * @link     ' . $this->link . $this->tableName."\n";
+            $this->buffer .= ' * @link     ' . $this->link . $this->tableName.PHP_EOL;
         } else {
-            $this->buffer .= ' * @link     ' . "\n";
+            $this->buffer .= ' * @link     ' . PHP_EOL;
         }
     }
 
@@ -305,21 +305,21 @@ abstract class ClassGenerator
      */
     protected function addInstance()
     {
-        $this->buffer .= '    ' . '/** instance' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return object' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'static public function instance($databaseConnection)' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    if ( !isset(self::$'.$this->tableName.'Model) ) {' . "\n";
-        $this->buffer .= '    ' . '        self::$'.$this->tableName.'Model = new '.$this->tableName.'Model($databaseConnection);' . "\n";
-        $this->buffer .= '    ' . '    } else {' . "\n";
-        $this->buffer .= '    ' . '        self::$'.$this->tableName.'Model->connection = $databaseConnection;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return self::$'.$this->tableName.'Model;'."\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** instance' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return object' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'static public function instance($databaseConnection)' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    if ( !isset(self::$'.$this->tableName.'Model) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        self::$'.$this->tableName.'Model = new '.$this->tableName.'Model($databaseConnection);' . PHP_EOL;
+        $this->buffer .= '    ' . '    } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '        self::$'.$this->tableName.'Model->connection = $databaseConnection;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return self::$'.$this->tableName.'Model;'.PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addFactory
@@ -328,16 +328,16 @@ abstract class ClassGenerator
      */
     protected function addFactory()
     {
-        $this->buffer .= '    ' . '/** factory' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return object' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'static public function factory($databaseConnection)' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '        return new '.$this->tableName.'Model($databaseConnection);' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** factory' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return object' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'static public function factory($databaseConnection)' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '        return new '.$this->tableName.'Model($databaseConnection);' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addSetValue
@@ -442,24 +442,24 @@ abstract class ClassGenerator
      */
     protected function addCheckRequired()
     {
-        $this->buffer .= '    ' . '/** checkRequired' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'protected function checkRequired()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
+        $this->buffer .= '    ' . '/** checkRequired' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'protected function checkRequired()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
         $this->buffer .= '    ' . '        if ( CheckInput::checkNewInputArray(array(';
-        $this->buffer .= $this->convertArrayToString($this->tableDescription->notNullArray) . ')) ) {' . "\n";
-        $this->buffer .= '    ' . '        } else {' . "\n";
-        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__ . ": Required values are not all specified.");' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n";
+        $this->buffer .= $this->convertArrayToString($this->tableDescription->notNullArray) . ')) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__ . ": Required values are not all specified.");' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL;
     }
 
     /** convertArrayToString
@@ -490,33 +490,33 @@ abstract class ClassGenerator
      */
     protected function addCheckValue()
     {
-        $this->buffer .= '    ' . '/** CheckValue' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param string  $type  specifies the data type fully' . "\n";
-        $this->buffer .= '    ' . ' * @param integer $max   specifies the maximum' . "\n";
-        $this->buffer .= '    ' . ' * @param mixed   $value specifies the variable candidate' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function CheckValue( $type, $max, $value )' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        if ( CheckInput::checkSetArray(array($type, $max, $value)) ) {' . "\n";
-        $this->buffer .= '    ' . '            switch ( $type ) {' . "\n";
+        $this->buffer .= '    ' . '/** CheckValue' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param string  $type  specifies the data type fully' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param integer $max   specifies the maximum' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param mixed   $value specifies the variable candidate' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function CheckValue( $type, $max, $value )' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( CheckInput::checkSetArray(array($type, $max, $value)) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            switch ( $type ) {' . PHP_EOL;
         $this->addCaseByType();
-        $this->buffer .= '    ' . '            default:' . "\n";
-        $this->buffer .= '    ' . '                return false;' . "\n";
-        $this->buffer .= '    ' . '                break;' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        } else {' . "\n";
-        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": All required variables must be provided.");' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        //$this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '            default:' . PHP_EOL;
+        $this->buffer .= '    ' . '                return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '                break;' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": All required variables must be provided.");' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        //$this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addCaseByType
@@ -532,7 +532,7 @@ abstract class ClassGenerator
      */
     protected function endClass()
     {
-        $this->buffer .= '}' . "\n";
+        $this->buffer .= '}' . PHP_EOL;
         return true;
     }
 
@@ -564,19 +564,19 @@ abstract class ClassGenerator
      */
     protected function addCustomClass()
     {
-        $this->buffer = '<?php ' . "\n";
-        $this->buffer .= 'require_once MODELS_GENERATED."' . $this->tableName . '.php";' . "\n";
-        $this->buffer .= '//require_once MODELS_HELPERS_INTERFACES."' . $this->tableName . 'CustomInterface.php";' . "\n";
-        $this->buffer .= '/******************' . "\n";
-        $this->buffer .= 'Class: ' . $this->tableName . "ModelCustom\n";
-        $this->buffer .= '******************/' . "\n";
-        $this->buffer .= 'class ' . $this->tableName . 'ModelCustom' . "\n";
-        $this->buffer .= '    extends ' . $this->tableName . 'Model' . "\n";
-        $this->buffer .= '//    implements ' . $this->tableName . 'CustomInterface' . "\n";
-        $this->buffer .= '{' . "\n";
-        $this->buffer .= '    /*** Attributes: ***/' . "\n\n";
-        $this->buffer .= '    /*** Functions: ***/' . "\n\n";
-        $this->buffer .= '}' . "\n";
+        $this->buffer = '<?php ' . PHP_EOL;
+        $this->buffer .= 'require_once MODELS_GENERATED."' . $this->tableName . '.php";' . PHP_EOL;
+        $this->buffer .= '//require_once MODELS_HELPERS_INTERFACES."' . $this->tableName . 'CustomInterface.php";' . PHP_EOL;
+        $this->buffer .= '/******************' . PHP_EOL;
+        $this->buffer .= 'Class: ' . $this->tableName . "ModelCustom" . PHP_EOL;
+        $this->buffer .= '******************/' . PHP_EOL;
+        $this->buffer .= 'class ' . $this->tableName . 'ModelCustom' . PHP_EOL;
+        $this->buffer .= '    extends ' . $this->tableName . 'Model' . PHP_EOL;
+        $this->buffer .= '//    implements ' . $this->tableName . 'CustomInterface' . PHP_EOL;
+        $this->buffer .= '{' . PHP_EOL;
+        $this->buffer .= '    /*** Attributes: ***/' . PHP_EOL . PHP_EOL;
+        $this->buffer .= '    /*** Functions: ***/' . PHP_EOL . PHP_EOL;
+        $this->buffer .= '}' . PHP_EOL;
     }
 
     /** setupForNext

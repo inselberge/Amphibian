@@ -58,23 +58,23 @@ abstract class ControllerGenerator
      */
     protected function startClass()
     {
-        $this->buffer = '<?php ' . "\n";
+        $this->buffer = '<?php ' . PHP_EOL;
         $this->addFileComment();
-        $this->buffer .= 'require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";' . "\n";
-        $this->buffer .= 'require_once CORE_ABSTRACT."BasicController.php";' . "\n";
-        $this->buffer .= '/**' . "\n";
-        $this->buffer .= ' * Class ' . $this->tableName . 'Controller' . "\n";
-        $this->buffer .= ' *' . "\n";
-        $this->buffer .= ' * @category Controller' . "\n";
-        $this->buffer .= ' * @package  ' . $this->tableName . "\n";
-        $this->buffer .= ' * @author   Carl "Tex" Morgan <texmorgan@amphibian.co>' . "\n";
-        $this->buffer .= ' * @license  https://www.gnu.org/licenses/gpl-3.0.html GPLv3' . "\n";
-        $this->buffer .= ' * @link     TBD' . "\n";
-        $this->buffer .= ' */' . "\n";
-        $this->buffer .= 'class ' . $this->tableName . 'Controller' . "\n";
-        $this->buffer .= '    extends BasicController' . "\n";
-        //$this->buffer .= '    implements concreteControllerInterface'."\n";
-        $this->buffer .= '{' . "\n";
+        $this->buffer .= 'require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";' . PHP_EOL;
+        $this->buffer .= 'require_once CORE_ABSTRACT."BasicController.php";' . PHP_EOL;
+        $this->buffer .= '/**' . PHP_EOL;
+        $this->buffer .= ' * Class ' . $this->tableName . 'Controller' . PHP_EOL;
+        $this->buffer .= ' *' . PHP_EOL;
+        $this->buffer .= ' * @category Controller' . PHP_EOL;
+        $this->buffer .= ' * @package  ' . $this->tableName . PHP_EOL;
+        $this->buffer .= ' * @author   Carl "Tex" Morgan <texmorgan@amphibian.co>' . PHP_EOL;
+        $this->buffer .= ' * @license  https://www.gnu.org/licenses/gpl-3.0.html GPLv3' . PHP_EOL;
+        $this->buffer .= ' * @link     TBD' . PHP_EOL;
+        $this->buffer .= ' */' . PHP_EOL;
+        $this->buffer .= 'class ' . $this->tableName . 'Controller' . PHP_EOL;
+        $this->buffer .= '    extends BasicController' . PHP_EOL;
+        //$this->buffer .= '    implements concreteControllerInterface'.PHP_EOL;
+        $this->buffer .= '{' . PHP_EOL;
         return true;
     }
 
@@ -84,8 +84,8 @@ abstract class ControllerGenerator
      */
     protected function addVariables()
     {
-        $this->buffer .= '    static public $' . $this->tableName . 'Controller;' . "\n";
-        $this->buffer .= "\n\n";
+        $this->buffer .= '    static public $' . $this->tableName . 'Controller;' . PHP_EOL;
+        $this->buffer .= PHP_EOL . PHP_EOL;
         return true;
     }
 
@@ -95,14 +95,14 @@ abstract class ControllerGenerator
      */
     protected function addConstruct()
     {
-        $this->buffer .= '    ' . '/** __construct' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function __construct($databaseConnection)' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    parent::__construct($databaseConnection);' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** __construct' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function __construct($databaseConnection)' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    parent::__construct($databaseConnection);' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
 
@@ -112,21 +112,21 @@ abstract class ControllerGenerator
      */
     protected function addInstance()
     {
-        $this->buffer .= '    ' . '/** instance' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return object' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'static public function instance($databaseConnection)' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    if (!isset(self::$' . $this->tableName . 'Controller) ) {' . "\n";
-        $this->buffer .= '    ' . '        self::$' . $this->tableName . 'Controller = new ' . $this->tableName . 'Controller($databaseConnection);' . "\n";
-        $this->buffer .= '    ' . '    } else {' . "\n";
-        $this->buffer .= '    ' . '        self::$' . $this->tableName . 'Controller->connection = $databaseConnection;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return self::$' . $this->tableName . 'Controller;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** instance' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return object' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'static public function instance($databaseConnection)' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    if (!isset(self::$' . $this->tableName . 'Controller) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        self::$' . $this->tableName . 'Controller = new ' . $this->tableName . 'Controller($databaseConnection);' . PHP_EOL;
+        $this->buffer .= '    ' . '    } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '        self::$' . $this->tableName . 'Controller->connection = $databaseConnection;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return self::$' . $this->tableName . 'Controller;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addFactory
@@ -135,16 +135,16 @@ abstract class ControllerGenerator
      */
     protected function addFactory()
     {
-        $this->buffer .= '    ' . '/** factory' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return object' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'static public function factory($databaseConnection)' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    return new ' . $this->tableName . 'Controller($databaseConnection);' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** factory' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param resource $databaseConnection a valid database connection' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return object' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'static public function factory($databaseConnection)' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    return new ' . $this->tableName . 'Controller($databaseConnection);' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addcheckAction
@@ -153,13 +153,13 @@ abstract class ControllerGenerator
      */
     protected function addcheckAction()
     {
-        $this->buffer .= '    ' . '/** checkAction' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function checkAction()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** checkAction' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function checkAction()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addHandleAction
@@ -168,13 +168,13 @@ abstract class ControllerGenerator
      */
     protected function addHandleAction()
     {
-        $this->buffer .= '    ' . '/** handleAction' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function handleAction()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** handleAction' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function handleAction()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
 
     }
 
@@ -184,13 +184,13 @@ abstract class ControllerGenerator
      */
     protected function addSendErrors()
     {
-        $this->buffer .= '    ' . '/** sendErrors' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return void' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function sendErrors()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** sendErrors' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return void' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function sendErrors()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
 
@@ -200,14 +200,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepGetPayload()
     {
-        $this->buffer .= '    ' . '/** prepGetPayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepGetPayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepGetPayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepGetPayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("get");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepInsertPayload
@@ -216,14 +216,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepInsertPayload()
     {
-        $this->buffer .= '    ' . '/** prepInsertPayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepInsertPayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepInsertPayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepInsertPayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("insert");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepUpdatePayload
@@ -232,14 +232,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepUpdatePayload()
     {
-        $this->buffer .= '    ' . '/** prepUpdatePayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepUpdatePayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepUpdatePayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepUpdatePayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("update");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepUpdatePayload
@@ -248,14 +248,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepPatchPayload()
     {
-        $this->buffer .= '    ' . '/** prepPatchPayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepPatchPayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepPatchPayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepPatchPayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("patch");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepUpdatePayload
@@ -264,14 +264,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepDeletePayload()
     {
-        $this->buffer .= '    ' . '/** prepDeletePayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepDeletePayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepDeletePayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepDeletePayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("delete");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepValidatePayload
@@ -280,14 +280,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepValidatePayload()
     {
-        $this->buffer .= '    ' . '/** prepValidatePayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepValidatePayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepValidatePayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepValidatePayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("validate");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepSearchPayload
@@ -296,14 +296,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepSearchPayload()
     {
-        $this->buffer .= '    ' . '/** prepSearchPayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepSearchPayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepSearchPayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepSearchPayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("search");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepBrowsePayload
@@ -312,14 +312,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepBrowsePayload()
     {
-        $this->buffer .= '    ' . '/** prepBrowsePayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepBrowsePayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepBrowsePayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepBrowsePayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("browse");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPrepIndexPayload
@@ -328,14 +328,14 @@ abstract class ControllerGenerator
      */
     protected function addPrepIndexPayload()
     {
-        $this->buffer .= '    ' . '/** prepIndexPayload' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . '*/' . "\n";
-        $this->buffer .= '    ' . 'public function prepIndexPayload()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
+        $this->buffer .= '    ' . '/** prepIndexPayload' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . '*/' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function prepIndexPayload()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
         $this->buildPrepTemplate("index");
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** buildPrepTemplate
@@ -346,17 +346,17 @@ abstract class ControllerGenerator
      */
     protected function buildPrepTemplate($type)
     {
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $prepArray = array();' . "\n";
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $prepArray = array();' . PHP_EOL;
         $this->buildArray($type);
-        $this->buffer .= '    ' . '        if ( !$this->dataPackage->setPayload($prepArray) ) {' . "\n";
-        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__ . ": preparation failed.");' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
+        $this->buffer .= '    ' . '        if ( !$this->dataPackage->setPayload($prepArray) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__ . ": preparation failed.");' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
 
     }
 
@@ -371,24 +371,24 @@ abstract class ControllerGenerator
         try {
             if (CheckInput::checkNewInput($type)) {
                 if ($type === "get" OR $type === "validate") {
-                    $this->buffer .= '    ' . '        $prepArray["id"] = $_GET["id"];' . "\n";
+                    $this->buffer .= '    ' . '        $prepArray["id"] = $_GET["id"];' . PHP_EOL;
                 } elseif ($type === "insert") {
                     $columnArray = $this->tableDescription->getColumns();
                     foreach ($columnArray as $columnName) {
-                        $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $this->cascadeGetPost("' . $columnName . '");' . "\n";
+                        $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $this->cascadeGetPost("' . $columnName . '");' . PHP_EOL;
                     }
                 } elseif ($type === "update") {
                     $columnArray = $this->tableDescription->getColumns();
                     foreach ($columnArray as $columnName) {
-                        $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $this->cascadeGetPost("' . $columnName . '");' . "\n";
+                        $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $this->cascadeGetPost("' . $columnName . '");' . PHP_EOL;
                     }
                 } elseif ($type === "patch") {
                     $columnArray = $this->tableDescription->getColumns();
                     foreach ($columnArray as $columnName) {
-                        $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $_POST["' . $columnName . '"];' . "\n";
+                        $this->buffer .= '    ' . '        $prepArray["' . $columnName . '"] = $_POST["' . $columnName . '"];' . PHP_EOL;
                     }
                 } elseif ($type === "delete") {
-                    $this->buffer .= '    ' . '        $prepArray["id"] = $_POST["id"];' . "\n";
+                    $this->buffer .= '    ' . '        $prepArray["id"] = $_POST["id"];' . PHP_EOL;
                 } elseif ($type === "search") {
 
                 } elseif ($type === "browse") {
@@ -412,6 +412,6 @@ abstract class ControllerGenerator
      */
     protected function addFileEnd()
     {
-        $this->buffer .= '}' . "\n";
+        $this->buffer .= '}' . PHP_EOL;
     }
 } 

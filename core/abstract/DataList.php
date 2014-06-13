@@ -342,7 +342,7 @@ abstract class DataList
             } else {
                 $this->html.=$this->id;
             }
-            $this->html.="</strong></label>\n";
+            $this->html.="</strong></label>" . PHP_EOL;
         } catch ( ExceptionHandler $e ) {
             $e->execute();
             return false;
@@ -381,7 +381,7 @@ abstract class DataList
                     $this->html.='placeholder="'.$this->placeholder.'" ';
                 }
 
-                $this->html.='>'."\n";
+                $this->html.='>'.PHP_EOL;
             } else {
                 throw new ExceptionHandler(__METHOD__ . "id must be set.");
             }
@@ -407,7 +407,7 @@ abstract class DataList
             if (isset($this->id)) {
                     $this->html.='id="'.$this->id.'" ';
             }
-            $this->html.=">\n";
+            $this->html.=">" . PHP_EOL;
         } catch ( ExceptionHandler $e ) {
             $e->execute();
             return false;
@@ -484,7 +484,7 @@ abstract class DataList
      */
     protected function endOption()
     {
-        $this->html.="</option>\n";
+        $this->html.="</option>" . PHP_EOL;
     }
 
     /** endDatalist

@@ -89,13 +89,13 @@ class StandardViewBuilderMySQLi
     {
         try {
             if (CheckInput::checkSet($this->tableDescription)) {
-                $this->buffer = "DELIMITER $$\n";
-                $this->buffer .= "DROP VIEW IF EXISTS `" . DB_NAME . "`.`view" . ucwords($this->tableName) . "`$$\n";
+                $this->buffer = "DELIMITER $$" . PHP_EOL;
+                $this->buffer .= "DROP VIEW IF EXISTS `" . DB_NAME . "`.`view" . ucwords($this->tableName) . "`$$" . PHP_EOL;
                 $this->buffer .= "CREATE VIEW `view";
                 $this->buffer .= ucwords($this->tableName);
                 $this->buffer .= "` AS SELECT " . $this->requiredColumnList;
-                $this->buffer .= " FROM `" . $this->tableName . "`$$\n";
-                $this->buffer .= "DELIMITER ;\n\n";
+                $this->buffer .= " FROM `" . $this->tableName . "`$$" . PHP_EOL;
+                $this->buffer .= "DELIMITER ;\n" . PHP_EOL;
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": TableDescription invalid.");
             }

@@ -142,14 +142,14 @@ abstract class FormGenerator
      */
     protected function writeFormHeading()
     {
-        $this->buffer = '<div class="dot-border"></div>' . "\n";
-        $this->buffer .= '<div class="dot-border"></div>'."\n";
-        $this->buffer .= '<hgroup>'."\n";
-        $this->buffer .= '    <h1>'.$this->spacedTableName.'</h1>'."\n";
-        $this->buffer .= '    <h3></h3>'."\n";
-        $this->buffer .= '    <h5><span class="red">*</span> indicates a required field</h5>'."\n";
-        $this->buffer .= '</hgroup>'."\n";
-        $this->buffer .= '<div class="dot-border"></div>'."\n";
+        $this->buffer = '<div class="dot-border"></div>' . PHP_EOL;
+        $this->buffer .= '<div class="dot-border"></div>'.PHP_EOL;
+        $this->buffer .= '<hgroup>'.PHP_EOL;
+        $this->buffer .= '    <h1>'.$this->spacedTableName.'</h1>'.PHP_EOL;
+        $this->buffer .= '    <h3></h3>'.PHP_EOL;
+        $this->buffer .= '    <h5><span class="red">*</span> indicates a required field</h5>'.PHP_EOL;
+        $this->buffer .= '</hgroup>'.PHP_EOL;
+        $this->buffer .= '<div class="dot-border"></div>'.PHP_EOL;
     }
 
     /** writeFormStart
@@ -160,17 +160,17 @@ abstract class FormGenerator
     {
         if ( $this->formType === "modal" ) {
             $this->writeModalButton();
-            $this->buffer .= '<div id="' . $this->lowerTableName . '-dialog" class="modal hide pop" title="' . $this->spacedTableName . '">' . "\n";
-            $this->buffer .= "\t" . '<form enctype="multipart/form-data" accept-charset="utf-8" method="post" action="' . $this->lowerTableName . '.php">' . "\n";
-            $this->buffer .= "\t\t" . '<div class="modal-header">' . "\n";
-            $this->buffer .= "\t\t\t" . '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' . "\n";
-            $this->buffer .= "\t\t\t" . '<h3>' . $this->spacedTableName . '</h3>' . "\n";
-            $this->buffer .= "\t\t" . '</div>' . "\n";
-            $this->buffer .= "\t\t" . '<div class="modal-body">' . "\n";
+            $this->buffer .= '<div id="' . $this->lowerTableName . '-dialog" class="modal hide pop" title="' . $this->spacedTableName . '">' . PHP_EOL;
+            $this->buffer .= "\t" . '<form enctype="multipart/form-data" accept-charset="utf-8" method="post" action="' . $this->lowerTableName . '.php">' . PHP_EOL;
+            $this->buffer .= "\t\t" . '<div class="modal-header">' . PHP_EOL;
+            $this->buffer .= "\t\t\t" . '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' . PHP_EOL;
+            $this->buffer .= "\t\t\t" . '<h3>' . $this->spacedTableName . '</h3>' . PHP_EOL;
+            $this->buffer .= "\t\t" . '</div>' . PHP_EOL;
+            $this->buffer .= "\t\t" . '<div class="modal-body">' . PHP_EOL;
         } else {
             $this->buffer .= '<div id="' . $this->lowerTableName ;
-            $this->buffer .= '-dialog" class="container">' . "\n";
-            $this->buffer .= "\t" . '<form enctype="multipart/form-data" accept-charset="utf-8" method="post" class="form-horizontal" role="form" action="' . $this->lowerTableName . '.php">' . "\n";
+            $this->buffer .= '-dialog" class="container">' . PHP_EOL;
+            $this->buffer .= "\t" . '<form enctype="multipart/form-data" accept-charset="utf-8" method="post" class="form-horizontal" role="form" action="' . $this->lowerTableName . '.php">' . PHP_EOL;
         }
         //mobile and desktop views should be the same at this point
         $this->bufferMobile = $this->buffer;
@@ -182,12 +182,12 @@ abstract class FormGenerator
      */
     protected function writeModalButton()
     {
-        $this->buffer .= '<div class="col-md-3">' . "\n";
+        $this->buffer .= '<div class="col-md-3">' . PHP_EOL;
         $this->buffer .= "\t" . '<a href="#';
         $this->buffer .= $this->lowerTableName;
         $this->buffer .= '-dialog" role="button" class="btn modal-toggle" data-toggle="modal">Add new ';
-        $this->buffer .= $this->lowerTableName . '</a>' . "\n";
-        $this->buffer .= '</div>' . "\n";
+        $this->buffer .= $this->lowerTableName . '</a>' . PHP_EOL;
+        $this->buffer .= '</div>' . PHP_EOL;
     }
 
     /** iterateTableDescription
@@ -220,27 +220,27 @@ abstract class FormGenerator
                 $this->bufferMobile .= $index ;
                 $this->bufferMobile .= '" class="ui-input-text"><strong>' ;
                 $this->bufferMobile .= ucwords(_ToSpace($row['Field']));
-                $this->bufferMobile .= '</strong></label><br/>' . "\n";
+                $this->bufferMobile .= '</strong></label><br/>' . PHP_EOL;
                 $this->bufferMobile .= "\t\t\t";
                 $this->bufferMobile .= $this->translateType($index, $row['type'], $row['key'], $row['nullAllowed']);
-                $this->bufferMobile .= "</p>\n";
+                $this->bufferMobile .= "</p>" . PHP_EOL;
             } else {
                 $this->bufferMobile .= "\t\t\t";
                 $this->bufferMobile .= $this->translateType($index, $row['type'], $row['key'], $row['nullAllowed']);
-                $this->bufferMobile .= "\n";
+                $this->bufferMobile .= PHP_EOL;
             }
         } else {
             if ( $row['Key'] !== 'PRI' /*AND $row['Key']!='MUL'*/ ) {
-                $this->buffer .= "\t\t\t" . '<article class="form-group">' . "\n";
+                $this->buffer .= "\t\t\t" . '<article class="form-group">' . PHP_EOL;
                 $this->buffer .= "\t\t\t\t" . '<label class="col-lg-2 control-label" for="' . $index . '"><strong>' . ucwords(_ToSpace($index)) . '</strong>';
                 if ( $row['nullAllowed'] === 'NO' ) {
                     $this->buffer .= ' <span class="red">*</span>';
                 }
-                $this->buffer .= '</strong></label>' . "\n";
-                $this->buffer .= "\t\t\t\t" . '' . $this->translateType($index, $row['type'], $row['key'], $row['nullAllowed']) . "\n";
-                $this->buffer .= "\t\t\t" . '</article>' . "\n";
+                $this->buffer .= '</strong></label>' . PHP_EOL;
+                $this->buffer .= "\t\t\t\t" . '' . $this->translateType($index, $row['type'], $row['key'], $row['nullAllowed']) . PHP_EOL;
+                $this->buffer .= "\t\t\t" . '</article>' . PHP_EOL;
             } else {
-                $this->buffer .= "\t\t\t" . $this->translateType($index, $row['type'], $row['key'], $row['nullAllowed']) . "\n";
+                $this->buffer .= "\t\t\t" . $this->translateType($index, $row['type'], $row['key'], $row['nullAllowed']) . PHP_EOL;
             }
         }
     }
@@ -272,33 +272,33 @@ abstract class FormGenerator
     protected function writeFormEnd()
     {
         if ( $this->formType === "modal" ) {
-            $this->buffer .= "\t\t" . '</div>' . "\n";
-            $this->buffer .= "\t\t" . '<div class="modal-footer">' . "\n";
-            $this->buffer .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary" />' . "\n";
-            $this->buffer .= "\t\t" . '</div>' . "\n";
-            $this->buffer .= "\t" . '</form>' . "\n" . '</div>' . "\n";
+            $this->buffer .= "\t\t" . '</div>' . PHP_EOL;
+            $this->buffer .= "\t\t" . '<div class="modal-footer">' . PHP_EOL;
+            $this->buffer .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary" />' . PHP_EOL;
+            $this->buffer .= "\t\t" . '</div>' . PHP_EOL;
+            $this->buffer .= "\t" . '</form>' . PHP_EOL . '</div>' . PHP_EOL;
 
-            $this->bufferMobile .= "\t\t" . '</div>' . "\n";
-            $this->bufferMobile .= "\t\t" . '<div class="modal-footer">' . "\n";
-            $this->bufferMobile .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary" />' . "\n";
-            $this->bufferMobile .= "\t\t" . '</div>' . "\n";
-            $this->bufferMobile .= "\t" . '</form>' . "\n" . '</div>' . "\n";
+            $this->bufferMobile .= "\t\t" . '</div>' . PHP_EOL;
+            $this->bufferMobile .= "\t\t" . '<div class="modal-footer">' . PHP_EOL;
+            $this->bufferMobile .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary" />' . PHP_EOL;
+            $this->bufferMobile .= "\t\t" . '</div>' . PHP_EOL;
+            $this->bufferMobile .= "\t" . '</form>' . PHP_EOL . '</div>' . PHP_EOL;
         } else {
-            $this->buffer .= "\t\t" . '</div>' . "\n";
-            $this->buffer .= "\t\t" . '<article class="form-group">' . "\n";
-            $this->buffer .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary red-btn col-lg-offset-2 col-lg-4" />' . "\n";
-            $this->buffer .= "\t\t" . '</article>' . "\n";
-            $this->buffer .= "\t" . '</form>' . "\n";
-            $this->buffer .= '<div class="dot-border"></div>'."\n";
-            $this->buffer .= '</div>' . "\n";
+            $this->buffer .= "\t\t" . '</div>' . PHP_EOL;
+            $this->buffer .= "\t\t" . '<article class="form-group">' . PHP_EOL;
+            $this->buffer .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary red-btn col-lg-offset-2 col-lg-4" />' . PHP_EOL;
+            $this->buffer .= "\t\t" . '</article>' . PHP_EOL;
+            $this->buffer .= "\t" . '</form>' . PHP_EOL;
+            $this->buffer .= '<div class="dot-border"></div>'.PHP_EOL;
+            $this->buffer .= '</div>' . PHP_EOL;
 
-            $this->bufferMobile .= "\t\t" . '</div>' . "\n";
-            $this->bufferMobile .= "\t\t" . '<article class="form-group">' . "\n";
-            $this->bufferMobile .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary red-btn col-lg-offset-2 col-lg-4" />' . "\n";
-            $this->bufferMobile .= "\t\t" . '</article>' . "\n";
-            $this->bufferMobile .= "\t" . '</form>' . "\n";
-            $this->bufferMobile .= '<div class="dot-border"></div>' . "\n";
-            $this->bufferMobile .= '</div>' . "\n";
+            $this->bufferMobile .= "\t\t" . '</div>' . PHP_EOL;
+            $this->bufferMobile .= "\t\t" . '<article class="form-group">' . PHP_EOL;
+            $this->bufferMobile .= "\t\t\t" . '<input type="submit" name="submit_button" value="Submit" id="submit_button" class="formbutton btn btn-primary red-btn col-lg-offset-2 col-lg-4" />' . PHP_EOL;
+            $this->bufferMobile .= "\t\t" . '</article>' . PHP_EOL;
+            $this->bufferMobile .= "\t" . '</form>' . PHP_EOL;
+            $this->bufferMobile .= '<div class="dot-border"></div>' . PHP_EOL;
+            $this->bufferMobile .= '</div>' . PHP_EOL;
         }
     }
 }

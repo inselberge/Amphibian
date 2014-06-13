@@ -107,17 +107,17 @@ class ClassGeneratorMySQLi
      */
     protected function addAttributes()
     {
-        $this->buffer .= '    ' . '/*** Attributes: ***/' . "\n";
+        $this->buffer .= '    ' . '/*** Attributes: ***/' . PHP_EOL;
         foreach ($this->tableDescription->tableArray as $field => $rowArray) {
             if ($rowArray['key'] === 'PRI') {
-                $this->buffer .= '    ' . 'private $' . $field . ';' . "\n";
+                $this->buffer .= '    ' . 'private $' . $field . ';' . PHP_EOL;
             } else {
-                $this->buffer .= '    ' . 'protected $' . $field . ';' . "\n";
+                $this->buffer .= '    ' . 'protected $' . $field . ';' . PHP_EOL;
             }
         }
         $this->addAcceptableKeys();
-        $this->buffer .= '    ' . 'static public $' . $this->tableName . 'Model;' . "\n";
-        $this->buffer .= "\n\n";
+        $this->buffer .= '    ' . 'static public $' . $this->tableName . 'Model;' . PHP_EOL;
+        $this->buffer .= PHP_EOL . PHP_EOL;
         return true;
     }
 
@@ -129,13 +129,13 @@ class ClassGeneratorMySQLi
     {
         foreach ($this->tableDescription->tableArray as $field => $rowArray) {
             if ($rowArray['key'] === 'PRI') {
-                $this->buffer .= '    ' . 'protected $acceptableKeys = array('."\n";
-                $this->buffer .= '        ' .'"' . $field . '"'."\n";
+                $this->buffer .= '    ' . 'protected $acceptableKeys = array('.PHP_EOL;
+                $this->buffer .= '        ' .'"' . $field . '"'.PHP_EOL;
             } else {
-                $this->buffer .= '        ' . ', "' . $field . '"' . "\n";
+                $this->buffer .= '        ' . ', "' . $field . '"' . PHP_EOL;
             }
         }
-        $this->buffer .= '    ' . ');' . "\n";
+        $this->buffer .= '    ' . ');' . PHP_EOL;
     }
 
     /** fetchAll
@@ -163,19 +163,19 @@ class ClassGeneratorMySQLi
      */
     protected function addIndex()
     {
-        $this->buffer .= '    ' . '/** index' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return boolean' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function index()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** index' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return boolean' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function index()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addGet
@@ -184,30 +184,30 @@ class ClassGeneratorMySQLi
      */
     protected function addGet()
     {
-        $this->buffer .= '    ' . '/** get' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param integer $id the id of the object to fetch' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return boolean' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function get( $id )' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $this->prepQuery();' . "\n";
-        $this->buffer .= '    ' . '        if ( CheckInput::checkNewInput($id) ) {' . "\n";
-        $this->buffer .= '    ' . '            if ( $this->query->execute("CALL get' . $this->tableName . '(' . "'" . '$id' . "'" . ')") ) {' . "\n";
-        $this->buffer .= '    ' . '                $this->query->getRow();' . "\n";
-        $this->buffer .= '    ' . '                $this->setValuesFromRow();' . "\n";
-        $this->buffer .= '    ' . '            } else {' . "\n";
-        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": The get query returned an error.");' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** get' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param integer $id the id of the object to fetch' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return boolean' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function get( $id )' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $this->prepQuery();' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( CheckInput::checkNewInput($id) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            if ( $this->query->execute("CALL get' . $this->tableName . '(' . "'" . '$id' . "'" . ')") ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                $this->query->getRow();' . PHP_EOL;
+        $this->buffer .= '    ' . '                $this->setValuesFromRow();' . PHP_EOL;
+        $this->buffer .= '    ' . '            } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": The get query returned an error.");' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addUpdate
@@ -216,34 +216,34 @@ class ClassGeneratorMySQLi
      */
     protected function addUpdate()
     {
-        $this->buffer .= '    ' . '/** update' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function update()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $this->prepQuery();' . "\n";
-        $this->buffer .= '    ' . '        if ( $this->checkRequired() ) {' . "\n";
-        $this->buffer .= '    ' . '            if ( $this->prewash() ) {' . "\n";
-        $this->buffer .= '    ' . '                if ( $this->query->execute(' . "\n";
-        $this->buffer .= '    ' . '                    "CALL update' . $this->tableName . '(' . "\n";
+        $this->buffer .= '    ' . '/** update' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function update()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $this->prepQuery();' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( $this->checkRequired() ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            if ( $this->prewash() ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                if ( $this->query->execute(' . PHP_EOL;
+        $this->buffer .= '    ' . '                    "CALL update' . $this->tableName . '(' . PHP_EOL;
         $this->addUpdateArguments();
-        $this->buffer .= '    ' . '                    )"' . "\n";
-        $this->buffer .= '    ' . '                )' . "\n";
-        $this->buffer .= '    ' . '                ) {' . "\n";
-        $this->buffer .= '    ' . '                    $this->query->checkAffected();' . "\n";
-        $this->buffer .= '    ' . '                } else {' . "\n";
-        $this->buffer .= '    ' . '                    throw new ExceptionHandler(__METHOD__ . ": The update query returned an error.");' . "\n";
-        $this->buffer .= '    ' . '                }' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '                    )"' . PHP_EOL;
+        $this->buffer .= '    ' . '                )' . PHP_EOL;
+        $this->buffer .= '    ' . '                ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                    $this->query->checkAffected();' . PHP_EOL;
+        $this->buffer .= '    ' . '                } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '                    throw new ExceptionHandler(__METHOD__ . ": The update query returned an error.");' . PHP_EOL;
+        $this->buffer .= '    ' . '                }' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addUpdateArguments
@@ -256,9 +256,9 @@ class ClassGeneratorMySQLi
             if (CheckInput::checkNewInputArray($this->tableDescription->fieldTypeArray)) {
                 foreach ($this->tableDescription->fieldTypeArray as $key => $type) {
                     if ($key === 'id') {
-                        $this->buffer .= '    ' . '                    \'$this->' . $key . '\'' . "\n";
+                        $this->buffer .= '    ' . '                    \'$this->' . $key . '\'' . PHP_EOL;
                     } else {
-                        $this->buffer .= '    ' . '                    ,\'$this->' . $key . '\'' . "\n";
+                        $this->buffer .= '    ' . '                    ,\'$this->' . $key . '\'' . PHP_EOL;
                     }
                 }
             } else {
@@ -277,34 +277,34 @@ class ClassGeneratorMySQLi
      */
     protected function addInsert()
     {
-        $this->buffer .= '    ' . '/** insert' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function insert()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $this->prepQuery();' . "\n";
-        $this->buffer .= '    ' . '        if ( $this->checkRequired()) {' . "\n";
-        $this->buffer .= '    ' . '            if ( $this->prewash() ) {' . "\n";
-        $this->buffer .= '    ' . '                if ( $this->query->execute(' . "\n";
-        $this->buffer .= '    ' . '                    "CALL insert' . $this->tableName . '(' . "\n";
+        $this->buffer .= '    ' . '/** insert' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function insert()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $this->prepQuery();' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( $this->checkRequired()) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            if ( $this->prewash() ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                if ( $this->query->execute(' . PHP_EOL;
+        $this->buffer .= '    ' . '                    "CALL insert' . $this->tableName . '(' . PHP_EOL;
         $this->addInsertArguments();
-        $this->buffer .= '    ' . '                    , @ceid)"' . "\n";
-        $this->buffer .= '    ' . '                )' . "\n";
-        $this->buffer .= '    ' . '                ) {' . "\n";
-        $this->buffer .= '    ' . '                    $this->getInsertId();' . "\n";
-        $this->buffer .= '    ' . '                } else {' . "\n";
-        $this->buffer .= '    ' . '                    throw new ExceptionHandler(__METHOD__.": The insert failed.");' . "\n";
-        $this->buffer .= '    ' . '                }' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '                    , @ceid)"' . PHP_EOL;
+        $this->buffer .= '    ' . '                )' . PHP_EOL;
+        $this->buffer .= '    ' . '                ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                    $this->getInsertId();' . PHP_EOL;
+        $this->buffer .= '    ' . '                } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '                    throw new ExceptionHandler(__METHOD__.": The insert failed.");' . PHP_EOL;
+        $this->buffer .= '    ' . '                }' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addInsertArguments
@@ -321,10 +321,10 @@ class ClassGeneratorMySQLi
                         //} elseif ( $key === 'create_date' ) {
                     } else {
                         if ($first_pass === true) {
-                            $this->buffer .= '    ' . '                    \'$this->' . $key . '\'' . "\n";
+                            $this->buffer .= '    ' . '                    \'$this->' . $key . '\'' . PHP_EOL;
                             $first_pass = false;
                         } else {
-                            $this->buffer .= '    ' . '                    ,\'$this->' . $key . '\'' . "\n";
+                            $this->buffer .= '    ' . '                    ,\'$this->' . $key . '\'' . PHP_EOL;
                         }
                     }
                 }
@@ -344,28 +344,28 @@ class ClassGeneratorMySQLi
      */
     protected function addGetInsertId()
     {
-        $this->buffer .= '    ' . '/** getInsertId' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function getInsertId()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $this->prepQuery();' . "\n";
-        $this->buffer .= '    ' . '        if ( $this->query->execute("Select @ceid as id") ) {' . "\n";
-        $this->buffer .= '    ' . '            $this->query->getRow();' . "\n";
-        $this->buffer .= '    ' . '            if ( !$this->setValue("id", $this->query->row["id"]) ) {' . "\n";
-        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__ . ": Setting the new id failed.");' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        } else {' . "\n";
-        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__ . ": The new id could not be retrieved.");' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** getInsertId' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function getInsertId()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $this->prepQuery();' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( $this->query->execute("Select @ceid as id") ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            $this->query->getRow();' . PHP_EOL;
+        $this->buffer .= '    ' . '            if ( !$this->setValue("id", $this->query->row["id"]) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__ . ": Setting the new id failed.");' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__ . ": The new id could not be retrieved.");' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addPatch
@@ -374,17 +374,17 @@ class ClassGeneratorMySQLi
      */
     protected function addPatch()
     {
-        $this->buffer .= '    ' . '/** patch' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param string $key the key to update specifically' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function patch( $key )' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $this->prepQuery();' . "\n";
-        $this->buffer .= '    ' . '        if ( $this->checkKey($key) ) {' . "\n";
+        $this->buffer .= '    ' . '/** patch' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param string $key the key to update specifically' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function patch( $key )' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $this->prepQuery();' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( $this->checkKey($key) ) {' . PHP_EOL;
         $this->buffer .= '    ' . '            if ( $this->query->execute("UPDATE '
             . $this->tableName
             . ' SET ". $key ." = ' . "'" . '$this->$key' . "'"
@@ -393,20 +393,20 @@ class ClassGeneratorMySQLi
             . ', modify_reason=' . "'" . 'patching $key' . "'" . ' WHERE '
             . $this->tableDescription->autoIncrementField
             . ' = ' . "'" . '$this->' . $this->tableDescription->autoIncrementField . "'"
-            . '") ) {' . "\n";
-        $this->buffer .= '    ' . '                $this->query->checkAffected();' . "\n";
-        $this->buffer .= '    ' . '            } else {' . "\n";
-        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": patch failed!");' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        } else {' . "\n";
-        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": invalid key.");' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+            . '") ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                $this->query->checkAffected();' . PHP_EOL;
+        $this->buffer .= '    ' . '            } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": patch failed!");' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": invalid key.");' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addDelete
@@ -415,29 +415,29 @@ class ClassGeneratorMySQLi
      */
     protected function addDelete()
     {
-        $this->buffer .= '    ' . '/** delete' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function delete()' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $this->prepQuery();' . "\n";
-        $this->buffer .= '    ' . '        if ( CheckInput::checkSet($this->' . $this->tableDescription->autoIncrementField . ') ) {' . "\n";
-        $this->buffer .= '    ' . '            if ( $this->query->execute("DELETE FROM ' . $this->tableName . ' WHERE ' . $this->tableDescription->autoIncrementField . "='" . '$this->' . $this->tableDescription->autoIncrementField . "'" . '") ) {' . "\n";
-        $this->buffer .= '    ' . '                $this->query->checkAffected();' . "\n";
-        $this->buffer .= '    ' . '            } else {' . "\n";
-        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": delete failed!");' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        } else {' . "\n";
-        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": The ' . $this->tableDescription->autoIncrementField . ' must be set.");' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** delete' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function delete()' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $this->prepQuery();' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( CheckInput::checkSet($this->' . $this->tableDescription->autoIncrementField . ') ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            if ( $this->query->execute("DELETE FROM ' . $this->tableName . ' WHERE ' . $this->tableDescription->autoIncrementField . "='" . '$this->' . $this->tableDescription->autoIncrementField . "'" . '") ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                $this->query->checkAffected();' . PHP_EOL;
+        $this->buffer .= '    ' . '            } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": delete failed!");' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": The ' . $this->tableDescription->autoIncrementField . ' must be set.");' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addValidate
@@ -446,31 +446,31 @@ class ClassGeneratorMySQLi
      */
     protected function addValidate()
     {
-        $this->buffer .= '    ' . '/** validate' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param integer $id unsigned integer reference to the table primary key' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return bool' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function validate( $id )' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    try {' . "\n";
-        $this->buffer .= '    ' . '        $this->prepQuery();' . "\n";
-        $this->buffer .= '    ' . '        if ( CheckInput::checkNewInput($id) ) {' . "\n";
-        $this->buffer .= '    ' . '            if ( $this->query->execute("CALL validate' . $this->tableName . '(' . "'" . '$id' . "'" . ')") ) {' . "\n";
-        $this->buffer .= '    ' . '                $this->query->checkAffected();' . "\n";
-        $this->buffer .= '    ' . '            } else {' . "\n";
-        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": Validation sproc error!");' . "\n";
-        $this->buffer .= '    ' . '            }' . "\n";
-        $this->buffer .= '    ' . '        } else {' . "\n";
-        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": The id must be set.");' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . "\n";
-        $this->buffer .= '    ' . '        $e->execute();' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '    return true;' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '/** validate' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param integer $id unsigned integer reference to the table primary key' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return bool' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function validate( $id )' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    try {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $this->prepQuery();' . PHP_EOL;
+        $this->buffer .= '    ' . '        if ( CheckInput::checkNewInput($id) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '            if ( $this->query->execute("CALL validate' . $this->tableName . '(' . "'" . '$id' . "'" . ')") ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '                $this->query->checkAffected();' . PHP_EOL;
+        $this->buffer .= '    ' . '            } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '                throw new ExceptionHandler(__METHOD__.": Validation sproc error!");' . PHP_EOL;
+        $this->buffer .= '    ' . '            }' . PHP_EOL;
+        $this->buffer .= '    ' . '        } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '            throw new ExceptionHandler(__METHOD__.": The id must be set.");' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '    } catch ( ExceptionHandler $e ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        $e->execute();' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '    return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addSetValue
@@ -479,26 +479,26 @@ class ClassGeneratorMySQLi
      */
     protected function addSetValue()
     {
-        $this->buffer .= '    ' . '/** setValue' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @param string $key   the index you want to use' . "\n";
-        $this->buffer .= '    ' . ' * @param mixed  $value the value to set to that index' . "\n";
-        $this->buffer .= '    ' . ' *' . "\n";
-        $this->buffer .= '    ' . ' * @return boolean' . "\n";
-        $this->buffer .= '    ' . ' */' . "\n";
-        $this->buffer .= '    ' . 'public function setValue($key, $value)' . "\n";
-        $this->buffer .= '    ' . '{' . "\n";
-        $this->buffer .= '    ' . '    if ( isset($key, $value) AND !is_null($key) ) {' . "\n";
-        $this->buffer .= '    ' . '        switch($key){' . "\n";
+        $this->buffer .= '    ' . '/** setValue' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param string $key   the index you want to use' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @param mixed  $value the value to set to that index' . PHP_EOL;
+        $this->buffer .= '    ' . ' *' . PHP_EOL;
+        $this->buffer .= '    ' . ' * @return boolean' . PHP_EOL;
+        $this->buffer .= '    ' . ' */' . PHP_EOL;
+        $this->buffer .= '    ' . 'public function setValue($key, $value)' . PHP_EOL;
+        $this->buffer .= '    ' . '{' . PHP_EOL;
+        $this->buffer .= '    ' . '    if ( isset($key, $value) AND !is_null($key) ) {' . PHP_EOL;
+        $this->buffer .= '    ' . '        switch($key){' . PHP_EOL;
         $this->addTypeCases();
-        $this->buffer .= '    ' . '        default :' . "\n";
-        $this->buffer .= '    ' . '            break;' . "\n";
-        $this->buffer .= '    ' . '        }' . "\n";
-        $this->buffer .= '    ' . '        return true;' . "\n";
-        $this->buffer .= '    ' . '    } else {' . "\n";
-        $this->buffer .= '    ' . '        return false;' . "\n";
-        $this->buffer .= '    ' . '    }' . "\n";
-        $this->buffer .= '    ' . '}' . "\n\n";
+        $this->buffer .= '    ' . '        default :' . PHP_EOL;
+        $this->buffer .= '    ' . '            break;' . PHP_EOL;
+        $this->buffer .= '    ' . '        }' . PHP_EOL;
+        $this->buffer .= '    ' . '        return true;' . PHP_EOL;
+        $this->buffer .= '    ' . '    } else {' . PHP_EOL;
+        $this->buffer .= '    ' . '        return false;' . PHP_EOL;
+        $this->buffer .= '    ' . '    }' . PHP_EOL;
+        $this->buffer .= '    ' . '}' . PHP_EOL . PHP_EOL;
     }
 
     /** addTypeCases
@@ -516,18 +516,18 @@ class ClassGeneratorMySQLi
                         $tmpType["size"] = 'null';
                     }
                     $this->buffer .= '    ' . '        case \'';
-                    $this->buffer .= $field . '\' :' . "\n";
-                    $this->buffer .= '    ' . '            if ( $this->CheckValue(' . "\n";
-                    $this->buffer .= '                    ' . '"' . $type . '",' . "\n";
-                    $this->buffer .= '                    ' . $tmpType["size"] . ',' . "\n";
-                    $this->buffer .= '                    ' . '$value' . "\n";
-                    $this->buffer .= '                ' . ') ) {' . "\n";
+                    $this->buffer .= $field . '\' :' . PHP_EOL;
+                    $this->buffer .= '    ' . '            if ( $this->CheckValue(' . PHP_EOL;
+                    $this->buffer .= '                    ' . '"' . $type . '",' . PHP_EOL;
+                    $this->buffer .= '                    ' . $tmpType["size"] . ',' . PHP_EOL;
+                    $this->buffer .= '                    ' . '$value' . PHP_EOL;
+                    $this->buffer .= '                ' . ') ) {' . PHP_EOL;
                     $this->buffer .= '    ' . '                $this->' . $field;
-                    $this->buffer .= '=$value;' . "\n";
-                    $this->buffer .= '    ' . '            } else {' . "\n";
-                    $this->buffer .= '    ' . '                return false;' . "\n";
-                    $this->buffer .= '    ' . '            };' . "\n";
-                    $this->buffer .= '    ' . '            break;' . "\n";
+                    $this->buffer .= '=$value;' . PHP_EOL;
+                    $this->buffer .= '    ' . '            } else {' . PHP_EOL;
+                    $this->buffer .= '    ' . '                return false;' . PHP_EOL;
+                    $this->buffer .= '    ' . '            };' . PHP_EOL;
+                    $this->buffer .= '    ' . '            break;' . PHP_EOL;
                     $tmpType = null;
                 }
             } else {
@@ -547,7 +547,7 @@ class ClassGeneratorMySQLi
     protected function addCaseByType()
     {
         foreach ($this->tableDescription->typeFrequencyArray as $type => $frequency) {
-            $this->buffer .= '    ' . '            case "' . $type . '":' . "\n";
+            $this->buffer .= '    ' . '            case "' . $type . '":' . PHP_EOL;
             $this->buffer .= '    ' . '                if ( ';
             $this->currentType = $this->explodeType($type);
             if (in_array(
@@ -607,12 +607,12 @@ class ClassGeneratorMySQLi
             if ($this->currentType["unsigned"] !== null) {
                 $this->buffer .= ' ' . 'AND $value >=0 ';
             }
-            $this->buffer .= ' ) {' . "\n";
-            $this->buffer .= '    ' . '                    return true;' . "\n";
-            $this->buffer .= '    ' . '                } else {' . "\n";
-            $this->buffer .= '    ' . '                    return false;' . "\n";
-            $this->buffer .= '    ' . '                }' . "\n";
-            $this->buffer .= '    ' . '                break;' . "\n";
+            $this->buffer .= ' ) {' . PHP_EOL;
+            $this->buffer .= '    ' . '                    return true;' . PHP_EOL;
+            $this->buffer .= '    ' . '                } else {' . PHP_EOL;
+            $this->buffer .= '    ' . '                    return false;' . PHP_EOL;
+            $this->buffer .= '    ' . '                }' . PHP_EOL;
+            $this->buffer .= '    ' . '                break;' . PHP_EOL;
         }
     }
 

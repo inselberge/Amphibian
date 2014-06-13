@@ -223,9 +223,9 @@ class Email
         try {
             if ( CheckInput::checkNewInput($message) ) {
                 if ( isset($this->message) ) {
-                    $this->message .= wordwrap($message, 70, "\r\n");
+                    $this->message .= wordwrap($message, 70, "\r" . PHP_EOL);
                 } else {
-                    $this->message = wordwrap($message, 70, "\r\n");
+                    $this->message = wordwrap($message, 70, "\r" . PHP_EOL);
                 }
             } else {
                 throw new ExceptionHandler(__METHOD__.":message invalid");
@@ -381,9 +381,9 @@ class Email
      */
     protected function setDefaultHTMLHeaders()
     {
-        $this->additionalHeaders = 'MIME-Version: 1.0' . "\r\n";
+        $this->additionalHeaders = 'MIME-Version: 1.0' . "\r" . PHP_EOL;
         $this->additionalHeaders 
-            .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+            .= 'Content-type: text/html; charset=utf-8' . "\r" . PHP_EOL;
     }
 
     /** buildAdditionalHeaders
@@ -415,7 +415,7 @@ class Email
      */
     protected function addTo()
     {
-        $this->additionalHeaders .= 'To: ' . "\r\n";
+        $this->additionalHeaders .= 'To: ' . "\r" . PHP_EOL;
     }
 
     /** addFrom
@@ -424,7 +424,7 @@ class Email
      */
     protected function addFrom()
     {
-        $this->additionalHeaders .= 'From: ' . $this->from . "\r\n";
+        $this->additionalHeaders .= 'From: ' . $this->from . "\r" . PHP_EOL;
     }
 
     /** addReplyTo
@@ -433,7 +433,7 @@ class Email
      */
     protected function addReplyTo()
     {
-        $this->additionalHeaders .= 'Reply-To: ' . $this->replyTo . "\r\n";
+        $this->additionalHeaders .= 'Reply-To: ' . $this->replyTo . "\r" . PHP_EOL;
     }
 
     /** addCC
@@ -442,7 +442,7 @@ class Email
      */
     protected function addCC()
     {
-        $this->additionalHeaders .= 'Cc: ' . $this->cc . "\r\n";
+        $this->additionalHeaders .= 'Cc: ' . $this->cc . "\r" . PHP_EOL;
     }
 
     /** addBCC
@@ -451,7 +451,7 @@ class Email
      */
     protected function addBCC()
     {
-        $this->additionalHeaders .= 'Bcc: ' . $this->bcc . "\r\n";
+        $this->additionalHeaders .= 'Bcc: ' . $this->bcc . "\r" . PHP_EOL;
     }
 
     /** buildHTMLMessage

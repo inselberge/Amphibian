@@ -414,7 +414,7 @@ class DirectoryExtended
             if ( $this->checkIsDirectory() ) {
             } else {
                 if ( $this->checkCreateDirectory() ) {
-                    echo "Created: " . $this->currentDirectory . "\n";
+                    echo "Created: " . $this->currentDirectory . PHP_EOL;
                 } else {
                     throw new ExceptionHandler(__METHOD__.": failed!");
                 }

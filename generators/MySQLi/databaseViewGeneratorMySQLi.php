@@ -170,7 +170,7 @@ class DatabaseViewGeneratorMySQLi
         try {
             if ( CheckInput::checkNewInput($delim) ) {
                 $this->delimiter = $delim;
-                $this->query .= 'DELIMITER ' . $this->delimiter . "\n";
+                $this->query .= 'DELIMITER ' . $this->delimiter . PHP_EOL;
             } else {
                 throw new ExceptionHandler("Tne delimiter must be set.");
             }
@@ -189,7 +189,7 @@ class DatabaseViewGeneratorMySQLi
     {
         try {
             if ( CheckInput::checkNewInput($this->currentTable) ) {
-                $this->query .= 'DROP VIEW IF EXISTS `' . DB_NAME . '`.`view' . ucwords($this->currentTable) . '`' . $this->delimiter . "\n";
+                $this->query .= 'DROP VIEW IF EXISTS `' . DB_NAME . '`.`view' . ucwords($this->currentTable) . '`' . $this->delimiter . PHP_EOL;
             } else {
                 throw new ExceptionHandler("Tne current table must be set.");
             }
@@ -247,7 +247,7 @@ class DatabaseViewGeneratorMySQLi
                 $this->query .= 'CREATE VIEW `view' . ucwords($this->currentTable) . '`';
                 $this->query .= ' AS SELECT ' . $this->requiredColumns;
                 $this->query .= ' FROM `' . $this->currentTable . '`';
-                $this->query .= $this->delimiter . "\n";
+                $this->query .= $this->delimiter . PHP_EOL;
             } else {
                 throw new ExceptionHandler("Tne required columns must be set.");
             }
@@ -273,7 +273,7 @@ class DatabaseViewGeneratorMySQLi
      */
     protected function loadView()
     {
-        //$this->query=str_replace("\n",' ',$this->query);
+        //$this->query=str_replace(PHP_EOL,' ',$this->query);
         $this->databaseQuery->execute($this->query);
     }
 

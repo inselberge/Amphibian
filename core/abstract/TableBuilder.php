@@ -231,7 +231,7 @@ abstract class TableBuilder
         foreach ($finfo as $val) {
             $this->columnNames .= "\t\t\t";
             $this->columnNames .= '<th class="header">';
-            $this->columnNames .= $val . '</th>' . "\n";
+            $this->columnNames .= $val . '</th>' . PHP_EOL;
         }
         //echo $this->columnNames;
     }
@@ -242,11 +242,11 @@ abstract class TableBuilder
      */
     protected function setHead()
     {
-        $this->tableHead = "\t" . '<thead>' . "\n";
-        $this->tableHead .= "\t\t" . '<tr>' . "\n";
+        $this->tableHead = "\t" . '<thead>' . PHP_EOL;
+        $this->tableHead .= "\t\t" . '<tr>' . PHP_EOL;
         $this->tableHead .= $this->columnNames;
-        $this->tableHead .= "\t\t" . '</tr>' . "\n";
-        $this->tableHead .= "\t" . '</thead>' . "\n";
+        $this->tableHead .= "\t\t" . '</tr>' . PHP_EOL;
+        $this->tableHead .= "\t" . '</thead>' . PHP_EOL;
     }
 
     /** setFoot
@@ -255,11 +255,11 @@ abstract class TableBuilder
      */
     protected function setFoot()
     {
-        $this->tableFoot = "\t" . '<tfoot>' . "\n";
-        $this->tableFoot .= "\t\t" . '<tr>' . "\n";
+        $this->tableFoot = "\t" . '<tfoot>' . PHP_EOL;
+        $this->tableFoot .= "\t\t" . '<tr>' . PHP_EOL;
         $this->tableFoot .= $this->columnNames;
-        $this->tableFoot .= "\t\t" . '</tr>' . "\n";
-        $this->tableFoot .= "\t" . '</tfoot>' . "\n";
+        $this->tableFoot .= "\t\t" . '</tr>' . PHP_EOL;
+        $this->tableFoot .= "\t" . '</tfoot>' . PHP_EOL;
     }
 
     /** printHead
@@ -295,8 +295,8 @@ abstract class TableBuilder
      */
     public function printStartTable()
     {
-        echo '<p><a href="#" id="appendStart" data-input-type="append" class="ajax append">Add 25 rows of data </a> (can be clicked many times, more than a 1000 rows can be slow)</p>' . "\n";
-        echo '<table id="' . $this->id . '" cellspacing="1" cellpadding="0" class="tablesorter shadow roundedSmall">' . "\n";
+        echo '<p><a href="#" id="appendStart" data-input-type="append" class="ajax append">Add 25 rows of data </a> (can be clicked many times, more than a 1000 rows can be slow)</p>' . PHP_EOL;
+        echo '<table id="' . $this->id . '" cellspacing="1" cellpadding="0" class="tablesorter shadow roundedSmall">' . PHP_EOL;
     }
 
     /** printEndTable
@@ -305,8 +305,8 @@ abstract class TableBuilder
      */
     static public function printEndTable()
     {
-        echo '</table>' . "\n";
-        echo '<p><a href="#" id="appendEnd" data-input-type="append" class="ajax append">Add 25 rows of data </a> (can be clicked many times, more than a 1000 rows can be slow)</p>' . "\n";
+        echo '</table>' . PHP_EOL;
+        echo '<p><a href="#" id="appendEnd" data-input-type="append" class="ajax append">Add 25 rows of data </a> (can be clicked many times, more than a 1000 rows can be slow)</p>' . PHP_EOL;
     }
 
     /** printStartBody
@@ -315,7 +315,7 @@ abstract class TableBuilder
      */
     static public function printStartBody()
     {
-        echo "\t" . '<tbody>' . "\n";
+        echo "\t" . '<tbody>' . PHP_EOL;
     }
 
     /** printEndBody
@@ -324,7 +324,7 @@ abstract class TableBuilder
      */
     static public function printEndBody()
     {
-        echo "\t" . '</tbody>' . "\n";
+        echo "\t" . '</tbody>' . PHP_EOL;
     }
 
 
@@ -338,14 +338,14 @@ abstract class TableBuilder
     {
         if (is_array($row)) {
             if (fmod($this->rowNumber, 2) === 0) {
-                echo "\t\t" . '<tr class="even" bgcolor="' . $this->bgColor . '">' . "\n";
+                echo "\t\t" . '<tr class="even" bgcolor="' . $this->bgColor . '">' . PHP_EOL;
             } else {
-                echo "\t\t" . '<tr class="odd" bgcolor="' . $this->bgColorAlt . '">' . "\n";
+                echo "\t\t" . '<tr class="odd" bgcolor="' . $this->bgColorAlt . '">' . PHP_EOL;
             }
             foreach ($row as $value) {
-                echo "\t\t\t" . '<td>' . $value . '</td>' . "\n";
+                echo "\t\t\t" . '<td>' . $value . '</td>' . PHP_EOL;
             }
-            echo "\t\t" . '</tr>' . "\n";
+            echo "\t\t" . '</tr>' . PHP_EOL;
         } else {
         }
     }

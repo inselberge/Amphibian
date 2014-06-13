@@ -484,7 +484,7 @@ class XML
      */
     protected function startXML()
     {
-        $this->buffer.='<?xml version="1.0" charset="utf-8">'."\n";
+        $this->buffer.='<?xml version="1.0" charset="utf-8">'.PHP_EOL;
     }
 
     /** startDataSet
@@ -493,7 +493,7 @@ class XML
      */
     protected function startDataSet()
     {
-        $this->buffer.='    <dataset>'."\n";
+        $this->buffer.='    <dataset>'.PHP_EOL;
     }
 
     /** startTable
@@ -502,7 +502,7 @@ class XML
      */
     protected function startTable()
     {
-        $this->buffer.='        <table name="'.$this->tableName.'">'."\n";
+        $this->buffer.='        <table name="'.$this->tableName.'">'.PHP_EOL;
     }
 
     /** addColumn
@@ -512,7 +512,7 @@ class XML
      */
     protected function addColumn($value)
     {
-        $this->buffer .= '            <column>'.$value.'</column>'."\n";
+        $this->buffer .= '            <column>'.$value.'</column>'.PHP_EOL;
     }
 
     /** startRow
@@ -521,7 +521,7 @@ class XML
      */
     protected function startRow()
     {
-        $this->buffer.='            <row>'."\n";
+        $this->buffer.='            <row>'.PHP_EOL;
     }
 
     /** addValue
@@ -533,9 +533,9 @@ class XML
     protected function addValue($value)
     {
         if ( $this->check($value) ) {
-            $this->buffer .= '                <value>'.$value.'</value>'."\n";
+            $this->buffer .= '                <value>'.$value.'</value>'.PHP_EOL;
         } else {
-            $this->buffer .= '                <null/>'."\n";
+            $this->buffer .= '                <null/>'.PHP_EOL;
         }
     }
 
@@ -545,7 +545,7 @@ class XML
      */
     protected function endRow()
     {
-        $this->buffer.='            </row>'."\n";
+        $this->buffer.='            </row>'.PHP_EOL;
     }
 
     /** endTable
@@ -554,7 +554,7 @@ class XML
      */
     protected function endTable()
     {
-        $this->buffer.='        </table>'."\n";
+        $this->buffer.='        </table>'.PHP_EOL;
     }
 
     /** endDataSet
@@ -563,7 +563,7 @@ class XML
      */
     protected function endDataSet()
     {
-        $this->buffer.='    </dataset>'."\n";
+        $this->buffer.='    </dataset>'.PHP_EOL;
     }
 
     /** check

@@ -266,20 +266,20 @@ class Log
             $this->_FileHandle->write(
                 $_SERVER["HTTP_COOKIE"]."::"
                 .$_SERVER["REQUEST_URI"]."::"
-                .$this->message."\n"
+                .$this->message.PHP_EOL
             );
         } else {
             if ( isset($_SERVER["REQUEST_URI"]) ) {
                 $this->_FileHandle->write(
                     $_SERVER["REQUEST_URI"]
                     ."::"
-                    .$this->message."\n"
+                    .$this->message.PHP_EOL
                 );
             } else {
                 $this->_FileHandle->write(
                     $_SERVER["PHP_SELF"]
                     ."::"
-                    .$this->message."\n"
+                    .$this->message.PHP_EOL
                 );
             }
         }

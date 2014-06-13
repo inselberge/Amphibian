@@ -150,7 +150,7 @@ class PreLoader
         foreach ( $this->array as $value ) {
             echo '<link rel="stylesheet" type="text/css" href="css/'
                  . $value
-                 . '" />' . "\n";
+                 . '" />' . PHP_EOL;
         }
     }
 
@@ -161,7 +161,7 @@ class PreLoader
     protected function printDNSPrefetch()
     {
         foreach ( $this->array as $value ) {
-            echo '<link rel="dns-prefetch" href="' . $value . '" />' . "\n";
+            echo '<link rel="dns-prefetch" href="' . $value . '" />' . PHP_EOL;
         }
     }
 
@@ -174,7 +174,7 @@ class PreLoader
         foreach ( $this->array as $value ) {
             echo '<script type="text/javascript" src="js/'
                  . $value
-                 . '"></script>' . "\n";
+                 . '"></script>' . PHP_EOL;
         }
     }
 
@@ -185,7 +185,7 @@ class PreLoader
     protected function printPrefetch()
     {
         foreach ( $this->array as $value ) {
-            echo '<link rel="prefetch" href="' . $value . '" />' . "\n";
+            echo '<link rel="prefetch" href="' . $value . '" />' . PHP_EOL;
         }
     }
 
@@ -196,7 +196,7 @@ class PreLoader
     protected function printPrerender()
     {
         foreach ( $this->array as $value ) {
-            echo '<link rel="prerender" href="' . $value . '" />' . "\n";
+            echo '<link rel="prerender" href="' . $value . '" />' . PHP_EOL;
         }
     }
 }

@@ -28,11 +28,11 @@ abstract class AgencyGenerator
      */
     protected function addPHPTag()
     {
-        $this->buffer='<?php '."\n";
+        $this->buffer='<?php '.PHP_EOL;
         $this->addFileComment();
-        $this->buffer.='require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";'."\n";
-        $this->buffer.='require_once CORE."BasicAgency.php";'."\n";
-        $this->buffer.='require_once CORE_INTERFACES."concreteAgencyInterface.php";'."\n";
+        $this->buffer.='require_once __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";'.PHP_EOL;
+        $this->buffer.='require_once CORE."BasicAgency.php";'.PHP_EOL;
+        $this->buffer.='require_once CORE_INTERFACES."concreteAgencyInterface.php";'.PHP_EOL;
     }
 
     /** addFileComment
@@ -41,14 +41,14 @@ abstract class AgencyGenerator
      */
     protected function addFileComment()
     {
-        $this->buffer .= '/**' . "\n";
-        $this->buffer .= ' * PHP version ' . PHP_VERSION."\n";
-        $this->buffer .= ' * Created by Amphibian' . "\n";
-        $this->buffer .= ' * Project: ' .APP_NAME. "\n";
-        $this->buffer .= ' * User: ' . "\n";
-        $this->buffer .= ' * Date: ' . date('m/d/Y')."\n";
-        $this->buffer .= ' * Time: ' . date('H:i:s')."\n";
-        $this->buffer .= ' */' . "\n";
+        $this->buffer .= '/**' . PHP_EOL;
+        $this->buffer .= ' * PHP version ' . PHP_VERSION.PHP_EOL;
+        $this->buffer .= ' * Created by Amphibian' . PHP_EOL;
+        $this->buffer .= ' * Project: ' .APP_NAME. PHP_EOL;
+        $this->buffer .= ' * User: ' . PHP_EOL;
+        $this->buffer .= ' * Date: ' . date('m/d/Y').PHP_EOL;
+        $this->buffer .= ' * Time: ' . date('H:i:s').PHP_EOL;
+        $this->buffer .= ' */' . PHP_EOL;
     }
     /** addClassComment
      *
@@ -56,15 +56,15 @@ abstract class AgencyGenerator
      */
     protected function addClassComment()
     {
-        $this->buffer .= '/**' . "\n";
-        $this->buffer .= ' * Class ' . $this->tableName.'Agency'. "\n";
-        $this->buffer .= ' *' . "\n";
-        $this->buffer .= ' * @category Model' . "\n";
-        $this->buffer .= ' * @package  ' . $this->tableName. "\n";
-        $this->buffer .= ' * @author   ' . "\n";
-        $this->buffer .= ' * @license  TBD' . "\n";
-        $this->buffer .= ' * @link     TBD' . "\n";
-        $this->buffer .= ' */' . "\n";
+        $this->buffer .= '/**' . PHP_EOL;
+        $this->buffer .= ' * Class ' . $this->tableName.'Agency'. PHP_EOL;
+        $this->buffer .= ' *' . PHP_EOL;
+        $this->buffer .= ' * @category Model' . PHP_EOL;
+        $this->buffer .= ' * @package  ' . $this->tableName. PHP_EOL;
+        $this->buffer .= ' * @author   ' . PHP_EOL;
+        $this->buffer .= ' * @license  TBD' . PHP_EOL;
+        $this->buffer .= ' * @link     TBD' . PHP_EOL;
+        $this->buffer .= ' */' . PHP_EOL;
     }
 
     /** addClassStart
@@ -73,10 +73,10 @@ abstract class AgencyGenerator
      */
     protected function addClassStart()
     {
-        $this->buffer.='class '.$this->tableName.'Agency'."\n";
-        $this->buffer.='    extends BasicAgency'."\n";
-        $this->buffer.='    implements concreteAgencyInterface'."\n";
-        $this->buffer.='{'."\n\n";
+        $this->buffer.='class '.$this->tableName.'Agency'.PHP_EOL;
+        $this->buffer.='    extends BasicAgency'.PHP_EOL;
+        $this->buffer.='    implements concreteAgencyInterface'.PHP_EOL;
+        $this->buffer.='{'.PHP_EOL . PHP_EOL;
     }
 
     /** addAcceptableVariable
@@ -85,20 +85,20 @@ abstract class AgencyGenerator
      */
     protected function addAcceptableVars()
     {
-        $this->buffer.='    /**'."\n";
-        $this->buffer.='     * @var array acceptableVars holds the acceptable variables for this agency'."\n";
-        $this->buffer.='     */'."\n";
-        $this->buffer.='    protected $acceptableVars = array ('."\n";
+        $this->buffer.='    /**'.PHP_EOL;
+        $this->buffer.='     * @var array acceptableVars holds the acceptable variables for this agency'.PHP_EOL;
+        $this->buffer.='     */'.PHP_EOL;
+        $this->buffer.='    protected $acceptableVars = array ('.PHP_EOL;
         if ( $this->setTableColumns() ) {
             foreach ($this->tableColumns as $key => $column) {
                 if ( $key === 0 ) {
-                    $this->buffer.='        "'.$column.'"'."\n";
+                    $this->buffer.='        "'.$column.'"'.PHP_EOL;
                 } else {
-                    $this->buffer.='        , "'.$column.'"'."\n";
+                    $this->buffer.='        , "'.$column.'"'.PHP_EOL;
                 }
             }
         }
-        $this->buffer.='    );'."\n";
+        $this->buffer.='    );'.PHP_EOL;
     }
 
     /** setTableColumns
@@ -113,7 +113,7 @@ abstract class AgencyGenerator
      */
     protected function addStaticVariable()
     {
-        $this->buffer.='    public static $'.$this->tableName.'Agency;'."\n\n";
+        $this->buffer.='    public static $'.$this->tableName.'Agency;'.PHP_EOL . PHP_EOL;
     }
 
     /** addStaticInstance
@@ -122,13 +122,13 @@ abstract class AgencyGenerator
      */
     protected function addStaticInstance()
     {
-        $this->buffer.='    static public function instance($databaseConnection)'."\n";
-        $this->buffer.='    {'."\n";
-        $this->buffer.='        if(!isset(self::$'.$this->tableName.'Agency)){'."\n";
-        $this->buffer.='            self::$'.$this->tableName.'Agency = new '.$this->tableName.'Agency($databaseConnection);'."\n";
-        $this->buffer.='        }'."\n";
-        $this->buffer.='        return self::$'.$this->tableName.'Agency;'."\n";
-        $this->buffer.='    }'."\n\n";
+        $this->buffer.='    static public function instance($databaseConnection)'.PHP_EOL;
+        $this->buffer.='    {'.PHP_EOL;
+        $this->buffer.='        if(!isset(self::$'.$this->tableName.'Agency)){'.PHP_EOL;
+        $this->buffer.='            self::$'.$this->tableName.'Agency = new '.$this->tableName.'Agency($databaseConnection);'.PHP_EOL;
+        $this->buffer.='        }'.PHP_EOL;
+        $this->buffer.='        return self::$'.$this->tableName.'Agency;'.PHP_EOL;
+        $this->buffer.='    }'.PHP_EOL . PHP_EOL;
     }
 
     /** addForkQuery

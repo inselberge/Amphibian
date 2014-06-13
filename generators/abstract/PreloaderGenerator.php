@@ -57,23 +57,23 @@ abstract class PreloaderGenerator
     {
         try {
             if (CheckInput::checkSet($this->tableName)) {
-                $this->buffer .= '/*'."\n";
-                $this->buffer .='* SEO specific to this page' . "\n";
-                $this->buffer .='*/' . "\n";
-                $this->buffer .='$author;' . "\n";
-                $this->buffer .='$description;' . "\n";
-                $this->buffer .='$keywords;' . "\n";
-                $this->buffer .='$keywords_not;' . "\n";
+                $this->buffer .= '/*'.PHP_EOL;
+                $this->buffer .='* SEO specific to this page' . PHP_EOL;
+                $this->buffer .='*/' . PHP_EOL;
+                $this->buffer .='$author;' . PHP_EOL;
+                $this->buffer .='$description;' . PHP_EOL;
+                $this->buffer .='$keywords;' . PHP_EOL;
+                $this->buffer .='$keywords_not;' . PHP_EOL;
                 $this->buffer .='$page_title = "' . APP_NAME . ' - ';
-                $this->buffer .= ucwords(_ToSpace($this->tableName)) . '";' . "\n";
-                $this->buffer .='/*' . "\n";
-                $this->buffer .=' * JavaScript and CSS specific to this page' . "\n";
-                $this->buffer .=' */' . "\n";
-                $this->buffer .='$js = array();' . "\n";
-                $this->buffer .='$css = array();' . "\n";
-                $this->buffer .='$prefetch = array();' . "\n";
-                $this->buffer .='$dns = array();' . "\n";
-                $this->buffer .='$prerender = array();' . "\n";
+                $this->buffer .= ucwords(_ToSpace($this->tableName)) . '";' . PHP_EOL;
+                $this->buffer .='/*' . PHP_EOL;
+                $this->buffer .=' * JavaScript and CSS specific to this page' . PHP_EOL;
+                $this->buffer .=' */' . PHP_EOL;
+                $this->buffer .='$js = array();' . PHP_EOL;
+                $this->buffer .='$css = array();' . PHP_EOL;
+                $this->buffer .='$prefetch = array();' . PHP_EOL;
+                $this->buffer .='$dns = array();' . PHP_EOL;
+                $this->buffer .='$prerender = array();' . PHP_EOL;
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": tableName invalid.");
             }

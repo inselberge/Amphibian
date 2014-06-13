@@ -145,15 +145,15 @@ class BookendGenerator
      */
     protected function startHead()
     {
-        $this->fileBuffer .= '<?php' . "\n";
-        $this->fileBuffer .= '////require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls' . "\n";
-        $this->fileBuffer .= '?>' . "\n";
-        $this->fileBuffer .= '<!doctype html>' . "\n";
-        $this->fileBuffer .= '<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->' . "\n";
-        $this->fileBuffer .= '<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->' . "\n";
-        $this->fileBuffer .= '<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->' . "\n";
-        $this->fileBuffer .= '<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->' . "\n";
-        $this->fileBuffer .= '<head>' . "\n";
+        $this->fileBuffer .= '<?php' . PHP_EOL;
+        $this->fileBuffer .= '////require_once MYSQL; todo: replace these with correct databaseConnectionMySQLi calls' . PHP_EOL;
+        $this->fileBuffer .= '?>' . PHP_EOL;
+        $this->fileBuffer .= '<!doctype html>' . PHP_EOL;
+        $this->fileBuffer .= '<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->' . PHP_EOL;
+        $this->fileBuffer .= '<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->' . PHP_EOL;
+        $this->fileBuffer .= '<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->' . PHP_EOL;
+        $this->fileBuffer .= '<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->' . PHP_EOL;
+        $this->fileBuffer .= '<head>' . PHP_EOL;
     }
 
     /** addStandardMeta
@@ -162,14 +162,14 @@ class BookendGenerator
      */
     protected function addStandardMeta()
     {
-        $this->fileBuffer .= '    <meta charset="utf-8">' . "\n";
-        $this->fileBuffer .= '    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">' . "\n";
-        $this->fileBuffer .= '    <meta name="description" content="">' . "\n";
-        $this->fileBuffer .= '    <meta name="author" content="' . APP_NAME . '">' . "\n";
-        $this->fileBuffer .= '    <meta name="keywords" content="' . APP_NAME . '"/>' . "\n";
-        $this->fileBuffer .= '    <meta name="keywords-not" content="" />' . "\n";
-        $this->fileBuffer .= '    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">' . "\n";
-        $this->fileBuffer .= '    <meta name="robots" content="noindex, follow">' . "\n";
+        $this->fileBuffer .= '    <meta charset="utf-8">' . PHP_EOL;
+        $this->fileBuffer .= '    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">' . PHP_EOL;
+        $this->fileBuffer .= '    <meta name="description" content="">' . PHP_EOL;
+        $this->fileBuffer .= '    <meta name="author" content="' . APP_NAME . '">' . PHP_EOL;
+        $this->fileBuffer .= '    <meta name="keywords" content="' . APP_NAME . '"/>' . PHP_EOL;
+        $this->fileBuffer .= '    <meta name="keywords-not" content="" />' . PHP_EOL;
+        $this->fileBuffer .= '    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">' . PHP_EOL;
+        $this->fileBuffer .= '    <meta name="robots" content="noindex, follow">' . PHP_EOL;
     }
 
 
@@ -179,14 +179,14 @@ class BookendGenerator
      */
     protected function addTitle()
     {
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '    if(isset($page_title)){' . "\n";
-        $this->fileBuffer .= '        echo "<title>".$page_title."</title>";' . "\n";
-        $this->fileBuffer .= '    }' . "\n";
-        $this->fileBuffer .= '    else{' . "\n";
-        $this->fileBuffer .= '        echo "<title>"' . APP_NAME . '"</title>";' . "\n";
-        $this->fileBuffer .= '    }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '    if(isset($page_title)){' . PHP_EOL;
+        $this->fileBuffer .= '        echo "<title>".$page_title."</title>";' . PHP_EOL;
+        $this->fileBuffer .= '    }' . PHP_EOL;
+        $this->fileBuffer .= '    else{' . PHP_EOL;
+        $this->fileBuffer .= '        echo "<title>"' . APP_NAME . '"</title>";' . PHP_EOL;
+        $this->fileBuffer .= '    }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
     }
 
 
@@ -196,17 +196,17 @@ class BookendGenerator
      */
     protected function addDNSPrefetching()
     {
-        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//fonts.googleapis.com">' . "\n";
-        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//google-analytics.com">' . "\n";
-        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//www.google-analytics.com">' . "\n";
-        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//ajax.googleapis.com">' . "\n";
-        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//code.jquery.com">' . "\n";
-        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//modernizr.com">' . "\n";
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        if(isset($dns) AND !is_null($dns)){' . "\n";
-        $this->fileBuffer .= '            preLoader("dns",$dns);' . "\n";
-        $this->fileBuffer .= '        }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//fonts.googleapis.com">' . PHP_EOL;
+        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//google-analytics.com">' . PHP_EOL;
+        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//www.google-analytics.com">' . PHP_EOL;
+        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//ajax.googleapis.com">' . PHP_EOL;
+        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//code.jquery.com">' . PHP_EOL;
+        $this->fileBuffer .= '    <link rel="dns-prefetch" href="//modernizr.com">' . PHP_EOL;
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        if(isset($dns) AND !is_null($dns)){' . PHP_EOL;
+        $this->fileBuffer .= '            preLoader("dns",$dns);' . PHP_EOL;
+        $this->fileBuffer .= '        }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
 
     }
 
@@ -217,7 +217,7 @@ class BookendGenerator
      */
     protected function addFavicon()
     {
-        $this->fileBuffer .= '    <link rel="shortcut icon" href="" />' . "\n";
+        $this->fileBuffer .= '    <link rel="shortcut icon" href="" />' . PHP_EOL;
     }
 
 
@@ -227,7 +227,7 @@ class BookendGenerator
      */
     protected function addCSSBlock()
     {
-        $this->fileBuffer .= '    <!--CSS-->' . "\n";
+        $this->fileBuffer .= '    <!--CSS-->' . PHP_EOL;
         $this->addjQueryUICSS();
         $this->addjQueryMobileCSS();
         $this->addCSSPreloader();
@@ -240,7 +240,7 @@ class BookendGenerator
      */
     protected function addjQueryUICSS()
     {
-        $this->fileBuffer .= '    <link type="text/css" href="http://code.jquery.com/ui/' . JQUERY_UI_VERSION . '/themes/smoothness/jquery-ui.css" rel="stylesheet" />' . "\n";
+        $this->fileBuffer .= '    <link type="text/css" href="http://code.jquery.com/ui/' . JQUERY_UI_VERSION . '/themes/smoothness/jquery-ui.css" rel="stylesheet" />' . PHP_EOL;
     }
 
 
@@ -250,13 +250,13 @@ class BookendGenerator
      */
     protected function addjQueryMobileCSS()
     {
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        if(isset($is_mobile) AND !is_null($is_mobile)){' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
-        $this->fileBuffer .= '          <link rel="stylesheet" href="http://code.jquery.com/mobile/' . JQUERY_MOBILE_VERSION . '/jquery.mobile-' . JQUERY_MOBILE_VERSION . '.min.css">' . "\n";
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        if(isset($is_mobile) AND !is_null($is_mobile)){' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
+        $this->fileBuffer .= '          <link rel="stylesheet" href="http://code.jquery.com/mobile/' . JQUERY_MOBILE_VERSION . '/jquery.mobile-' . JQUERY_MOBILE_VERSION . '.min.css">' . PHP_EOL;
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
 
 
     }
@@ -268,12 +268,12 @@ class BookendGenerator
      */
     protected function addCSSPreloader()
     {
-        $this->fileBuffer .= '    <!-- Custom CSS -->' . "\n";
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        if(isset($css) AND !is_null($css)){' . "\n";
-        $this->fileBuffer .= '            preLoader("css",$css);' . "\n";
-        $this->fileBuffer .= '        }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <!-- Custom CSS -->' . PHP_EOL;
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        if(isset($css) AND !is_null($css)){' . PHP_EOL;
+        $this->fileBuffer .= '            preLoader("css",$css);' . PHP_EOL;
+        $this->fileBuffer .= '        }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
     }
 
 
@@ -297,11 +297,11 @@ class BookendGenerator
      */
     protected function addPNGFix()
     {
-        $this->fileBuffer .= '    <!-- PNG FIX for IE6 -->' . "\n";
-        $this->fileBuffer .= '    <!-- http://24ways.org/2007/supersleight-transparent-png-in-ie6 -->' . "\n";
-        $this->fileBuffer .= '    <!--[if lte IE 6]>' . "\n";
-        $this->fileBuffer .= '        <script type="text/javascript" src="js/pngfix/supersleight-min.js"></script>' . "\n";
-        $this->fileBuffer .= '    <![endif]-->' . "\n";
+        $this->fileBuffer .= '    <!-- PNG FIX for IE6 -->' . PHP_EOL;
+        $this->fileBuffer .= '    <!-- http://24ways.org/2007/supersleight-transparent-png-in-ie6 -->' . PHP_EOL;
+        $this->fileBuffer .= '    <!--[if lte IE 6]>' . PHP_EOL;
+        $this->fileBuffer .= '        <script type="text/javascript" src="js/pngfix/supersleight-min.js"></script>' . PHP_EOL;
+        $this->fileBuffer .= '    <![endif]-->' . PHP_EOL;
     }
 
 
@@ -311,12 +311,12 @@ class BookendGenerator
      */
     protected function addPrefetching()
     {
-        $this->fileBuffer .= '    <!-- Prefetch the following assets -->' . "\n";
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        if(isset($prefetch) AND !is_null($prefetch)){' . "\n";
-        $this->fileBuffer .= '            preLoader("prefetch",$prefetch);' . "\n";
-        $this->fileBuffer .= '        }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <!-- Prefetch the following assets -->' . PHP_EOL;
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        if(isset($prefetch) AND !is_null($prefetch)){' . PHP_EOL;
+        $this->fileBuffer .= '            preLoader("prefetch",$prefetch);' . PHP_EOL;
+        $this->fileBuffer .= '        }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
     }
 
 
@@ -326,12 +326,12 @@ class BookendGenerator
      */
     protected function addPrerendering()
     {
-        $this->fileBuffer .= '    <!-- Prerender the following links -->' . "\n";
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        if(isset($prerender) AND !is_null($prerender)){' . "\n";
-        $this->fileBuffer .= '            preLoader("prerender",$prerender);' . "\n";
-        $this->fileBuffer .= '        }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <!-- Prerender the following links -->' . PHP_EOL;
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        if(isset($prerender) AND !is_null($prerender)){' . PHP_EOL;
+        $this->fileBuffer .= '            preLoader("prerender",$prerender);' . PHP_EOL;
+        $this->fileBuffer .= '        }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
     }
 
 
@@ -341,7 +341,7 @@ class BookendGenerator
      */
     protected function addModernizr()
     {
-        $this->fileBuffer .= '    <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>' . "\n";
+        $this->fileBuffer .= '    <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>' . PHP_EOL;
     }
 
 
@@ -351,12 +351,12 @@ class BookendGenerator
      */
     protected function addJavaScriptPreloader()
     {
-        $this->fileBuffer .= '    <!--All JQuery, custom JS has to be loaded after this -->' . "\n";
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        if(isset($js) AND !is_null($js)){' . "\n";
-        $this->fileBuffer .= '            preLoader("js",$js);' . "\n";
-        $this->fileBuffer .= '        }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <!--All JQuery, custom JS has to be loaded after this -->' . PHP_EOL;
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        if(isset($js) AND !is_null($js)){' . PHP_EOL;
+        $this->fileBuffer .= '            preLoader("js",$js);' . PHP_EOL;
+        $this->fileBuffer .= '        }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
     }
 
 
@@ -366,7 +366,7 @@ class BookendGenerator
      */
     protected function endHead()
     {
-        $this->fileBuffer .= '</head>' . "\n";
+        $this->fileBuffer .= '</head>' . PHP_EOL;
     }
 
 
@@ -376,7 +376,7 @@ class BookendGenerator
      */
     protected function startBody()
     {
-        $this->fileBuffer .= '    <body data-role="page">' . "\n";
+        $this->fileBuffer .= '    <body data-role="page">' . PHP_EOL;
     }
 
 
@@ -398,11 +398,11 @@ class BookendGenerator
      */
     protected function startHeader()
     {
-        $this->fileBuffer .= '        <div data-role="header" class="header-container">' . "\n";
-        $this->fileBuffer .= '            <header>' . "\n";
-        $this->fileBuffer .= '                <hgroup>' . "\n";
-        $this->fileBuffer .= '                    <h1 class="title"></h1>' . "\n";
-        $this->fileBuffer .= '                </hgroup>' . "\n";
+        $this->fileBuffer .= '        <div data-role="header" class="header-container">' . PHP_EOL;
+        $this->fileBuffer .= '            <header>' . PHP_EOL;
+        $this->fileBuffer .= '                <hgroup>' . PHP_EOL;
+        $this->fileBuffer .= '                    <h1 class="title"></h1>' . PHP_EOL;
+        $this->fileBuffer .= '                </hgroup>' . PHP_EOL;
     }
 
 
@@ -412,13 +412,13 @@ class BookendGenerator
      */
     protected function addNav()
     {
-        $this->fileBuffer .= '                <nav>' . "\n";
-        $this->fileBuffer .= '                    <ul>' . "\n";
-        $this->fileBuffer .= '                        <li><a href="#"></a></li>' . "\n";
-        $this->fileBuffer .= '                        <li><a href="#"></a></li>' . "\n";
-        $this->fileBuffer .= '                        <li><a href="#"></a></li>' . "\n";
-        $this->fileBuffer .= '                    </ul>' . "\n";
-        $this->fileBuffer .= '                </nav>' . "\n";
+        $this->fileBuffer .= '                <nav>' . PHP_EOL;
+        $this->fileBuffer .= '                    <ul>' . PHP_EOL;
+        $this->fileBuffer .= '                        <li><a href="#"></a></li>' . PHP_EOL;
+        $this->fileBuffer .= '                        <li><a href="#"></a></li>' . PHP_EOL;
+        $this->fileBuffer .= '                        <li><a href="#"></a></li>' . PHP_EOL;
+        $this->fileBuffer .= '                    </ul>' . PHP_EOL;
+        $this->fileBuffer .= '                </nav>' . PHP_EOL;
     }
 
 
@@ -428,8 +428,8 @@ class BookendGenerator
      */
     protected function endHeader()
     {
-        $this->fileBuffer .= '            </header>' . "\n";
-        $this->fileBuffer .= '        </div>' . "\n";
+        $this->fileBuffer .= '            </header>' . PHP_EOL;
+        $this->fileBuffer .= '        </div>' . PHP_EOL;
     }
 
 
@@ -439,7 +439,7 @@ class BookendGenerator
      */
     protected function startContent()
     {
-        $this->fileBuffer .= '        <div data-role="content" class="content container clearfix">' . "\n";
+        $this->fileBuffer .= '        <div data-role="content" class="content container clearfix">' . PHP_EOL;
     }
 
 
@@ -505,7 +505,7 @@ class BookendGenerator
      */
     protected function endContent()
     {
-        $this->fileBuffer .= '        </div>' . "\n";
+        $this->fileBuffer .= '        </div>' . PHP_EOL;
     }
 
 
@@ -515,8 +515,8 @@ class BookendGenerator
      */
     protected function startFooter()
     {
-        $this->fileBuffer .= '        <div data-role="footer" class="footer-container">' . "\n";
-        $this->fileBuffer .= '            <footer class="wrapper">' . "\n";
+        $this->fileBuffer .= '        <div data-role="footer" class="footer-container">' . PHP_EOL;
+        $this->fileBuffer .= '            <footer class="wrapper">' . PHP_EOL;
     }
 
 
@@ -526,8 +526,8 @@ class BookendGenerator
      */
     protected function endFooter()
     {
-        $this->fileBuffer .= '            </footer>' . "\n";
-        $this->fileBuffer .= '        </div>' . "\n";
+        $this->fileBuffer .= '            </footer>' . PHP_EOL;
+        $this->fileBuffer .= '        </div>' . PHP_EOL;
     }
 
 
@@ -550,11 +550,11 @@ class BookendGenerator
      */
     protected function addjQuery()
     {
-        $this->fileBuffer .= '        <!-- jQuery Minimized -->' . "\n";
-        $this->fileBuffer .= '        <script src="//ajax.googleapis.com/ajax/libs/jquery/' . JQUERY_VERSION . '/jquery.min.js"></script>' . "\n";
-        $this->fileBuffer .= '        <script>window.jQuery || document.write(' . "'" . '<script src="//ajax.googleapis.com/ajax/libs/jquery/' . JQUERY_VERSION . '/jquery.min.js"><\/script>' . "'" . ')</script>' . "\n";
-        $this->fileBuffer .= '        <script src="js/plugins.js"></script>' . "\n";
-        $this->fileBuffer .= '        <script src="js/main.js"></script>' . "\n";
+        $this->fileBuffer .= '        <!-- jQuery Minimized -->' . PHP_EOL;
+        $this->fileBuffer .= '        <script src="//ajax.googleapis.com/ajax/libs/jquery/' . JQUERY_VERSION . '/jquery.min.js"></script>' . PHP_EOL;
+        $this->fileBuffer .= '        <script>window.jQuery || document.write(' . "'" . '<script src="//ajax.googleapis.com/ajax/libs/jquery/' . JQUERY_VERSION . '/jquery.min.js"><\/script>' . "'" . ')</script>' . PHP_EOL;
+        $this->fileBuffer .= '        <script src="js/plugins.js"></script>' . PHP_EOL;
+        $this->fileBuffer .= '        <script src="js/main.js"></script>' . PHP_EOL;
     }
 
 
@@ -564,8 +564,8 @@ class BookendGenerator
      */
     protected function addjQueryUI()
     {
-        $this->fileBuffer .= '        <!-- jQuery UI -->' . "\n";
-        $this->fileBuffer .= '        <script src="http://code.jquery.com/ui/' . JQUERY_UI_VERSION . '/jquery-ui.js"></script>' . "\n";
+        $this->fileBuffer .= '        <!-- jQuery UI -->' . PHP_EOL;
+        $this->fileBuffer .= '        <script src="http://code.jquery.com/ui/' . JQUERY_UI_VERSION . '/jquery-ui.js"></script>' . PHP_EOL;
     }
 
 
@@ -575,14 +575,14 @@ class BookendGenerator
      */
     protected function addjQueryMobile()
     {
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        if(isset($is_mobile) AND !is_null($is_mobile)){' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
-        $this->fileBuffer .= '        <!-- jQuery Mobile -->' . "\n";
-        $this->fileBuffer .= '        <script src="http://code.jquery.com/mobile/' . JQUERY_MOBILE_VERSION . '/jquery.mobile-' . JQUERY_MOBILE_VERSION . '.min.js"></script>' . "\n";
-        $this->fileBuffer .= '    <?php' . "\n";
-        $this->fileBuffer .= '        }' . "\n";
-        $this->fileBuffer .= '    ?>' . "\n";
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        if(isset($is_mobile) AND !is_null($is_mobile)){' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
+        $this->fileBuffer .= '        <!-- jQuery Mobile -->' . PHP_EOL;
+        $this->fileBuffer .= '        <script src="http://code.jquery.com/mobile/' . JQUERY_MOBILE_VERSION . '/jquery.mobile-' . JQUERY_MOBILE_VERSION . '.min.js"></script>' . PHP_EOL;
+        $this->fileBuffer .= '    <?php' . PHP_EOL;
+        $this->fileBuffer .= '        }' . PHP_EOL;
+        $this->fileBuffer .= '    ?>' . PHP_EOL;
     }
 
 
@@ -602,13 +602,13 @@ class BookendGenerator
      */
     protected function addGoogleAnalytics()
     {
-        $this->fileBuffer .= '        <!-- Google Analytics: change UA-XXXXX-X to be your site ID. -->' . "\n";
-        $this->fileBuffer .= '        <script>' . "\n";
-        $this->fileBuffer .= '            var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];' . "\n";
-        $this->fileBuffer .= '            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];' . "\n";
-        $this->fileBuffer .= '            g.src="//www.google-analytics.com/ga.js";' . "\n";
-        $this->fileBuffer .= '            s.parentNode.insertBefore(g,s)}(document,"script"));' . "\n";
-        $this->fileBuffer .= '        </script>' . "\n";
+        $this->fileBuffer .= '        <!-- Google Analytics: change UA-XXXXX-X to be your site ID. -->' . PHP_EOL;
+        $this->fileBuffer .= '        <script>' . PHP_EOL;
+        $this->fileBuffer .= '            var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];' . PHP_EOL;
+        $this->fileBuffer .= '            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];' . PHP_EOL;
+        $this->fileBuffer .= '            g.src="//www.google-analytics.com/ga.js";' . PHP_EOL;
+        $this->fileBuffer .= '            s.parentNode.insertBefore(g,s)}(document,"script"));' . PHP_EOL;
+        $this->fileBuffer .= '        </script>' . PHP_EOL;
     }
 
 
@@ -618,7 +618,7 @@ class BookendGenerator
      */
     protected function endBody()
     {
-        $this->fileBuffer .= '    </body>' . "\n";
+        $this->fileBuffer .= '    </body>' . PHP_EOL;
         $this->fileBuffer .= '</html>';
     }
 

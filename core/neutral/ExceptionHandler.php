@@ -49,9 +49,9 @@ class ExceptionHandler
      */
     public function __construct( $message, $code = 0, $previous = null )
     {
-        $message = date('Y-m-d H:i:s') . " " . $message . "\n";
-        $message .= "Trigger Source: $this->file ($this->line)\n";
-        $message .= "Stack Trace:\n" . $this->getTraceAsString() . "\n\n";
+        $message = date('Y-m-d H:i:s') . " " . $message . PHP_EOL;
+        $message .= "Trigger Source: $this->file ($this->line)" . PHP_EOL;
+        $message .= "Stack Trace:" . PHP_EOL . $this->getTraceAsString() . PHP_EOL . PHP_EOL;
         $message = utf8_encode($message);
         parent::__construct($message, $code, $previous);
     }
@@ -168,7 +168,7 @@ class ExceptionHandler
             . "::"
             . $this->method
             . ":"
-            . $this->message . "\n"
+            . $this->message . PHP_EOL
         );
     }
 
