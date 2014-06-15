@@ -28,6 +28,8 @@ class ArchitectureGenerator
      */
     private static $_baseAgencies = [
         "agencies",
+        "agencies/abstracts",
+        "agencies/abstracts/interfaces",
         "agencies/custom",
         "agencies/custom/interfaces",
         "agencies/decorators",
@@ -56,7 +58,18 @@ class ArchitectureGenerator
      * @var array _baseAgenciesTests holds the agencies tests directories
      */
     private static $_baseAgenciesTests = [
+        "tests/acceptance/agencies",
+        "tests/acceptance/agencies/abstracts",
+        "tests/acceptance/agencies/custom",
+        "tests/acceptance/agencies/decorators",
+        "tests/acceptance/agencies/generated",
+        "tests/integration/agencies",
+        "tests/integration/agencies/abstracts",
+        "tests/integration/agencies/custom",
+        "tests/integration/agencies/decorators",
+        "tests/integration/agencies/generated",
         "tests/unit/agencies",
+        "tests/unit/agencies/abstracts",
         "tests/unit/agencies/custom",
         "tests/unit/agencies/decorators",
         "tests/unit/agencies/generated"
@@ -66,6 +79,8 @@ class ArchitectureGenerator
      */
     private static $_baseControllers = [
         "controllers",
+        "controllers/abstracts",
+        "controllers/abstracts/interfaces",
         "controllers/custom",
         "controllers/generated"
     ];
@@ -85,22 +100,20 @@ class ArchitectureGenerator
      * @var array _baseControllerTests holds the controllers test directories
      */
     private static $_baseControllerTests = [
+        "tests/acceptance/controllers",
+        "tests/acceptance/controllers/abstracts",
+        "tests/acceptance/controllers/custom",
+        "tests/acceptance/controllers/generated",
+        "tests/integration/controllers",
+        "tests/integration/controllers/abstracts",
+        "tests/integration/controllers/custom",
+        "tests/integration/controllers/generated",
         "tests/unit/controllers",
+        "tests/unit/controllers/abstracts",
         "tests/unit/controllers/custom",
         "tests/unit/controllers/generated"
     ];
-    /**
-     * @var array _baseControllerTestsCustom the custom controller test interfaces
-     */
-    private static $_baseControllerTestsCustom = [
-        "tests/unit/controllers/custom/interfaces"
-    ];
-    /**
-     * @var array _baseControllerTestsGenerated the generated controller test interfaces
-     */
-    private static $_baseControllerTestsGenerated = [
-        "tests/unit/controllers/generated/interfaces"
-    ];
+
     /**
      * @var array _baseDatabase holds the database base directories
      */
@@ -206,6 +219,7 @@ class ArchitectureGenerator
      */
     private static $_baseModels = [
         "models",
+        "models/abstracts",
         "models/custom",
         "models/decorators",
         "models/generated",
@@ -233,6 +247,7 @@ class ArchitectureGenerator
      * @var array _baseModelInterfaces the model interface directories
      */
     private static $_baseModelInterfaces = [
+        "models/abstracts/interfaces/",
         "models/custom/interfaces/",
         "models/decorators/interfaces/",
         "models/generated/interfaces/",
@@ -242,15 +257,24 @@ class ArchitectureGenerator
      * @var array _baseModelTests the model tests directories
      */
     private static $_baseModelTests = [
+        "tests/acceptance/models",
+        "tests/acceptance/models/abstracts",
+        "tests/acceptance/models/custom",
+        "tests/acceptance/models/decorators",
+        "tests/acceptance/models/generated",
+        "tests/acceptance/models/helpers",
+        "tests/integration/models",
+        "tests/integration/models/abstracts",
+        "tests/integration/models/custom",
+        "tests/integration/models/decorators",
+        "tests/integration/models/generated",
+        "tests/integration/models/helpers",
         "tests/unit/models",
+        "tests/unit/models/abstracts",
         "tests/unit/models/custom",
         "tests/unit/models/decorators",
         "tests/unit/models/generated",
         "tests/unit/models/helpers",
-        "tests/unit/models/custom/interfaces/",
-        "tests/unit/models/decorators/interfaces/",
-        "tests/unit/models/generated/interfaces/",
-        "tests/unit/models/helpers/interfaces/"
     ];
     /**
      * @var array _baseViews the base view directories
@@ -290,6 +314,14 @@ class ArchitectureGenerator
      * @var array _baseViewTestsGenerated the generated view test directories
      */
     private static $_baseViewTestsGenerated = [
+        "tests/acceptance/views/generated/",
+        "tests/acceptance/views/generated/browse",
+        "tests/acceptance/views/generated/forms",
+        "tests/acceptance/views/generated/partials",
+        "tests/integration/views/generated/",
+        "tests/integration/views/generated/browse",
+        "tests/integration/views/generated/forms",
+        "tests/integration/views/generated/partials",
         "tests/unit/views/generated/",
         "tests/unit/views/generated/browse",
         "tests/unit/views/generated/forms",
@@ -302,12 +334,9 @@ class ArchitectureGenerator
     private static $_baseTests = [
         "tests",
         "tests/acceptance",
-        "tests/acceptance/abstract",
         "tests/config",
         "tests/integration",
-        "tests/integration/abstract",
         "tests/unit",
-        "tests/unit/abstract"
     ];
     /**
      * @var array _baseTopLevelOnly holds values for $ArchitectureGenerator->_baseTopLevelOnly
@@ -320,7 +349,6 @@ class ArchitectureGenerator
         "config/staging",
         "core",
         "mobile",
-        "spec",
         "vagrant"
     ];
     /**
@@ -468,9 +496,7 @@ class ArchitectureGenerator
         $this->directoryList = array_merge($this->directoryList,self::$_baseControllers);
         $this->directoryList = array_merge($this->directoryList,self::$_baseControllerTests);
         $this->directoryList = array_merge($this->directoryList, self::$_baseControllersCustom);
-        $this->directoryList = array_merge($this->directoryList, self::$_baseControllerTestsCustom);
         $this->directoryList = array_merge($this->directoryList, self::$_baseControllersGenerated);
-        $this->directoryList = array_merge($this->directoryList, self::$_baseControllerTestsGenerated);
         $this->directoryList = array_merge($this->directoryList, self::$_baseDatabase);
         $this->directoryList = array_merge($this->directoryList, self::$_baseDatabaseTests);
         $this->directoryList = array_merge($this->directoryList, self::$_baseHTML);
@@ -511,5 +537,5 @@ class ArchitectureGenerator
 $ag = new ArchitectureGenerator(BASE_URI);
 $ag->execute();
 */
-$ag = new ArchitectureGenerator("/home/texmorgan/Public/InnerAlly");
+$ag = new ArchitectureGenerator("/home/texmorgan/Public/Heimdall");
 $ag->execute();
