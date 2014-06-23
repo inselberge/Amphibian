@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
-require_once AMPHIBIAN_CORE."DropDownMySQLi.php";
+require_once AMPHIBIAN_CORE_MYSQLI."DropDownMySQLi.php";
 
 /**
  * Class DropDownMySQLiTest

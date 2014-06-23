@@ -55,7 +55,7 @@ abstract class APIKey
 
     /** __construct
      */
-    protected function __construct()
+    public function __construct()
     {
         //good for 30 days
         $this->expiration = microtime(true)+2592000;

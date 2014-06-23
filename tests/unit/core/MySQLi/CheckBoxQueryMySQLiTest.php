@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
-require_once AMPHIBIAN_CORE."CheckBoxQueryMySQLi.php";
+require_once AMPHIBIAN_CORE_MYSQLI."CheckBoxQueryMySQLi.php";
 
 /**
  * Class CheckBoxQueryMySQLiTest

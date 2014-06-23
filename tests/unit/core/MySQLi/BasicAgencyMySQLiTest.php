@@ -22,8 +22,10 @@ class BasicAgencyMySQLiTest
      */
     protected function setUp()
     {
-        $this->arguments = DatabaseConnectionMySQLi::factory();
-        $this->object = $this->getMockForAbstractClass('BasicAgencyMySQLi',$this->arguments);
+        $this->connection = DatabaseConnectionMySQLi::factory();
+        $this->connection->openConnection();
+
+        $this->object = $this->getMockForAbstractClass('BasicAgencyMySQLi',array($this->connection));
     }
 
     /** testAcceptArgumentsDataPackage

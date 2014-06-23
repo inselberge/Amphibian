@@ -32,7 +32,7 @@ class DataListMySQLi
      *
      * @param resource $databaseConnection a valid databaseConnection
      */
-    protected function __construct($databaseConnection)
+    public function __construct($databaseConnection)
     {
         parent::__construct($databaseConnection);
     }

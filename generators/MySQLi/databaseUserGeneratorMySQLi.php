@@ -6,8 +6,8 @@
  * Time: 10:45 AM
  * All rights reserved by Inselberge Inc. unless otherwise stated.
  */
-require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
-require_once AMPHIBIAN_CORE_ABSTRACT. "databaseUserGenerator.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR. ".." . DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.inc.php";
+require_once AMPHIBIAN_GENERATORS_ABSTRACT. "databaseUserGenerator.php";
 require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 require_once AMPHIBIAN_CORE_NEUTRAL . "RandomPassword.php";
 require_once AMPHIBIAN_CORE_NEUTRAL . "FileHandle.php";

@@ -58,7 +58,7 @@ class TableBuilderMySQLi
      * @param resource $resultSet          a result set from a query
      * @param string   $id                 the id of the table
      */
-    protected function __construct( $databaseConnection = null, $resultSet = null ,$id )
+    public function __construct( $databaseConnection = null, $resultSet = null ,$id )
     {
         try {
             if (CheckInput::checkSet($id)) {

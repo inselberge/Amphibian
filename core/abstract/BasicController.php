@@ -71,7 +71,7 @@ abstract class BasicController
      *
      * @param resource $databaseConnection a database connection
      */
-    protected function __construct( $databaseConnection )
+    public function __construct( $databaseConnection )
     {
         try {
             parent::__construct($databaseConnection);

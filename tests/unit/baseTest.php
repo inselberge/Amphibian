@@ -462,7 +462,7 @@ abstract class BaseTest
      */
     public function validDatabaseConnectionMySQLiDataProvider()
     {
-        require_once AMPHIBIAN_CORE_MYSQLI."DatabaseConnectionMySQLi.php";
+        require_once AMPHIBIAN_CORE_MYSQLI."databaseConnectionMySQLi.php";
         $this->connection = DatabaseConnectionMySQLi::instance();
         /*
         $this->connection->setOptions(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
