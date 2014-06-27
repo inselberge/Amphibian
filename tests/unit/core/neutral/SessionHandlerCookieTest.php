@@ -27,7 +27,7 @@ class SessionHandlerCookieTest
      */
     protected function setUp()
     {
-        $this->object = SessionHandlerCookie::instance();
+        $this->object = SessionHandlerCookie::factory();
     }
 
     /** testInstance
@@ -40,6 +40,19 @@ class SessionHandlerCookieTest
     {
         $this->expected = $this->object;
         $this->actual = SessionHandlerCookie::instance();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testFactory
+     *
+     * @covers SessionHandlerCookie::factory
+     *
+     * @return void
+     */
+    public function testFactory()
+    {
+        $this->expected = $this->object;
+        $this->actual = SessionHandlerCookie::factory();
         $this->assertEquals($this->expected, $this->actual);
     }
 

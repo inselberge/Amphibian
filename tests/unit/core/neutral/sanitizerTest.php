@@ -16,7 +16,7 @@ class sanitizerTest
      */
     protected function setUp()
     {
-        $this->object = sanitizer::instance();
+        $this->object = Sanitizer::factory();
     }
 
     /** tearDown
@@ -35,7 +35,15 @@ class sanitizerTest
      */
     public function testInstance()
     {
-        $this->assertEquals($this->object, sanitizer::instance());
+        $this->assertEquals($this->object, Sanitizer::instance());
+    }
+
+    /**
+     * @covers sanitizer::factory
+     */
+    public function testFactory()
+    {
+        $this->assertEquals($this->object, Sanitizer::factory());
     }
 
     /**
@@ -49,21 +57,41 @@ class sanitizerTest
         $this->assertNotEquals(FILTER_FLAG_STRIP_LOW,$this->object->getFlags());
     }
 
-    /**
+    /** testSetFlags
+     *
      * @covers sanitizer::setFlags
+     *
+     * @dataProvider setFlagsDataProvider
+     *
+     * @return void
      */
-    public function testSetFlags()
+    public function testSetFlags($filter, $flag)
     {
-        $this->object->setSanitationFilter(FILTER_SANITIZE_ENCODED);
-        $this->assertTrue($this->object->setFlags(FILTER_FLAG_STRIP_HIGH));
-        /*todo: uncomment after logTest and ExceptionHandlerTest are done
-        try {
-            $this->setExpectedException('ExceptionHandler',"sanitizer::setFlags: invalid flag.");
-            $this->object->setFlags(5);
-        } catch ( ExceptionHandler $e ) {
-            $this->assertType('ExceptionHandler',$e);
-        }
-        */
+        $this->object->setSanitationFilter($filter);
+        $this->assertTrue($this->object->setFlags($flag));
+    }
+
+    public function setFlagsDataProvider()
+    {
+        return array(
+            array(FILTER_SANITIZE_ENCODED, FILTER_FLAG_STRIP_LOW),
+            array(FILTER_SANITIZE_ENCODED, FILTER_FLAG_STRIP_HIGH),
+            array(FILTER_SANITIZE_ENCODED, FILTER_FLAG_ENCODE_LOW),
+            array(FILTER_SANITIZE_ENCODED, FILTER_FLAG_ENCODE_HIGH),
+            array(FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+            array(FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND),
+            array(FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_SCIENTIFIC),
+            array(FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_HIGH),
+            array(FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_STRIP_LOW),
+            array(FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_ENCODE_HIGH),
+            array(FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES),
+            array(FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES),
+            array(FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW),
+            array(FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH),
+            array(FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW),
+            array(FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH),
+            array(FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_AMP)
+        );
     }
 
     /**
@@ -93,21 +121,43 @@ class sanitizerTest
         $this->assertEquals(FILTER_SANITIZE_NUMBER_INT, $this->object->getSanitationFilter());
     }
 
-    /**
+    /** testSetSanitationFilter
+     *
      * @covers sanitizer::setSanitationFilter
+     *
+     * @dataProvider setSanitationFilterDataProvider
      */
-    public function testSetSanitationFilter()
+    public function testSetSanitationFilter($filter)
     {
-        $this->assertTrue($this->object->setSanitationFilter(FILTER_SANITIZE_NUMBER_INT));
+        $this->assertTrue($this->object->setSanitationFilter($filter));
+    }
+
+    public function setSanitationFilterDataProvider()
+    {
+        return array(
+            array(FILTER_SANITIZE_EMAIL),
+            array(FILTER_SANITIZE_ENCODED),
+            array(FILTER_SANITIZE_MAGIC_QUOTES),
+            array(FILTER_SANITIZE_NUMBER_FLOAT),
+            array(FILTER_SANITIZE_NUMBER_INT),
+            array(FILTER_SANITIZE_SPECIAL_CHARS),
+            array(FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            array(FILTER_SANITIZE_STRING),
+            array(FILTER_SANITIZE_STRIPPED),
+            array(FILTER_SANITIZE_URL)
+        );
     }
 
     /**
      * @covers sanitizer::execute
+     *
+     * @dataProvider setFlagsDataProvider
      */
-    public function testExecute()
+    public function testExecute($filter, $flag)
     {
         $this->object->setVariable(15);
-        $this->object->setSanitationFilter(FILTER_SANITIZE_NUMBER_INT);
+        $this->object->setSanitationFilter($filter);
+        $this->object->setFlags($flag);
         $this->assertEquals(15, $this->object->execute());
     }
 }

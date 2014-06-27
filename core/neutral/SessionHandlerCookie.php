@@ -78,6 +78,15 @@ class SessionHandlerCookie
         return self::$SessionHandlerCookie;
     }
 
+    /** instance
+     *
+     * @return SessionHandlerCookie
+     */
+    static public function factory()
+    {
+        return new SessionHandlerCookie();
+    }
+
     /** open
      *
      * @param $savePath

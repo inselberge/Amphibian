@@ -29,6 +29,22 @@ class sessionExceptionTest
         $this->object = new sessionException("An error occurred");
     }
 
+    /** testConstruct
+     *
+     * @param $message
+     * @param $expectedResult
+     *
+     * @covers SessionException::__construct
+     *
+     * @return void
+     */
+    public function testConstruct()
+    {
+        $this->expected = $this->object;
+        $this->actual = new sessionException("An error occurred");
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
     /** testPrintMessage
      *
      * @covers sessionException::printMessage

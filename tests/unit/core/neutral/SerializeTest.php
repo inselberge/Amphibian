@@ -58,6 +58,8 @@ class SerializeTest
      *
      * @covers Serialize::setDirection
      *
+     * @dataProvider setDirectionDataProvider
+     *
      * @return void
      */
     public function testSetDirection($value, $expectedResult)
@@ -67,19 +69,40 @@ class SerializeTest
         $this->assertEquals($this->expected, $this->actual);
     }
 
+    public function setDirectionDataProvider()
+    {
+        return array(
+            array(true, true),
+            array(false, true),
+            array(null, false)
+        );
+    }
+
     /** testGetDirection
      *
      * @param mixed $expectedResult the expected return
      *
      * @covers Serialize::getDirection
      *
+     * @dataProvider getDirectionDataProvider
+     *
      * @return void
      */
-    public function testGetDirection($expectedResult)
+    public function testGetDirection($value, $expectedResult)
     {
+        $this->object->setDirection($value);
         $this->expected = $expectedResult;
         $this->actual = $this->object->getDirection();
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function getDirectionDataProvider()
+    {
+        return array(
+            array(true, true),
+            array(false, false),
+            array(null, true)
+        );
     }
 
     /** testSetData
@@ -88,6 +111,8 @@ class SerializeTest
      * @param bool  $expectedResult true = success; false = failure
      *
      * @covers Serialize::setData
+     *
+     * @dataProvider setDataDataProvider
      *
      * @return void
      */
@@ -98,12 +123,23 @@ class SerializeTest
         $this->assertEquals($this->expected, $this->actual);
     }
 
+    public function setDataDataProvider()
+    {
+        return array(
+            array(true, false),
+            array(array(), true),
+            array(null, false)
+        );
+    }
+
     /** testAppendData
      *
      * @param array $value          the append data array value
      * @param bool  $expectedResult true = success; false = failure
      *
      * @covers Serialize::appendData
+     *
+     * @dataProvider appendDataDataProvider
      *
      * @return void
      */
@@ -114,19 +150,39 @@ class SerializeTest
         $this->assertEquals($this->expected, $this->actual);
     }
 
+    public function appendDataDataProvider()
+    {
+        return array(
+            array(true, true),
+            array(array(), true),
+            array(null, false)
+        );
+    }
+
     /** testGetData
      *
      * @param mixed $expectedResult the expected return
      *
      * @covers Serialize::getData
      *
+     * @dataProvider getDataDataProvider
+     *
      * @return void
      */
-    public function testGetData($expectedResult)
+    public function testGetData($value, $expectedResult)
     {
+        $this->object->setData($value);
         $this->expected = $expectedResult;
         $this->actual = $this->object->getData();
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function getDataDataProvider()
+    {
+        return array(
+            array(array(), array()),
+            array(null,null)
+        );
     }
 
     /** testExecute
@@ -135,13 +191,26 @@ class SerializeTest
      *
      * @covers Serialize::execute
      *
+     * @dataProvider executeDataProvider
+     *
      * @return void
      */
-    public function testExecute($expectedResult)
+    public function testExecute($direction, $data, $expectedResult)
     {
+        $this->object->setDirection($direction);
+        $this->object->setData($data);
         $this->expected = $expectedResult;
         $this->actual = $this->object->execute();
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function executeDataProvider()
+    {
+        return array(
+            array(true, array(), true),
+            array(false, array(), true),
+            array(null, null, false)
+        );
     }
 
     /** testGetOutput
@@ -150,6 +219,8 @@ class SerializeTest
      *
      * @covers Serialize::getOutput
      *
+     * @dataProvider getOutputDataProvider
+     *
      * @return void
      */
     public function testGetOutput($expectedResult)
@@ -157,5 +228,12 @@ class SerializeTest
         $this->expected = $expectedResult;
         $this->actual = $this->object->getOutput();
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function getOutputDataProvider()
+    {
+        return array(
+            array(false)
+        );
     }
 }

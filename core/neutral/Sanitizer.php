@@ -60,6 +60,15 @@ class Sanitizer
         return self::$Sanitizer;
     }
 
+    /** factory
+     *
+     * @return Sanitizer
+     */
+    static public function factory()
+    {
+        return new Sanitizer();
+    }
+
     /** getFlags
      *
      * @return array

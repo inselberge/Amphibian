@@ -210,7 +210,9 @@ class JSON
                     throw new ExceptionHandler(__METHOD__ . ": response not ready.");
                 }
             }
-            header("content-type: text/json charset=utf-8");
+            if ( !headers_sent() ) {
+                header("content-type: text/json charset=utf-8");
+            }
             echo $this->objectJSON;
         } catch ( ExceptionHandler $e ) {
             $e->execute();

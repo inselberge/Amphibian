@@ -80,6 +80,15 @@ class Password
         return self::$Password;
     }
 
+    /** factory
+     *
+     * @return object
+     */
+    static public function factory()
+    {
+        return new Password();
+    }
+
     /**  setAlgorithm
      *
      * @param string $algorithm the algorithm you want to use
@@ -141,7 +150,7 @@ class Password
     public function setLength( $length )
     {
         try {
-            if ( CheckInput::checkNewInput($length) ) {
+            if ( CheckInput::checkNewInput($length) and is_integer($length)) {
                 $this->length = $length;
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": length is not valid");
@@ -171,7 +180,7 @@ class Password
     public function setPassword( $password )
     {
         try {
-            if ( CheckInput::checkNewInput($password) ) {
+            if ( CheckInput::checkNewInput($password) AND is_string($password)) {
                 $this->password = $password;
             } else {
                 throw new ExceptionHandler(__METHOD__ . ": password is not valid");
