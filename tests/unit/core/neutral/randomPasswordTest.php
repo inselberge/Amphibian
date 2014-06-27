@@ -23,33 +23,32 @@ class randomPasswordTest
      */
     public function algorithmDataProvider()
     {
-        return hash_algos();
+        return array(hash_algos());
     }
 
     /** setUp
      *
-     * @param string $algorithm an algorithm to test
-     *
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @dataProvider algorithmDataProvider
-     *
      * @return void
      */
-    protected function setUp($algorithm)
+    protected function setUp()
     {
-        $this->object = new randomPassword($algorithm, 16);
+
     }
 
     /** testCheckSupportedAlgo
      *
      * @covers randomPassword::checkSupportedAlgo
      *
+     * @dataProvider algorithmDataProvider
+     *
      * @return void
      */
-    public function testCheckSupportedAlgo()
+    public function testCheckSupportedAlgo($algorithm)
     {
+        $this->object = new RandomPassword($algorithm, 16);
         $this->expected = true;
         $this->actual = $this->object->checkSupportedAlgo();
         $this->assertEquals($this->expected, $this->actual);
@@ -59,10 +58,13 @@ class randomPasswordTest
      *
      * @covers randomPassword::createPassword
      *
+     * @dataProvider algorithmDataProvider
+     *
      * @return void
      */
-    public function testCreatePassword()
+    public function testCreatePassword($algorithm)
     {
+        $this->object = new RandomPassword($algorithm, 16);
         $this->expected = true;
         $this->actual = $this->object->createPassword();
         $this->assertEquals($this->expected, $this->actual);

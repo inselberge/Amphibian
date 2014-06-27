@@ -43,22 +43,6 @@ class SessionTest
         $this->assertEquals($this->expected, $this->actual);
     }
 
-    /** testGet
-     *
-     * @covers Session::get
-     *
-     * @return void
-     */
-    public function testGet()
-    {
-        $this->expected = array();
-        $this->actual = $this->object->get(
-            "aNameSpace",
-            array("firstName"=>"Robert", "lastName"=>"Paulsen")
-        );
-        $this->assertEquals($this->expected, $this->actual);
-    }
-
     /** testSet
      *
      * @covers Session::set
@@ -70,8 +54,42 @@ class SessionTest
         $this->expected = true;
         $this->actual = $this->object->set(
             "aNameSpace",
-            array("firstName"=>"Robert", "lastName"=>"Paulsen")
+            array("firstName" => "Robert", "lastName" => "Paulsen")
         );
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** testGet
+     *
+     * @covers Session::get
+     *
+     * @dataProvider getDataProvider
+     *
+     * @return void
+     */
+    public function testGet($namespace, $data, $expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->get(
+            $namespace,
+            $data
+        );
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function getDataProvider()
+    {
+        return array(
+            array(
+                "aNameSpace",
+                array("firstName" => "Robert", "lastName" => "Paulsen"),
+                array("aNameSpace" => array("firstName" => "Robert", "lastName" => "Paulsen"))
+            ),
+            array(
+                "",
+                array(),
+                false
+            )
+        );
     }
 }

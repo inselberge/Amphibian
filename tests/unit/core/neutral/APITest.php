@@ -4,6 +4,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR
     . ".." . DIRECTORY_SEPARATOR
     . "baseTest.php";
 require_once AMPHIBIAN_CORE_NEUTRAL."API.php";
+require_once AMPHIBIAN_CORE_ABSTRACT . "Request.php";
 /**
  * Class APITest
  *

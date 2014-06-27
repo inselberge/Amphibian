@@ -43,7 +43,7 @@ class PasswordTest
      */
     protected function setUp()
     {
-        $this->object = Password::instance();
+        $this->object = Password::factory();
     }
 
     /** tearDown
@@ -65,10 +65,24 @@ class PasswordTest
      *
      * @param string $pass the password to test
      *
+     * @dataProvider checkPasswordRegExDataProvider
+     *
      * @return void
      */
-    public function testCheckPasswordRegEx( $pass )
+    public function testCheckPasswordRegEx( $pass, $expectedResult )
     {
+        $this->expected = $expectedResult;
+        $this->actual = Password::checkPasswordRegEx($pass);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function checkPasswordRegExDataProvider()
+    {
+        return array(
+            array("A9999e8w8e98hre", true),
+            array("3hri4oh", false),
+            array("@###@@hbuifdha", false)
+        );
     }
 
     /** testInstance
@@ -122,13 +136,25 @@ class PasswordTest
      *
      * @param integer $length the length of a password
      *
+     * @dataProvider lengthDataProvider
+     *
      * @return void
      */
-    public function testSetLength( $length )
+    public function testSetLength( $length, $expectedResult )
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setLength($length);
         $this->assertEquals($this->expected, $this->actual);
+    }
+
+    public function lengthDataProvider()
+    {
+        return array(
+            array(16, true),
+            array(12, true),
+            array(8, true),
+            array(null, false)
+        );
     }
 
     /** testGetLength
@@ -146,15 +172,25 @@ class PasswordTest
      *
      * @param string $password a password to use
      *
+     * @dataProvider setPasswordDataProvider
+     *
      * @return void
      */
-    public function testSetPassword( $password )
+    public function testSetPassword( $password, $expectedResult )
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setPassword($password);
         $this->assertEquals($this->expected, $this->actual);
     }
 
+    public function setPasswordDataProvider()
+    {
+        return array(
+            array("234j290rfj0afhew90qr", true),
+            array(null, false),
+            array(true, false)
+        );
+    }
     /** testGetPassword
      *
      * @return void

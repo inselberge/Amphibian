@@ -30,6 +30,33 @@ class SuperGlobalTest
         $this->object = new SuperGlobal($_SERVER);
     }
 
+    /** testConstruct
+     *
+     * @param array $globalArray
+     *
+     * @covers SuperGlobal::__construct
+     *
+     * @dataProvider constructDataProvider
+     *
+     * @return void
+     */
+    public function testConstruct($globalArray)
+    {
+        $this->expected = $this->object;
+        $this->actual = new SuperGlobal($globalArray);
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+    /** constructDataProvider
+     * @return array
+     */
+    public function constructDataProvider()
+    {
+        return array(
+            array($_SERVER)
+        );
+    }
+
     /** testCheckEqual
      *
      * @covers SuperGlobal::checkEqual

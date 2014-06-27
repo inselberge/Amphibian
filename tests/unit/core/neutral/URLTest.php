@@ -26,7 +26,7 @@ class URLTest
      */
     protected function setUp()
     {
-        $this->object = URL::instance('http://localhost/Phatness/Week1%20Introduction/phpinfo.php');
+        $this->object = URL::instance('http://http://finance.yahoo.com/q?s=^dji');
     }
 
     /** tearDown
@@ -49,7 +49,7 @@ class URLTest
      */
     public function testInstance()
     {
-        $this->assertEquals($this->object, URL::instance('http://localhost/Phatness/Week1%20Introduction/phpinfo.php'));
+        $this->assertEquals($this->object, URL::instance('http://finance.yahoo.com/q?s=^dji'));
     }
 
     /** testSetUrlString
@@ -60,7 +60,7 @@ class URLTest
      */
     public function testSetUrlString()
     {
-        $this->assertTrue($this->object->setUrlString('http://localhost/Phatness/Week1%20Introduction/phpinfo.php'));
+        $this->assertTrue($this->object->setUrlString('http://finance.yahoo.com/q?s=^dji'));
     }
 
     /** testExecute
@@ -106,7 +106,7 @@ class URLTest
     public function testGetHost()
     {
         $this->object->explodeURLFull();
-        $this->assertEquals('localhost',$this->object->getHost());
+        $this->assertEquals('finance.yahoo.com',$this->object->getHost());
     }
 
     /** testGetPass
@@ -130,7 +130,7 @@ class URLTest
     public function testGetPath()
     {
         $this->object->explodeURLFull();
-        $this->assertEquals('Phatness/Week1%20Introduction/phpinfo.php',$this->object->getPath());
+        $this->assertEquals('q',$this->object->getPath());
     }
 
     /** testGetPort
@@ -142,7 +142,7 @@ class URLTest
     public function testGetPort()
     {
         $this->object->explodeURLFull();
-        $this->assertEquals(null,$this->object->getPort());
+        $this->assertEquals("",$this->object->getPort());
     }
 
     /** testGetQuery
@@ -154,7 +154,7 @@ class URLTest
     public function testGetQuery()
     {
         $this->object->explodeURLFull();
-        $this->assertEquals(null,$this->object->getQuery());
+        $this->assertEquals("s=^dji",$this->object->getQuery());
     }
 
     /** testGetSchemeFromProtocol
@@ -201,7 +201,7 @@ class URLTest
      */
     public function testSetRawURL()
     {
-        $this->assertTrue($this->object->setRawURL('http://localhost/Phatness/Week1%20Introduction/phpinfo.php'));
+        $this->assertTrue($this->object->setRawURL('http://finance.yahoo.com/q?s=^dji'));
     }
 
     /** testGetRawURL
@@ -212,7 +212,7 @@ class URLTest
      */
     public function testGetRawURL()
     {
-        $expected = 'http://localhost/Phatness/Week1%20Introduction/phpinfo.php';
+        $expected = 'http://finance.yahoo.com/q?s=^dji';
         $this->assertEquals($expected, $this->object->getRawURL());
     }
 

@@ -90,7 +90,7 @@ class FileListTest
      */
     public function testPrintCount()
     {
-        $this->expected = 6;
+        $this->expected = 10;
         $this->actual = $this->object->printCount();
         $this->assertEquals($this->expected, $this->actual);
     }

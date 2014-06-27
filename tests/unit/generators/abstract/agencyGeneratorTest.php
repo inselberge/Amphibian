@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "baseTest.php";
 require_once AMPHIBIAN_GENERATORS_ABSTRACT . "agencyGenerator.php";
+require_once AMPHIBIAN_CORE_MYSQLI . "databaseConnectionMySQLi.php";
 /**
  * Class agencyGeneratorTest
  *
@@ -25,6 +26,26 @@ class agencyGeneratorTest
      */
     protected function setUp()
     {
-        $this->object = $this->getMockForAbstractClass('AgencyGenerator');
+        $this->connection = DatabaseConnectionMySQLi::factory();
+        $this->object = $this->getMockForAbstractClass('AgencyGenerator', array($this->connection));
     }
+
+    /** testExecute
+     *
+     * @param bool $expectedResult
+     *
+     * @covers AgencyGenerator::execute
+     *
+     * @dataProvider booleanDataProvider
+     *
+     * @return void
+     */
+    public function testExecute($expectedResult)
+    {
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->execute();
+        $this->assertEquals($this->expected, $this->actual);
+    }
+
+
 }
