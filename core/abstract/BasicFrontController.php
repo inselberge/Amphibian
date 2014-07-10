@@ -118,6 +118,24 @@ abstract class BasicFrontController
      */
     protected $autoRender = true;
 
+    /** __construct
+     *
+     * @param string $url a valid url
+     */
+    public function __construct($url)
+    {
+        try {
+            if (checkInput::checkSet($url)) {
+                $this->url = $url;
+            } else {
+                throw new exceptionHandler(__METHOD__ . ": url required.");
+            }
+        } catch (exceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
     /**  setPutFile
      *
      * @param string $putFile the data from php://input
@@ -887,6 +905,15 @@ abstract class BasicFrontController
         $this->log = Log::instance(print_r($this));
         $this->log->setLogType("Malicious");
         $this->log->execute();
-        redirect_invalid_user(null, "www.sadtrombone.com/?play=true");
+        $this->redirect_invalid_user(null, "www.sadtrombone.com/?play=true");y
+    }
+
+    protected function redirect_invalid_user($check = 'user_id', $destination = 'index.php', $protocol = 'http://')
+    {
+        if (!isset($_SESSION[$check])) {
+            $url = $protocol . BASE_URL . $destination;
+            header("Location: $url");
+            exit();
+        }
     }
 } 

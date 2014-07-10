@@ -32,7 +32,7 @@ class BasicFrontControllerMySQLi
      *
      * @param string $url a URL
      */
-    protected function __construct($url)
+    public function __construct($url)
     {
         try {
             if ( isset($_SERVER["REQUEST_METHOD"]) ) {

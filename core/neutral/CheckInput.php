@@ -46,6 +46,246 @@ class CheckInput
         }
     }
 
+    /** checkNewBoolean
+     *
+     * @param mixed $value the value to check
+     *
+     * @return bool
+     */
+    static public function checkNewBoolean( $value )
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    return is_bool($value);
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** checkNewCallable
+     *
+     * @param mixed $value          the value to check
+     * @param bool  $syntax_only    If set to TRUE the function only verifies that name might be a function or method
+     * @param null  $callable_name
+     *
+     * @return bool
+     */
+    static public function checkNewCallable( $value , $syntax_only = false, &$callable_name = null)
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    return is_callable($value, $syntax_only, $callable_name);
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** checkNewFloat
+     *
+     * @param mixed    $value     the value to check
+     * @param bool     $unsigned  true = unsigned; false = signed
+     * @param null|int $min       the minimum value
+     * @param null|int $max       the maximum value
+     * @param null|int $precision the number of decimal places
+     *
+     * @return bool
+     */
+    static public function checkNewFloat( $value, $unsigned = null, $min = null, $max = null, $precision = null)
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    if (is_float($value)) {
+                        if ($unsigned !== null) {
+                            if ($value < 0) {
+                                return false;
+                            }
+                        }
+                        if ($min !== null) {
+                            if ($value < $min) {
+                                return false;
+                            }
+                        }
+                        if ($max !== null) {
+                            if ($value > $max) {
+                                return false;
+                            }
+                        }
+                        if ($precision !== null) {
+                            list($whole, $fraction) = explode('.', $value);
+                            $valueLength = strlen($fraction);
+                            if ( $valueLength > $max) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** checkNewInt
+     *
+     * @param mixed    $value    the value to check
+     * @param bool     $unsigned true = unsigned; false = signed
+     * @param null|int $min      the minimum value
+     * @param null|int $max      the maximum value
+     *
+     * @return bool
+     */
+    static public function checkNewInt( $value , $unsigned = false, $min = null, $max = null)
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    if (is_int($value)) {
+                        if ($unsigned === true) {
+                            if ($value < 0 ) {
+                                return false;
+                            }
+                        }
+                        if ($min !== null) {
+                            if ($value < $min) {
+                                return false;
+                            }
+                        }
+                        if ($max !== null) {
+                            if ($value > $max) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** checkNewNumeric
+     *
+     * @param mixed $value the value to check
+     *
+     * @return bool
+     */
+    static public function checkNewNumeric( $value )
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    return is_numeric($value);
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** checkNewResource
+     *
+     * @param mixed $value the value to check
+     *
+     * @return bool
+     */
+    static public function checkNewResource( $value )
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    return is_resource($value);
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
+
+    /** checkNewString
+     *
+     * @param mixed    $value the value to check
+     *
+     * @param null|int $min   minimum number of characters
+     *
+     * @param null|int $max   maximum number of characters
+     *
+     * @return bool
+     */
+    static public function checkNewString( $value, $min = null, $max = null )
+    {
+        try {
+            if (isset($value)) {
+                if (!is_null($value)) {
+                    if ( is_string($value) ) {
+                        $length = strlen($value);
+                        if ( $min !== null) {
+                            if ($length < $min) {
+                                return false;
+                            }
+                        }
+                        if ( $max !== null) {
+                            if ( $length > $max ) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                throw new ExceptionHandler(__METHOD__ . ": value is not set.");
+            }
+        } catch (ExceptionHandler $e) {
+            $e->execute();
+            return false;
+        }
+    }
     /** checkNewInputArray
      *
      * @param array $array the array to check

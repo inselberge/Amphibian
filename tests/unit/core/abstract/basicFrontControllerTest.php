@@ -9,7 +9,7 @@ require_once AMPHIBIAN_CORE_ABSTRACT . "BasicFrontController.php";
  * Class BasicFrontControllerTest
  *
  * @category Test
- * @package  BasicFrontControllerMySQLi
+ * @package  BasicFrontController
  * @author   Carl 'Tex' Morgan <texmorgan@amphibian.co>
  * @license  All rights reserved by Inselberge Inc. unless otherwise stated.
  * @link     http://amphibian.co/${PROJECT_NAME}/documentation/BasicFrontControllerTest
@@ -23,44 +23,45 @@ class BasicFrontControllerTest
      */
     protected function setUp()
     {
-        $this->object = BasicFrontController::factory("http://coworks.in/Geekdom/user/browse/limit/25/offset/50");
-    }
-
-    /** testInstance
-     *
-     * @covers BasicFrontControllerMySQLi::instance
-     *
-     * @return void
-     */
-    public function testInstance()
-    {
-        $this->expected = $this->object;
-        $this->actual = BasicFrontControllerMySQLi::instance("http://coworks.in/Geekdom/user/browse/limit/25/offset/50");
-        $this->assertEquals($this->expected, $this->actual);
+        $this->object = $this->getMockForAbstractClass('BasicFrontController',array("http://coworks.in/Geekdom/user/browse/limit/25/offset/50"));
+        //$this->object = BasicFrontController::factory("http://coworks.in/Geekdom/user/browse/limit/25/offset/50");
     }
 
     /** testSetClassName
      *
-     * @covers BasicFrontControllerMySQLi::setClassName
+     * @param string $value          the value to use
+     * @param bool   $expectedResult true = success; false = failure
+     *
+     * @covers BasicFrontController::setClassName
+     *
+     * @dataProvider setClassNameDataProvider
      *
      * @return void
      */
-    public function testSetClassName()
+    public function testSetClassName($value, $expectedResult)
     {
-        $this->expected = true;
-        $this->actual = $this->object->setClassName("User");
+        $this->expected = $expectedResult;
+        $this->actual = $this->object->setClassName($value);
         $this->assertEquals($this->expected, $this->actual);
     }
 
+    public function setClassNameDataProvider()
+    {
+        return array(
+            array("User", true),
+            array("Login", true),
+            array(null, false)
+        );
+    }
     /** testGetClassName
      *
-     * @covers BasicFrontControllerMySQLi::getClassName
+     * @covers BasicFrontController::getClassName
      *
      * @return void
      */
-    public function testGetClassName()
+    public function testGetClassName($expectedResult)
     {
-        $this->expected = "User";
+        $this->expected = $expectedResult;
         $this->actual = $this->object->getClassName();
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -80,28 +81,28 @@ class BasicFrontControllerTest
      *
      * @param string $deviceType the type of device
      *
-     * @covers BasicFrontControllerMySQLi::setDeviceType
+     * @covers BasicFrontController::setDeviceType
      *
      * @dataProvider deviceTypeDataProvider
      *
      * @return void
      */
-    public function testSetDeviceType($deviceType)
+    public function testSetDeviceType($deviceType, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setDeviceType($deviceType);
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testGetDeviceType
      *
-     * @covers BasicFrontControllerMySQLi::getDeviceType
+     * @covers BasicFrontController::getDeviceType
      *
      * @return void
      */
-    public function testGetDeviceType()
+    public function testGetDeviceType($expectedResult)
     {
-        $this->expected = "Desktop";
+        $this->expected = $expectedResult;
         $this->actual = $this->object->getDeviceType();
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -121,28 +122,28 @@ class BasicFrontControllerTest
      *
      * @param string $renderMethod a valid render method
      *
-     * @covers BasicFrontControllerMySQLi::setRenderMethod
+     * @covers BasicFrontController::setRenderMethod
      *
      * @dataProvider renderMethodDataProvider
      *
      * @return void
      */
-    public function testSetRenderMethod($renderMethod)
+    public function testSetRenderMethod($renderMethod, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setRenderMethod($renderMethod);
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testGetRenderMethod
      *
-     * @covers BasicFrontControllerMySQLi::getRenderMethod
+     * @covers BasicFrontController::getRenderMethod
      *
      * @return void
      */
-    public function testGetRenderMethod()
+    public function testGetRenderMethod($expectedResult)
     {
-        $this->expected ="Desktop";
+        $this->expected =$expectedResult;
         $this->actual = $this->object->getRenderMethod();
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -162,28 +163,28 @@ class BasicFrontControllerTest
      *
      * @param string $viewType a valid view type
      *
-     * @covers BasicFrontControllerMySQLi::setViewType
+     * @covers BasicFrontController::setViewType
      *
      * @dataProvider viewTypeDataProvider
      *
      * @return void
      */
-    public function testSetViewType($viewType)
+    public function testSetViewType($viewType, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setViewType($viewType);
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testGetViewType
      *
-     * @covers BasicFrontControllerMySQLi::getViewType
+     * @covers BasicFrontController::getViewType
      *
      * @return void
      */
-    public function testGetViewType()
+    public function testGetViewType($expectedResult)
     {
-        $this->expected = "desktop";
+        $this->expected = $expectedResult;
         $this->actual = $this->object->getViewType();
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -203,15 +204,15 @@ class BasicFrontControllerTest
      *
      * @param string $controllerName a valid controller
      *
-     * @covers BasicFrontControllerMySQLi::setControllerName
+     * @covers BasicFrontController::setControllerName
      *
      * @dataProvider controllerNameDataProvider
      *
      * @return void
      */
-    public function testSetControllerName($controllerName)
+    public function testSetControllerName($controllerName, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setControllerName($controllerName);
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -231,15 +232,15 @@ class BasicFrontControllerTest
      *
      * @param string $action a valid action
      *
-     * @covers BasicFrontControllerMySQLi::setAction
+     * @covers BasicFrontController::setAction
      *
      * @dataProvider actionDataProvider
      *
      * @return void
      */
-    public function testSetAction($action)
+    public function testSetAction($action, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setAction($action);
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -259,15 +260,15 @@ class BasicFrontControllerTest
      *
      * @param mixed $variables the variables to set
      *
-     * @covers BasicFrontControllerMySQLi::setVariables
+     * @covers BasicFrontController::setVariables
      *
      * @dataProvider variableDataProvider
      *
      * @return void
      */
-    public function testSetVariables($variables)
+    public function testSetVariables($variables, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->setVariables($variables);
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -287,15 +288,15 @@ class BasicFrontControllerTest
      *
      * @param array $controllers an array of locations to investigate
      *
-     * @covers BasicFrontControllerMySQLi::cascadeController
+     * @covers BasicFrontController::cascadeController
      *
      * @dataProvider controllerDataProvider
      *
      * @return void
      */
-    public function testCascadeController($controllers)
+    public function testCascadeController($controllers, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->cascadeControllers($controllers);
         $this->assertEquals($this->expected, $this->actual);
     }
@@ -315,81 +316,92 @@ class BasicFrontControllerTest
      *
      * @param array $locations an array of locations to investigate
      *
-     * @covers BasicFrontControllerMySQLi::cascadeView
+     * @covers BasicFrontController::cascadeView
      *
      * @dataProvider viewDataProvider
      *
      * @return void
      */
-    public function testCascadeView($locations)
+    public function testCascadeView($locations, $expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->cascadeView($locations);
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testInitController
      *
-     * @covers BasicFrontControllerMySQLi::initController
+     * @covers BasicFrontController::initController
+     *
+     * @dataProvider booleanDataProvider
      *
      * @return void
      */
-    public function testInitController()
+    public function testInitController($expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->initController();
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testExecute
      *
-     * @covers BasicFrontControllerMySQLi::execute
+     * @covers BasicFrontController::execute
+     *
+     * @dataProvider booleanDataProvider
      *
      * @return void
      */
-    public function testExecute()
+    public function testExecute($expectedResult)
     {
-        $this->expected = true;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->execute();
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testHandleAction
      *
-     * @covers BasicFrontControllerMySQLi::handleAction
+     * @covers BasicFrontController::handleAction
+     *
+     * @dataProvider booleanDataProvider
      *
      * @return void
      */
-    public function testHandleAction()
+    public function testHandleAction($expectedResult)
     {
-        $this->expected = null;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->handleAction();
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testSendErrors
      *
-     * @covers BasicFrontControllerMySQLi::sendErrors
+     * @covers BasicFrontController::sendErrors
+     *
+     * @dataProvider booleanDataProvider
      *
      * @return void
      */
-    public function testSendErrors()
+    public function testSendErrors($expectedResult)
     {
-        $this->expected = null;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->sendErrors();
         $this->assertEquals($this->expected, $this->actual);
     }
 
     /** testCheckMalicious
      *
-     * @covers BasicFrontControllerMySQLi::checkMalicious
+     * @covers BasicFrontController::checkMalicious
+     *
+     * @dataProvider booleanDataProvider
      *
      * @return void
      */
-    public function testCheckMalicious()
+    public function testCheckMalicious($expectedResult)
     {
-        $this->expected = false;
+        $this->expected = $expectedResult;
         $this->actual = $this->object->checkMalicious();
         $this->assertEquals($this->expected, $this->actual);
     }
+
 }

@@ -42,7 +42,7 @@ class basicModelTest
      */
     protected function setUp()
     {
-        require AMPHIBIAN_CONFIG."mysql.cfg.php";
+        //require AMPHIBIAN_CONFIG."mysql.cfg.php";
         $this->object = $this->getMockForAbstractClass('basicModel', array($databaseConnection));
     }
 
