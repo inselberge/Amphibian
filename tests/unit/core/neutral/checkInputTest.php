@@ -45,6 +45,261 @@ class CheckInputTest extends BaseTest
         $this->assertTrue($this->object->checkNewInput(-5));
     }
 
+    /** testCheckNewBoolean
+     *
+     * @param $value
+     * @param $expectedResult
+     *
+     * @covers       CheckInput::checkNewBoolean
+     *
+     * @dataProvider checkNewBooleanDataProvider
+     *
+     * @return void
+     */
+    public function testCheckNewBoolean($value, $expectedResult)
+    {
+        $this->actual = CheckInput::checkNewBoolean($value);
+        $this->expected = $expectedResult;
+        $this->assertEquals($this->expected, $this->actual, "Failed for $value");
+    }
+
+    /** checkNewBooleanDataProvider
+     *
+     * @return array
+     */
+    public function checkNewBooleanDataProvider()
+    {
+        return array(
+            array(true, true),
+            array(false, true),
+            array(null, false),
+            array(0, false),
+            array(1, false)
+        );
+    }
+
+    /** testCheckNewCallable
+     *
+     * @param $value
+     * @param $syntax_only
+     * @param $callable_name
+     * @param $expectedResult
+     *
+     * @covers       CheckInput::checkNewCallable
+     *
+     * @dataProvider checkNewCallableDataProvider
+     *
+     * @return void
+     */
+    public function testCheckNewCallable($value, $syntax_only, &$callable_name, $expectedResult)
+    {
+        $this->actual = CheckInput::checkNewInt($value, $syntax_only, $callable_name);
+        $this->expected = $expectedResult;
+        $this->assertEquals($this->expected, $this->actual, "Failed for $value");
+    }
+
+    /** checkNewCallableDataProvider
+     *
+     * @return array
+     */
+    public function checkNewCallableDataProvider()
+    {
+        return array(
+
+        );
+    }
+
+    /** testCheckNewFloat
+     *
+     * @param $value
+     * @param $unsigned
+     * @param $min
+     * @param $max
+     * @param $precision
+     * @param $expectedResult
+     *
+     * @covers       CheckInput::checkNewFloat
+     *
+     * @dataProvider checkNewFloatDataProvider
+     *
+     * @return void
+     */
+    public function testCheckNewFloat($value, $unsigned, $min, $max, $precision, $expectedResult)
+    {
+        $this->actual = CheckInput::checkNewInt($value, $unsigned, $min, $max, $precision);
+        $this->expected = $expectedResult;
+        $this->assertEquals($this->expected, $this->actual, "Failed for $value");
+    }
+
+    /** checkNewFloatDataProvider
+     *
+     * @return array
+     */
+    public function checkNewFloatDataProvider()
+    {
+        return array(
+
+        );
+    }
+
+    /** testCheckNewInt
+     *
+     * @param $value
+     * @param $unsigned
+     * @param $min
+     * @param $max
+     * @param $expectedResult
+     *
+     * @covers       CheckInput::checkNewInt
+     *
+     * @dataProvider checkNewIntDataProvider
+     *
+     * @return void
+     */
+    public function testCheckNewInt($value, $unsigned, $min, $max, $expectedResult)
+    {
+        $this->actual = CheckInput::checkNewInt($value, $unsigned, $min, $max);
+        $this->expected = $expectedResult;
+        $this->assertEquals($this->expected, $this->actual, "Failed for $value");
+    }
+
+    /** checkNewIntDataProvider
+     *
+     * @return array
+     */
+    public function checkNewIntDataProvider()
+    {
+        return array(
+            array(23,null, null, null, true),
+            array("23", null, null, null, false),
+            array(23.5, null, null, null, false),
+            array("23.5", null, null, null, false),
+            array(null, null, null, null, false),
+            array(true, null, null, null, false),
+            array(false, null, null, null, false),
+            array(23, null, 20, null, true),
+            array(23, null, 30, null, false),
+            array(-23, true, null, null, false),
+            array(-23, false, null, null, true),
+            array(23, null, null, 20, false),
+            array(23, null, null, 30, true)
+        );
+    }
+
+    /** testCheckNewNumeric
+     *
+     * @param $value
+     * @param $expectedResult
+     *
+     * @covers       CheckInput::checkNewNumeric
+     *
+     * @dataProvider checkNewNumericDataProvider
+     *
+     * @return void
+     */
+    public function testCheckNewNumeric($value, $expectedResult)
+    {
+        $this->actual = CheckInput::checkNewNumeric($value);
+        $this->expected = $expectedResult;
+        $this->assertEquals($this->expected, $this->actual, "Failed for $value");
+    }
+
+    /** checkNewNumericDataProvider
+     *
+     * @return array
+     */
+    public function checkNewNumericDataProvider()
+    {
+        return array(
+            array("42", true),
+            array(1337, true),
+            array(0x539, true),
+            array(02471, true),
+            array(0b10100111001, true),
+            array(1337e0,true),
+            array("not numeric",false),
+            array(array(),false),
+            array(9.1, true)
+        );
+    }
+
+    /** testCheckNewResource
+     *
+     * @param $value
+     * @param $expectedResult
+     *
+     * @covers       CheckInput::checkNewResource
+     *
+     * @dataProvider checkNewResourceDataProvider
+     *
+     * @return void
+     */
+    public function testCheckNewResource($value, $expectedResult)
+    {
+        $this->actual = CheckInput::checkNewResource($value);
+        $this->expected = $expectedResult;
+        $this->assertEquals($this->expected, $this->actual, "Failed for $value");
+    }
+
+    /** checkNewResourceDataProvider
+     *
+     * @return array
+     */
+    public function checkNewResourceDataProvider()
+    {
+        return array(
+
+        );
+    }
+
+    /** checkNewString
+     *
+     * @param $value
+     * @param $min
+     * @param $max
+     * @param $expectedResult
+     *
+     * @covers CheckInput::checkNewString
+     *
+     * @dataProvider checkNewStringDataProvider
+     *
+     * @return void
+     */
+    public function checkNewString($value, $min, $max, $expectedResult)
+    {
+        $this->actual = CheckInput::checkNewString($value, $min, $max);
+        $this->expected = $expectedResult;
+        $this->assertEquals($this->expected, $this->actual, "Failed for $value");
+    }
+
+    /** checkNewStringDataProvider
+     *
+     * @return array
+     */
+    public function checkNewStringDataProvider()
+    {
+        return array(
+            array(false, null, null, false),
+            array(true, null, null, false),
+            array(null, null, null, false),
+            array('abc', null, null, true),
+            array('23', null, null, true),
+            array(23, null, null, false),
+            array('23.5', null, null, true),
+            array(23.5, null, null, false),
+            array('', null, null, true),
+            array(' ', null, null, true),
+            array('0', null, null, true),
+            array(0, null, null, false),
+            array("", null, null, true),
+            array("", 1, null, false),
+            array('23.5', 2, null, true),
+            array('23.5', null, 5, true),
+            array('23.5', null, 2, false),
+            array(" ", null, null, true)
+        );
+    }
+
     /**
      * @covers CheckInput::checkNewInputArray
      */
